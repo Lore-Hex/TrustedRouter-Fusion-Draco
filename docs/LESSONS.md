@@ -1,0 +1,53 @@
+# Lessons: running model benchmarks (agentic / tool-using)
+
+Brief, hard-won notes from reproducing OpenRouter's Fusion DRACO benchmark through
+the TrustedRouter gateway (2026-06-16). Most apply to any benchmark where models
+call tools.
+
+## Methodology
+
+- **Agentic benchmarks need real tools.** Feeding models frozen/pre-fetched context
+  in a single shot under-scores them by ~20 points vs. giving them live tools. If the
+  benchmark is "deep research" (DRACO) or otherwise agentic, the model must drive its
+  own `web_search` / `web_fetch` / `bash` loop. Single-shot is the wrong harness.
+- **Match the judge exactly, then compare apples-to-apples.** Pin the judge *model*
+  AND the *pass count*. 1-pass is noisier and can diverge from a multi-pass reference
+  number. Re-judge every config with identical settings; never compare a fresh score
+  to a published one graded differently.
+- **Beware slice-vs-full comparisons.** A 10–15 task slice is not the published
+  100-task number. Verify the slice isn't systematically easier/harder before reading
+  into deltas (we wrongly called a slice "harder" — it wasn't).
+- **Audit for benchmark leakage after every run.** Dump all search queries + fetched
+  URLs and grep for the dataset/rubric/answer-key (dataset host, "rubric", "answer
+  key", the paper's arxiv id). Filter tool results against the rubric itself
+  (criterion ids, first-N-words of each requirement, forbidden terms) and block the
+  dataset/paper hosts — but don't blanket-block legit source domains (e.g. arxiv).
+
+## Gateway / provider gotchas (test multi-turn tools per provider!)
+
+Real agentic load surfaced three gateway bugs that single-shot tests missed. Always
+run a **2-turn function-tool conversation per provider** before trusting tool results:
+
+- **DeepSeek (OpenAI-compatible) returned EMPTY content after a tool result** — the
+  gateway round-trips OpenAI→Anthropic→OpenAI and was passing Anthropic `tool_use`/
+  `tool_result` blocks through verbatim to an OpenAI API. Reverse-translate them.
+- **Vertex/Gemini had no function-tool support at all** — tools weren't sent, tool
+  history wasn't translated. Needed OpenAI↔Gemini `functionDeclarations` /
+  `functionCall` / `functionResponse` translation both ways.
+- **Gemini 3 requires `thought_signature` round-trip** — every `functionCall` returns
+  an opaque signature that must be echoed back on the next turn (400 otherwise).
+  OpenAI tool_calls have no field for it; stash it in the tool_call `id`.
+
+## Harness design
+
+- **Don't hard-cap tool calls then abruptly force an answer.** Models leak raw
+  tool-call markup into content (DeepSeek `<｜｜DSML｜｜>`, Kimi/Claude `<invoke>`),
+  repeat "let me continue", or truncate. Use a generous research budget **+ a
+  dedicated synthesis turn** (no tools, "write the final report now"), and strip any
+  leaked markup as a safety net.
+- **Force the first tool call for reluctant models.** gemini-flash answers from prior
+  knowledge unless `tool_choice:"required"` on turn 1.
+- **bash tool:** a local Docker container (`python:3.12-slim`, `--network none`) is a
+  fine sandbox for calculation tools.
+- **Save every replay + report artifact**, and make generation a saved script — a
+  one-off that produced a key result and wasn't saved cost a full re-derivation.

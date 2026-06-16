@@ -1,0 +1,19 @@
+[project]
+name = "trustedrouter-fusion-draco"
+version = "0.1.0"
+description = "Reproduction of OpenRouter's Fusion DRACO deep-research benchmark on TrustedRouter, with an agentic web_search / web_fetch / bash harness."
+requires-python = ">=3.12"
+dependencies = [
+    "httpx",
+    "markitdown[all]",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/trusted_router"]
+
+[tool.uv]
+package = true

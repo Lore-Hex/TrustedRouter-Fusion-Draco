@@ -1,0 +1,34 @@
+{
+  "config": "fusion_tr_budget_native_opus",
+  "cost_upper_per_task_usd": 0.68624523,
+  "cost_upper_projected_100_usd": 68.62452300000001,
+  "cost_upper_total_usd": 6.8624523,
+  "finish_reasons": {
+    "length": 8,
+    "stop": 2
+  },
+  "judge_model": "google/gemini-3.1-pro-preview",
+  "judge_passes": 1,
+  "openrouter_reference_score": 64.7,
+  "sample_filter": "first 10 non-financial DRACO tasks with frozen Exa contexts",
+  "schema": "trustedrouter.draco.native_fusion_sample_report.v1",
+  "score": 40.172901047978726,
+  "solo_comparisons": {
+    "solo_deepseek_v4_pro": {
+      "delta_native": -5.133737091722367,
+      "n": 10,
+      "score": 45.30663813970109
+    },
+    "solo_gemini_3_flash": {
+      "delta_native": -2.2492434440557716,
+      "n": 10,
+      "score": 42.4221444920345
+    },
+    "solo_kimi_k2_6": {
+      "delta_native": -8.47040497483028,
+      "n": 10,
+      "score": 48.64330602280901
+    }
+  },
+  "tasks": 10
+}
