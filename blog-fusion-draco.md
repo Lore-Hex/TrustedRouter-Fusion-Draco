@@ -1,4 +1,4 @@
-# Three cheap models beat the expensive one
+# TrustedRouter open sources agentic Fusion
 
 OpenRouter published a benchmark last month with a claim I didn't believe: take
 three budget models, run them as a panel, have a fourth model stitch their
