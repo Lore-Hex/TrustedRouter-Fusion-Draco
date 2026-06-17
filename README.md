@@ -14,6 +14,8 @@ harness and the same judge OpenRouter used (`google/gemini-3.1-pro-preview`,
 reasoning `high`), a **panel of budget + frontier models fused by Opus 4.8 reaches
 ~71 on the full 100 tasks — above OpenRouter's best published fusion (69.0).**
 
+![DRACO deep-research scores: TrustedRouter frontier panel + Opus fuser tops OpenRouter's published fusions](docs/sota-chart.svg)
+
 ### Full data table — all 100 tasks, same judge
 
 **Solo models** (each drives its own agentic research loop):
