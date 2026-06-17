@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 500" font-family="-apple-system,Segoe UI,Roboto,sans-serif">
 <rect width="760" height="500" rx="10" fill="#ffffff"/>
-<text x="28" y="38" font-size="19" font-weight="600" fill="#1a1a1a">DRACO: TrustedRouter Fusion beats Frontier</text>
+<text x="28" y="38" font-size="19" font-weight="600" fill="#1a1a1a">DRACO: TrustedRouter Fusion beats Fable and Frontier</text>
 <text x="28" y="60" font-size="13" fill="#5F5E5A">Score out of 100, same judge (gemini-3.1-pro, reasoning high). Higher is better.</text>
 <rect x="540" y="28" width="12" height="12" rx="2" fill="#1D9E75"/><text x="558" y="38" font-size="12" fill="#5F5E5A">TrustedRouter</text>
 <rect x="540" y="46" width="12" height="12" rx="2" fill="#9a9890"/><text x="558" y="56" font-size="12" fill="#5F5E5A">OpenRouter</text>
