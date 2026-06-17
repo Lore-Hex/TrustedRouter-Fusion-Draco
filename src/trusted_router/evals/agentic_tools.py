@@ -20,13 +20,16 @@ benchmark answer key.
 """
 from __future__ import annotations
 
+import hashlib
 import io
 import json
+import os
 import shutil
 import subprocess
 import time
 from collections.abc import Callable
 from dataclasses import dataclass, field
+from pathlib import Path
 from typing import Any
 
 import httpx
@@ -184,6 +187,37 @@ TOOL_SCHEMAS: list[dict[str, Any]] = [
             },
         },
     },
+    {
+        "type": "function",
+        "function": {
+            "name": "sec_facts",
+            "description": (
+                "Fetch EXACT, as-filed financial figures for a U.S. SEC filer straight from "
+                "EDGAR XBRL (operating cash flow, net income, cash, capex, share repurchases, "
+                "dividends, debt issuance/repayment, share-based comp, stockholders' equity, "
+                "revenue). Returns dollar-exact values with their unit, period end date, fiscal "
+                "year/quarter, and form. Use this INSTEAD of web_fetch for any reported number "
+                "from a named U.S. public company — the values are scale- and period-unambiguous, "
+                "so it avoids thousands-vs-millions and prior-year-column mistakes."
+            ),
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "ticker": {"type": "string", "description": "Ticker symbol or 10-digit CIK of the U.S. filer."},
+                    "metric": {
+                        "type": "string",
+                        "description": (
+                            "Optional. One of: operating_cash_flow, net_income, cash, capex, "
+                            "repurchases, dividends, debt_issued, debt_repaid, share_based_comp, "
+                            "stockholders_equity, revenue. Omit to get the full capital-allocation set."
+                        ),
+                    },
+                    "fiscal_year": {"type": "integer", "description": "Optional fiscal year filter (e.g. 2024)."},
+                },
+                "required": ["ticker"],
+            },
+        },
+    },
 ]
 
 
@@ -274,16 +308,105 @@ def _markitdown_fetch(url: str, max_chars: int) -> str | None:
         return None
 
 
-def make_web_fetch(task: DracoTask) -> Callable[[dict[str, Any]], str]:
+# --- LlamaParse (cached) for high-fidelity table/PDF/filing parsing ---
+LLAMAPARSE_BASE = "https://api.cloud.llamaindex.ai"
+LLAMAPARSE_CACHE_DIR = Path(
+    os.environ.get("LLAMAPARSE_CACHE_DIR", "artifacts/fusion-draco/llamaparse-cache")
+)
+_LLAMAPARSE_KEY: str | None = None
+_LLAMAPARSE_KEY_LOADED = False
+
+
+def _llamaparse_key() -> str | None:
+    global _LLAMAPARSE_KEY, _LLAMAPARSE_KEY_LOADED
+    if not _LLAMAPARSE_KEY_LOADED:
+        from trusted_router.evals.fusion_live import load_eval_key
+
+        _LLAMAPARSE_KEY = load_eval_key("LLAMAPARSE_API_KEY")
+        _LLAMAPARSE_KEY_LOADED = True
+    return _LLAMAPARSE_KEY
+
+
+def _llamaparse_fetch(url: str, max_chars: int) -> str | None:
+    """Parse table-heavy filings/PDFs/spreadsheets with LlamaParse -> markdown,
+    caching the FULL parse on disk keyed by URL so each document is billed at most
+    once (across re-runs, models, and tasks). Returns None to fall back to
+    markitdown / plain text."""
+    if not _is_fetchable_public_url(url):
+        return None
+    cache = LLAMAPARSE_CACHE_DIR / f"{hashlib.sha256(url.encode('utf-8')).hexdigest()}.md"
+    if cache.exists():
+        try:
+            cached = cache.read_text(encoding="utf-8").strip()
+            return cached[:max_chars] if cached else None
+        except Exception:  # noqa: BLE001
+            pass
+    key = _llamaparse_key()
+    if not key:
+        return None
+    try:
+        with httpx.Client(timeout=30.0, follow_redirects=True, headers=_FETCH_HEADERS) as client:
+            resp = client.get(url)
+        if resp.status_code != 200:
+            return None
+        ext = _wants_markitdown(url, resp.headers.get("content-type", ""))
+        if ext is None:
+            return None  # only spend LlamaParse credits on table-heavy doc types
+        content = resp.content[:_MAX_FETCH_BYTES]
+        headers = {"Authorization": f"Bearer {key}", "accept": "application/json"}
+        with httpx.Client(timeout=150.0) as client:
+            up = client.post(
+                f"{LLAMAPARSE_BASE}/api/v1/parsing/upload",
+                headers=headers,
+                files={"file": (f"doc{ext}", content, "application/octet-stream")},
+            )
+            if up.status_code != 200:
+                return None
+            job_id = (up.json() or {}).get("id")
+            if not job_id:
+                return None
+            deadline = time.time() + 240.0
+            status = ""
+            while time.time() < deadline:
+                s = client.get(f"{LLAMAPARSE_BASE}/api/v1/parsing/job/{job_id}", headers=headers)
+                status = (s.json() or {}).get("status", "")
+                if status in ("SUCCESS", "PARTIAL_SUCCESS", "ERROR", "CANCELED"):
+                    break
+                time.sleep(2.5)
+            if status not in ("SUCCESS", "PARTIAL_SUCCESS"):
+                return None
+            md = client.get(
+                f"{LLAMAPARSE_BASE}/api/v1/parsing/job/{job_id}/result/markdown", headers=headers
+            )
+            if md.status_code != 200:
+                return None
+            text = ((md.json() or {}).get("markdown") or "").strip()
+        if not text:
+            return None
+        LLAMAPARSE_CACHE_DIR.mkdir(parents=True, exist_ok=True)
+        tmp = cache.with_suffix(".md.tmp")
+        tmp.write_text(text, encoding="utf-8")
+        tmp.replace(cache)
+        return text[:max_chars]
+    except Exception:  # noqa: BLE001 - fall back to markitdown/plain
+        return None
+
+
+def make_web_fetch(task: DracoTask, *, doc_parser: str = "llamaparse") -> Callable[[dict[str, Any]], str]:
+    """doc_parser selects the table/PDF/filing parser chain (for ablation):
+    'llamaparse' -> LlamaParse(cached) then markitdown then plain;
+    'markitdown' -> markitdown then plain; 'plain' -> visible-text only."""
     def run(args: dict[str, Any]) -> str:
         url = str(args.get("url") or "").strip()
         if not url:
             return "Error: web_fetch requires a 'url'."
         if _url_is_blocked(url):
             return "Error: that domain is blocked for this task."
-        # Prefer markitdown for table-heavy filings/PDFs/spreadsheets; otherwise
-        # the plain visible-text fetcher (cleaner for general HTML).
-        text = _markitdown_fetch(url, DEFAULT_FETCH_CHARS)
+        text: str | None = None
+        if doc_parser == "llamaparse":
+            text = _llamaparse_fetch(url, DEFAULT_FETCH_CHARS)
+        if not text and doc_parser in ("llamaparse", "markitdown"):
+            text = _markitdown_fetch(url, DEFAULT_FETCH_CHARS)
         if not text:
             text = fetch_result_text(url, max_chars=DEFAULT_FETCH_CHARS)
         if not text:
@@ -291,6 +414,131 @@ def make_web_fetch(task: DracoTask) -> Callable[[dict[str, Any]], str]:
         if _result_leaks(task, url=url, title=url, text=text):
             return "Error: fetched content was blocked (benchmark-related)."
         return f"web_fetch content from {url}:\n{text}"
+
+    return run
+
+
+# --- sec_facts: exact as-filed figures from EDGAR XBRL (keyless, free) ---
+SEC_DATA_BASE = "https://data.sec.gov"
+SEC_TICKERS_URL = "https://www.sec.gov/files/company_tickers.json"
+_SEC_TICKER_MAP: "dict[str, str] | None" = None  # TICKER -> 10-digit CIK
+
+# Per-metric us-gaap concept fallback chains (first that has data wins).
+SEC_METRIC_CONCEPTS: dict[str, tuple[str, ...]] = {
+    "operating_cash_flow": (
+        "NetCashProvidedByUsedInOperatingActivities",
+        "NetCashProvidedByUsedInOperatingActivitiesContinuingOperations",
+    ),
+    "net_income": ("NetIncomeLoss", "ProfitLoss"),
+    "cash": (
+        "CashAndCashEquivalentsAtCarryingValue",
+        "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents",
+    ),
+    "capex": (
+        "PaymentsToAcquirePropertyPlantAndEquipment",
+        "PaymentsToAcquireProductiveAssets",
+    ),
+    "repurchases": ("PaymentsForRepurchaseOfCommonStock",),
+    "dividends": ("PaymentsOfDividends", "PaymentsOfDividendsCommonStock"),
+    "debt_issued": ("ProceedsFromIssuanceOfLongTermDebt", "ProceedsFromIssuanceOfDebt"),
+    "debt_repaid": ("RepaymentsOfLongTermDebt", "RepaymentsOfDebt"),
+    "share_based_comp": ("ShareBasedCompensation",),
+    "stockholders_equity": (
+        "StockholdersEquity",
+        "StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest",
+    ),
+    "revenue": ("Revenues", "RevenueFromContractWithCustomerExcludingAssessedTax"),
+}
+
+
+def _sec_ticker_map() -> dict[str, str]:
+    global _SEC_TICKER_MAP
+    if _SEC_TICKER_MAP is None:
+        out: dict[str, str] = {}
+        try:
+            with httpx.Client(timeout=30.0, headers=_FETCH_HEADERS) as c:
+                data = c.get(SEC_TICKERS_URL).json()
+            for row in (data.values() if isinstance(data, dict) else data):
+                t = str(row.get("ticker", "")).upper().strip()
+                cik = str(row.get("cik_str", "")).strip()
+                if t and cik:
+                    out[t] = cik.zfill(10)
+        except Exception:  # noqa: BLE001
+            pass
+        _SEC_TICKER_MAP = out
+    return _SEC_TICKER_MAP
+
+
+def _sec_resolve_cik(ticker: str) -> str | None:
+    t = ticker.strip().upper()
+    if t.startswith("CIK"):
+        t = t[3:]
+    if t.isdigit():
+        return t.zfill(10)
+    return _sec_ticker_map().get(t)
+
+
+def _sec_concept_values(cik: str, concept: str, *, fiscal_year: int | None, headers: dict[str, str]) -> list[dict[str, Any]]:
+    url = f"{SEC_DATA_BASE}/api/xbrl/companyconcept/CIK{cik}/us-gaap/{concept}.json"
+    try:
+        with httpx.Client(timeout=30.0, headers=headers) as c:
+            r = c.get(url)
+        if r.status_code != 200:
+            return []
+        units = (r.json() or {}).get("units") or {}
+        usd = units.get("USD") or (next(iter(units.values()), []) if units else [])
+        if fiscal_year:
+            usd = [x for x in usd if x.get("fy") == fiscal_year]
+        return usd
+    except Exception:  # noqa: BLE001
+        return []
+
+
+def make_sec_facts(task: DracoTask) -> Callable[[dict[str, Any]], str]:
+    def run(args: dict[str, Any]) -> str:
+        ticker = str(args.get("ticker") or "").strip()
+        if not ticker:
+            return "Error: sec_facts requires a 'ticker' (symbol or 10-digit CIK)."
+        cik = _sec_resolve_cik(ticker)
+        if not cik:
+            return f"Error: could not resolve '{ticker}' to a SEC CIK. Use the exact U.S. ticker or 10-digit CIK."
+        fy_raw = args.get("fiscal_year")
+        fy = int(fy_raw) if isinstance(fy_raw, int) or (isinstance(fy_raw, str) and fy_raw.isdigit()) else None
+        metric = str(args.get("metric") or "").strip().lower()
+        metrics = [metric] if metric in SEC_METRIC_CONCEPTS else list(SEC_METRIC_CONCEPTS)
+        headers = {**_FETCH_HEADERS, "accept": "application/json"}
+        header_line = f"SEC EDGAR XBRL facts for {ticker.upper()} (CIK {cik})" + (f", FY{fy}" if fy else "")
+        lines = [header_line + ":"]
+        found = False
+        for mname in metrics:
+            vals: list[dict[str, Any]] = []
+            used = None
+            for concept in SEC_METRIC_CONCEPTS[mname]:
+                vals = _sec_concept_values(cik, concept, fiscal_year=fy, headers=headers)
+                if vals:
+                    used = concept
+                    break
+            if not vals:
+                continue
+            found = True
+            vals = sorted(vals, key=lambda x: (str(x.get("end", "")), str(x.get("fp", ""))), reverse=True)
+            lines.append(f"\n{mname} ({used}):")
+            for item in vals[:6]:
+                v = item.get("val")
+                vs = f"{v:,}" if isinstance(v, (int, float)) else str(v)
+                period = f"{item.get('start')}..{item.get('end')}" if item.get("start") else str(item.get("end"))
+                lines.append(
+                    f"  {vs} USD | period={period} fy={item.get('fy')} fp={item.get('fp')} form={item.get('form')}"
+                )
+        if not found:
+            return (
+                f"No US-GAAP XBRL facts found for {ticker.upper()} (CIK {cik}). "
+                "It may be a foreign private issuer (20-F/IFRS) or not in XBRL — use web_fetch on the filing."
+            )
+        text = "\n".join(lines)[:MAX_TOOL_RESULT_CHARS]
+        if _result_leaks(task, url=SEC_DATA_BASE, title="sec_facts", text=text):
+            return "Error: result was blocked (benchmark-related)."
+        return text
 
     return run
 
@@ -342,21 +590,57 @@ def build_tool_executors(
     bash_image: str = DEFAULT_BASH_IMAGE,
     bash_timeout_seconds: float = 30.0,
     enable_bash: bool = True,
+    enable_sec_facts: bool = True,
+    doc_parser: str = "llamaparse",
 ) -> tuple[list[dict[str, Any]], dict[str, Callable[[dict[str, Any]], str]]]:
     executors: dict[str, Callable[[dict[str, Any]], str]] = {
         "web_search": make_web_search(task, exa_client),
-        "web_fetch": make_web_fetch(task),
+        "web_fetch": make_web_fetch(task, doc_parser=doc_parser),
     }
-    schemas = [s for s in TOOL_SCHEMAS if s["function"]["name"] in {"web_search", "web_fetch"}]
+    enabled = {"web_search", "web_fetch"}
+    if enable_sec_facts:
+        executors["sec_facts"] = make_sec_facts(task)
+        enabled.add("sec_facts")
     if enable_bash:
         executors["bash"] = make_bash(image=bash_image, timeout_seconds=bash_timeout_seconds)
-        schemas = list(TOOL_SCHEMAS)
+        enabled.add("bash")
+    schemas = [s for s in TOOL_SCHEMAS if s["function"]["name"] in enabled]
     return schemas, executors
 
 
 # --------------------------------------------------------------------------- #
 # Agentic loop                                                                #
 # --------------------------------------------------------------------------- #
+def _is_openai_reasoning_model(model: str) -> bool:
+    # OpenAI reasoning models (gpt-5.x) require max_completion_tokens and reject temperature.
+    return model.lower().removeprefix("openai/").startswith("gpt-5")
+
+
+def _completion_body(
+    model: str,
+    messages: list[dict[str, Any]],
+    *,
+    max_tokens: int,
+    temperature: float,
+    tools: list[dict[str, Any]] | None = None,
+    tool_choice: str | None = None,
+    reasoning_effort: str | None = None,
+) -> dict[str, Any]:
+    body: dict[str, Any] = {"model": model, "messages": messages}
+    if _is_openai_reasoning_model(model):
+        body["max_completion_tokens"] = max_tokens  # gpt-5.x: no temperature, max_completion_tokens
+    else:
+        body["max_tokens"] = max_tokens
+        body["temperature"] = temperature
+    if tools is not None:
+        body["tools"] = tools
+    if tool_choice is not None:
+        body["tool_choice"] = tool_choice
+    if reasoning_effort is not None:
+        body["reasoning_effort"] = reasoning_effort
+    return body
+
+
 def _post_with_retry(
     client: httpx.Client, url: str, headers: dict[str, str], body: dict[str, Any], *, retries: int = 3
 ) -> httpx.Response:
@@ -424,18 +708,14 @@ def run_agentic_completion(
     #     stops calling tools (a natural finish). ---
     while tool_calls_made < max_tool_calls:
         steps += 1
-        body: dict[str, Any] = {
-            "model": model,
-            "messages": messages,
-            "max_tokens": max_tokens,
-            "temperature": temperature,
-            "tools": tool_schemas,
-            # Force at least one tool call for models that otherwise answer from
-            # prior knowledge (e.g. gemini-flash); switch to auto once engaged.
-            "tool_choice": "required" if (force_first_tool and tool_calls_made == 0) else "auto",
-        }
-        if reasoning_effort is not None:
-            body["reasoning_effort"] = reasoning_effort
+        # Force at least one tool call for models that otherwise answer from prior
+        # knowledge (e.g. gemini-flash); switch to auto once engaged.
+        body = _completion_body(
+            model, messages, max_tokens=max_tokens, temperature=temperature,
+            tools=tool_schemas,
+            tool_choice="required" if (force_first_tool and tool_calls_made == 0) else "auto",
+            reasoning_effort=reasoning_effort,
+        )
         resp = _post_with_retry(client, url, headers, body)
         resp.raise_for_status()
         choice = record_usage(resp.json())
@@ -490,14 +770,10 @@ def run_agentic_completion(
     #     model writes a clean report instead of leaking tool-call markup. ---
     steps += 1
     messages.append({"role": "user", "content": SYNTHESIS_INSTRUCTION})
-    body = {
-        "model": model,
-        "messages": messages,
-        "max_tokens": synthesis_max_tokens,
-        "temperature": temperature,
-    }
-    if reasoning_effort is not None:
-        body["reasoning_effort"] = reasoning_effort
+    body = _completion_body(
+        model, messages, max_tokens=synthesis_max_tokens, temperature=temperature,
+        reasoning_effort=reasoning_effort,
+    )
     resp = _post_with_retry(client, url, headers, body)
     resp.raise_for_status()
     choice = record_usage(resp.json())

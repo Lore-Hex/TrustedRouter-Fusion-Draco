@@ -57,8 +57,14 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--temperature", type=float, default=0.2)
     p.add_argument("--reasoning-effort", default=None, choices=(None, "low", "high"))
     p.add_argument("--no-bash", action="store_true", help="Disable the bash tool.")
+    p.add_argument("--doc-parser", default="llamaparse", choices=("llamaparse", "markitdown", "plain"),
+                   help="web_fetch document parser chain (llamaparse=cached LlamaParse first).")
+    p.add_argument("--no-sec-facts", action="store_true", help="Disable the EDGAR XBRL sec_facts tool.")
     p.add_argument("--bash-image", default=DEFAULT_BASH_IMAGE)
     p.add_argument("--base-url", default="https://api-us-central1.quillrouter.com/v1")
+    p.add_argument("--api-key-name", default=None,
+                   help="Use this specific key (e.g. CHATGPT_API_KEY) instead of the TR keys, "
+                        "for routing a model directly to its provider.")
     p.add_argument("--workers", type=int, default=2)
     p.add_argument("--timeout-seconds", type=float, default=600.0)
     p.add_argument("--resume", action="store_true")
@@ -87,9 +93,12 @@ def main(argv: list[str] | None = None) -> int:
         print("dry run only; add --execute to call the gateway/Exa/docker.")
         return 0
 
-    api_key = next((load_eval_key(n) for n in KEY_NAMES if load_eval_key(n)), None)
+    if args.api_key_name:
+        api_key = load_eval_key(args.api_key_name)
+    else:
+        api_key = next((load_eval_key(n) for n in KEY_NAMES if load_eval_key(n)), None)
     if not api_key:
-        print("missing TrustedRouter API key")
+        print("missing API key")
         return 2
     exa_key = load_eval_key("EXA_API_KEY")
     if not exa_key:
@@ -145,7 +154,8 @@ def _run_one(task: DracoTask, *, args: argparse.Namespace, api_key: str, exa_key
     exa_client = ExaSearchClient(exa_key)
     try:
         schemas, executors = build_tool_executors(
-            task, exa_client=exa_client, bash_image=args.bash_image, enable_bash=not args.no_bash
+            task, exa_client=exa_client, bash_image=args.bash_image, enable_bash=not args.no_bash,
+            enable_sec_facts=not args.no_sec_facts, doc_parser=args.doc_parser,
         )
         result = run_agentic_completion(
             client=client,
