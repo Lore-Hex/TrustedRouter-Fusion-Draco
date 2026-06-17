@@ -41,6 +41,30 @@ tooled **DeepSeek 60.0 ≈ OpenRouter 60.3** and **Kimi 49.8 vs 53.7** (within ~
 Live tools reproduce OpenRouter's solo baselines. The 15-task slice ran *above* OR
 purely because it was non-financial and a small favorable sample.
 
+### The budget Fusion (the headline reproduction)
+
+The native gateway `/fusion` endpoint cannot give panels live tools (its panel
+runs on frozen context → ~40), so Fusion is reproduced **client-orchestrated**,
+faithful to the gateway's own pipeline (prompts copied verbatim from
+`enclave fusion.go`): the **panel** is our three validated tooled budget solos
+(Gemini-3-Flash + Kimi + DeepSeek) → a **gemini-3.1-pro judge** writes a compact
+consensus/contradiction/blind-spot analysis → **Opus-4.8 fuser** synthesizes the
+final answer (panel evidence primary, judge analysis as guidance). No rubric ever
+reaches the judge or fuser. Harness: `scripts/draco_client_fusion.py`; scores in
+`results/rejudge-fusion-client-budget-opus-full100.jsonl`.
+
+| budget Fusion | full-100 | non-fin 80 | finance 20 | OpenRouter |
+|---|---:|---:|---:|---:|
+| Gemini-Flash + Kimi + DeepSeek → Opus | **61.0** | **63.5** | 51.3 | 64.7 |
+
+The Fusion clears every panel member (DeepSeek 57.5, Kimi 46.3, Flash 40.4) and
+beats frontier **Opus 4.8 solo (60.3)**. On the non-financial 80 it lands at 63.5,
+within ~1 of OpenRouter's 64.7 and above Opus. It does **not** clear our GPT-5.5
+solo (63.3) on the full set — our GPT-5.5 ran 3.3 pts above OpenRouter's, and our
+Fusion is dragged below OR's 64.7 by the same finance-document gap as the solos.
+The core "a panel of cheap models reaches a frontier answer" result reproduces;
+the residual gap to OR is finance-document tooling, not fusion.
+
 ## 2. Why we run ABOVE OpenRouter (investigated)
 
 - **Leakage: ruled out.** Audited all 568 `web_search` queries + 155 `web_fetch`
