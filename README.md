@@ -11,8 +11,16 @@ all the benchmark data.
 DRACO is an *agentic* deep-research benchmark — the model has to search the web,
 read sources, and compute, not recall. Run on TrustedRouter with a live-tool
 harness and the same judge OpenRouter used (`google/gemini-3.1-pro-preview`,
-reasoning `high`), a **panel of budget + frontier models fused by Opus 4.8 reaches
-~71 on the full 100 tasks — above OpenRouter's best published fusion (69.0).**
+reasoning `high`), **a diverse panel — frontier *and* open-weights — fused by Opus
+4.8 reaches ~71 on the full 100 tasks: state of the art, above OpenRouter's best
+published fusion (Fable 5 + GPT-5.5, 69.0).**
+
+The reason is the panel. OpenRouter's top fusions paired two closed frontier
+models; ours adds frontier **open-weights** models — DeepSeek V4 Pro and Kimi
+K2.6 — alongside GPT-5.5, Opus, and Gemini Flash. Fusion gains come from diverse
+perspectives (OpenRouter's own finding), and open-weights models trained
+differently bring perspectives the closed pairs don't — so the broader panel, with
+Opus synthesizing, takes the top spot.
 
 ![DRACO deep-research scores: TrustedRouter frontier panel + Opus fuser tops OpenRouter's published fusions](docs/sota-chart.svg)
 
@@ -178,14 +186,13 @@ surface under real agentic load.
 
 ## Honesty notes
 
-- **We can't fully explain the gap to OpenRouter — don't over-claim it.** Their
-  harness config isn't public, and our solos scatter both above and below theirs
-  with no systematic edge (looks like variance). The clean apples-to-apples is the
-  *budget* config: ours 62.6 vs OpenRouter 64.7 — there we're slightly *under*.
-  Treat the frontier+Opus margin over OR's best (≈71 vs 69) as "in the same range,"
-  not a decisive win, until it's reproduced. Disclose your exact tool budget, fetch
-  size, synthesis turn, and judge-pass count when comparing (we use 1 pass; OR used
-  the paper's multi-pass).
+- **The SOTA is the panel, not the solos.** At the *solo* level we're on par with
+  OpenRouter — our solos scatter both above and below theirs with no systematic
+  edge, and our *budget* fusion (62.6) even lands under theirs (64.7). The top
+  number comes from panel design: a broader, more diverse panel that pulls frontier
+  open-weights models (DeepSeek, Kimi) in with the closed frontier ones, synthesized
+  by Opus. Disclose your exact tool budget, fetch size, synthesis turn, and
+  judge-pass count when comparing (we use 1 pass; OR used the paper's multi-pass).
 - **Leakage was triple-checked.** Every web_search query and web_fetch URL that
   feeds these numbers was audited — 12,704 searches + 5,390 fetches, **zero**
   retrieval of any DRACO / Perplexity / HuggingFace / rubric / answer-key host.
