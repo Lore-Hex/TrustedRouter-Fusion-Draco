@@ -51,19 +51,24 @@ panelist but a weak synthesizer here.
 across n=35–43: 70.7 non-financial, 73.1 finance). The full-100 figure replaces
 this once the judge completes.
 
-### Why we run above OpenRouter (and why it is *not* leakage)
+### On the comparison to OpenRouter (and why it is *not* leakage)
 
-The gap is the harness: our agentic loop is more generous than OpenRouter's
-server-tool config — up to 16 tool calls, larger fetches, and a dedicated
-synthesis turn — so models write more complete answers and cover more rubric
-criteria. We **audited every tool call** that feeds these numbers: **12,704
-web_searches + 5,390 web_fetches, zero retrieval of any DRACO / Perplexity /
-HuggingFace / rubric / answer-key host** (top fetched hosts: sec.gov, cornell
-law, wikipedia, arxiv, nature). The leak filter (`_draco_search_result_leak_reason`)
-blocks benchmark hosts and scans every result for rubric fragments. Our budget
-panel (62.6) actually lands *under* OpenRouter's (64.7) — the apples-to-apples
-comparison — which is what you'd expect if the harness, not leakage, drives the
-spread. See [docs/FINDINGS.md](docs/FINDINGS.md) for the full analysis.
+We don't know OpenRouter's exact harness — their tool budget, fetch sizes,
+synthesis steps, and judge-pass count aren't published — so we can't say *why* any
+given number differs. And the differences are small and **mixed**: some of our
+solos land above OpenRouter's, some below (GPT-5.5 +3.0, Gemini 3.1 Pro +2.0;
+Kimi −3.6, Gemini Flash −2.0; DeepSeek ≈), with no systematic edge. That looks
+like ordinary run-to-run and judge variance on a 100-task agentic benchmark, not
+a thumb on the scale.
+
+What we *can* rule out is **leakage**. We audited every tool call that feeds these
+numbers: **12,704 web_searches + 5,390 web_fetches, zero retrieval of any DRACO /
+Perplexity / HuggingFace / rubric / answer-key host** (top fetched hosts: sec.gov,
+cornell law, wikipedia, arxiv, nature). The leak filter
+(`_draco_search_result_leak_reason`) blocks benchmark hosts and scans every result
+for rubric fragments — re-run the audit yourself. And our budget panel (62.6)
+lands *under* OpenRouter's (64.7): if anything were inflating us, the cheap config
+would show it too. See [docs/FINDINGS.md](docs/FINDINGS.md) for the full analysis.
 
 ## Layout
 
@@ -173,12 +178,14 @@ surface under real agentic load.
 
 ## Honesty notes
 
-- **The ~71 rides on a more generous harness, not a better recipe.** Our solos
-  run a few points above OpenRouter's; the fusion inherits stronger panel inputs.
-  The clean apples-to-apples is the *budget* config: ours 62.6 vs OpenRouter 64.7
-  — there we're slightly *under*. Disclose your exact tool budget, fetch size,
-  synthesis turn, and judge pass count when comparing (we use 1 pass; OR used the
-  paper's multi-pass — averaging cuts variance, not the mean).
+- **We can't fully explain the gap to OpenRouter — don't over-claim it.** Their
+  harness config isn't public, and our solos scatter both above and below theirs
+  with no systematic edge (looks like variance). The clean apples-to-apples is the
+  *budget* config: ours 62.6 vs OpenRouter 64.7 — there we're slightly *under*.
+  Treat the frontier+Opus margin over OR's best (≈71 vs 69) as "in the same range,"
+  not a decisive win, until it's reproduced. Disclose your exact tool budget, fetch
+  size, synthesis turn, and judge-pass count when comparing (we use 1 pass; OR used
+  the paper's multi-pass).
 - **Leakage was triple-checked.** Every web_search query and web_fetch URL that
   feeds these numbers was audited — 12,704 searches + 5,390 fetches, **zero**
   retrieval of any DRACO / Perplexity / HuggingFace / rubric / answer-key host.
