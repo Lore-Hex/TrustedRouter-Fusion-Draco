@@ -55,7 +55,7 @@ reaches the judge or fuser. Harness: `scripts/draco_client_fusion.py`; scores in
 
 | budget Fusion | full-100 | non-fin 80 | finance 20 | OpenRouter |
 |---|---:|---:|---:|---:|
-| Gemini-Flash + Kimi + DeepSeek → Opus | **61.0** | **63.5** | 51.3 | 64.7 |
+| Gemini-Flash + Kimi + DeepSeek → Opus | **60.8** | **63.2** | 50.9 | 64.7 |
 
 The Fusion clears every panel member (DeepSeek 57.5, Kimi 46.3, Flash 40.4) and
 beats frontier **Opus 4.8 solo (60.3)**. On the non-financial 80 it lands at 63.5,
