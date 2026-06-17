@@ -51,6 +51,16 @@ writes a more complete answer, which the rubric rewards. The two places we trail
 are Kimi and the finance documents, and I'll come back to the finance documents
 because they're the real weak spot.
 
+GPT-5.5 is the standout. At 63.3 it's the best single model on the board, three
+points clear of where OpenRouter clocked it, and it's the same model under the same
+judge on the same hundred tasks — the gap is entirely how hard we let it work. That
+matters for the panel result below. OpenRouter's budget panel beat their best
+frontier model partly because their GPT-5.5 only managed 60. Ours manages 63, which
+raises the bar the panel has to clear, and the panel doesn't quite clear it on the
+full set. The cheap committee still beats Opus; it doesn't beat a GPT-5.5 that's
+firing this well. That's a stronger result for GPT-5.5 than OpenRouter reported,
+and it's the same benchmark, so it counts.
+
 ## The panel beats its parts
 
 Now the result that made the post. Take the three budget models — Gemini 3 Flash,
