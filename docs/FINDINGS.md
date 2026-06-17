@@ -21,6 +21,26 @@ markitdown, `bash` Docker), tooled solos reach OpenRouter levels:
 Every task rose (+15 to +42). The qualitative claim ("live tools close the gap;
 tooled solos reach/exceed OpenRouter") is robust and reproducible.
 
+### Final full-100 tooled-solo scores
+
+All six solos run to completion on the full 100 DRACO tasks (judge
+`google/gemini-3.1-pro-preview`, reasoning `high`, 1 pass). Results split by the
+80 non-financial vs 20 finance tasks (`results/rejudge-full100-all6-solos.jsonl`):
+
+| solo (tooled) | full-100 | non-fin 80 | finance 20 | OpenRouter (100) |
+|---|---:|---:|---:|---:|
+| GPT-5.5 | 63.3 | 64.1 | 60.0 | — |
+| Opus-4.8 | 60.3 | 61.2 | 56.4 | — |
+| DeepSeek V4 Pro | 57.5 | **60.0** | 47.7 | **60.3** |
+| Gemini-3.1-Pro | 47.1 | 48.6 | 41.3 | — |
+| Kimi K2.6 | 46.3 | **49.8** | 32.6 | **53.7** |
+| Gemini-3 Flash | 40.4 | 43.4 | 28.5 | — |
+
+On the **non-financial 80** — the apples-to-apples set with our validation slice —
+tooled **DeepSeek 60.0 ≈ OpenRouter 60.3** and **Kimi 49.8 vs 53.7** (within ~4).
+Live tools reproduce OpenRouter's solo baselines. The 15-task slice ran *above* OR
+purely because it was non-financial and a small favorable sample.
+
 ## 2. Why we run ABOVE OpenRouter (investigated)
 
 - **Leakage: ruled out.** Audited all 568 `web_search` queries + 155 `web_fetch`
@@ -47,7 +67,15 @@ financing — filing- and figure-heavy). Hypothesis: finance is harder, so an
 80-task average is inflated vs OR's full-100. We added the finance tasks back
 (`data/draco-financial-20.manifest.json`) and equipped `web_fetch` with
 **markitdown** (table-preserving conversion of SEC filings / PDFs / spreadsheets)
-to handle them. Result: see `results/` / the run output once complete.
+to handle them.
+
+**Result: hypothesis confirmed — finance is much harder.** Every model drops
+**−12 to −17 pts** on the 20 finance tasks vs the 80 non-financial: DeepSeek
+60.0→47.7, Kimi 49.8→32.6, Gemini-Flash 43.4→28.5, even frontier GPT-5.5
+64.1→60.0. So the full-100 average sits below the non-financial-80, and our
+finance scores trail — `markitdown` recovers tables from filings but is weaker
+than whatever document tooling OpenRouter used. This is the honest residual gap;
+the non-financial reproduction itself is on the nose.
 
 ## 4. Other diagnoses worth keeping
 
