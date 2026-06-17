@@ -22,7 +22,7 @@ perspectives (OpenRouter's own finding), and open-weights models trained
 differently bring perspectives the closed pairs don't — so the broader panel, with
 Opus synthesizing, takes the top spot.
 
-![DRACO deep-research scores: TrustedRouter frontier panel + Opus fuser tops OpenRouter's published fusions](docs/sota-chart.svg)
+![DRACO deep-research scores: TrustedRouter frontier panel + Opus fuser tops OpenRouter's published fusions](docs/fusion-beats-frontier.svg)
 
 ### Full data table — all 100 tasks, same judge
 
