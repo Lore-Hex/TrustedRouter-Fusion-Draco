@@ -12,7 +12,7 @@ DRACO is an *agentic* deep-research benchmark — the model has to search the we
 read sources, and compute, not recall. Run on TrustedRouter with a live-tool
 harness and the same judge OpenRouter used (`google/gemini-3.1-pro-preview`,
 reasoning `high`), **a diverse panel — frontier *and* open-weights — fused by Opus
-4.8 reaches ~71 on the full 100 tasks: state of the art, above OpenRouter's best
+4.8 reaches 70.6 on the full 100 tasks: state of the art, above OpenRouter's best
 published fusion (Fable 5 + GPT-5.5, 69.0).**
 
 The reason is the panel. OpenRouter's top fusions paired two closed frontier
@@ -22,7 +22,7 @@ perspectives (OpenRouter's own finding), and open-weights models trained
 differently bring perspectives the closed pairs don't — so the broader panel, with
 Opus synthesizing, takes the top spot.
 
-![DRACO deep-research scores: TrustedRouter frontier panel + Opus fuser tops OpenRouter's published fusions](docs/fusion-beats-frontier.svg)
+![DRACO deep-research scores: TrustedRouter frontier panel + Opus fuser tops OpenRouter's published fusions](docs/draco-sota.svg)
 
 ### Full data table — all 100 tasks, same judge
 
@@ -42,7 +42,7 @@ Opus synthesizing, takes the top spot.
 
 | fusion config | TrustedRouter | OpenRouter |
 |---|---:|---:|
-| **frontier panel + Opus fuser** *(ours, best)* | **~70.9** † | — |
+| **frontier panel + Opus fuser** *(ours, best)* | **70.6** | — |
 | OR — Fable 5 + GPT-5.5 *(their best)* | — | 69.0 |
 | OR — Opus + GPT-5.5 + Gemini | — | 68.3 |
 | OR — Opus + GPT-5.5 | — | 67.6 |
@@ -52,12 +52,12 @@ Opus synthesizing, takes the top spot.
 
 Panel = `gpt-5.5 + opus-4.8 + gemini-3-flash + kimi-k2.6 + deepseek-v4-pro`.
 **The fuser is the lever:** swapping the synthesizer from GPT-5.5 to Opus 4.8 on
-the *identical* panel jumps the score ~+8 (62.2 → ~71). GPT-5.5 is a strong
+the *identical* panel jumps the score ~+8 (62.2 → 70.6). GPT-5.5 is a strong
 panelist but a weak synthesizer here.
 
-† Preliminary at **n=43** while the judge finishes the remaining tasks (stable
-across n=35–43: 70.7 non-financial, 73.1 finance). The full-100 figure replaces
-this once the judge completes.
+All scores are the full 100 tasks, single judge pass
+(`google/gemini-3.1-pro-preview`, reasoning `high`). The raw runs behind every
+number are in [`replays/`](replays/).
 
 ### On the comparison to OpenRouter (and why it is *not* leakage)
 
@@ -91,7 +91,8 @@ scripts/draco_native_fusion_gen.py          generate native trustedrouter/fusion
 scripts/draco_rejudge.py                    rejudge replays with the DRACO rubric
 scripts/draco_report.py                     side-by-side score report
 data/draco-{full-100,non-financial-80,financial-20}.manifest.json   the benchmark tasks+rubrics
-results/                                     judged score artifacts
+replays/                                     raw agentic run traces — every prompt, tool call, and final report behind the scores
+results/                                     judged score artifacts (the replays above, scored against the rubric)
 docs/FINDINGS.md, docs/LESSONS.md           the analysis and the hard-won lessons
 ```
 
@@ -160,31 +161,7 @@ runs the panel server-side, but its panel has no live tools (frozen context →
 ~40), so the agentic SOTA uses the client-orchestrated path above, faithful to the
 gateway's own judge→fuser prompts.
 
-## TrustedRouter gateway requirements
-
-The agentic harness needs the gateway to support multi-turn function tools per
-provider. Five gateway fixes were required (in `quill-cloud-proxy`,
-`enclave-go/internal/llm/`):
-
-1. DeepSeek (OpenAI-compatible) empty content after a tool result — the
-   OpenAI→Anthropic→OpenAI round-trip dropped tool_use/tool_result blocks.
-2. Vertex/Gemini had no function-tool support — added OpenAI↔Gemini
-   functionDeclarations / functionCall / functionResponse translation.
-3. Gemini 3 `thought_signature` round-trip (echo the per-functionCall signature).
-4. Gemini parallel-call functionResponses must be grouped in one content.
-5. Opus fuser truncation: it inherits the OUTER `max_tokens`, not
-   `max_completion_tokens` — raise the outer cap.
-6. GPT-5.5 intermittent 502: the last-candidate time-to-first-byte budget was 120s,
-   but gpt-5.x reason silently for 60–90s before the first byte — raised to 300s.
-7. GPT-5.5 `temperature` rejection: gpt-5.x reject any non-default temperature —
-   strip it for that model family on the OpenAI-compatible path.
-8. Gemini history functionCalls with no signature (cross-model fusion panels) —
-   attach a valid-base64 placeholder so Vertex accepts the replayed call.
-
-See [docs/LESSONS.md](docs/LESSONS.md) — these are the kind of bugs that only
-surface under real agentic load.
-
-## Honesty notes
+## Notes
 
 - **The SOTA is the panel, not the solos.** At the *solo* level we're on par with
   OpenRouter — our solos scatter both above and below theirs with no systematic
@@ -201,5 +178,7 @@ surface under real agentic load.
 - **The fuser matters more than the panel.** Frontier panel + GPT-5.5 fuser = 62.2;
   same panel + Opus fuser = ~71. A bigger panel with the wrong synthesizer buys
   nothing.
-- Private generation replays (model prompt/output) are git-ignored; only judged
-  scores live in `results/`.
+- **The whole process is here, not just the scores.** The raw agentic run traces —
+  every prompt, every `web_search`/`web_fetch`/`sec_facts` call, and every final
+  report — are published in [`replays/`](replays/); the rubric-judged versions of
+  those same runs are in `results/`. Re-score or re-audit either yourself.
