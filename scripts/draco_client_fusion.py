@@ -112,6 +112,9 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--config-id", default="fusion_client_budget_opus")
     p.add_argument("--judge-model", default="google/gemini-3.1-pro-preview")
     p.add_argument("--fuser-model", default="anthropic/claude-opus-4.8")
+    p.add_argument("--fallback-fuser-model", default=None,
+                   help="If the primary fuser returns (near-)empty output — e.g. a silent "
+                        "refusal — re-synthesize the same panel with this model instead.")
     p.add_argument("--judge-max-tokens", type=int, default=3000)
     p.add_argument("--fuser-max-tokens", type=int, default=8000)
     p.add_argument("--base-url", default="https://api-us-central1.quillrouter.com/v1")
@@ -175,26 +178,39 @@ def main(argv: list[str] | None = None) -> int:
                 ],
             }
             judge_json = _content(_post(client, args.base_url, api_key, judge_body)).strip()
-            # 2) Opus fuser
+            # 2) fuser (primary, with optional fallback when it returns near-empty —
+            #    e.g. GLM-5.2 silently refusing politically restricted panel content)
             final_user = FINAL_INSTRUCTION + "\n\n" + _panel_evidence(panel) + "\n\nJudge analysis JSON:\n" + judge_json
-            fuser_body = {
-                "model": args.fuser_model, "max_tokens": args.fuser_max_tokens, "temperature": 0.2,
-                "messages": [
-                    {"role": "system", "content": FUSER_SYSTEM},
-                    {"role": "user", "content": f"Research task:\n{task.problem}"},
-                    {"role": "user", "content": final_user},
-                ],
-            }
-            fr = _post(client, args.base_url, api_key, fuser_body)
-            content = strip_tool_markup(_content(fr))
+
+            def _fuse(model: str) -> tuple[str, dict[str, Any]]:
+                body = {
+                    "model": model, "max_tokens": args.fuser_max_tokens, "temperature": 0.2,
+                    "messages": [
+                        {"role": "system", "content": FUSER_SYSTEM},
+                        {"role": "user", "content": f"Research task:\n{task.problem}"},
+                        {"role": "user", "content": final_user},
+                    ],
+                }
+                resp = _post(client, args.base_url, api_key, body)
+                return strip_tool_markup(_content(resp)), resp
+
+            fuser_used = args.fuser_model
+            content, fr = _fuse(args.fuser_model)
+            fell_back = False
+            if len(content.strip()) < 50 and args.fallback_fuser_model:
+                fuser_used = args.fallback_fuser_model
+                fell_back = True
+                content, fr = _fuse(args.fallback_fuser_model)
             usage = fr.get("usage") or {}
             return {
                 "schema": REPLAY_SCHEMA, "config_id": args.config_id, "task_id": task.id,
                 "domain": task.domain, "task": task.cache_dict(),
                 "fusion": {"panel": labels, "judge_model": args.judge_model,
-                           "judge_chars": len(judge_json), "fuser_model": args.fuser_model},
+                           "judge_chars": len(judge_json), "fuser_model": args.fuser_model,
+                           "fallback_fuser_model": args.fallback_fuser_model,
+                           "fuser_used": fuser_used, "fell_back": fell_back},
                 "final": {"content": content, "finish_reason": fr.get("choices", [{}])[0].get("finish_reason"),
-                          "model": args.fuser_model, "input_tokens": usage.get("prompt_tokens"),
+                          "model": fuser_used, "input_tokens": usage.get("prompt_tokens"),
                           "output_tokens": usage.get("completion_tokens"), "elapsed_ms": None,
                           "http_status": 200, "request_id": fr.get("id")},
             }
