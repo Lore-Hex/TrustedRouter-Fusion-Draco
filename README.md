@@ -11,19 +11,21 @@ all the benchmark data.
 DRACO is an *agentic* deep-research benchmark — the model has to search the web,
 read sources, and compute, not recall. Run on TrustedRouter with a live-tool
 harness and the same judge OpenRouter used (`google/gemini-3.1-pro-preview`,
-reasoning `high`), **a diverse panel — frontier *and* open-weights — reaches 71.1
-on the full 100 tasks with GLM-5.2 synthesizing (70.6 with Opus 4.8): state of the
-art, above OpenRouter's best published fusion (Fable 5 + GPT-5.5, 69.0).**
+reasoning `high`), **a diverse panel — frontier *and* open-weights — reaches 71.6
+on the full 100 tasks with MiniMax-M3 synthesizing (GLM-5.2 71.1, Opus 4.8 70.6):
+state of the art, above OpenRouter's best published fusion (Fable 5 + GPT-5.5, 69.0).**
 
 The reason is the panel — and the synthesizer. OpenRouter's top fusions paired two
 closed frontier models; ours adds frontier **open-weights** models — DeepSeek V4
 Pro and Kimi K2.6 — alongside GPT-5.5, Opus, and Gemini Flash. Fusion gains come
 from diverse perspectives (OpenRouter's own finding), and open-weights models
-trained differently bring perspectives the closed pairs don't. The synthesizer can
-be open-weights too: **GLM-5.2 fusing that panel edges Opus (71.1 vs 70.6)** — so
-the best configuration we found is open from panel to fuser.
+trained differently bring perspectives the closed pairs don't. The synthesizer is
+open-weights too: **MiniMax-M3 tops every fuser we tested (71.6)**, GLM-5.2 right
+behind at 71.1, both above Opus — so the best configuration we found is open from
+panel to fuser. We default to MiniMax-M3 over GLM-5.2: it matches the score and
+carries no censorship blind spot (GLM blanks on Taiwan/Hong-Kong content, below).
 
-![DRACO deep-research scores: TrustedRouter frontier panel + GLM-5.2/Opus fuser tops OpenRouter's published fusions](docs/draco-fusion-sota.svg)
+![DRACO deep-research scores: TrustedRouter frontier panel + MiniMax-M3 fuser tops OpenRouter's published fusions](docs/draco-fuser-leaderboard.svg)
 
 ### Full data table — all 100 tasks, same judge
 
@@ -43,7 +45,8 @@ the best configuration we found is open from panel to fuser.
 
 | fusion config | TrustedRouter | OpenRouter |
 |---|---:|---:|
-| **frontier panel + GLM-5.2 fuser** *(ours, best)* | **71.1** † | — |
+| **frontier panel + MiniMax-M3 fuser** *(ours, best)* | **71.6** | — |
+| frontier panel + GLM-5.2 fuser | 71.1 † | — |
 | frontier panel + Opus fuser | 70.6 | — |
 | OR — Fable 5 + GPT-5.5 *(their best)* | — | 69.0 |
 | OR — Opus + GPT-5.5 + Gemini | — | 68.3 |
@@ -53,10 +56,25 @@ the best configuration we found is open from panel to fuser.
 | frontier panel + GPT-5.5 fuser | 62.2 | — |
 
 Panel = `gpt-5.5 + opus-4.8 + gemini-3-flash + kimi-k2.6 + deepseek-v4-pro`.
-**The fuser is the lever:** on the *identical* panel, the synthesizer alone moves
-the score from 62.2 (GPT-5.5) to 70.6 (Opus) to 71.1 (GLM-5.2) — a ~9-point swing
-from one model choice. GPT-5.5 is a strong panelist but a weak synthesizer; the
-best synthesizer is an **open-weights** model.
+
+**The fuser is the lever.** Hold that panel and its judge analysis fixed and swap
+only the synthesizer; the score spans ~18 points. The full fuser leaderboard:
+
+| fuser (same frontier panel) | DRACO |
+|---|---:|
+| **MiniMax-M3** *(open weights)* | **71.6** |
+| GLM-5.2 *(open weights)* | 71.1 † |
+| Claude Opus 4.8 | 70.6 |
+| Kimi K2.6 *(open weights)* | 67.0 |
+| DeepSeek V4 Pro *(open weights)* | 65.7 |
+| GPT-5.5 | 62.2 |
+| Gemma-4-31b *(open weights)* | 54.0 |
+
+The best synthesizer is open-weights MiniMax-M3, and **synthesis is a skill apart
+from solo research**: GPT-5.5 is the strongest *solo* researcher (63.0) yet the
+weakest capable fuser, and Gemma-4-31b collapses because a 31B model is too small
+to hold and reconcile a frontier panel. We default to MiniMax-M3 over GLM-5.2 — it
+matches the score with no censorship hole (see †).
 
 † GLM-5.2 returned empty content on 1 of the 100 tasks — **not** a context limit
 (the input was only ~19k tokens) but **political censorship**. That task's panel
@@ -180,8 +198,8 @@ uv run python scripts/draco_client_fusion.py \
   --panel "google/gemini-3-flash-preview=out/flash.replay.jsonl" \
   --panel "moonshotai/kimi-k2.6=out/kimi.replay.jsonl" \
   --panel "deepseek/deepseek-v4-pro=out/deepseek.replay.jsonl" \
-  --output out/fusion.replay.private.jsonl --config-id fusion_frontier_opus \
-  --judge-model google/gemini-3.1-pro-preview --fuser-model anthropic/claude-opus-4.8 \
+  --output out/fusion.replay.private.jsonl --config-id fusion_frontier_minimax \
+  --judge-model google/gemini-3.1-pro-preview --fuser-model minimax/minimax-m3 \
   --workers 4 --fuser-max-tokens 8000 --execute
 ```
 
@@ -197,17 +215,19 @@ gateway's own judge→fuser prompts.
   edge, and our *budget* fusion (62.6) even lands under theirs (64.7). The top
   number comes from panel design: a broader, more diverse panel that pulls frontier
   open-weights models (DeepSeek, Kimi) in with the closed frontier ones, synthesized
-  by GLM-5.2 — itself an open-weights model, which out-fuses Opus by a hair (71.1 vs
-  70.6). Disclose your exact tool budget, fetch size, synthesis turn, and
-  judge-pass count when comparing (we use 1 pass; OR used the paper's multi-pass).
+  by MiniMax-M3 — an open-weights model that tops every fuser we tested (71.6); GLM-5.2
+  ties it (71.1) but censors, so MiniMax-M3 is the default. Disclose your exact tool
+  budget, fetch size, synthesis turn, and judge-pass count when comparing (we use 1
+  pass; OR used the paper's multi-pass).
 - **Leakage was triple-checked.** Every web_search query and web_fetch URL that
   feeds these numbers was audited — 12,704 searches + 5,390 fetches, **zero**
   retrieval of any DRACO / Perplexity / HuggingFace / rubric / answer-key host.
   The harness excludes those hosts and scans every tool result for rubric
   fragments (`_draco_search_result_leak_reason`). Re-run the audit yourself.
 - **The fuser matters more than the panel.** On the *same* panel the synthesizer
-  alone spans 62.2 (GPT-5.5) → 70.6 (Opus) → 71.1 (GLM-5.2). The best synthesizer is
-  an open-weights model, and a bigger panel with the wrong one buys nothing.
+  alone spans 54.0 (Gemma-4) → 62.2 (GPT-5.5) → 70.6 (Opus) → 71.6 (MiniMax-M3). The
+  best synthesizer is an open-weights model, and a bigger panel with the wrong one
+  buys nothing.
 - **The whole process is here, not just the scores.** The raw agentic run traces —
   every prompt, every `web_search`/`web_fetch`/`sec_facts` call, and every final
   report — are published in [`replays/`](replays/); the rubric-judged versions of

@@ -30,19 +30,30 @@ Each file is the full 100 tasks, deduped to one successful row per task.
 
 ## Fusion — panel reports → Gemini-3.1-Pro judge analysis → fuser
 
-| file | panel | fuser | DRACO score |
-|---|---|---|---:|
-| `fusion-frontier-glm.jsonl` | gpt-5.5 + opus + gemini-flash + kimi + deepseek | GLM-5.2 | **71.1 (SOTA)** ‡ |
-| `fusion-frontier-opus.jsonl` | *(same panel)* | Opus 4.8 | 70.6 |
-| `fusion-frontier-gpt55.jsonl` | *(same panel)* | GPT-5.5 | 62.2 |
-| `fusion-budget-opus.jsonl` | gemini-flash + kimi + deepseek | Opus 4.8 | 62.6 |
+The full fuser leaderboard — same frontier panel (`gpt-5.5 + opus + gemini-flash +
+kimi + deepseek`), same judge analysis, swap only the synthesizer:
 
-‡ The best fuser is itself **open-weights**. GLM-5.2 returned empty content on 1
-of 100 tasks — **political censorship**, not a context limit: that task's panel
-covered a *Greater China* fund's China/Hong-Kong/Taiwan split, and GLM-5.2 (Zhipu /
-Z.AI) silently refuses Taiwan/Hong-Kong sovereignty content (neutralize those two
-words and it fuses fine). Scored 0; over the 99 it answered it averages 71.8. The
-edge over Opus (70.6) is within judge variance.
+| file | fuser | DRACO score |
+|---|---|---:|
+| `fusion-frontier-minimax.jsonl` | MiniMax-M3 *(open weights)* | **71.6 (SOTA)** |
+| `fusion-frontier-glm.jsonl` | GLM-5.2 *(open weights)* | 71.1 ‡ |
+| `fusion-frontier-opus.jsonl` | Claude Opus 4.8 | 70.6 |
+| `fusion-frontier-kimi.jsonl` | Kimi K2.6 *(open weights)* | 67.0 |
+| `fusion-frontier-deepseek.jsonl` | DeepSeek V4 Pro *(open weights)* | 65.7 |
+| `fusion-frontier-gpt55.jsonl` | GPT-5.5 | 62.2 |
+| `fusion-frontier-gemma4.jsonl` | Gemma-4-31b *(open weights)* | 54.0 |
+| `fusion-budget-opus.jsonl` | Opus 4.8 (budget 3-model panel) | 62.6 |
+
+The best fuser is open-weights MiniMax-M3, with no censorship hole. GPT-5.5 is the
+top *solo* researcher yet a weak fuser — synthesis is a skill apart. Gemma-4-31b
+collapses: a 31B model is too small to hold and reconcile a frontier panel.
+
+‡ GLM-5.2 ties at the top (71.1) but returned empty content on 1 of 100 tasks —
+**political censorship**, not a context limit: that task's panel covered a *Greater
+China* fund's China/Hong-Kong/Taiwan split, and GLM-5.2 (Zhipu / Z.AI) silently
+refuses Taiwan/Hong-Kong sovereignty content (neutralize those two words and it fuses
+fine). Scored 0; over the 99 it answered it averages 71.8. That blind spot is why we
+default to MiniMax-M3.
 
 A fusion row's `fusion.panel` lists the panel roster; the panelists' own tool
 traces are the solo files above.

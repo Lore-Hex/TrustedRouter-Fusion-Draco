@@ -54,12 +54,17 @@ reaches the judge or fuser. Harness: `scripts/draco_client_fusion.py`; scores in
 `results/rejudge-fusion-client-budget-opus-full100.jsonl`.
 
 **Fuser ablation (full-100, frontier panel, identical judge analysis).** Holding the
-five-model frontier panel fixed and swapping only the synthesizer: GPT-5.5 → 62.2,
-Opus-4.8 → 70.6, **GLM-5.2 → 71.1** (`results/rejudge-sota5-frontier-glmfuser.jsonl`).
-The best fuser is an open-weights model. GLM-5.2 returned empty content on 1/100
-tasks (finish_reason `stop`, `completion_tokens=1`), scored 0; over the 99 it
-answered it averages 71.8. The edge over Opus sits inside run-to-run judge variance,
-so the claim is parity-or-better from an open synthesizer, not a decisive win.
+five-model frontier panel fixed and swapping only the synthesizer, full-100 scores:
+**MiniMax-M3 → 71.6**, GLM-5.2 → 71.1, Opus-4.8 → 70.6, Kimi-K2.6 → 67.0, DeepSeek-V4
+→ 65.7, GPT-5.5 → 62.2, Gemma-4-31b → 54.0 (`results/rejudge-frontier-*-fuser.jsonl`).
+The best fuser is open-weights MiniMax-M3, and three findings fall out of the spread:
+(1) **synthesis is a skill apart from solo research** — GPT-5.5 is the top *solo*
+researcher (63.0) yet the weakest capable fuser; (2) **size matters for the fuser** —
+Gemma-4-31b collapses 18 points below the leaders, too small to hold and reconcile a
+frontier panel; (3) the top two are both open-weights. We default to MiniMax-M3 over
+GLM-5.2: same score, no censorship hole. GLM-5.2's 71.1 carries a † — it returned
+empty content on 1/100 tasks (finish_reason `stop`, `completion_tokens=1`), scored 0;
+over the 99 it answered it averages 71.8. MiniMax-M3 had zero such empties.
 
 **Root cause of the empty task — political censorship, not a bug.** Bisection
 isolated it cleanly: prompt was only ~19k tokens (not a context limit), no leaked
