@@ -38,8 +38,11 @@ Each file is the full 100 tasks, deduped to one successful row per task.
 | `fusion-budget-opus.jsonl` | gemini-flash + kimi + deepseek | Opus 4.8 | 62.6 |
 
 ‡ The best fuser is itself **open-weights**. GLM-5.2 returned empty content on 1
-of 100 tasks (context-length on the longest panel input), scored 0; over the 99 it
-answered it averages 71.8. The edge over Opus (70.6) is within judge variance.
+of 100 tasks — **political censorship**, not a context limit: that task's panel
+covered a *Greater China* fund's China/Hong-Kong/Taiwan split, and GLM-5.2 (Zhipu /
+Z.AI) silently refuses Taiwan/Hong-Kong sovereignty content (neutralize those two
+words and it fuses fine). Scored 0; over the 99 it answered it averages 71.8. The
+edge over Opus (70.6) is within judge variance.
 
 A fusion row's `fusion.panel` lists the panel roster; the panelists' own tool
 traces are the solo files above.

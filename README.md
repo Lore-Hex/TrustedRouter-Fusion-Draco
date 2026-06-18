@@ -58,11 +58,17 @@ the score from 62.2 (GPT-5.5) to 70.6 (Opus) to 71.1 (GLM-5.2) — a ~9-point sw
 from one model choice. GPT-5.5 is a strong panelist but a weak synthesizer; the
 best synthesizer is an **open-weights** model.
 
-† GLM-5.2 returned an empty answer on 1 of the 100 tasks (a context-length limit
-on the longest panel input), scored 0; over the 99 it answered it averages 71.8.
-The margin over Opus is within run-to-run judge variance — the finding is that an
-open-weights synthesizer is *at least as good* as the best closed one, not that it
-decisively wins.
+† GLM-5.2 returned empty content on 1 of the 100 tasks — **not** a context limit
+(the input was only ~19k tokens) but **political censorship**. That task's panel
+discussed a *Greater China* fund's China / Hong Kong / Taiwan allocation, and
+GLM-5.2 (a Zhipu / Z.AI model) silently refuses Taiwan/Hong-Kong sovereignty-framed
+content, emitting a single stop token and zero output. The cause is reproducible
+and isolatable: replace "Taiwan"/"Hong Kong" with neutral tokens in the panel text
+and GLM-5.2 fuses normally; leave them in and it always blanks. Scored 0; over the
+99 it answered it averages 71.8. The margin over Opus is within run-to-run judge
+variance — the finding is that an open-weights synthesizer is *at least as good* as
+the best closed one, with the caveat that a Chinese open-weights fuser carries its
+training's content restrictions.
 
 All scores are the full 100 tasks, single judge pass
 (`google/gemini-3.1-pro-preview`, reasoning `high`). The raw runs behind every

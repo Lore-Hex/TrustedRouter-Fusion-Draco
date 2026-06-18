@@ -57,10 +57,21 @@ reaches the judge or fuser. Harness: `scripts/draco_client_fusion.py`; scores in
 five-model frontier panel fixed and swapping only the synthesizer: GPT-5.5 → 62.2,
 Opus-4.8 → 70.6, **GLM-5.2 → 71.1** (`results/rejudge-sota5-frontier-glmfuser.jsonl`).
 The best fuser is an open-weights model. GLM-5.2 returned empty content on 1/100
-tasks (finish_reason `stop`, reproduced on regeneration — a context-length limit on
-the longest panel input), scored 0; over the 99 it answered it averages 71.8. The
-edge over Opus sits inside run-to-run judge variance, so the claim is parity-or-better
-from an open synthesizer, not a decisive win.
+tasks (finish_reason `stop`, `completion_tokens=1`), scored 0; over the 99 it
+answered it averages 71.8. The edge over Opus sits inside run-to-run judge variance,
+so the claim is parity-or-better from an open synthesizer, not a decisive win.
+
+**Root cause of the empty task — political censorship, not a bug.** Bisection
+isolated it cleanly: prompt was only ~19k tokens (not a context limit), no leaked
+tool markup, and GLM writes a full report from the same task *problem* alone. The
+trigger was one panel report describing a *Greater China* fund's China / Hong Kong /
+Taiwan allocation. GLM-5.2 (Zhipu / Z.AI) silently refuses Taiwan/Hong-Kong
+sovereignty-framed content — it emits a single stop token, zero output. Definitive
+test: replacing "Taiwan"/"Hong Kong" with neutral tokens across the panel makes the
+full fusion succeed (7.1k chars), while swapping an innocuous term leaves it empty.
+A Chinese open-weights fuser inherits its training's content restrictions; a robust
+pipeline needs an empty-output fallback to a second fuser (the benchmark instead
+scores the refusal as 0, honestly).
 
 | budget Fusion | full-100 | non-fin 80 | finance 20 | OpenRouter |
 |---|---:|---:|---:|---:|
