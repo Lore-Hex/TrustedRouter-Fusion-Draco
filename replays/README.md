@@ -32,9 +32,14 @@ Each file is the full 100 tasks, deduped to one successful row per task.
 
 | file | panel | fuser | DRACO score |
 |---|---|---|---:|
-| `fusion-frontier-opus.jsonl` | gpt-5.5 + opus + gemini-flash + kimi + deepseek | Opus 4.8 | **~71 (SOTA)** |
+| `fusion-frontier-glm.jsonl` | gpt-5.5 + opus + gemini-flash + kimi + deepseek | GLM-5.2 | **71.1 (SOTA)** ‡ |
+| `fusion-frontier-opus.jsonl` | *(same panel)* | Opus 4.8 | 70.6 |
 | `fusion-frontier-gpt55.jsonl` | *(same panel)* | GPT-5.5 | 62.2 |
 | `fusion-budget-opus.jsonl` | gemini-flash + kimi + deepseek | Opus 4.8 | 62.6 |
+
+‡ The best fuser is itself **open-weights**. GLM-5.2 returned empty content on 1
+of 100 tasks (context-length on the longest panel input), scored 0; over the 99 it
+answered it averages 71.8. The edge over Opus (70.6) is within judge variance.
 
 A fusion row's `fusion.panel` lists the panel roster; the panelists' own tool
 traces are the solo files above.

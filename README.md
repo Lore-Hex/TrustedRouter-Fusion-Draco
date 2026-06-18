@@ -11,18 +11,19 @@ all the benchmark data.
 DRACO is an *agentic* deep-research benchmark — the model has to search the web,
 read sources, and compute, not recall. Run on TrustedRouter with a live-tool
 harness and the same judge OpenRouter used (`google/gemini-3.1-pro-preview`,
-reasoning `high`), **a diverse panel — frontier *and* open-weights — fused by Opus
-4.8 reaches 70.6 on the full 100 tasks: state of the art, above OpenRouter's best
-published fusion (Fable 5 + GPT-5.5, 69.0).**
+reasoning `high`), **a diverse panel — frontier *and* open-weights — reaches 71.1
+on the full 100 tasks with GLM-5.2 synthesizing (70.6 with Opus 4.8): state of the
+art, above OpenRouter's best published fusion (Fable 5 + GPT-5.5, 69.0).**
 
-The reason is the panel. OpenRouter's top fusions paired two closed frontier
-models; ours adds frontier **open-weights** models — DeepSeek V4 Pro and Kimi
-K2.6 — alongside GPT-5.5, Opus, and Gemini Flash. Fusion gains come from diverse
-perspectives (OpenRouter's own finding), and open-weights models trained
-differently bring perspectives the closed pairs don't — so the broader panel, with
-Opus synthesizing, takes the top spot.
+The reason is the panel — and the synthesizer. OpenRouter's top fusions paired two
+closed frontier models; ours adds frontier **open-weights** models — DeepSeek V4
+Pro and Kimi K2.6 — alongside GPT-5.5, Opus, and Gemini Flash. Fusion gains come
+from diverse perspectives (OpenRouter's own finding), and open-weights models
+trained differently bring perspectives the closed pairs don't. The synthesizer can
+be open-weights too: **GLM-5.2 fusing that panel edges Opus (71.1 vs 70.6)** — so
+the best configuration we found is open from panel to fuser.
 
-![DRACO deep-research scores: TrustedRouter frontier panel + Opus fuser tops OpenRouter's published fusions](docs/draco-sota.svg)
+![DRACO deep-research scores: TrustedRouter frontier panel + GLM-5.2/Opus fuser tops OpenRouter's published fusions](docs/draco-fusion-sota.svg)
 
 ### Full data table — all 100 tasks, same judge
 
@@ -42,18 +43,26 @@ Opus synthesizing, takes the top spot.
 
 | fusion config | TrustedRouter | OpenRouter |
 |---|---:|---:|
-| **frontier panel + Opus fuser** *(ours, best)* | **70.6** | — |
+| **frontier panel + GLM-5.2 fuser** *(ours, best)* | **71.1** † | — |
+| frontier panel + Opus fuser | 70.6 | — |
 | OR — Fable 5 + GPT-5.5 *(their best)* | — | 69.0 |
 | OR — Opus + GPT-5.5 + Gemini | — | 68.3 |
 | OR — Opus + GPT-5.5 | — | 67.6 |
 | OR — Opus + Opus | — | 65.5 |
 | budget panel + Opus fuser | 62.6 | **64.7** |
-| frontier panel + GPT-5.5 judge & fuser | 62.2 | — |
+| frontier panel + GPT-5.5 fuser | 62.2 | — |
 
 Panel = `gpt-5.5 + opus-4.8 + gemini-3-flash + kimi-k2.6 + deepseek-v4-pro`.
-**The fuser is the lever:** swapping the synthesizer from GPT-5.5 to Opus 4.8 on
-the *identical* panel jumps the score ~+8 (62.2 → 70.6). GPT-5.5 is a strong
-panelist but a weak synthesizer here.
+**The fuser is the lever:** on the *identical* panel, the synthesizer alone moves
+the score from 62.2 (GPT-5.5) to 70.6 (Opus) to 71.1 (GLM-5.2) — a ~9-point swing
+from one model choice. GPT-5.5 is a strong panelist but a weak synthesizer; the
+best synthesizer is an **open-weights** model.
+
+† GLM-5.2 returned an empty answer on 1 of the 100 tasks (a context-length limit
+on the longest panel input), scored 0; over the 99 it answered it averages 71.8.
+The margin over Opus is within run-to-run judge variance — the finding is that an
+open-weights synthesizer is *at least as good* as the best closed one, not that it
+decisively wins.
 
 All scores are the full 100 tasks, single judge pass
 (`google/gemini-3.1-pro-preview`, reasoning `high`). The raw runs behind every
@@ -168,16 +177,17 @@ gateway's own judge→fuser prompts.
   edge, and our *budget* fusion (62.6) even lands under theirs (64.7). The top
   number comes from panel design: a broader, more diverse panel that pulls frontier
   open-weights models (DeepSeek, Kimi) in with the closed frontier ones, synthesized
-  by Opus. Disclose your exact tool budget, fetch size, synthesis turn, and
+  by GLM-5.2 — itself an open-weights model, which out-fuses Opus by a hair (71.1 vs
+  70.6). Disclose your exact tool budget, fetch size, synthesis turn, and
   judge-pass count when comparing (we use 1 pass; OR used the paper's multi-pass).
 - **Leakage was triple-checked.** Every web_search query and web_fetch URL that
   feeds these numbers was audited — 12,704 searches + 5,390 fetches, **zero**
   retrieval of any DRACO / Perplexity / HuggingFace / rubric / answer-key host.
   The harness excludes those hosts and scans every tool result for rubric
   fragments (`_draco_search_result_leak_reason`). Re-run the audit yourself.
-- **The fuser matters more than the panel.** Frontier panel + GPT-5.5 fuser = 62.2;
-  same panel + Opus fuser = ~71. A bigger panel with the wrong synthesizer buys
-  nothing.
+- **The fuser matters more than the panel.** On the *same* panel the synthesizer
+  alone spans 62.2 (GPT-5.5) → 70.6 (Opus) → 71.1 (GLM-5.2). The best synthesizer is
+  an open-weights model, and a bigger panel with the wrong one buys nothing.
 - **The whole process is here, not just the scores.** The raw agentic run traces —
   every prompt, every `web_search`/`web_fetch`/`sec_facts` call, and every final
   report — are published in [`replays/`](replays/); the rubric-judged versions of

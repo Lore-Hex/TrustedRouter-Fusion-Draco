@@ -53,6 +53,15 @@ final answer (panel evidence primary, judge analysis as guidance). No rubric eve
 reaches the judge or fuser. Harness: `scripts/draco_client_fusion.py`; scores in
 `results/rejudge-fusion-client-budget-opus-full100.jsonl`.
 
+**Fuser ablation (full-100, frontier panel, identical judge analysis).** Holding the
+five-model frontier panel fixed and swapping only the synthesizer: GPT-5.5 → 62.2,
+Opus-4.8 → 70.6, **GLM-5.2 → 71.1** (`results/rejudge-sota5-frontier-glmfuser.jsonl`).
+The best fuser is an open-weights model. GLM-5.2 returned empty content on 1/100
+tasks (finish_reason `stop`, reproduced on regeneration — a context-length limit on
+the longest panel input), scored 0; over the 99 it answered it averages 71.8. The
+edge over Opus sits inside run-to-run judge variance, so the claim is parity-or-better
+from an open synthesizer, not a decisive win.
+
 | budget Fusion | full-100 | non-fin 80 | finance 20 | OpenRouter |
 |---|---:|---:|---:|---:|
 | Gemini-Flash + Kimi + DeepSeek → Opus | **60.8** | **63.2** | 50.9 | 64.7 |
