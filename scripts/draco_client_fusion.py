@@ -21,8 +21,7 @@ from concurrent.futures import FIRST_COMPLETED, Future, ThreadPoolExecutor, wait
 from pathlib import Path
 from typing import Any
 
-import httpx
-
+from trusted_router.evals import tr_sdk
 from trusted_router.evals.agentic_tools import strip_tool_markup
 from trusted_router.evals.draco_replay import load_manifest
 from trusted_router.evals.fusion_live import load_eval_key
@@ -63,23 +62,10 @@ def _judge_user(problem: str, panel: list[tuple[str, str]]) -> str:
     return f"Original request summary:\n{problem}\n\nPanel responses:\n{body}"
 
 
-def _post(client: httpx.Client, base_url: str, api_key: str, body: dict[str, Any]) -> dict[str, Any]:
-    url = f"{base_url.rstrip('/')}/chat/completions"
-    headers = {"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"}
-    last = None
-    for attempt in range(1, 5):
-        try:
-            resp = client.post(url, headers=headers, json=body)
-        except (httpx.TimeoutException, httpx.NetworkError) as exc:
-            last = exc
-            continue
-        if resp.status_code in (429, 500, 502, 503, 504) and attempt < 4:
-            continue
-        resp.raise_for_status()
-        return resp.json()
-    if last:
-        raise last
-    raise RuntimeError("no response")
+def _post(client: tr_sdk.TrustedRouter, base_url: str, api_key: str, body: dict[str, Any]) -> dict[str, Any]:
+    # Routes through the TrustedRouter SDK (auth, regional failover, 429/5xx
+    # retries handled by the client). base_url/api_key are baked into the client.
+    return tr_sdk.chat(client, body)
 
 
 def _content(resp: dict[str, Any]) -> str:
@@ -165,7 +151,7 @@ def main(argv: list[str] | None = None) -> int:
     args.output.parent.mkdir(parents=True, exist_ok=True)
 
     def run_one(task) -> dict[str, Any]:
-        client = httpx.Client(timeout=args.timeout_seconds)
+        client = tr_sdk.make_client(base_url=args.base_url, api_key=api_key, timeout=args.timeout_seconds)
         try:
             panel = [(l, panels[l][task.id]) for l in labels]
             # 1) Fusion judge analysis

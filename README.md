@@ -96,6 +96,7 @@ would show it too. See [docs/FINDINGS.md](docs/FINDINGS.md) for the full analysi
 ## Layout
 
 ```
+src/trusted_router/evals/tr_sdk.py          gateway transport — every model call goes through our SDK
 src/trusted_router/evals/agentic_tools.py   the agentic web_search/web_fetch/bash loop
 src/trusted_router/evals/draco_replay.py    replay schema + criterion rejudge
 src/trusted_router/evals/{fusion_live,exa,draco,fusion_micro}.py   client, Exa, tasks, judge
@@ -114,8 +115,21 @@ docs/FINDINGS.md, docs/LESSONS.md           the analysis and the hard-won lesson
 ## Setup
 
 ```bash
-uv sync                      # installs httpx + markitdown
+uv sync                      # installs trusted-router-py (our SDK) + markitdown
 docker pull python:3.12-slim # bash-tool sandbox (network-isolated)
+```
+
+Every gateway call in this harness goes through the official
+[`trusted-router-py`](https://github.com/Lore-Hex/trusted-router-py) SDK — the
+benchmark dogfoods the same OpenAI-compatible, attested client our users do. All
+of it funnels through one small adapter, [`tr_sdk.py`](src/trusted_router/evals/tr_sdk.py):
+
+```python
+from trustedrouter import TrustedRouter
+
+with TrustedRouter(api_key=key, base_url="https://api.quillrouter.com/v1") as client:
+    resp = client.chat_completions(model="z-ai/glm-5.2", messages=[...], tools=[...])
+    resp.choices[0].message.content   # typed ChatCompletion
 ```
 
 Keys (env var or `~/.quill_cloud_keys.private`):

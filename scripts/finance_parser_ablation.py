@@ -18,7 +18,7 @@ from concurrent.futures import FIRST_COMPLETED, Future, ThreadPoolExecutor, wait
 from pathlib import Path
 from typing import Any
 
-import httpx
+from trusted_router.evals import tr_sdk
 
 from trusted_router.evals.agentic_tools import (
     DRACO_AGENTIC_SYSTEM_PROMPT,
@@ -41,7 +41,7 @@ BASE_URL = "https://api-us-central1.quillrouter.com/v1"
 
 
 def run_one(task, *, cfg: dict[str, Any], api_key: str, exa_key: str) -> dict[str, Any]:
-    client = httpx.Client(timeout=600.0)
+    client = tr_sdk.make_client(base_url=BASE_URL, api_key=api_key, timeout=600.0)
     exa = ExaSearchClient(exa_key)
     try:
         schemas, execs = build_tool_executors(

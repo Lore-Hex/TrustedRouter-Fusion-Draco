@@ -11,6 +11,7 @@ from typing import Any, Literal
 
 import httpx
 
+from trusted_router.evals import tr_sdk
 from trusted_router.evals.draco import DRACO_EXCLUDED_SEARCH_DOMAINS, DracoTask
 from trusted_router.evals.exa import (
     DEFAULT_EXA_FETCH_RESULTS,
@@ -240,10 +241,15 @@ class TrustedRouterChatClient:
         self._retry_sleep_seconds = retry_sleep_seconds
         self._client = client or httpx.Client(timeout=timeout_seconds)
         self._owns_client = client is None
+        # Blocking chat completions go through the TrustedRouter SDK.
+        self._sdk_client = tr_sdk.make_client(
+            base_url=base_url, api_key=api_key, timeout=timeout_seconds, max_retries=retry_attempts,
+        )
 
     def close(self) -> None:
         if self._owns_client:
             self._client.close()
+        self._sdk_client.close()
 
     def complete(
         self,
@@ -310,15 +316,7 @@ class TrustedRouterChatClient:
                         remaining_timeout_seconds = deadline_at - time.perf_counter()
                         if remaining_timeout_seconds <= 0:
                             raise TimeoutError("chat completion exceeded timeout")
-                        response = self._client.post(
-                            f"{self._base_url}/chat/completions",
-                            headers={
-                                "Authorization": f"Bearer {self._api_key}",
-                                "Content-Type": "application/json",
-                            },
-                            json=request_json,
-                            timeout=remaining_timeout_seconds,
-                        )
+                        response = tr_sdk.chat_response(self._sdk_client, request_json)
                     except (httpx.TimeoutException, httpx.NetworkError, RuntimeError):
                         if attempt == self._retry_attempts:
                             raise

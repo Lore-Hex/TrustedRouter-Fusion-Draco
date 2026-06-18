@@ -34,6 +34,7 @@ from typing import Any
 
 import httpx
 
+from trusted_router.evals import tr_sdk
 from trusted_router.evals.draco import DRACO_EXCLUDED_SEARCH_DOMAINS, DracoTask
 from trusted_router.evals.exa import (
     ExaResult,
@@ -642,30 +643,17 @@ def _completion_body(
 
 
 def _post_with_retry(
-    client: httpx.Client, url: str, headers: dict[str, str], body: dict[str, Any], *, retries: int = 3
-) -> httpx.Response:
-    last_exc: Exception | None = None
-    for attempt in range(1, retries + 1):
-        try:
-            resp = client.post(url, headers=headers, json=body)
-        except (httpx.TimeoutException, httpx.NetworkError) as exc:
-            last_exc = exc
-            if attempt == retries:
-                raise
-            time.sleep(0.5 * attempt)
-            continue
-        if resp.status_code in RETRYABLE_STATUS and attempt < retries:
-            time.sleep(0.5 * attempt)
-            continue
-        return resp
-    if last_exc is not None:
-        raise last_exc
-    raise RuntimeError("agentic completion produced no response")
+    client: "tr_sdk.TrustedRouter", url: str, headers: dict[str, str], body: dict[str, Any], *, retries: int = 3
+) -> "tr_sdk.SdkResponse":
+    # The gateway call goes through the TrustedRouter SDK, which handles auth,
+    # regional failover, and 429/5xx retries. url/headers are unused (the client
+    # already carries the base URL and key) and kept only for signature stability.
+    return tr_sdk.chat_response(client, body)
 
 
 def run_agentic_completion(
     *,
-    client: httpx.Client,
+    client: "tr_sdk.TrustedRouter",
     base_url: str,
     api_key: str,
     model: str,

@@ -27,8 +27,7 @@ from concurrent.futures import FIRST_COMPLETED, Future, ThreadPoolExecutor, wait
 from pathlib import Path
 from typing import Any
 
-import httpx
-
+from trusted_router.evals import tr_sdk
 from trusted_router.evals.draco import parse_draco_task
 from trusted_router.evals.exa import exa_search_bundle_from_replay_dict
 from trusted_router.evals.fusion_live import (
@@ -150,7 +149,7 @@ def main(argv: list[str] | None = None) -> int:
         return 2
 
     args.output.parent.mkdir(parents=True, exist_ok=True)
-    client = httpx.Client(timeout=args.timeout_seconds)
+    client = tr_sdk.make_client(base_url=args.base_url, api_key=_first_key(), timeout=args.timeout_seconds)
     try:
         with args.output.open("a" if args.resume else "w", encoding="utf-8") as fh:
             _run(pending, args=args, analysis_models=analysis_models, client=client, fh=fh)
@@ -164,7 +163,7 @@ def _run(
     *,
     args: argparse.Namespace,
     analysis_models: list[str],
-    client: httpx.Client,
+    client: "tr_sdk.TrustedRouter",
     fh: Any,
 ) -> None:
     total = len(pending)
@@ -218,7 +217,7 @@ def _generate_one(
     *,
     args: argparse.Namespace,
     analysis_models: list[str],
-    client: httpx.Client,
+    client: "tr_sdk.TrustedRouter",
 ) -> dict[str, Any]:
     try:
         task = parse_draco_task(row["task"])
@@ -291,30 +290,10 @@ def _build_request(
 
 
 def _post_with_retry(
-    client: httpx.Client, args: argparse.Namespace, request_json: dict[str, Any]
-) -> httpx.Response:
-    url = f"{args.base_url.rstrip('/')}/chat/completions"
-    headers = {
-        "Authorization": f"Bearer {_first_key()}",
-        "Content-Type": "application/json",
-    }
-    last_exc: Exception | None = None
-    for attempt in range(1, args.retry_attempts + 1):
-        try:
-            response = client.post(url, headers=headers, json=request_json)
-        except (httpx.TimeoutException, httpx.NetworkError) as exc:
-            last_exc = exc
-            if attempt == args.retry_attempts:
-                raise
-            time.sleep(0.5 * attempt)
-            continue
-        if response.status_code in RETRYABLE_STATUS and attempt < args.retry_attempts:
-            time.sleep(0.5 * attempt)
-            continue
-        return response
-    if last_exc is not None:
-        raise last_exc
-    raise RuntimeError("native fusion request did not produce a response")
+    client: "tr_sdk.TrustedRouter", args: argparse.Namespace, request_json: dict[str, Any]
+) -> "tr_sdk.SdkResponse":
+    # Native trustedrouter/fusion call through the SDK (auth + retries handled there).
+    return tr_sdk.chat_response(client, request_json)
 
 
 def _failure_row(

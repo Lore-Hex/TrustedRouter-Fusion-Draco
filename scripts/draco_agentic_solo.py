@@ -16,8 +16,7 @@ from concurrent.futures import FIRST_COMPLETED, Future, ThreadPoolExecutor, wait
 from pathlib import Path
 from typing import Any
 
-import httpx
-
+from trusted_router.evals import tr_sdk
 from trusted_router.evals.agentic_tools import (
     DRACO_AGENTIC_SYSTEM_PROMPT,
     DEFAULT_BASH_IMAGE,
@@ -150,7 +149,7 @@ def _run(pending: list[DracoTask], *, args: argparse.Namespace, api_key: str, ex
 
 
 def _run_one(task: DracoTask, *, args: argparse.Namespace, api_key: str, exa_key: str) -> dict[str, Any]:
-    client = httpx.Client(timeout=args.timeout_seconds)
+    client = tr_sdk.make_client(base_url=args.base_url, api_key=api_key, timeout=args.timeout_seconds)
     exa_client = ExaSearchClient(exa_key)
     try:
         schemas, executors = build_tool_executors(
