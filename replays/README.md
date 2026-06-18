@@ -48,6 +48,12 @@ The best fuser is open-weights MiniMax-M3, with no censorship hole. GPT-5.5 is t
 top *solo* researcher yet a weak fuser — synthesis is a skill apart. Gemma-4-31b
 collapses: a 31B model is too small to hold and reconcile a frontier panel.
 
+`fusion-openweights-m3.jsonl` is the **all-open-weights** run: a panel of five
+downloadable models (MiniMax-M3 + Kimi + DeepSeek + Gemma-4 + GLM-5.2), each doing
+its own research, fused by MiniMax-M3 — **69.9**, no proprietary API anywhere in the
+stack. It beats Fable-5 solo (65.3) and OpenRouter's best published fusion (69.0),
+below the frontier-mixed panel (71.6). See [docs/FINDINGS.md](../docs/FINDINGS.md).
+
 ‡ GLM-5.2 ties at the top (71.1) but returned empty content on 1 of 100 tasks —
 **political censorship**, not a context limit: that task's panel covered a *Greater
 China* fund's China/Hong-Kong/Taiwan split, and GLM-5.2 (Zhipu / Z.AI) silently

@@ -78,6 +78,18 @@ A Chinese open-weights fuser inherits its training's content restrictions; a rob
 pipeline needs an empty-output fallback to a second fuser (the benchmark instead
 scores the refusal as 0, honestly).
 
+**All-open-weights panel (no proprietary API anywhere in the stack).** Swap the
+frontier panel for five downloadable open models — MiniMax-M3 + Kimi-K2.6 +
+DeepSeek-V4 + Gemma-4 + GLM-5.2 — each running its own agentic loop, fused by
+MiniMax-M3 (the top open fuser). Full-100: **69.9**
+(`results/rejudge-openweights-m3-fuser.jsonl`, replay in
+`replays/fusion-openweights-m3.jsonl`). That beats Fable-5 solo (65.3) by +4.6 and
+edges OpenRouter's best published fusion (Fable-5 + GPT-5.5, 69.0), while sitting
+below the frontier-mixed panel (71.6) — letting closed frontier models into the
+panel still buys ~1.7. Fusing the *same* panel with GLM-5.2 instead scores 68.9 and
+needs an empty-output fallback to Gemma-4 (GLM censors Taiwan/HK; `--fallback-fuser-model`
+handles it); MiniMax-M3 needs no fallback and trips no empties.
+
 | budget Fusion | full-100 | non-fin 80 | finance 20 | OpenRouter |
 |---|---:|---:|---:|---:|
 | Gemini-Flash + Kimi + DeepSeek → Opus | **60.8** | **63.2** | 50.9 | 64.7 |
