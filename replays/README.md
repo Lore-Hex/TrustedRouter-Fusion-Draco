@@ -61,6 +61,17 @@ refuses Taiwan/Hong-Kong sovereignty content (neutralize those two words and it 
 fine). Scored 0; over the 99 it answered it averages 71.8. That blind spot is why we
 default to MiniMax-M3.
 
+## Self-fusion — one model fused with copies of itself
+
+`fusion-selffusion-m3-x10.jsonl` is **ten independent MiniMax-M3 research runs fused
+by MiniMax-M3** — the same model in every panel seat and the synthesizer. Each row's
+`fusion.panel` lists the ten run labels. It scores **69.4** on the full 100 tasks
+(`../results/rejudge-selffusion-m3-x10.jsonl`), a hair under the all-open five-*model*
+panel (69.9) and above Fable-5 solo (65.3). The 2-run self-fusion baselines that
+establish the error-correlation story — Opus +6.9, M3 +0.0, both temperatures — are
+the judged files `../results/rejudge-selffusion-{m3,opus}-2run{,-hitemp}.jsonl`. See
+[docs/FINDINGS.md](../docs/FINDINGS.md) §6.
+
 A fusion row's `fusion.panel` lists the panel roster; the panelists' own tool
 traces are the solo files above.
 

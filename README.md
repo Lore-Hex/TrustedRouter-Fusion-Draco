@@ -92,6 +92,30 @@ All scores are the full 100 tasks, single judge pass
 (`google/gemini-3.1-pro-preview`, reasoning `high`). The raw runs behind every
 number are in [`replays/`](replays/).
 
+### Self-fusion — fuse a model with copies of itself
+
+The panel doesn't need different models. Run the *same* model several times (each
+takes a different agentic path) and fuse the reports with that model. Whether it
+helps comes down to **error correlation across the runs**:
+
+| base model | solo | 2-run self-fusion | 10-run self-fusion |
+|---|---:|---:|---:|
+| Claude Opus 4.8 | 60.7 | **67.6** (+6.9) | — |
+| MiniMax-M3 | 66.2 | **66.2** (+0.0) | **69.4** |
+
+Opus self-fuses +6.9 off just two runs because its independent runs fail on
+*different* tasks (`corr(solo score, self-fusion gain) = −0.60`; its weak runs avg
+52/100 and the pair recovers them). M3 gains nothing from two runs — when it errs,
+both runs err the same way — and temperature doesn't fix it (66.2 at t=0.2 → 66.1
+at t=0.8). But **ten** M3 runs fused reach **69.4**, a hair under the all-open panel
+of five *different* models (69.9) and ~2 below the frontier-mixed panel (71.6):
+enough independent tries manufacture most of the diversity a real panel buys with
+variety. At M3's price (~17×/21× cheaper per token than the frontier tier), the
+ten-run pipeline costs a measured **$87** for the 100-task benchmark and beats
+Fable-5 solo (65.3) by +4.1. Data: `replays/fusion-selffusion-m3-x10.jsonl`,
+`results/rejudge-selffusion-*.jsonl`; full writeup in
+[`docs/FINDINGS.md`](docs/FINDINGS.md) §6.
+
 ### On the comparison to OpenRouter (and why it is *not* leakage)
 
 We don't know OpenRouter's exact harness — their tool budget, fetch sizes,

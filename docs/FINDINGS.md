@@ -157,3 +157,47 @@ the non-financial reproduction itself is on the nose.
   now") + strip leaked markup.
 - `--force-first-tool` for reluctant tool-users (gemini-flash answers from memory).
 - bash = local Docker `python:3.12-slim` `--network none`.
+
+## 6. Self-fusion — fusing a model with copies of itself
+
+The panel doesn't have to be different models. Run the *same* model N times (it takes a
+different agentic path each time — different searches, different sources) and fuse the N
+reports with that same model. The gain depends entirely on **error correlation across the
+runs**, and that has a sharp, measurable structure (judged files
+`results/rejudge-selffusion-*.jsonl`):
+
+| base model | solo | 2-run self-fusion (t=0.2) | 2-run (t=0.8) | 10-run self-fusion |
+|---|---:|---:|---:|---:|
+| Opus 4.8 | 60.7 | **67.6** (+6.9) | 67.5 | — |
+| MiniMax-M3 | 66.2 | **66.2** (+0.0) | 66.1 | **69.4** |
+
+Two findings:
+
+1. **Two runs help a shaky model and do nothing for a steady one.** Opus self-fuses +6.9
+   off two runs; M3 self-fuses +0.0. The cause is error *de-correlation*, not temperature:
+   `corr(opus_solo_score, opus_self-fusion_gain) = −0.60` — Opus gains exactly on the tasks
+   where one run scored lowest (its weak runs averaged 52/100), because its independent
+   runs fail on *different* tasks and the pair recovers them. M3's two runs swing >5pts on
+   42/100 tasks (up 22, down 20 — a wash): when M3 errs, both runs err the same way, so
+   there's nothing to recover. Cranking sampling temperature to 0.8 doesn't change it
+   (66.2 → 66.1): temperature varies the surface path, not *which* tasks the model is
+   systematically blind on.
+
+2. **Quantity substitutes for cross-model diversity.** A model with highly-correlated
+   errors needs many draws, not two. Fuse **ten** M3 runs and the gain appears — **69.4**
+   (`replays/fusion-selffusion-m3-x10.jsonl`, `results/rejudge-selffusion-m3-x10.jsonl`,
+   100 tasks, same `gemini-3.1-pro` judge). That lands a hair under the all-open *panel* of
+   five different models (69.9) and ~2 below the frontier-mixed panel (71.6): ten copies of
+   one model nearly match five different ones, because enough independent tries occasionally
+   surface the rare-correct run the fuser can keep. The gain is bigger on the non-financial
+   80 (70.8) than on finance (63.6) — even ten runs share M3's knowledge gaps on
+   filing-heavy tasks.
+
+**Cost.** This is worth doing because M3 is cheap: $0.30/$1.20 per M tokens in/out vs the
+frontier tier's ~$5/$25 (where GPT-5.5 and Opus 4.8 sit), i.e. ~17×/21× cheaper per token.
+The measured cost of the ten-M3 pipeline over the 100-task benchmark is **$87** (10 research
+runs $73.66 + M3 fusion $2.18 + the `gemini-3.1-pro` consensus pass $11.35). A single Fable-5
+solo run, priced at the frontier tier with the same token profile, models to ~$126 — Fable 5
+is route-blocked and its price isn't public, so that figure is a model, not a billed number.
+The $87 is measured and the per-token price gap is the durable fact: a stack of cheap runs is
+the cheaper route to a frontier-grade answer, and it beats Fable-5 solo (65.3) by +4.1.
