@@ -193,12 +193,26 @@ Two findings:
    80 (70.8) than on finance (63.6) — even ten runs share M3's knowledge gaps on
    filing-heavy tasks.
 
+3. **The scaling curve: two runs do nothing, four clears Fable, ~seven plateaus.** Fusing the
+   first N of a fixed 10-run pool (`results/rejudge-selffusion-m3-x{3..9}.jsonl`; chart
+   `docs/draco-selffusion-scaling.svg`):
+
+   | N runs fused | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 |
+   |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+   | DRACO | 66.2 | 66.1 | 67.7 | 68.1 | 68.1 | 68.2 | 69.5 | 69.2 | 68.4 | 69.4 |
+
+   Flat through N=2, a steady climb from N=3, a plateau near 69 by N=7; past seven, more copies
+   buy nothing. **Four runs already clear Fable-5 solo (65.3)** and capture ~60% of the max gain
+   for ~$37 (vs the ten-run $87). This is one nested ordering, so the point-to-point jitter (~1
+   pt; the N=7 bump, the N=9 dip) is run-to-run noise — the climb-then-plateau is the signal.
+
 **Cost.** This is worth doing because M3 is cheap: $0.30/$1.20 per M tokens in/out vs Fable 5
 at 2× Opus 4.8's price (~$9.90/$49.50), i.e. ~33×/41× cheaper per token. The measured cost of
 the ten-M3 pipeline over the 100-task benchmark is **$87** (10 research runs $73.66 + M3 fusion
-$2.18 + the `gemini-3.1-pro` consensus pass $11.35). A single Fable-5 solo run, priced at 2×
-Opus with the same token profile, models to **~$250** — Fable 5 is route-blocked and its price
-isn't public, so that figure is modeled, not billed. The gap survives the token-profile
-assumption: even if Fable were twice as token-efficient it would still cost ~$125 > $87. So the
-open stack is the cheaper route to a frontier-grade answer — about **3× cheaper** — and it beats
-Fable-5 solo (65.3) by +4.1.
+$2.18 + the `gemini-3.1-pro` consensus pass $11.35); the **four-run** pipeline (the curve's
+knee, score 68.1) is a measured **$37**. A single Fable-5 solo run, priced at 2× Opus with the
+same token profile, models to **~$250** — Fable 5 is route-blocked and its price isn't public,
+so that figure is modeled, not billed. The gap survives the token-profile assumption: even if
+Fable were twice as token-efficient it would still cost ~$125. So the open stack is the cheaper
+route to a frontier-grade answer — **~7× cheaper at four runs, ~3× at ten** — and beats Fable-5
+solo (65.3) by +2.8 (four) to +4.1 (ten).

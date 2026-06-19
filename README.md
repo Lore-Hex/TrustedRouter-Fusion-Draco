@@ -107,15 +107,23 @@ Opus self-fuses +6.9 off just two runs because its independent runs fail on
 *different* tasks (`corr(solo score, self-fusion gain) = −0.60`; its weak runs avg
 52/100 and the pair recovers them). M3 gains nothing from two runs — when it errs,
 both runs err the same way — and temperature doesn't fix it (66.2 at t=0.2 → 66.1
-at t=0.8). But **ten** M3 runs fused reach **69.4**, a hair under the all-open panel
-of five *different* models (69.9) and ~2 below the frontier-mixed panel (71.6):
-enough independent tries manufacture most of the diversity a real panel buys with
-variety. At M3's price (~33×/41× cheaper per token than Fable 5, which lists at 2×
-Opus), the ten-run pipeline costs a measured **$87** for the 100-task benchmark —
-about a third of a modeled ~$250 Fable-5 solo run — and beats Fable-5 solo (65.3)
-by +4.1. Data: `replays/fusion-selffusion-m3-x10.jsonl`,
-`results/rejudge-selffusion-*.jsonl`; full writeup in
-[`docs/FINDINGS.md`](docs/FINDINGS.md) §6.
+at t=0.8). But fusing *more* M3 runs makes the gain appear, and the scaling curve
+(`docs/draco-selffusion-scaling.svg`) shows its shape — flat through 2, a steady
+climb, a plateau near 69 by 7:
+
+| N runs fused | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| DRACO | 66.2 | 66.1 | 67.7 | 68.1 | 68.1 | 68.2 | 69.5 | 69.2 | 68.4 | 69.4 |
+
+**Four runs already clear Fable-5 solo (65.3)** at 68.1, and **ten** reach **69.4** —
+a hair under the all-open panel of five *different* models (69.9) and ~2 below the
+frontier-mixed panel (71.6). Enough independent tries manufacture most of the diversity
+a real panel buys with variety. At M3's price (~33×/41× cheaper per token than Fable 5,
+which lists at 2× Opus), four runs cost a measured **$37** and ten cost **$87** — against
+a modeled ~$250 Fable-5 solo run, i.e. ~7× cheaper at four runs, ~3× at ten. (One nested
+ordering, so the ~1-pt point-to-point jitter is run-to-run noise.) Data:
+`replays/fusion-selffusion-m3-x10.jsonl`, `results/rejudge-selffusion-*.jsonl`; full
+writeup in [`docs/FINDINGS.md`](docs/FINDINGS.md) §6.
 
 ### On the comparison to OpenRouter (and why it is *not* leakage)
 
