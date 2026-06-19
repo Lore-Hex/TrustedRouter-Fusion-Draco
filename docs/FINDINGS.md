@@ -193,11 +193,12 @@ Two findings:
    80 (70.8) than on finance (63.6) — even ten runs share M3's knowledge gaps on
    filing-heavy tasks.
 
-**Cost.** This is worth doing because M3 is cheap: $0.30/$1.20 per M tokens in/out vs the
-frontier tier's ~$5/$25 (where GPT-5.5 and Opus 4.8 sit), i.e. ~17×/21× cheaper per token.
-The measured cost of the ten-M3 pipeline over the 100-task benchmark is **$87** (10 research
-runs $73.66 + M3 fusion $2.18 + the `gemini-3.1-pro` consensus pass $11.35). A single Fable-5
-solo run, priced at the frontier tier with the same token profile, models to ~$126 — Fable 5
-is route-blocked and its price isn't public, so that figure is a model, not a billed number.
-The $87 is measured and the per-token price gap is the durable fact: a stack of cheap runs is
-the cheaper route to a frontier-grade answer, and it beats Fable-5 solo (65.3) by +4.1.
+**Cost.** This is worth doing because M3 is cheap: $0.30/$1.20 per M tokens in/out vs Fable 5
+at 2× Opus 4.8's price (~$9.90/$49.50), i.e. ~33×/41× cheaper per token. The measured cost of
+the ten-M3 pipeline over the 100-task benchmark is **$87** (10 research runs $73.66 + M3 fusion
+$2.18 + the `gemini-3.1-pro` consensus pass $11.35). A single Fable-5 solo run, priced at 2×
+Opus with the same token profile, models to **~$250** — Fable 5 is route-blocked and its price
+isn't public, so that figure is modeled, not billed. The gap survives the token-profile
+assumption: even if Fable were twice as token-efficient it would still cost ~$125 > $87. So the
+open stack is the cheaper route to a frontier-grade answer — about **3× cheaper** — and it beats
+Fable-5 solo (65.3) by +4.1.

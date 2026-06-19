@@ -110,9 +110,10 @@ both runs err the same way — and temperature doesn't fix it (66.2 at t=0.2 →
 at t=0.8). But **ten** M3 runs fused reach **69.4**, a hair under the all-open panel
 of five *different* models (69.9) and ~2 below the frontier-mixed panel (71.6):
 enough independent tries manufacture most of the diversity a real panel buys with
-variety. At M3's price (~17×/21× cheaper per token than the frontier tier), the
-ten-run pipeline costs a measured **$87** for the 100-task benchmark and beats
-Fable-5 solo (65.3) by +4.1. Data: `replays/fusion-selffusion-m3-x10.jsonl`,
+variety. At M3's price (~33×/41× cheaper per token than Fable 5, which lists at 2×
+Opus), the ten-run pipeline costs a measured **$87** for the 100-task benchmark —
+about a third of a modeled ~$250 Fable-5 solo run — and beats Fable-5 solo (65.3)
+by +4.1. Data: `replays/fusion-selffusion-m3-x10.jsonl`,
 `results/rejudge-selffusion-*.jsonl`; full writeup in
 [`docs/FINDINGS.md`](docs/FINDINGS.md) §6.
 
