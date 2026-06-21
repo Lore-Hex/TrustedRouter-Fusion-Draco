@@ -1,9 +1,38 @@
+{"idx": 7, "ci": 0, "m": ["not-normal-adjustment", "stop-inhaler", "paradox-broncho"], "n": 3}
 {"idx": 7, "ci": 1, "m": ["o2-threshold"], "n": 3}
+{"idx": 17, "ci": 0, "m": ["promotion-name", "chain-name", "founding-year"], "n": 3}
 {"idx": 17, "ci": 1, "m": ["founders-identity", "founding-location", "cooking-method"], "n": 3}
 {"idx": 17, "ci": 5, "m": ["sociocultural-positioning"], "n": 3}
 {"idx": 17, "ci": 9, "m": [], "n": 1}
+{"idx": 25, "ci": 0, "m": ["wisc-v-wm-primary-conclusion", "nepsy-ii-inhibition-advantage"], "n": 3}
+{"idx": 53, "ci": 0, "m": ["ifr-global-robot-density-2023"], "n": 3}
+{"idx": 59, "ci": 0, "m": ["siemens-offering", "siemens-durability", "siemens-cloud-analytics"], "n": 3}
+{"idx": 65, "ci": 0, "m": ["explicit-er-directive", "obstruction-risk-identified", "dehydration-severity"], "n": 3}
+{"idx": 66, "ci": 0, "m": ["austin-school-district-entry-price", "raleigh-school-district-entry-price", "nashville-school-district-entry-price"], "n": 3}
+{"idx": 67, "ci": 0, "m": ["cambrian-timeframe", "cambrian-duration-pattern", "oxygen-hypothesis"], "n": 3}
+{"idx": 73, "ci": 0, "m": ["q1-2023-total-sales", "q1-2023-gross-profit", "q1-2023-gross-margin"], "n": 3}
+{"idx": 74, "ci": 0, "m": ["table-social-communication-dsm5", "table-social-communication-icd11"], "n": 3}
+{"idx": 75, "ci": 0, "m": ["atsource-not-licensable"], "n": 3}
+{"idx": 76, "ci": 0, "m": ["daily-cost-estimates", "provides-9-day-structure", "states-budget-breakdown"], "n": 3}
+{"idx": 77, "ci": 0, "m": ["pt-test-types-enumeration", "pt-bayesian-updating"], "n": 3}
+{"idx": 78, "ci": 0, "m": ["mammography-software-compatibility"], "n": 3}
+{"idx": 79, "ci": 0, "m": ["edelweiss-sector-focus"], "n": 3}
+{"idx": 80, "ci": 0, "m": [], "n": 3}
+{"idx": 81, "ci": 0, "m": ["hash-ribbon-no-signal-january-15", "hash-ribbon-prior-signal-context", "hash-ribbon-signal-interpretation"], "n": 3}
+{"idx": 82, "ci": 0, "m": ["webauthn-current-version"], "n": 3}
+{"idx": 83, "ci": 0, "m": ["native-dlp-not-supported", "purview-connector-audit-only", "edge-dlp-browser-prevention"], "n": 3}
+{"idx": 84, "ci": 0, "m": ["maroczy-bind-structure"], "n": 3}
+{"idx": 85, "ci": 0, "m": ["hasselblad-no-capture-one", "fuji-flash-sync-speed", "hasselblad-leaf-shutter-sync"], "n": 3}
+{"idx": 86, "ci": 0, "m": ["saudi-arabia-current-flfp-rate", "saudi-arabia-historical-baseline", "saudi-driving-ban-reform-year"], "n": 3}
+{"idx": 87, "ci": 0, "m": ["june-2022-cash-balance", "q1-2024-runway-projection"], "n": 3}
+{"idx": 88, "ci": 0, "m": ["ios-fy2024-margin-calculation", "ios-revenue-growth-2023-2024"], "n": 3}
 {"idx": 88, "ci": 3, "m": ["ahs-q2-2025-margin-calculation", "ahs-fy2024-margin-calculation"], "n": 3}
+{"idx": 94, "ci": 0, "m": ["identifies-all-four-traditions", "mackinnon-dominance-framework", "fineman-vulnerability-theory"], "n": 3}
+{"idx": 95, "ci": 0, "m": ["zimbabwe-compensation-deed-2020"], "n": 3}
 {"idx": 95, "ci": 3, "m": ["zimbabwe-fast-track-violence", "south-africa-section-25-framework"], "n": 3}
+{"idx": 96, "ci": 0, "m": [], "n": 3}
+{"idx": 96, "ci": 20, "m": ["warning-language-for-risks"], "n": 3}
+{"idx": 97, "ci": 0, "m": [], "n": 3}
 {"idx": 99, "ci": 1, "m": ["aws-ready2run-cost", "aws-long-read-cost"], "n": 3}
 {"idx": 99, "ci": 3, "m": ["google-no-china-region", "egress-cost-rates"], "n": 3}
 {"idx": 99, "ci": 7, "m": ["egress-scenario-modeling"], "n": 3}
@@ -46,43 +75,55 @@
 {"idx": 172, "ci": 3, "m": [], "n": 3}
 {"idx": 172, "ci": 7, "m": [], "n": 3}
 {"idx": 172, "ci": 12, "m": ["cites-hp-williams-2008-nature", "cites-chua-memristor-frameworks"], "n": 3}
+{"idx": 174, "ci": 0, "m": ["identifies-three-elements-respondeat-superior", "identifies-app-mandated-routes", "identifies-algorithmic-suspension"], "n": 3}
 {"idx": 174, "ci": 1, "m": ["identifies-quota-system", "identifies-company-branding"], "n": 3}
 {"idx": 174, "ci": 3, "m": ["identifies-ability-to-hire-assistants", "scope-temporal-geographic", "scope-employer-motivation"], "n": 3}
 {"idx": 174, "ci": 7, "m": ["analyzes-scope-of-employment-dual-purposebenefit"], "n": 3}
+{"idx": 176, "ci": 0, "m": [], "n": 3}
 {"idx": 176, "ci": 1, "m": [], "n": 3}
 {"idx": 176, "ci": 3, "m": ["zimbabwe-fast-track-violence"], "n": 3}
 {"idx": 176, "ci": 7, "m": [], "n": 3}
 {"idx": 176, "ci": 13, "m": ["quantitative-precision", "acknowledges-methodological-limitations"], "n": 3}
+{"idx": 177, "ci": 0, "m": ["identifies-all-four-traditions", "mackinnon-dominance-framework", "fineman-vulnerability-theory"], "n": 3}
 {"idx": 177, "ci": 1, "m": ["mir-hosseini-contribution", "wadud-hermeneutics", "sharia-fiqh-distinction"], "n": 3}
 {"idx": 177, "ci": 3, "m": ["chinese-socialist-legal-reforms", "chinese-marketization-tension"], "n": 3}
 {"idx": 177, "ci": 7, "m": ["bodily-autonomy-african-fgm-maputo", "bodily-autonomy-chinese-reproductive-control"], "n": 3}
 {"idx": 177, "ci": 13, "m": ["precise-legal-theoretical-terminology", "structured-comparative-organization", "formal-scholarly-tone"], "n": 3}
+{"idx": 178, "ci": 0, "m": [], "n": 3}
 {"idx": 178, "ci": 1, "m": [], "n": 3}
 {"idx": 178, "ci": 3, "m": [], "n": 3}
 {"idx": 178, "ci": 7, "m": ["measurable-logging-requirements"], "n": 3}
+{"idx": 179, "ci": 0, "m": [], "n": 3}
 {"idx": 179, "ci": 1, "m": ["aws-ready2run-cost"], "n": 3}
 {"idx": 179, "ci": 3, "m": [], "n": 3}
 {"idx": 179, "ci": 7, "m": ["egress-scenario-modeling"], "n": 3}
+{"idx": 180, "ci": 0, "m": ["core-portfolio-q1-2024-margin-calculation", "funds-segment-q1-2024-margin-calculation", "margin-differential-quantified"], "n": 3}
 {"idx": 180, "ci": 4, "m": [], "n": 3}
 {"idx": 180, "ci": 8, "m": ["debt-equity-balance-discipline", "strategic-coherence-conclusion"], "n": 3}
 {"idx": 180, "ci": 11, "m": ["cites-acadia-10q-q1-2024"], "n": 3}
+{"idx": 181, "ci": 0, "m": ["ocf-q1-2025", "ocf-q1-2024", "ocf-growth-amount"], "n": 3}
 {"idx": 181, "ci": 3, "m": ["debt-750m-2030", "debt-750m-2032", "debt-750m-2043"], "n": 3}
 {"idx": 181, "ci": 7, "m": ["accounts-receivable-2024", "income-taxes-payable-2025", "income-taxes-payable-2024"], "n": 3}
 {"idx": 181, "ci": 10, "m": ["dividends-paid-q1-2025", "yoy-working-capital-change-quantification"], "n": 3}
 {"idx": 181, "ci": 14, "m": ["yoy-comparison-structure"], "n": 3}
+{"idx": 182, "ci": 0, "m": ["efsl-rating-and-category", "efsl-leverage", "muthoot-rating-and-category"], "n": 3}
 {"idx": 182, "ci": 1, "m": ["muthoot-leverage"], "n": 3}
 {"idx": 182, "ci": 3, "m": ["tds-applies-to-listed-ncds", "post-tax-yield-calculations", "gsec-benchmark-context"], "n": 3}
 {"idx": 182, "ci": 7, "m": ["traces-asset-quality-or-profitability-trends"], "n": 3}
+{"idx": 183, "ci": 0, "m": [], "n": 3}
 {"idx": 183, "ci": 1, "m": [], "n": 3}
 {"idx": 183, "ci": 4, "m": [], "n": 3}
 {"idx": 183, "ci": 8, "m": [], "n": 3}
 {"idx": 183, "ci": 13, "m": ["feb-2024-shares-issued", "feb-2024-pfws-issued"], "n": 3}
 {"idx": 183, "ci": 17, "m": [], "n": 3}
 {"idx": 183, "ci": 20, "m": ["objective-analytical-tone"], "n": 3}
+{"idx": 183, "ci": 22, "m": [], "n": 2}
+{"idx": 184, "ci": 0, "m": ["operating-cash-flow-9m-2024", "investing-cash-flow-9m-2024", "free-cash-flow-calculation"], "n": 3}
 {"idx": 184, "ci": 5, "m": [], "n": 3}
 {"idx": 184, "ci": 9, "m": ["business-model-evolution-narrative"], "n": 3}
 {"idx": 184, "ci": 10, "m": ["installed-base-recurring-revenue-model", "segment-absolute-vs-relative-contribution", "volume-driven-unit-economics"], "n": 3}
 {"idx": 184, "ci": 14, "m": [], "n": 3}
+{"idx": 185, "ci": 0, "m": ["equity-dec-2023", "equity-dec-2024", "equity-change-amount"], "n": 3}
 {"idx": 185, "ci": 2, "m": [], "n": 3}
 {"idx": 185, "ci": 6, "m": ["operating-cash-outflow-2024"], "n": 3}
 {"idx": 185, "ci": 11, "m": [], "n": 3}
@@ -92,7 +133,12 @@
 {"idx": 186, "ci": 8, "m": [], "n": 3}
 {"idx": 186, "ci": 12, "m": ["loss-on-debt-extinguishment"], "n": 3}
 {"idx": 186, "ci": 16, "m": [], "n": 3}
+{"idx": 186, "ci": 20, "m": [], "n": 3}
+{"idx": 186, "ci": 22, "m": ["financial-terminology-precision", "tabular-data-presentation"], "n": 3}
 {"idx": 186, "ci": 23, "m": ["analytical-objectivity", "repetitive-content"], "n": 3}
+{"idx": 186, "ci": 24, "m": ["cites-diamondrock-10q-q3-2025"], "n": 3}
+{"idx": 186, "ci": 25, "m": [], "n": 2}
+{"idx": 187, "ci": 0, "m": ["anzsic-classification"], "n": 3}
 {"idx": 187, "ci": 5, "m": [], "n": 3}
 {"idx": 187, "ci": 9, "m": ["stats-nz-revenue-data", "scnz-capacity-data"], "n": 3}
 {"idx": 187, "ci": 10, "m": ["companies-office-reference"], "n": 2}
@@ -108,7 +154,10 @@
 {"idx": 191, "ci": 7, "m": [], "n": 3}
 {"idx": 191, "ci": 13, "m": [], "n": 3}
 {"idx": 191, "ci": 17, "m": [], "n": 3}
+{"idx": 191, "ci": 19, "m": ["multi-domain-strategic-synthesis"], "n": 3}
 {"idx": 191, "ci": 20, "m": ["structured-multi-part-presentation", "precise-financial-terminology"], "n": 3}
+{"idx": 191, "ci": 22, "m": ["cites-cmco-10k-march-2025", "cites-cmco-10k-march-2024", "references-march-2023-10k"], "n": 3}
+{"idx": 191, "ci": 23, "m": [], "n": 1}
 {"idx": 193, "ci": 1, "m": [], "n": 3}
 {"idx": 193, "ci": 5, "m": [], "n": 3}
 {"idx": 193, "ci": 9, "m": [], "n": 3}
@@ -130,9 +179,40 @@
 {"idx": 197, "ci": 12, "m": ["financial-data-as-prose"], "n": 3}
 {"idx": 198, "ci": 14, "m": ["hypothetical-example-1-pnl-scenarios", "hypothetical-example-2-structure"], "n": 3}
 {"idx": 198, "ci": 18, "m": ["numbered-sections-structure"], "n": 3}
+{"idx": 198, "ci": 19, "m": ["professional-trading-terminology", "objective-analytical-tone"], "n": 3}
+{"idx": 198, "ci": 20, "m": ["warning-language-for-risks"], "n": 3}
 {"idx": 198, "ci": 21, "m": [], "n": 2}
 {"idx": 199, "ci": 0, "m": ["us-scenario-a-net-takehome", "germany-scenario-a-net-takehome-eur", "us-scenario-b-net-takehome"], "n": 3}
+{"idx": 202, "ci": 7, "m": ["rigorous-benchmarking-methodology", "long-lived-data-prioritization"], "n": 3}
+{"idx": 203, "ci": 7, "m": ["two-children-resp-calculation"], "n": 3}
 {"idx": 203, "ci": 13, "m": [], "n": 1}
+{"idx": 237, "ci": 7, "m": ["california-ggrf-cumulative"], "n": 3}
+{"idx": 248, "ci": 7, "m": ["lorawan-identified", "lorawan-coverage-range"], "n": 3}
+{"idx": 282, "ci": 19, "m": ["dilution-management-quality-rating"], "n": 3}
+{"idx": 282, "ci": 20, "m": ["precise-financial-terminology", "structured-presentation", "objective-analytical-tone"], "n": 3}
+{"idx": 282, "ci": 22, "m": ["cites-vtv-q3-2025-10q"], "n": 2}
+{"idx": 285, "ci": 19, "m": ["swap-component-breakdown", "multi-period-trend-synthesis"], "n": 3}
+{"idx": 285, "ci": 20, "m": ["strategic-transformation-framing"], "n": 3}
+{"idx": 285, "ci": 21, "m": [], "n": 3}
+{"idx": 285, "ci": 23, "m": ["period-comparison-with-deltas", "analytical-objectivity"], "n": 3}
+{"idx": 285, "ci": 24, "m": ["cites-diamondrock-10q-q2-2024", "cites-diamondrock-10q-q3-2025"], "n": 3}
+{"idx": 285, "ci": 25, "m": ["cites-diamondrock-10k-2023", "non-authoritative-sources-penalty"], "n": 2}
+{"idx": 291, "ci": 20, "m": ["structured-multi-part-presentation", "precise-financial-terminology"], "n": 3}
+{"idx": 291, "ci": 21, "m": ["metrics-with-context", "objective-analytical-tone"], "n": 3}
+{"idx": 291, "ci": 23, "m": [], "n": 1}
+{"idx": 298, "ci": 20, "m": ["warning-language-for-risks"], "n": 3}
+{"idx": 298, "ci": 21, "m": ["educational-trading-resources"], "n": 2}
+{"idx": 361, "ci": 20, "m": ["structured-multi-part-presentation", "precise-financial-terminology"], "n": 3}
+{"idx": 361, "ci": 21, "m": ["metrics-with-context", "objective-analytical-tone"], "n": 3}
+{"idx": 361, "ci": 23, "m": [], "n": 1}
+{"idx": 397, "ci": 20, "m": ["warning-language-for-risks"], "n": 3}
+{"idx": 424, "ci": 19, "m": ["swap-component-breakdown", "multi-period-trend-synthesis"], "n": 3}
+{"idx": 424, "ci": 23, "m": ["analytical-objectivity", "repetitive-content"], "n": 3}
+{"idx": 424, "ci": 24, "m": ["cites-diamondrock-10q-q2-2024", "cites-diamondrock-10q-q3-2025"], "n": 3}
+{"idx": 424, "ci": 25, "m": [], "n": 2}
+{"idx": 459, "ci": 19, "m": [], "n": 3}
+{"idx": 459, "ci": 22, "m": ["cites-cmco-10k-march-2025"], "n": 3}
+{"idx": 459, "ci": 23, "m": ["avoids-non-authoritative-sources"], "n": 1}
 {"idx": 471, "ci": 10, "m": ["competitive-landscape-analysis"], "n": 3}
 {"idx": 474, "ci": 2, "m": ["q1-2024-total-sales", "q1-2024-gross-loss"], "n": 3}
 {"idx": 478, "ci": 9, "m": ["cites-software-vendor-requirements", "cites-power-or-technical-data"], "n": 3}
@@ -140,3 +220,4 @@
 {"idx": 484, "ci": 0, "m": ["opening-name-keres-variation", "eco-code-b50", "maroczy-bind-structure"], "n": 3}
 {"idx": 485, "ci": 0, "m": ["june-2022-cash-balance", "q1-2024-runway-projection"], "n": 3}
 {"idx": 488, "ci": 0, "m": ["ios-q2-2025-margin-calculation", "ios-fy2024-margin-calculation", "ios-revenue-growth-2023-2024"], "n": 3}
+{"idx": 497, "ci": 19, "m": ["professional-trading-terminology", "calculation-methodology-shown", "objective-analytical-tone"], "n": 3}

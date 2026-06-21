@@ -304,8 +304,12 @@ from any single model being better.
 308 of the 500 member-solo cells; the remaining 192 are being graded with the credit-free
 Sonnet-chunk-3 grader (§7.5). On the 25 tasks with full gemini coverage the raw per-task
 score-correlation already shows GLM as the most-redundant member and M3 among the least —
-consistent with the ablation — but the full-100 matrix and the figure are pending
-completion of the Sonnet grading (rate-limited; see LESSONS).
+consistent with the ablation — but the full-100 matrix and the figure are **deferred**:
+the credit-free Sonnet grading stalled at 223/2,739 chunks because the subagent throttle
+escalates with each retry (see LESSONS), so we ship the diversity-not-IQ claim on the
+25-task + ablation evidence and leave the matrix figure as forthcoming. Resuming needs a
+non-subagent grader (gemini chunk-of-3 with topped-up credits, or `draco_rejudge.py` on a
+paid Claude judge) → `analysis/correlation-matrix/aggregate_matrix.py`.
 
 ### 7.5 Grading infrastructure — the credit-free replacement grader
 

@@ -59,5 +59,11 @@ is kept only as a secondary diagnostic.
   fraction; grade in smaller waves and loop until complete. The **first** attempt also hit a
   runaway-loop bug (looping on `budget.remaining()` with no token budget → `Infinity` →
   1000-agent cap) — always give such loops a hard iteration cap.
-- The matrix + figure are **pending** full Sonnet coverage of the 192 cells. On the 25
-  gemini-complete tasks the ordering already matches the thesis (GLM most redundant, M3 least).
+- **Deferred (2026-06-21).** Sonnet grading stalled at **223/2,739 chunks (0/192 cells
+  complete)** — the Anthropic-side subagent throttle *escalates with each retry* (three
+  bursts made it worse, ~21% → ~3% success). Per the project decision we **ship without the
+  matrix**: it stays a forthcoming figure on the blog, not a blocker. To resume, use a
+  non-subagent grader (gemini chunk-of-3 once TR credits are topped up, or `draco_rejudge.py`
+  against a paid Claude judge) — both bypass the session throttle — then run
+  `aggregate_matrix.py`. On the 25 gemini-complete tasks the ordering already matches the
+  thesis (GLM most redundant, M3 least), which is what §7.4 reports.
