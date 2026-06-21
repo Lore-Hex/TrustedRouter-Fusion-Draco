@@ -216,3 +216,117 @@ so that figure is modeled, not billed. The gap survives the token-profile assump
 Fable were twice as token-efficient it would still cost ~$125. So the open stack is the cheaper
 route to a frontier-grade answer — **~7× cheaper at four runs, ~3× at ten** — and beats Fable-5
 solo (65.3) by +2.8 (four) to +4.1 (ten).
+
+## 7. Fusion is two jobs — the judge×synthesizer grid, the ablation, and the error-structure matrix (2026-06-21)
+
+Sections 1–6 settled "a cheap panel reaches a frontier answer." This section dissects
+*why the panel works* — which member carries it, how much the synthesizer matters, and
+whether the panel is redundant — and supersedes the earlier "best fuser = MiniMax-M3 71.6"
+headline (that was one synthesizer column; the full grid has a better cell). All scores
+here are the same `google/gemini-3.1-pro-preview` (reasoning `high`, chunk-of-3) judge
+unless noted; the open committee figures are 3 reps with ±1 SE.
+
+### 7.1 The best fuser is a Kimi-K2.6 **judge** feeding a GLM-5.2 **synthesizer** — 73.4 SOTA
+
+Fusion is two distinct jobs: a **judge** writes the consensus/contradiction/blind-spot
+analysis, and a **synthesizer** writes the final report from the panel + that analysis.
+We swept the full judge×synthesizer grid (M3 / GLM-5.2 / Kimi-K2.6 in each role) on the
+**frontier panel**:
+
+- **Best cell = Kimi-K2.6 judge → GLM-5.2 synth = 73.4** — new SOTA, above the old
+  M3-synth 71.6 and OpenRouter's best published fusion (Fable 5 + GPT-5.5, 69.0).
+- The frontier grid spans **48.7 → 73.4 — an ~8-point swing**, so on a frontier panel
+  **the fuser choice matters a lot**. `Kimi→Kimi` collapses to 48.8 (Kimi is a weak
+  synthesizer of a strong panel).
+- **GLM-5.2 is the best *synthesizer*** but the *worst judge of its own work* — it
+  systematically under-credits the answer it just wrote. Hence the split: a *different*
+  model (Kimi) should judge, GLM should synthesize.
+
+### 7.2 The all-open **committee** + best fuser = 69.2; panel diversity buys +4.2
+
+Swap the frontier panel for the five open-weights committee (MiniMax-M3 · Kimi-K2.6 ·
+DeepSeek-V4-Pro · Gemma-4 · GLM-5.2), keep the best fuser (Kimi judge → GLM synth):
+**69.2 ±0.9** (3 reps, ~$80/100 tasks modeled). That beats Fable 5 solo (65.3) and ties
+Fable 5 + GPT-5.5 (69.0) at a fraction of the cost.
+
+Two structural facts fall out:
+
+- **On the *open* panel the fuser flattens.** The open-panel judge×synth grid is nearly
+  flat at ~69 down the GLM-synth column (M3-judge→GLM 69.1, GLM→GLM 69.8, Kimi→GLM 69.2);
+  the **judge barely matters** and only the synthesizer choice moves it, and only a little.
+  Contrast the frontier panel's 8-pt swing — **the fuser earns its keep only when the
+  panel is strong enough to disagree in useful ways.**
+- **Swapping the panel open→frontier buys +4.2**, far more than any fuser swap on the open
+  panel. The panel, not the fuser, is the lever once you have a competent synthesizer.
+
+### 7.3 Ablation — only two of five panelists are load-bearing (but you can't strip the rest)
+
+Leave-one-out on the open committee, **paired** against the same-rep baseline (≈69.1):
+
+| dropped member | Δ score | significant? |
+|---|---:|---|
+| MiniMax-M3 | **−3.9** | yes |
+| DeepSeek-V4-Pro | **−2.1** | yes |
+| Gemma-4 | −0.8 | null |
+| Kimi-K2.6 (as judge) | −0.9 | null |
+| GLM-5.2 (as synth) | −0.7 | null |
+
+Only **M3 and DeepSeek individually move the score**. The other three look like dead
+weight on a one-at-a-time test.
+
+**But the redundancy is shared, not absent — the "redundancy floor."** Drop **both**
+freeloaders (Kimi *and* GLM from the panel) and it's a real, larger drop: **−3.4 ±0.95**,
+paired t = −3.6, bootstrap 95% CI [−5.3, −1.6] (excludes 0). The single-drop tests read
+null only because the two carry *overlapping* slack: per-task panel-member score
+correlation is ~0.80, which collapses the paired SE and hides each one's marginal
+contribution until you remove both. You can lose one redundant member for free; you
+cannot strip the panel down to its two load-bearing models.
+
+### 7.4 The diversity-not-IQ mechanism, and the per-task correlation matrix (in progress)
+
+Why are M3 and DeepSeek load-bearing while skilled GLM freeloads? The emerging answer
+from the per-task **member-solo** scores is **value = competence × low redundancy, not
+raw IQ**:
+
+- **M3** — highest solo skill *and* among the least correlated with the rest → carries
+  the panel (−3.9).
+- **GLM** — skilled (comparable solo) but the **most** correlated/redundant member → its
+  marginal contribution is ~0 (−0.7), so it freeloads.
+- **Kimi / Gemma-4** — diverse *but weak* (Kimi ~50, Gemma-4 lowest), so their unique
+  draws rarely add correct content.
+
+The smartest panelist isn't the most valuable; the **competent-and-decorrelated** one is.
+This is the same mechanism as self-fusion (§6): gains come from *uncorrelated error*, not
+from any single model being better.
+
+**Status: the 100×5 correlation matrix that proves this is mid-build.** Method and code in
+`analysis/correlation-matrix/` (see its `NOTES.md`). We have gemini chunk-of-3 scores for
+308 of the 500 member-solo cells; the remaining 192 are being graded with the credit-free
+Sonnet-chunk-3 grader (§7.5). On the 25 tasks with full gemini coverage the raw per-task
+score-correlation already shows GLM as the most-redundant member and M3 among the least —
+consistent with the ablation — but the full-100 matrix and the figure are pending
+completion of the Sonnet grading (rate-limited; see LESSONS).
+
+### 7.5 Grading infrastructure — the credit-free replacement grader
+
+The canonical judge is `gemini-3.1-pro-preview`, **chunk-of-3** (3 criteria per judge call;
+chunk-all inflates +7 avg / +15 worst-case, answer-before-criteria inflates +4–5 — both
+measured; see `fusion_live.py:criterion_judge_messages_for_criteria` and the
+draco-grading-infra notes). gemini grading is ~95% of benchmark cost (~$24/100-task cell,
+no caching through the gateway).
+
+When TrustedRouter credits ran out mid-effort, we validated a **drop-in credit-free grader
+using Claude subagents** (which run on the session quota, not paid API):
+
+| candidate grader | bias vs gemini | corr r |
+|---|---:|---:|
+| **Sonnet-4.6, chunk-of-3** | **≈0 (−0.3, n=21 pooled)** | **0.92** |
+| Opus, chunk-all | +4.3 | 0.59 |
+| Haiku-4.5, chunk-of-3 | −5.2 | 0.83 |
+
+**Sonnet-4.6 chunk-of-3 reproduces gemini (bias ≈ 0, r = 0.92)** across all five members and
+is the grader we use for the 192 ungraded matrix cells. Pearson correlation is invariant to
+a per-member grader mean-shift, so mixing gemini + Sonnet grades in the correlation matrix is
+safe even if a small offset remained. The judge prompt is replicated verbatim from
+`fusion_live.py` (criteria-before-answer order, "met=true only when explicitly satisfied;
+for negative-weight criteria met=true means the error is present").

@@ -1,0 +1,2502 @@
+{
+"0": {
+"gemini": 64.58852867830424,
+"member": "m3",
+"task_id": "0c2c668a-c3bf-41af-93c9-b5614ff63508"
+},
+"1": {
+"gemini": 83.74384236453201,
+"member": "m3",
+"task_id": "f0bed5aa-f7c4-4013-8d0c-10ffebeaf300"
+},
+"10": {
+"gemini": 76.3975155279503,
+"member": "m3",
+"task_id": "b0e3597d-6cda-4082-a5b4-234aac7d2684"
+},
+"100": {
+"gemini": 66.33416458852868,
+"member": "kimi",
+"task_id": "0c2c668a-c3bf-41af-93c9-b5614ff63508"
+},
+"101": {
+"gemini": null,
+"member": "kimi",
+"task_id": "e1f2c310-d311-49da-b0e4-ee855603469d"
+},
+"102": {
+"gemini": 44.666666666666664,
+"member": "kimi",
+"task_id": "79224558-75f7-4e51-bc24-51f1e3ede921"
+},
+"103": {
+"gemini": 66.57060518731988,
+"member": "kimi",
+"task_id": "f004b46b-c0e7-4e86-a072-c7491328d538"
+},
+"104": {
+"gemini": 50.985915492957744,
+"member": "kimi",
+"task_id": "ce522bc2-e8a2-436b-971f-dd4972f23d39"
+},
+"105": {
+"gemini": 75.17006802721089,
+"member": "kimi",
+"task_id": "1516d849-b413-4fab-9153-c4d9b16a1aa9"
+},
+"106": {
+"gemini": 78.88198757763975,
+"member": "kimi",
+"task_id": "b0e3597d-6cda-4082-a5b4-234aac7d2684"
+},
+"107": {
+"gemini": null,
+"member": "kimi",
+"task_id": "cd19ee22-ded0-4fee-b1a0-51f074d72b8b"
+},
+"108": {
+"gemini": 52.38095238095238,
+"member": "kimi",
+"task_id": "ca0edd2d-c9b8-4b85-9b40-754f4865579a"
+},
+"109": {
+"gemini": 75.57251908396947,
+"member": "kimi",
+"task_id": "f6de7687-7cff-4f68-93ea-f632bf6266af"
+},
+"11": {
+"gemini": 57.74647887323944,
+"member": "m3",
+"task_id": "ce522bc2-e8a2-436b-971f-dd4972f23d39"
+},
+"110": {
+"gemini": 50.74626865671642,
+"member": "kimi",
+"task_id": "6c59b2a0-c097-4c69-ad03-2c4ea2ec579b"
+},
+"111": {
+"gemini": 65.21739130434783,
+"member": "kimi",
+"task_id": "c66a5c80-df51-4914-88dd-8b08aff7380c"
+},
+"112": {
+"gemini": 67.38461538461539,
+"member": "kimi",
+"task_id": "faeeb64e-e5eb-4768-a9b9-8ef19de51473"
+},
+"113": {
+"gemini": 62.5,
+"member": "kimi",
+"task_id": "6f425968-0c5b-42d8-a5c5-0b20d2f1d71e"
+},
+"114": {
+"gemini": 37.325905292479106,
+"member": "kimi",
+"task_id": "aca95495-b0fe-4330-90fc-d2fd1e2c709e"
+},
+"115": {
+"gemini": 64.28571428571429,
+"member": "kimi",
+"task_id": "262b3145-5b6d-486b-a09f-c8e6a8f98e20"
+},
+"116": {
+"gemini": 57.142857142857146,
+"member": "kimi",
+"task_id": "34e9b780-7fb6-426a-bc39-c340baa578e8"
+},
+"117": {
+"gemini": null,
+"member": "kimi",
+"task_id": "eb3965d1-c466-4c4c-bd4a-c8a0b255b893"
+},
+"118": {
+"gemini": null,
+"member": "kimi",
+"task_id": "0a652d00-5c22-4621-8ec4-dd92b1f1450b"
+},
+"119": {
+"gemini": 66.8997668997669,
+"member": "kimi",
+"task_id": "e15a37b4-cd7f-4f52-ba81-9f33b24aabe9"
+},
+"12": {
+"gemini": 76.61538461538461,
+"member": "m3",
+"task_id": "faeeb64e-e5eb-4768-a9b9-8ef19de51473"
+},
+"120": {
+"gemini": 41.90871369294606,
+"member": "kimi",
+"task_id": "b3c576e7-dfc6-403f-90e7-53c011884d5c"
+},
+"121": {
+"gemini": 51.274787535410766,
+"member": "kimi",
+"task_id": "4f36f602-6c14-4c23-a37d-e5ee92ed4552"
+},
+"122": {
+"gemini": 75.09727626459144,
+"member": "kimi",
+"task_id": "c6ca6371-72de-4f96-bc90-c4273080382c"
+},
+"123": {
+"gemini": 85.45454545454545,
+"member": "kimi",
+"task_id": "9b35aaf1-f3cf-466f-96e5-dde018b0ef35"
+},
+"124": {
+"gemini": null,
+"member": "kimi",
+"task_id": "7786ef30-1bb6-479b-9437-333ff50d5a3d"
+},
+"125": {
+"gemini": 49.685534591194966,
+"member": "kimi",
+"task_id": "614a5d4c-5387-4f42-a319-61486bbcde0f"
+},
+"126": {
+"gemini": 83.82978723404256,
+"member": "kimi",
+"task_id": "646b575d-383d-483b-82bd-01e5526212c7"
+},
+"127": {
+"gemini": 30.337078651685392,
+"member": "kimi",
+"task_id": "e303d1aa-0b0c-4fe1-9806-e46058d6b3f3"
+},
+"128": {
+"gemini": 24.848484848484848,
+"member": "kimi",
+"task_id": "b8ff32b6-967c-41bf-8277-69afe025293e"
+},
+"129": {
+"gemini": 44.765342960288805,
+"member": "kimi",
+"task_id": "868f0410-07c9-4609-a7f6-2ad72d678006"
+},
+"13": {
+"gemini": 82.37547892720306,
+"member": "m3",
+"task_id": "1ed18b1d-8436-44e5-9924-a503514c387d"
+},
+"130": {
+"gemini": 37.96296296296296,
+"member": "kimi",
+"task_id": "b3d9ac35-7d3f-4fd5-925e-bbaa40c0de51"
+},
+"131": {
+"gemini": 82.99319727891157,
+"member": "kimi",
+"task_id": "e3734e91-e2d1-4696-bdee-81c8bfa3127e"
+},
+"132": {
+"gemini": 76.51821862348179,
+"member": "kimi",
+"task_id": "cd680e2e-c0b9-4b54-948c-fd824d804a52"
+},
+"133": {
+"gemini": 72.59036144578313,
+"member": "kimi",
+"task_id": "3b5505fb-dab6-44cb-9a14-746b1cd82d25"
+},
+"134": {
+"gemini": 43.05555555555556,
+"member": "kimi",
+"task_id": "adacf6f4-9ec0-4d4e-a8c4-388aad0b2fb0"
+},
+"135": {
+"gemini": 33.72093023255814,
+"member": "kimi",
+"task_id": "09456551-1fdc-46fb-a931-4f3a2dfe21a3"
+},
+"136": {
+"gemini": 62.32876712328767,
+"member": "kimi",
+"task_id": "f1b0f094-fa7a-4f18-adbd-f4cd86633f77"
+},
+"137": {
+"gemini": 67.75147928994083,
+"member": "kimi",
+"task_id": "8cf941c5-3ac1-4801-929b-8f5bab8691c7"
+},
+"138": {
+"gemini": 52.0,
+"member": "kimi",
+"task_id": "9f36b55b-28a6-4c4f-b34d-14acc22e5352"
+},
+"139": {
+"gemini": 54.509803921568626,
+"member": "kimi",
+"task_id": "7e9fa201-6bbd-4e77-a8ed-c62b8f551cab"
+},
+"14": {
+"gemini": 32.21830985915493,
+"member": "m3",
+"task_id": "342b15b8-0ae1-43ce-9ebe-c7318179f156"
+},
+"140": {
+"gemini": 22.580645161290324,
+"member": "kimi",
+"task_id": "056e9cbe-d8eb-48a8-9618-432222100e79"
+},
+"141": {
+"gemini": 20.876288659793815,
+"member": "kimi",
+"task_id": "bfdf5b0d-efe9-48fc-9399-2127f71e52c7"
+},
+"142": {
+"gemini": 29.565217391304348,
+"member": "kimi",
+"task_id": "a4bae04b-4337-4f28-ab8b-5a518cf58fe0"
+},
+"143": {
+"gemini": 9.30232558139535,
+"member": "kimi",
+"task_id": "b02ede76-2353-40f3-9da9-d319c617ab0d"
+},
+"144": {
+"gemini": 22.259136212624586,
+"member": "kimi",
+"task_id": "ab074bda-d583-42d0-85ce-6c694a51d3ce"
+},
+"145": {
+"gemini": null,
+"member": "kimi",
+"task_id": "78bfa372-ba7a-46e9-9c10-c3e80366afeb"
+},
+"146": {
+"gemini": 42.35294117647059,
+"member": "kimi",
+"task_id": "36457179-b5e5-4daa-9956-fde342aade9b"
+},
+"147": {
+"gemini": 11.386138613861386,
+"member": "kimi",
+"task_id": "b0f9b509-dff8-4414-9404-fe0a35c43107"
+},
+"148": {
+"gemini": 51.724137931034484,
+"member": "kimi",
+"task_id": "82508e50-497c-445a-b1dd-fd9d7e6dafda"
+},
+"149": {
+"gemini": 75.18796992481202,
+"member": "kimi",
+"task_id": "9afd23d2-058d-469f-a663-91286ac0532f"
+},
+"15": {
+"gemini": 71.54150197628458,
+"member": "m3",
+"task_id": "c66a5c80-df51-4914-88dd-8b08aff7380c"
+},
+"150": {
+"gemini": 69.58762886597938,
+"member": "kimi",
+"task_id": "cc4bd873-0661-4bd2-84bb-928e9e6f1a1c"
+},
+"151": {
+"gemini": 71.875,
+"member": "kimi",
+"task_id": "928aea10-3918-484b-980e-19d13a747e30"
+},
+"152": {
+"gemini": 13.513513513513514,
+"member": "kimi",
+"task_id": "45b0c59c-9d2a-4000-b26e-ee44bf1e7c81"
+},
+"153": {
+"gemini": 35.16483516483517,
+"member": "kimi",
+"task_id": "95755c13-92a4-46fa-812b-4461b18f6a17"
+},
+"154": {
+"gemini": null,
+"member": "kimi",
+"task_id": "101c18a4-ff10-4dca-8d43-95088f1b90dc"
+},
+"155": {
+"gemini": 8.6053412462908,
+"member": "kimi",
+"task_id": "8e8b1864-6075-4d3b-8c4c-d427a5e3fc9f"
+},
+"156": {
+"gemini": 70.58823529411765,
+"member": "kimi",
+"task_id": "ab17484f-fa6e-4e72-a970-e7cd6c5856d3"
+},
+"157": {
+"gemini": 19.741100323624597,
+"member": "kimi",
+"task_id": "8ca825d6-174a-489d-89b9-b000649a2477"
+},
+"158": {
+"gemini": 40.61135371179039,
+"member": "kimi",
+"task_id": "ce335c0c-f136-4408-a216-6a891cae861f"
+},
+"159": {
+"gemini": 5.630026809651475,
+"member": "kimi",
+"task_id": "5fbad062-f388-4a46-8b41-b0f9704c0530"
+},
+"16": {
+"gemini": 43.73259052924791,
+"member": "m3",
+"task_id": "aca95495-b0fe-4330-90fc-d2fd1e2c709e"
+},
+"160": {
+"gemini": 13.800904977375566,
+"member": "kimi",
+"task_id": "c2a1a24b-8a83-453f-9892-d17b533ffe93"
+},
+"161": {
+"gemini": 19.21708185053381,
+"member": "kimi",
+"task_id": "6b3233e6-9b05-465a-a872-724af25df719"
+},
+"162": {
+"gemini": null,
+"member": "kimi",
+"task_id": "c8aaa261-24b6-4142-916a-e0a1d98ee0b8"
+},
+"163": {
+"gemini": null,
+"member": "kimi",
+"task_id": "35bc9c48-0853-469d-8bf7-8f6947ec4fb7"
+},
+"164": {
+"gemini": null,
+"member": "kimi",
+"task_id": "939cd89c-32e3-4ba3-a9c2-734a9f3b80d1"
+},
+"165": {
+"gemini": null,
+"member": "kimi",
+"task_id": "c63923e7-6ab4-4742-b739-49f5d1f1cfe4"
+},
+"166": {
+"gemini": 14.285714285714286,
+"member": "kimi",
+"task_id": "ebac60ea-ea67-4b8f-986e-1e0aebed2b89"
+},
+"167": {
+"gemini": 36.43724696356275,
+"member": "kimi",
+"task_id": "4b089235-06e7-4f1f-a815-96bb146cbbde"
+},
+"168": {
+"gemini": 13.436692506459949,
+"member": "kimi",
+"task_id": "7d09292c-c8b7-4ae9-9864-1676135bd041"
+},
+"169": {
+"gemini": null,
+"member": "kimi",
+"task_id": "49d841f1-0c95-4a87-9b62-5e2a54e8e1a8"
+},
+"17": {
+"gemini": null,
+"member": "m3",
+"task_id": "6c59b2a0-c097-4c69-ad03-2c4ea2ec579b"
+},
+"170": {
+"gemini": 50.583657587548636,
+"member": "kimi",
+"task_id": "10e9d085-a62f-4547-bbf3-62800b27950c"
+},
+"171": {
+"gemini": 95.42857142857143,
+"member": "kimi",
+"task_id": "8e99d8d2-f6b9-4800-83a9-6f56829898fe"
+},
+"172": {
+"gemini": null,
+"member": "kimi",
+"task_id": "a88bef13-7db6-4236-bdfa-da22ad75dc56"
+},
+"173": {
+"gemini": 25.79787234042553,
+"member": "kimi",
+"task_id": "1070e6eb-7a8f-4ce9-8818-1931bcfdb2dd"
+},
+"174": {
+"gemini": null,
+"member": "kimi",
+"task_id": "d1a4c3ea-9507-402c-9ef5-281ea2171c99"
+},
+"175": {
+"gemini": 81.43939393939394,
+"member": "kimi",
+"task_id": "9db832bc-c38d-4a0b-aebe-ea0fc96da563"
+},
+"176": {
+"gemini": null,
+"member": "kimi",
+"task_id": "61afdc3a-219d-4ff0-aa67-b823429487ae"
+},
+"177": {
+"gemini": null,
+"member": "kimi",
+"task_id": "43c7e377-7a85-4cd3-8865-7cf620e9f6bc"
+},
+"178": {
+"gemini": null,
+"member": "kimi",
+"task_id": "0e7281ec-bf16-4d84-9501-0de69a803c59"
+},
+"179": {
+"gemini": null,
+"member": "kimi",
+"task_id": "91408757-a874-44b5-ad5a-66a22b39141d"
+},
+"18": {
+"gemini": 77.08333333333333,
+"member": "m3",
+"task_id": "6f425968-0c5b-42d8-a5c5-0b20d2f1d71e"
+},
+"180": {
+"gemini": null,
+"member": "kimi",
+"task_id": "a78eed67-ebe3-425e-a467-d54ee8949c8b"
+},
+"181": {
+"gemini": null,
+"member": "kimi",
+"task_id": "f0bed5aa-f7c4-4013-8d0c-10ffebeaf300"
+},
+"182": {
+"gemini": null,
+"member": "kimi",
+"task_id": "1ed18b1d-8436-44e5-9924-a503514c387d"
+},
+"183": {
+"gemini": null,
+"member": "kimi",
+"task_id": "342b15b8-0ae1-43ce-9ebe-c7318179f156"
+},
+"184": {
+"gemini": null,
+"member": "kimi",
+"task_id": "97378684-875a-4a7d-ad19-d7d77942f131"
+},
+"185": {
+"gemini": null,
+"member": "kimi",
+"task_id": "72e81ce6-8d1f-4143-90d5-d25d7a212c85"
+},
+"186": {
+"gemini": null,
+"member": "kimi",
+"task_id": "3a8db70a-d906-4bde-bf87-c0c74504409a"
+},
+"187": {
+"gemini": null,
+"member": "kimi",
+"task_id": "236d5ae8-8623-4436-b527-2853aeea2db9"
+},
+"188": {
+"gemini": null,
+"member": "kimi",
+"task_id": "71e3456f-e1df-4108-872f-f00f8a44acc6"
+},
+"189": {
+"gemini": null,
+"member": "kimi",
+"task_id": "51c9e7b9-ab11-443e-97a4-9a8e75f2c9b8"
+},
+"19": {
+"gemini": 58.80398671096346,
+"member": "m3",
+"task_id": "34e9b780-7fb6-426a-bc39-c340baa578e8"
+},
+"190": {
+"gemini": 59.19117647058823,
+"member": "kimi",
+"task_id": "3d801f46-5707-4ff5-8151-1168ff0f09c0"
+},
+"191": {
+"gemini": null,
+"member": "kimi",
+"task_id": "10e75d21-9e92-4878-b691-02fc87ae5d54"
+},
+"192": {
+"gemini": 13.157894736842104,
+"member": "kimi",
+"task_id": "67dfb8ea-cc84-4fb9-abc2-4794aa20eb44"
+},
+"193": {
+"gemini": null,
+"member": "kimi",
+"task_id": "e179559d-08fd-4ca7-9f1b-5637d956b3d4"
+},
+"194": {
+"gemini": null,
+"member": "kimi",
+"task_id": "bea85f62-a722-48a9-8ece-fbfb62653997"
+},
+"195": {
+"gemini": null,
+"member": "kimi",
+"task_id": "6128e19e-5d6c-41ab-aaf5-35a1d718050e"
+},
+"196": {
+"gemini": null,
+"member": "kimi",
+"task_id": "785c8570-6aed-4517-aac2-1d56e16745b7"
+},
+"197": {
+"gemini": null,
+"member": "kimi",
+"task_id": "2aac5ef3-f127-4582-a8a6-8f02bda5681e"
+},
+"198": {
+"gemini": null,
+"member": "kimi",
+"task_id": "69e0ce73-b0af-4f7c-a59d-71c96adc6a2b"
+},
+"199": {
+"gemini": null,
+"member": "kimi",
+"task_id": "e6fbba71-d917-4d1e-bd09-009ff9cd8e9b"
+},
+"2": {
+"gemini": 52.42718446601942,
+"member": "m3",
+"task_id": "a78eed67-ebe3-425e-a467-d54ee8949c8b"
+},
+"20": {
+"gemini": 74.78991596638656,
+"member": "m3",
+"task_id": "262b3145-5b6d-486b-a09f-c8e6a8f98e20"
+},
+"200": {
+"gemini": 81.04738154613466,
+"member": "deepseek",
+"task_id": "0c2c668a-c3bf-41af-93c9-b5614ff63508"
+},
+"201": {
+"gemini": 57.52212389380531,
+"member": "deepseek",
+"task_id": "e1f2c310-d311-49da-b0e4-ee855603469d"
+},
+"202": {
+"gemini": null,
+"member": "deepseek",
+"task_id": "79224558-75f7-4e51-bc24-51f1e3ede921"
+},
+"203": {
+"gemini": null,
+"member": "deepseek",
+"task_id": "f004b46b-c0e7-4e86-a072-c7491328d538"
+},
+"204": {
+"gemini": 63.38028169014085,
+"member": "deepseek",
+"task_id": "ce522bc2-e8a2-436b-971f-dd4972f23d39"
+},
+"205": {
+"gemini": 68.36734693877551,
+"member": "deepseek",
+"task_id": "1516d849-b413-4fab-9153-c4d9b16a1aa9"
+},
+"206": {
+"gemini": 70.80745341614907,
+"member": "deepseek",
+"task_id": "b0e3597d-6cda-4082-a5b4-234aac7d2684"
+},
+"207": {
+"gemini": 73.71794871794872,
+"member": "deepseek",
+"task_id": "cd19ee22-ded0-4fee-b1a0-51f074d72b8b"
+},
+"208": {
+"gemini": 76.84478371501272,
+"member": "deepseek",
+"task_id": "f6de7687-7cff-4f68-93ea-f632bf6266af"
+},
+"209": {
+"gemini": 59.863945578231295,
+"member": "deepseek",
+"task_id": "ca0edd2d-c9b8-4b85-9b40-754f4865579a"
+},
+"21": {
+"gemini": 81.09452736318408,
+"member": "m3",
+"task_id": "0a652d00-5c22-4621-8ec4-dd92b1f1450b"
+},
+"210": {
+"gemini": 66.16915422885572,
+"member": "deepseek",
+"task_id": "6c59b2a0-c097-4c69-ad03-2c4ea2ec579b"
+},
+"211": {
+"gemini": 85.84615384615384,
+"member": "deepseek",
+"task_id": "faeeb64e-e5eb-4768-a9b9-8ef19de51473"
+},
+"212": {
+"gemini": 84.9802371541502,
+"member": "deepseek",
+"task_id": "c66a5c80-df51-4914-88dd-8b08aff7380c"
+},
+"213": {
+"gemini": 75.5952380952381,
+"member": "deepseek",
+"task_id": "6f425968-0c5b-42d8-a5c5-0b20d2f1d71e"
+},
+"214": {
+"gemini": 41.5041782729805,
+"member": "deepseek",
+"task_id": "aca95495-b0fe-4330-90fc-d2fd1e2c709e"
+},
+"215": {
+"gemini": 58.96656534954408,
+"member": "deepseek",
+"task_id": "eb3965d1-c466-4c4c-bd4a-c8a0b255b893"
+},
+"216": {
+"gemini": 71.42857142857143,
+"member": "deepseek",
+"task_id": "262b3145-5b6d-486b-a09f-c8e6a8f98e20"
+},
+"217": {
+"gemini": 53.15614617940199,
+"member": "deepseek",
+"task_id": "34e9b780-7fb6-426a-bc39-c340baa578e8"
+},
+"218": {
+"gemini": 58.208955223880594,
+"member": "deepseek",
+"task_id": "0a652d00-5c22-4621-8ec4-dd92b1f1450b"
+},
+"219": {
+"gemini": 78.08857808857809,
+"member": "deepseek",
+"task_id": "e15a37b4-cd7f-4f52-ba81-9f33b24aabe9"
+},
+"22": {
+"gemini": 75.29137529137529,
+"member": "m3",
+"task_id": "e15a37b4-cd7f-4f52-ba81-9f33b24aabe9"
+},
+"220": {
+"gemini": 64.30594900849859,
+"member": "deepseek",
+"task_id": "4f36f602-6c14-4c23-a37d-e5ee92ed4552"
+},
+"221": {
+"gemini": 73.02904564315352,
+"member": "deepseek",
+"task_id": "b3c576e7-dfc6-403f-90e7-53c011884d5c"
+},
+"222": {
+"gemini": 89.0909090909091,
+"member": "deepseek",
+"task_id": "9b35aaf1-f3cf-466f-96e5-dde018b0ef35"
+},
+"223": {
+"gemini": 67.66467065868264,
+"member": "deepseek",
+"task_id": "7786ef30-1bb6-479b-9437-333ff50d5a3d"
+},
+"224": {
+"gemini": 87.54863813229572,
+"member": "deepseek",
+"task_id": "c6ca6371-72de-4f96-bc90-c4273080382c"
+},
+"225": {
+"gemini": 64.24242424242425,
+"member": "deepseek",
+"task_id": "b8ff32b6-967c-41bf-8277-69afe025293e"
+},
+"226": {
+"gemini": 76.17021276595744,
+"member": "deepseek",
+"task_id": "646b575d-383d-483b-82bd-01e5526212c7"
+},
+"227": {
+"gemini": 47.16981132075472,
+"member": "deepseek",
+"task_id": "614a5d4c-5387-4f42-a319-61486bbcde0f"
+},
+"228": {
+"gemini": 44.19475655430712,
+"member": "deepseek",
+"task_id": "e303d1aa-0b0c-4fe1-9806-e46058d6b3f3"
+},
+"229": {
+"gemini": 28.703703703703702,
+"member": "deepseek",
+"task_id": "b3d9ac35-7d3f-4fd5-925e-bbaa40c0de51"
+},
+"23": {
+"gemini": 62.61398176291793,
+"member": "m3",
+"task_id": "eb3965d1-c466-4c4c-bd4a-c8a0b255b893"
+},
+"230": {
+"gemini": 78.6144578313253,
+"member": "deepseek",
+"task_id": "3b5505fb-dab6-44cb-9a14-746b1cd82d25"
+},
+"231": {
+"gemini": 59.56678700361011,
+"member": "deepseek",
+"task_id": "868f0410-07c9-4609-a7f6-2ad72d678006"
+},
+"232": {
+"gemini": 64.35185185185185,
+"member": "deepseek",
+"task_id": "adacf6f4-9ec0-4d4e-a8c4-388aad0b2fb0"
+},
+"233": {
+"gemini": 80.95238095238095,
+"member": "deepseek",
+"task_id": "e3734e91-e2d1-4696-bdee-81c8bfa3127e"
+},
+"234": {
+"gemini": 50.0,
+"member": "deepseek",
+"task_id": "f1b0f094-fa7a-4f18-adbd-f4cd86633f77"
+},
+"235": {
+"gemini": 62.2093023255814,
+"member": "deepseek",
+"task_id": "09456551-1fdc-46fb-a931-4f3a2dfe21a3"
+},
+"236": {
+"gemini": 76.51821862348179,
+"member": "deepseek",
+"task_id": "cd680e2e-c0b9-4b54-948c-fd824d804a52"
+},
+"237": {
+"gemini": null,
+"member": "deepseek",
+"task_id": "9f36b55b-28a6-4c4f-b34d-14acc22e5352"
+},
+"238": {
+"gemini": 71.30177514792899,
+"member": "deepseek",
+"task_id": "8cf941c5-3ac1-4801-929b-8f5bab8691c7"
+},
+"239": {
+"gemini": 69.41176470588235,
+"member": "deepseek",
+"task_id": "7e9fa201-6bbd-4e77-a8ed-c62b8f551cab"
+},
+"24": {
+"gemini": 66.80497925311204,
+"member": "m3",
+"task_id": "b3c576e7-dfc6-403f-90e7-53c011884d5c"
+},
+"240": {
+"gemini": 66.66666666666667,
+"member": "deepseek",
+"task_id": "a4bae04b-4337-4f28-ab8b-5a518cf58fe0"
+},
+"241": {
+"gemini": 50.62034739454094,
+"member": "deepseek",
+"task_id": "056e9cbe-d8eb-48a8-9618-432222100e79"
+},
+"242": {
+"gemini": 40.20618556701031,
+"member": "deepseek",
+"task_id": "bfdf5b0d-efe9-48fc-9399-2127f71e52c7"
+},
+"243": {
+"gemini": 57.475083056478404,
+"member": "deepseek",
+"task_id": "ab074bda-d583-42d0-85ce-6c694a51d3ce"
+},
+"244": {
+"gemini": 51.02040816326531,
+"member": "deepseek",
+"task_id": "78bfa372-ba7a-46e9-9c10-c3e80366afeb"
+},
+"245": {
+"gemini": 74.08637873754152,
+"member": "deepseek",
+"task_id": "b02ede76-2353-40f3-9da9-d319c617ab0d"
+},
+"246": {
+"gemini": 29.74137931034483,
+"member": "deepseek",
+"task_id": "82508e50-497c-445a-b1dd-fd9d7e6dafda"
+},
+"247": {
+"gemini": 53.333333333333336,
+"member": "deepseek",
+"task_id": "36457179-b5e5-4daa-9956-fde342aade9b"
+},
+"248": {
+"gemini": null,
+"member": "deepseek",
+"task_id": "b0f9b509-dff8-4414-9404-fe0a35c43107"
+},
+"249": {
+"gemini": null,
+"member": "deepseek",
+"task_id": "cc4bd873-0661-4bd2-84bb-928e9e6f1a1c"
+},
+"25": {
+"gemini": null,
+"member": "m3",
+"task_id": "4f36f602-6c14-4c23-a37d-e5ee92ed4552"
+},
+"250": {
+"gemini": 72.18045112781955,
+"member": "deepseek",
+"task_id": "9afd23d2-058d-469f-a663-91286ac0532f"
+},
+"251": {
+"gemini": null,
+"member": "deepseek",
+"task_id": "928aea10-3918-484b-980e-19d13a747e30"
+},
+"252": {
+"gemini": 72.63513513513513,
+"member": "deepseek",
+"task_id": "45b0c59c-9d2a-4000-b26e-ee44bf1e7c81"
+},
+"253": {
+"gemini": null,
+"member": "deepseek",
+"task_id": "95755c13-92a4-46fa-812b-4461b18f6a17"
+},
+"254": {
+"gemini": 75.30864197530865,
+"member": "deepseek",
+"task_id": "101c18a4-ff10-4dca-8d43-95088f1b90dc"
+},
+"255": {
+"gemini": null,
+"member": "deepseek",
+"task_id": "ab17484f-fa6e-4e72-a970-e7cd6c5856d3"
+},
+"256": {
+"gemini": 21.364985163204746,
+"member": "deepseek",
+"task_id": "8e8b1864-6075-4d3b-8c4c-d427a5e3fc9f"
+},
+"257": {
+"gemini": 23.948220064724918,
+"member": "deepseek",
+"task_id": "8ca825d6-174a-489d-89b9-b000649a2477"
+},
+"258": {
+"gemini": 13.941018766756033,
+"member": "deepseek",
+"task_id": "5fbad062-f388-4a46-8b41-b0f9704c0530"
+},
+"259": {
+"gemini": 59.95475113122172,
+"member": "deepseek",
+"task_id": "c2a1a24b-8a83-453f-9892-d17b533ffe93"
+},
+"26": {
+"gemini": 87.54863813229572,
+"member": "m3",
+"task_id": "c6ca6371-72de-4f96-bc90-c4273080382c"
+},
+"260": {
+"gemini": 80.78602620087337,
+"member": "deepseek",
+"task_id": "ce335c0c-f136-4408-a216-6a891cae861f"
+},
+"261": {
+"gemini": 22.06405693950178,
+"member": "deepseek",
+"task_id": "6b3233e6-9b05-465a-a872-724af25df719"
+},
+"262": {
+"gemini": null,
+"member": "deepseek",
+"task_id": "35bc9c48-0853-469d-8bf7-8f6947ec4fb7"
+},
+"263": {
+"gemini": null,
+"member": "deepseek",
+"task_id": "c8aaa261-24b6-4142-916a-e0a1d98ee0b8"
+},
+"264": {
+"gemini": null,
+"member": "deepseek",
+"task_id": "939cd89c-32e3-4ba3-a9c2-734a9f3b80d1"
+},
+"265": {
+"gemini": 56.33802816901409,
+"member": "deepseek",
+"task_id": "c63923e7-6ab4-4742-b739-49f5d1f1cfe4"
+},
+"266": {
+"gemini": 60.32388663967611,
+"member": "deepseek",
+"task_id": "4b089235-06e7-4f1f-a815-96bb146cbbde"
+},
+"267": {
+"gemini": 32.075471698113205,
+"member": "deepseek",
+"task_id": "ebac60ea-ea67-4b8f-986e-1e0aebed2b89"
+},
+"268": {
+"gemini": null,
+"member": "deepseek",
+"task_id": "49d841f1-0c95-4a87-9b62-5e2a54e8e1a8"
+},
+"269": {
+"gemini": 0.0,
+"member": "deepseek",
+"task_id": "10e9d085-a62f-4547-bbf3-62800b27950c"
+},
+"27": {
+"gemini": 65.26946107784431,
+"member": "m3",
+"task_id": "7786ef30-1bb6-479b-9437-333ff50d5a3d"
+},
+"270": {
+"gemini": 94.28571428571429,
+"member": "deepseek",
+"task_id": "8e99d8d2-f6b9-4800-83a9-6f56829898fe"
+},
+"271": {
+"gemini": 56.07235142118863,
+"member": "deepseek",
+"task_id": "7d09292c-c8b7-4ae9-9864-1676135bd041"
+},
+"272": {
+"gemini": 87.12121212121212,
+"member": "deepseek",
+"task_id": "9db832bc-c38d-4a0b-aebe-ea0fc96da563"
+},
+"273": {
+"gemini": null,
+"member": "deepseek",
+"task_id": "1070e6eb-7a8f-4ce9-8818-1931bcfdb2dd"
+},
+"274": {
+"gemini": null,
+"member": "deepseek",
+"task_id": "a88bef13-7db6-4236-bdfa-da22ad75dc56"
+},
+"275": {
+"gemini": 65.66037735849056,
+"member": "deepseek",
+"task_id": "d1a4c3ea-9507-402c-9ef5-281ea2171c99"
+},
+"276": {
+"gemini": null,
+"member": "deepseek",
+"task_id": "43c7e377-7a85-4cd3-8865-7cf620e9f6bc"
+},
+"277": {
+"gemini": null,
+"member": "deepseek",
+"task_id": "61afdc3a-219d-4ff0-aa67-b823429487ae"
+},
+"278": {
+"gemini": null,
+"member": "deepseek",
+"task_id": "0e7281ec-bf16-4d84-9501-0de69a803c59"
+},
+"279": {
+"gemini": null,
+"member": "deepseek",
+"task_id": "91408757-a874-44b5-ad5a-66a22b39141d"
+},
+"28": {
+"gemini": 51.13268608414239,
+"member": "m3",
+"task_id": "3a8db70a-d906-4bde-bf87-c0c74504409a"
+},
+"280": {
+"gemini": null,
+"member": "deepseek",
+"task_id": "a78eed67-ebe3-425e-a467-d54ee8949c8b"
+},
+"281": {
+"gemini": null,
+"member": "deepseek",
+"task_id": "f0bed5aa-f7c4-4013-8d0c-10ffebeaf300"
+},
+"282": {
+"gemini": null,
+"member": "deepseek",
+"task_id": "342b15b8-0ae1-43ce-9ebe-c7318179f156"
+},
+"283": {
+"gemini": null,
+"member": "deepseek",
+"task_id": "1ed18b1d-8436-44e5-9924-a503514c387d"
+},
+"284": {
+"gemini": null,
+"member": "deepseek",
+"task_id": "97378684-875a-4a7d-ad19-d7d77942f131"
+},
+"285": {
+"gemini": null,
+"member": "deepseek",
+"task_id": "3a8db70a-d906-4bde-bf87-c0c74504409a"
+},
+"286": {
+"gemini": 46.76470588235294,
+"member": "deepseek",
+"task_id": "72e81ce6-8d1f-4143-90d5-d25d7a212c85"
+},
+"287": {
+"gemini": null,
+"member": "deepseek",
+"task_id": "71e3456f-e1df-4108-872f-f00f8a44acc6"
+},
+"288": {
+"gemini": null,
+"member": "deepseek",
+"task_id": "236d5ae8-8623-4436-b527-2853aeea2db9"
+},
+"289": {
+"gemini": null,
+"member": "deepseek",
+"task_id": "3d801f46-5707-4ff5-8151-1168ff0f09c0"
+},
+"29": {
+"gemini": 89.0909090909091,
+"member": "m3",
+"task_id": "9b35aaf1-f3cf-466f-96e5-dde018b0ef35"
+},
+"290": {
+"gemini": null,
+"member": "deepseek",
+"task_id": "51c9e7b9-ab11-443e-97a4-9a8e75f2c9b8"
+},
+"291": {
+"gemini": null,
+"member": "deepseek",
+"task_id": "10e75d21-9e92-4878-b691-02fc87ae5d54"
+},
+"292": {
+"gemini": null,
+"member": "deepseek",
+"task_id": "bea85f62-a722-48a9-8ece-fbfb62653997"
+},
+"293": {
+"gemini": null,
+"member": "deepseek",
+"task_id": "67dfb8ea-cc84-4fb9-abc2-4794aa20eb44"
+},
+"294": {
+"gemini": null,
+"member": "deepseek",
+"task_id": "e179559d-08fd-4ca7-9f1b-5637d956b3d4"
+},
+"295": {
+"gemini": null,
+"member": "deepseek",
+"task_id": "6128e19e-5d6c-41ab-aaf5-35a1d718050e"
+},
+"296": {
+"gemini": null,
+"member": "deepseek",
+"task_id": "2aac5ef3-f127-4582-a8a6-8f02bda5681e"
+},
+"297": {
+"gemini": null,
+"member": "deepseek",
+"task_id": "785c8570-6aed-4517-aac2-1d56e16745b7"
+},
+"298": {
+"gemini": null,
+"member": "deepseek",
+"task_id": "69e0ce73-b0af-4f7c-a59d-71c96adc6a2b"
+},
+"299": {
+"gemini": null,
+"member": "deepseek",
+"task_id": "e6fbba71-d917-4d1e-bd09-009ff9cd8e9b"
+},
+"3": {
+"gemini": 80.1526717557252,
+"member": "m3",
+"task_id": "f6de7687-7cff-4f68-93ea-f632bf6266af"
+},
+"30": {
+"gemini": 71.91489361702128,
+"member": "m3",
+"task_id": "646b575d-383d-483b-82bd-01e5526212c7"
+},
+"300": {
+"gemini": 24.271844660194176,
+"member": "gemma4",
+"task_id": "a78eed67-ebe3-425e-a467-d54ee8949c8b"
+},
+"301": {
+"gemini": 40.712468193384225,
+"member": "gemma4",
+"task_id": "f6de7687-7cff-4f68-93ea-f632bf6266af"
+},
+"302": {
+"gemini": 34.66334164588529,
+"member": "gemma4",
+"task_id": "0c2c668a-c3bf-41af-93c9-b5614ff63508"
+},
+"303": {
+"gemini": 20.689655172413794,
+"member": "gemma4",
+"task_id": "f0bed5aa-f7c4-4013-8d0c-10ffebeaf300"
+},
+"304": {
+"gemini": 48.414985590778095,
+"member": "gemma4",
+"task_id": "f004b46b-c0e7-4e86-a072-c7491328d538"
+},
+"305": {
+"gemini": 35.39823008849557,
+"member": "gemma4",
+"task_id": "e1f2c310-d311-49da-b0e4-ee855603469d"
+},
+"306": {
+"gemini": null,
+"member": "gemma4",
+"task_id": "1516d849-b413-4fab-9153-c4d9b16a1aa9"
+},
+"307": {
+"gemini": 19.333333333333332,
+"member": "gemma4",
+"task_id": "79224558-75f7-4e51-bc24-51f1e3ede921"
+},
+"308": {
+"gemini": 63.46153846153846,
+"member": "gemma4",
+"task_id": "cd19ee22-ded0-4fee-b1a0-51f074d72b8b"
+},
+"309": {
+"gemini": null,
+"member": "gemma4",
+"task_id": "ca0edd2d-c9b8-4b85-9b40-754f4865579a"
+},
+"31": {
+"gemini": 86.06060606060606,
+"member": "m3",
+"task_id": "b8ff32b6-967c-41bf-8277-69afe025293e"
+},
+"310": {
+"gemini": 47.20496894409938,
+"member": "gemma4",
+"task_id": "b0e3597d-6cda-4082-a5b4-234aac7d2684"
+},
+"311": {
+"gemini": 26.81992337164751,
+"member": "gemma4",
+"task_id": "1ed18b1d-8436-44e5-9924-a503514c387d"
+},
+"312": {
+"gemini": 9.154929577464788,
+"member": "gemma4",
+"task_id": "342b15b8-0ae1-43ce-9ebe-c7318179f156"
+},
+"313": {
+"gemini": 26.47887323943662,
+"member": "gemma4",
+"task_id": "ce522bc2-e8a2-436b-971f-dd4972f23d39"
+},
+"314": {
+"gemini": 55.72139303482587,
+"member": "gemma4",
+"task_id": "6c59b2a0-c097-4c69-ad03-2c4ea2ec579b"
+},
+"315": {
+"gemini": 50.19762845849802,
+"member": "gemma4",
+"task_id": "c66a5c80-df51-4914-88dd-8b08aff7380c"
+},
+"316": {
+"gemini": 56.92307692307692,
+"member": "gemma4",
+"task_id": "faeeb64e-e5eb-4768-a9b9-8ef19de51473"
+},
+"317": {
+"gemini": 46.42857142857143,
+"member": "gemma4",
+"task_id": "6f425968-0c5b-42d8-a5c5-0b20d2f1d71e"
+},
+"318": {
+"gemini": 11.699164345403899,
+"member": "gemma4",
+"task_id": "aca95495-b0fe-4330-90fc-d2fd1e2c709e"
+},
+"319": {
+"gemini": null,
+"member": "gemma4",
+"task_id": "262b3145-5b6d-486b-a09f-c8e6a8f98e20"
+},
+"32": {
+"gemini": 65.3409090909091,
+"member": "m3",
+"task_id": "97378684-875a-4a7d-ad19-d7d77942f131"
+},
+"320": {
+"gemini": 34.5514950166113,
+"member": "gemma4",
+"task_id": "34e9b780-7fb6-426a-bc39-c340baa578e8"
+},
+"321": {
+"gemini": 41.791044776119406,
+"member": "gemma4",
+"task_id": "0a652d00-5c22-4621-8ec4-dd92b1f1450b"
+},
+"322": {
+"gemini": null,
+"member": "gemma4",
+"task_id": "eb3965d1-c466-4c4c-bd4a-c8a0b255b893"
+},
+"323": {
+"gemini": 50.34965034965035,
+"member": "gemma4",
+"task_id": "e15a37b4-cd7f-4f52-ba81-9f33b24aabe9"
+},
+"324": {
+"gemini": 0.0,
+"member": "gemma4",
+"task_id": "4f36f602-6c14-4c23-a37d-e5ee92ed4552"
+},
+"325": {
+"gemini": null,
+"member": "gemma4",
+"task_id": "b3c576e7-dfc6-403f-90e7-53c011884d5c"
+},
+"326": {
+"gemini": 24.124513618677042,
+"member": "gemma4",
+"task_id": "c6ca6371-72de-4f96-bc90-c4273080382c"
+},
+"327": {
+"gemini": 69.0909090909091,
+"member": "gemma4",
+"task_id": "9b35aaf1-f3cf-466f-96e5-dde018b0ef35"
+},
+"328": {
+"gemini": 33.23353293413174,
+"member": "gemma4",
+"task_id": "7786ef30-1bb6-479b-9437-333ff50d5a3d"
+},
+"329": {
+"gemini": 55.75757575757576,
+"member": "gemma4",
+"task_id": "b8ff32b6-967c-41bf-8277-69afe025293e"
+},
+"33": {
+"gemini": 62.546816479400746,
+"member": "m3",
+"task_id": "e303d1aa-0b0c-4fe1-9806-e46058d6b3f3"
+},
+"330": {
+"gemini": 17.15210355987055,
+"member": "gemma4",
+"task_id": "3a8db70a-d906-4bde-bf87-c0c74504409a"
+},
+"331": {
+"gemini": 14.465408805031446,
+"member": "gemma4",
+"task_id": "614a5d4c-5387-4f42-a319-61486bbcde0f"
+},
+"332": {
+"gemini": 46.02272727272727,
+"member": "gemma4",
+"task_id": "97378684-875a-4a7d-ad19-d7d77942f131"
+},
+"333": {
+"gemini": 38.723404255319146,
+"member": "gemma4",
+"task_id": "646b575d-383d-483b-82bd-01e5526212c7"
+},
+"334": {
+"gemini": null,
+"member": "gemma4",
+"task_id": "b3d9ac35-7d3f-4fd5-925e-bbaa40c0de51"
+},
+"335": {
+"gemini": 28.46441947565543,
+"member": "gemma4",
+"task_id": "e303d1aa-0b0c-4fe1-9806-e46058d6b3f3"
+},
+"336": {
+"gemini": null,
+"member": "gemma4",
+"task_id": "868f0410-07c9-4609-a7f6-2ad72d678006"
+},
+"337": {
+"gemini": null,
+"member": "gemma4",
+"task_id": "3b5505fb-dab6-44cb-9a14-746b1cd82d25"
+},
+"338": {
+"gemini": 31.17408906882591,
+"member": "gemma4",
+"task_id": "cd680e2e-c0b9-4b54-948c-fd824d804a52"
+},
+"339": {
+"gemini": 62.925170068027214,
+"member": "gemma4",
+"task_id": "e3734e91-e2d1-4696-bdee-81c8bfa3127e"
+},
+"34": {
+"gemini": 50.314465408805034,
+"member": "m3",
+"task_id": "614a5d4c-5387-4f42-a319-61486bbcde0f"
+},
+"340": {
+"gemini": 8.333333333333334,
+"member": "gemma4",
+"task_id": "adacf6f4-9ec0-4d4e-a8c4-388aad0b2fb0"
+},
+"341": {
+"gemini": 25.290697674418606,
+"member": "gemma4",
+"task_id": "09456551-1fdc-46fb-a931-4f3a2dfe21a3"
+},
+"342": {
+"gemini": 30.136986301369863,
+"member": "gemma4",
+"task_id": "f1b0f094-fa7a-4f18-adbd-f4cd86633f77"
+},
+"343": {
+"gemini": null,
+"member": "gemma4",
+"task_id": "9f36b55b-28a6-4c4f-b34d-14acc22e5352"
+},
+"344": {
+"gemini": null,
+"member": "gemma4",
+"task_id": "8cf941c5-3ac1-4801-929b-8f5bab8691c7"
+},
+"345": {
+"gemini": 23.529411764705884,
+"member": "gemma4",
+"task_id": "72e81ce6-8d1f-4143-90d5-d25d7a212c85"
+},
+"346": {
+"gemini": 40.0,
+"member": "gemma4",
+"task_id": "7e9fa201-6bbd-4e77-a8ed-c62b8f551cab"
+},
+"347": {
+"gemini": 36.52173913043478,
+"member": "gemma4",
+"task_id": "a4bae04b-4337-4f28-ab8b-5a518cf58fe0"
+},
+"348": {
+"gemini": 13.895781637717121,
+"member": "gemma4",
+"task_id": "056e9cbe-d8eb-48a8-9618-432222100e79"
+},
+"349": {
+"gemini": 13.144329896907216,
+"member": "gemma4",
+"task_id": "bfdf5b0d-efe9-48fc-9399-2127f71e52c7"
+},
+"35": {
+"gemini": 48.375451263537904,
+"member": "m3",
+"task_id": "868f0410-07c9-4609-a7f6-2ad72d678006"
+},
+"350": {
+"gemini": 22.92358803986711,
+"member": "gemma4",
+"task_id": "ab074bda-d583-42d0-85ce-6c694a51d3ce"
+},
+"351": {
+"gemini": 19.825072886297377,
+"member": "gemma4",
+"task_id": "78bfa372-ba7a-46e9-9c10-c3e80366afeb"
+},
+"352": {
+"gemini": 32.53968253968254,
+"member": "gemma4",
+"task_id": "71e3456f-e1df-4108-872f-f00f8a44acc6"
+},
+"353": {
+"gemini": null,
+"member": "gemma4",
+"task_id": "b02ede76-2353-40f3-9da9-d319c617ab0d"
+},
+"354": {
+"gemini": 28.85375494071146,
+"member": "gemma4",
+"task_id": "236d5ae8-8623-4436-b527-2853aeea2db9"
+},
+"355": {
+"gemini": 14.685314685314685,
+"member": "gemma4",
+"task_id": "51c9e7b9-ab11-443e-97a4-9a8e75f2c9b8"
+},
+"356": {
+"gemini": 21.120689655172413,
+"member": "gemma4",
+"task_id": "82508e50-497c-445a-b1dd-fd9d7e6dafda"
+},
+"357": {
+"gemini": 59.55882352941177,
+"member": "gemma4",
+"task_id": "3d801f46-5707-4ff5-8151-1168ff0f09c0"
+},
+"358": {
+"gemini": 43.92156862745098,
+"member": "gemma4",
+"task_id": "36457179-b5e5-4daa-9956-fde342aade9b"
+},
+"359": {
+"gemini": null,
+"member": "gemma4",
+"task_id": "b0f9b509-dff8-4414-9404-fe0a35c43107"
+},
+"36": {
+"gemini": 69.44444444444444,
+"member": "m3",
+"task_id": "b3d9ac35-7d3f-4fd5-925e-bbaa40c0de51"
+},
+"360": {
+"gemini": 61.855670103092784,
+"member": "gemma4",
+"task_id": "cc4bd873-0661-4bd2-84bb-928e9e6f1a1c"
+},
+"361": {
+"gemini": null,
+"member": "gemma4",
+"task_id": "10e75d21-9e92-4878-b691-02fc87ae5d54"
+},
+"362": {
+"gemini": 21.25340599455041,
+"member": "gemma4",
+"task_id": "bea85f62-a722-48a9-8ece-fbfb62653997"
+},
+"363": {
+"gemini": 67.66917293233082,
+"member": "gemma4",
+"task_id": "9afd23d2-058d-469f-a663-91286ac0532f"
+},
+"364": {
+"gemini": null,
+"member": "gemma4",
+"task_id": "45b0c59c-9d2a-4000-b26e-ee44bf1e7c81"
+},
+"365": {
+"gemini": 53.75,
+"member": "gemma4",
+"task_id": "928aea10-3918-484b-980e-19d13a747e30"
+},
+"366": {
+"gemini": null,
+"member": "gemma4",
+"task_id": "95755c13-92a4-46fa-812b-4461b18f6a17"
+},
+"367": {
+"gemini": null,
+"member": "gemma4",
+"task_id": "ab17484f-fa6e-4e72-a970-e7cd6c5856d3"
+},
+"368": {
+"gemini": 53.90946502057613,
+"member": "gemma4",
+"task_id": "101c18a4-ff10-4dca-8d43-95088f1b90dc"
+},
+"369": {
+"gemini": null,
+"member": "gemma4",
+"task_id": "8e8b1864-6075-4d3b-8c4c-d427a5e3fc9f"
+},
+"37": {
+"gemini": 74.6987951807229,
+"member": "m3",
+"task_id": "3b5505fb-dab6-44cb-9a14-746b1cd82d25"
+},
+"370": {
+"gemini": null,
+"member": "gemma4",
+"task_id": "5fbad062-f388-4a46-8b41-b0f9704c0530"
+},
+"371": {
+"gemini": 32.57918552036199,
+"member": "gemma4",
+"task_id": "c2a1a24b-8a83-453f-9892-d17b533ffe93"
+},
+"372": {
+"gemini": 17.79935275080906,
+"member": "gemma4",
+"task_id": "8ca825d6-174a-489d-89b9-b000649a2477"
+},
+"373": {
+"gemini": 35.94306049822064,
+"member": "gemma4",
+"task_id": "6b3233e6-9b05-465a-a872-724af25df719"
+},
+"374": {
+"gemini": null,
+"member": "gemma4",
+"task_id": "ce335c0c-f136-4408-a216-6a891cae861f"
+},
+"375": {
+"gemini": null,
+"member": "gemma4",
+"task_id": "67dfb8ea-cc84-4fb9-abc2-4794aa20eb44"
+},
+"376": {
+"gemini": null,
+"member": "gemma4",
+"task_id": "939cd89c-32e3-4ba3-a9c2-734a9f3b80d1"
+},
+"377": {
+"gemini": 43.46733668341709,
+"member": "gemma4",
+"task_id": "35bc9c48-0853-469d-8bf7-8f6947ec4fb7"
+},
+"378": {
+"gemini": 27.95969773299748,
+"member": "gemma4",
+"task_id": "e179559d-08fd-4ca7-9f1b-5637d956b3d4"
+},
+"379": {
+"gemini": 26.31578947368421,
+"member": "gemma4",
+"task_id": "4b089235-06e7-4f1f-a815-96bb146cbbde"
+},
+"38": {
+"gemini": 84.35374149659864,
+"member": "m3",
+"task_id": "e3734e91-e2d1-4696-bdee-81c8bfa3127e"
+},
+"380": {
+"gemini": 33.755274261603375,
+"member": "gemma4",
+"task_id": "c8aaa261-24b6-4142-916a-e0a1d98ee0b8"
+},
+"381": {
+"gemini": 23.728813559322035,
+"member": "gemma4",
+"task_id": "6128e19e-5d6c-41ab-aaf5-35a1d718050e"
+},
+"382": {
+"gemini": null,
+"member": "gemma4",
+"task_id": "c63923e7-6ab4-4742-b739-49f5d1f1cfe4"
+},
+"383": {
+"gemini": null,
+"member": "gemma4",
+"task_id": "ebac60ea-ea67-4b8f-986e-1e0aebed2b89"
+},
+"384": {
+"gemini": 59.84251968503937,
+"member": "gemma4",
+"task_id": "49d841f1-0c95-4a87-9b62-5e2a54e8e1a8"
+},
+"385": {
+"gemini": null,
+"member": "gemma4",
+"task_id": "785c8570-6aed-4517-aac2-1d56e16745b7"
+},
+"386": {
+"gemini": null,
+"member": "gemma4",
+"task_id": "7d09292c-c8b7-4ae9-9864-1676135bd041"
+},
+"387": {
+"gemini": null,
+"member": "gemma4",
+"task_id": "10e9d085-a62f-4547-bbf3-62800b27950c"
+},
+"388": {
+"gemini": null,
+"member": "gemma4",
+"task_id": "2aac5ef3-f127-4582-a8a6-8f02bda5681e"
+},
+"389": {
+"gemini": null,
+"member": "gemma4",
+"task_id": "8e99d8d2-f6b9-4800-83a9-6f56829898fe"
+},
+"39": {
+"gemini": 73.27935222672065,
+"member": "m3",
+"task_id": "cd680e2e-c0b9-4b54-948c-fd824d804a52"
+},
+"390": {
+"gemini": null,
+"member": "gemma4",
+"task_id": "1070e6eb-7a8f-4ce9-8818-1931bcfdb2dd"
+},
+"391": {
+"gemini": null,
+"member": "gemma4",
+"task_id": "a88bef13-7db6-4236-bdfa-da22ad75dc56"
+},
+"392": {
+"gemini": null,
+"member": "gemma4",
+"task_id": "43c7e377-7a85-4cd3-8865-7cf620e9f6bc"
+},
+"393": {
+"gemini": null,
+"member": "gemma4",
+"task_id": "61afdc3a-219d-4ff0-aa67-b823429487ae"
+},
+"394": {
+"gemini": null,
+"member": "gemma4",
+"task_id": "0e7281ec-bf16-4d84-9501-0de69a803c59"
+},
+"395": {
+"gemini": null,
+"member": "gemma4",
+"task_id": "d1a4c3ea-9507-402c-9ef5-281ea2171c99"
+},
+"396": {
+"gemini": null,
+"member": "gemma4",
+"task_id": "9db832bc-c38d-4a0b-aebe-ea0fc96da563"
+},
+"397": {
+"gemini": null,
+"member": "gemma4",
+"task_id": "69e0ce73-b0af-4f7c-a59d-71c96adc6a2b"
+},
+"398": {
+"gemini": null,
+"member": "gemma4",
+"task_id": "91408757-a874-44b5-ad5a-66a22b39141d"
+},
+"399": {
+"gemini": null,
+"member": "gemma4",
+"task_id": "e6fbba71-d917-4d1e-bd09-009ff9cd8e9b"
+},
+"4": {
+"gemini": 61.38328530259366,
+"member": "m3",
+"task_id": "f004b46b-c0e7-4e86-a072-c7491328d538"
+},
+"40": {
+"gemini": 67.12962962962963,
+"member": "m3",
+"task_id": "adacf6f4-9ec0-4d4e-a8c4-388aad0b2fb0"
+},
+"400": {
+"gemini": 81.04738154613466,
+"member": "glm",
+"task_id": "0c2c668a-c3bf-41af-93c9-b5614ff63508"
+},
+"401": {
+"gemini": 79.13486005089058,
+"member": "glm",
+"task_id": "f6de7687-7cff-4f68-93ea-f632bf6266af"
+},
+"402": {
+"gemini": 43.689320388349515,
+"member": "glm",
+"task_id": "a78eed67-ebe3-425e-a467-d54ee8949c8b"
+},
+"403": {
+"gemini": 84.01360544217687,
+"member": "glm",
+"task_id": "1516d849-b413-4fab-9153-c4d9b16a1aa9"
+},
+"404": {
+"gemini": 58.789625360230545,
+"member": "glm",
+"task_id": "f004b46b-c0e7-4e86-a072-c7491328d538"
+},
+"405": {
+"gemini": 69.91150442477876,
+"member": "glm",
+"task_id": "e1f2c310-d311-49da-b0e4-ee855603469d"
+},
+"406": {
+"gemini": 56.666666666666664,
+"member": "glm",
+"task_id": "79224558-75f7-4e51-bc24-51f1e3ede921"
+},
+"407": {
+"gemini": 67.70186335403727,
+"member": "glm",
+"task_id": "b0e3597d-6cda-4082-a5b4-234aac7d2684"
+},
+"408": {
+"gemini": 81.02766798418972,
+"member": "glm",
+"task_id": "c66a5c80-df51-4914-88dd-8b08aff7380c"
+},
+"409": {
+"gemini": 60.19900497512438,
+"member": "glm",
+"task_id": "6c59b2a0-c097-4c69-ad03-2c4ea2ec579b"
+},
+"41": {
+"gemini": 50.0,
+"member": "m3",
+"task_id": "f1b0f094-fa7a-4f18-adbd-f4cd86633f77"
+},
+"410": {
+"gemini": 46.51810584958217,
+"member": "glm",
+"task_id": "aca95495-b0fe-4330-90fc-d2fd1e2c709e"
+},
+"411": {
+"gemini": 76.61538461538461,
+"member": "glm",
+"task_id": "faeeb64e-e5eb-4768-a9b9-8ef19de51473"
+},
+"412": {
+"gemini": 52.87356321839081,
+"member": "glm",
+"task_id": "1ed18b1d-8436-44e5-9924-a503514c387d"
+},
+"413": {
+"gemini": 79.46428571428571,
+"member": "glm",
+"task_id": "6f425968-0c5b-42d8-a5c5-0b20d2f1d71e"
+},
+"414": {
+"gemini": 39.26056338028169,
+"member": "glm",
+"task_id": "342b15b8-0ae1-43ce-9ebe-c7318179f156"
+},
+"415": {
+"gemini": 73.42657342657343,
+"member": "glm",
+"task_id": "e15a37b4-cd7f-4f52-ba81-9f33b24aabe9"
+},
+"416": {
+"gemini": 66.16915422885572,
+"member": "glm",
+"task_id": "0a652d00-5c22-4621-8ec4-dd92b1f1450b"
+},
+"417": {
+"gemini": 62.60623229461756,
+"member": "glm",
+"task_id": "4f36f602-6c14-4c23-a37d-e5ee92ed4552"
+},
+"418": {
+"gemini": 78.21011673151752,
+"member": "glm",
+"task_id": "c6ca6371-72de-4f96-bc90-c4273080382c"
+},
+"419": {
+"gemini": 92.72727272727273,
+"member": "glm",
+"task_id": "9b35aaf1-f3cf-466f-96e5-dde018b0ef35"
+},
+"42": {
+"gemini": 51.16279069767442,
+"member": "m3",
+"task_id": "09456551-1fdc-46fb-a931-4f3a2dfe21a3"
+},
+"420": {
+"gemini": 58.50622406639004,
+"member": "glm",
+"task_id": "b3c576e7-dfc6-403f-90e7-53c011884d5c"
+},
+"421": {
+"gemini": 66.06060606060606,
+"member": "glm",
+"task_id": "b8ff32b6-967c-41bf-8277-69afe025293e"
+},
+"422": {
+"gemini": null,
+"member": "glm",
+"task_id": "7786ef30-1bb6-479b-9437-333ff50d5a3d"
+},
+"423": {
+"gemini": 55.34591194968554,
+"member": "glm",
+"task_id": "614a5d4c-5387-4f42-a319-61486bbcde0f"
+},
+"424": {
+"gemini": null,
+"member": "glm",
+"task_id": "3a8db70a-d906-4bde-bf87-c0c74504409a"
+},
+"425": {
+"gemini": 42.69662921348315,
+"member": "glm",
+"task_id": "e303d1aa-0b0c-4fe1-9806-e46058d6b3f3"
+},
+"426": {
+"gemini": null,
+"member": "glm",
+"task_id": "97378684-875a-4a7d-ad19-d7d77942f131"
+},
+"427": {
+"gemini": null,
+"member": "glm",
+"task_id": "868f0410-07c9-4609-a7f6-2ad72d678006"
+},
+"428": {
+"gemini": 43.23529411764706,
+"member": "glm",
+"task_id": "72e81ce6-8d1f-4143-90d5-d25d7a212c85"
+},
+"429": {
+"gemini": null,
+"member": "glm",
+"task_id": "7e9fa201-6bbd-4e77-a8ed-c62b8f551cab"
+},
+"43": {
+"gemini": 62.4,
+"member": "m3",
+"task_id": "9f36b55b-28a6-4c4f-b34d-14acc22e5352"
+},
+"430": {
+"gemini": 52.7536231884058,
+"member": "glm",
+"task_id": "a4bae04b-4337-4f28-ab8b-5a518cf58fe0"
+},
+"431": {
+"gemini": null,
+"member": "glm",
+"task_id": "056e9cbe-d8eb-48a8-9618-432222100e79"
+},
+"432": {
+"gemini": 43.04123711340206,
+"member": "glm",
+"task_id": "bfdf5b0d-efe9-48fc-9399-2127f71e52c7"
+},
+"433": {
+"gemini": 50.83056478405316,
+"member": "glm",
+"task_id": "ab074bda-d583-42d0-85ce-6c694a51d3ce"
+},
+"434": {
+"gemini": 71.95767195767196,
+"member": "glm",
+"task_id": "71e3456f-e1df-4108-872f-f00f8a44acc6"
+},
+"435": {
+"gemini": 59.183673469387756,
+"member": "glm",
+"task_id": "78bfa372-ba7a-46e9-9c10-c3e80366afeb"
+},
+"436": {
+"gemini": 74.08637873754152,
+"member": "glm",
+"task_id": "b02ede76-2353-40f3-9da9-d319c617ab0d"
+},
+"437": {
+"gemini": 52.1551724137931,
+"member": "glm",
+"task_id": "82508e50-497c-445a-b1dd-fd9d7e6dafda"
+},
+"438": {
+"gemini": 59.683794466403164,
+"member": "glm",
+"task_id": "236d5ae8-8623-4436-b527-2853aeea2db9"
+},
+"439": {
+"gemini": 72.72727272727273,
+"member": "glm",
+"task_id": "51c9e7b9-ab11-443e-97a4-9a8e75f2c9b8"
+},
+"44": {
+"gemini": 62.42603550295858,
+"member": "m3",
+"task_id": "8cf941c5-3ac1-4801-929b-8f5bab8691c7"
+},
+"440": {
+"gemini": 62.35294117647059,
+"member": "glm",
+"task_id": "36457179-b5e5-4daa-9956-fde342aade9b"
+},
+"441": {
+"gemini": 80.12820512820512,
+"member": "glm",
+"task_id": "cd19ee22-ded0-4fee-b1a0-51f074d72b8b"
+},
+"442": {
+"gemini": 89.79591836734694,
+"member": "glm",
+"task_id": "ca0edd2d-c9b8-4b85-9b40-754f4865579a"
+},
+"443": {
+"gemini": null,
+"member": "glm",
+"task_id": "f0bed5aa-f7c4-4013-8d0c-10ffebeaf300"
+},
+"444": {
+"gemini": 53.23943661971831,
+"member": "glm",
+"task_id": "ce522bc2-e8a2-436b-971f-dd4972f23d39"
+},
+"445": {
+"gemini": 36.21262458471761,
+"member": "glm",
+"task_id": "34e9b780-7fb6-426a-bc39-c340baa578e8"
+},
+"446": {
+"gemini": 62.60504201680672,
+"member": "glm",
+"task_id": "262b3145-5b6d-486b-a09f-c8e6a8f98e20"
+},
+"447": {
+"gemini": 53.495440729483285,
+"member": "glm",
+"task_id": "eb3965d1-c466-4c4c-bd4a-c8a0b255b893"
+},
+"448": {
+"gemini": 28.703703703703702,
+"member": "glm",
+"task_id": "b3d9ac35-7d3f-4fd5-925e-bbaa40c0de51"
+},
+"449": {
+"gemini": 79.14893617021276,
+"member": "glm",
+"task_id": "646b575d-383d-483b-82bd-01e5526212c7"
+},
+"45": {
+"gemini": 60.294117647058826,
+"member": "m3",
+"task_id": "72e81ce6-8d1f-4143-90d5-d25d7a212c85"
+},
+"450": {
+"gemini": null,
+"member": "glm",
+"task_id": "3b5505fb-dab6-44cb-9a14-746b1cd82d25"
+},
+"451": {
+"gemini": 71.65991902834008,
+"member": "glm",
+"task_id": "cd680e2e-c0b9-4b54-948c-fd824d804a52"
+},
+"452": {
+"gemini": 89.79591836734694,
+"member": "glm",
+"task_id": "e3734e91-e2d1-4696-bdee-81c8bfa3127e"
+},
+"453": {
+"gemini": null,
+"member": "glm",
+"task_id": "adacf6f4-9ec0-4d4e-a8c4-388aad0b2fb0"
+},
+"454": {
+"gemini": 44.76744186046512,
+"member": "glm",
+"task_id": "09456551-1fdc-46fb-a931-4f3a2dfe21a3"
+},
+"455": {
+"gemini": 53.42465753424658,
+"member": "glm",
+"task_id": "f1b0f094-fa7a-4f18-adbd-f4cd86633f77"
+},
+"456": {
+"gemini": 68.0,
+"member": "glm",
+"task_id": "9f36b55b-28a6-4c4f-b34d-14acc22e5352"
+},
+"457": {
+"gemini": null,
+"member": "glm",
+"task_id": "3d801f46-5707-4ff5-8151-1168ff0f09c0"
+},
+"458": {
+"gemini": null,
+"member": "glm",
+"task_id": "8cf941c5-3ac1-4801-929b-8f5bab8691c7"
+},
+"459": {
+"gemini": null,
+"member": "glm",
+"task_id": "10e75d21-9e92-4878-b691-02fc87ae5d54"
+},
+"46": {
+"gemini": 65.49019607843137,
+"member": "m3",
+"task_id": "7e9fa201-6bbd-4e77-a8ed-c62b8f551cab"
+},
+"460": {
+"gemini": null,
+"member": "glm",
+"task_id": "b0f9b509-dff8-4414-9404-fe0a35c43107"
+},
+"461": {
+"gemini": 28.88283378746594,
+"member": "glm",
+"task_id": "bea85f62-a722-48a9-8ece-fbfb62653997"
+},
+"462": {
+"gemini": 85.56701030927834,
+"member": "glm",
+"task_id": "cc4bd873-0661-4bd2-84bb-928e9e6f1a1c"
+},
+"463": {
+"gemini": null,
+"member": "glm",
+"task_id": "928aea10-3918-484b-980e-19d13a747e30"
+},
+"464": {
+"gemini": 70.67669172932331,
+"member": "glm",
+"task_id": "9afd23d2-058d-469f-a663-91286ac0532f"
+},
+"465": {
+"gemini": 75.33783783783784,
+"member": "glm",
+"task_id": "45b0c59c-9d2a-4000-b26e-ee44bf1e7c81"
+},
+"466": {
+"gemini": 51.64835164835165,
+"member": "glm",
+"task_id": "95755c13-92a4-46fa-812b-4461b18f6a17"
+},
+"467": {
+"gemini": 90.12345679012346,
+"member": "glm",
+"task_id": "101c18a4-ff10-4dca-8d43-95088f1b90dc"
+},
+"468": {
+"gemini": 60.83086053412463,
+"member": "glm",
+"task_id": "8e8b1864-6075-4d3b-8c4c-d427a5e3fc9f"
+},
+"469": {
+"gemini": null,
+"member": "glm",
+"task_id": "ab17484f-fa6e-4e72-a970-e7cd6c5856d3"
+},
+"47": {
+"gemini": 44.63768115942029,
+"member": "m3",
+"task_id": "a4bae04b-4337-4f28-ab8b-5a518cf58fe0"
+},
+"470": {
+"gemini": null,
+"member": "glm",
+"task_id": "8ca825d6-174a-489d-89b9-b000649a2477"
+},
+"471": {
+"gemini": null,
+"member": "glm",
+"task_id": "5fbad062-f388-4a46-8b41-b0f9704c0530"
+},
+"472": {
+"gemini": null,
+"member": "glm",
+"task_id": "c2a1a24b-8a83-453f-9892-d17b533ffe93"
+},
+"473": {
+"gemini": null,
+"member": "glm",
+"task_id": "ce335c0c-f136-4408-a216-6a891cae861f"
+},
+"474": {
+"gemini": null,
+"member": "glm",
+"task_id": "67dfb8ea-cc84-4fb9-abc2-4794aa20eb44"
+},
+"475": {
+"gemini": null,
+"member": "glm",
+"task_id": "6b3233e6-9b05-465a-a872-724af25df719"
+},
+"476": {
+"gemini": null,
+"member": "glm",
+"task_id": "35bc9c48-0853-469d-8bf7-8f6947ec4fb7"
+},
+"477": {
+"gemini": null,
+"member": "glm",
+"task_id": "939cd89c-32e3-4ba3-a9c2-734a9f3b80d1"
+},
+"478": {
+"gemini": null,
+"member": "glm",
+"task_id": "c8aaa261-24b6-4142-916a-e0a1d98ee0b8"
+},
+"479": {
+"gemini": null,
+"member": "glm",
+"task_id": "e179559d-08fd-4ca7-9f1b-5637d956b3d4"
+},
+"48": {
+"gemini": 51.364764267990076,
+"member": "m3",
+"task_id": "056e9cbe-d8eb-48a8-9618-432222100e79"
+},
+"480": {
+"gemini": null,
+"member": "glm",
+"task_id": "4b089235-06e7-4f1f-a815-96bb146cbbde"
+},
+"481": {
+"gemini": null,
+"member": "glm",
+"task_id": "6128e19e-5d6c-41ab-aaf5-35a1d718050e"
+},
+"482": {
+"gemini": null,
+"member": "glm",
+"task_id": "c63923e7-6ab4-4742-b739-49f5d1f1cfe4"
+},
+"483": {
+"gemini": null,
+"member": "glm",
+"task_id": "ebac60ea-ea67-4b8f-986e-1e0aebed2b89"
+},
+"484": {
+"gemini": null,
+"member": "glm",
+"task_id": "49d841f1-0c95-4a87-9b62-5e2a54e8e1a8"
+},
+"485": {
+"gemini": null,
+"member": "glm",
+"task_id": "785c8570-6aed-4517-aac2-1d56e16745b7"
+},
+"486": {
+"gemini": 57.622739018087856,
+"member": "glm",
+"task_id": "7d09292c-c8b7-4ae9-9864-1676135bd041"
+},
+"487": {
+"gemini": 68.09338521400778,
+"member": "glm",
+"task_id": "10e9d085-a62f-4547-bbf3-62800b27950c"
+},
+"488": {
+"gemini": null,
+"member": "glm",
+"task_id": "2aac5ef3-f127-4582-a8a6-8f02bda5681e"
+},
+"489": {
+"gemini": null,
+"member": "glm",
+"task_id": "8e99d8d2-f6b9-4800-83a9-6f56829898fe"
+},
+"49": {
+"gemini": 52.83505154639175,
+"member": "m3",
+"task_id": "bfdf5b0d-efe9-48fc-9399-2127f71e52c7"
+},
+"490": {
+"gemini": null,
+"member": "glm",
+"task_id": "9db832bc-c38d-4a0b-aebe-ea0fc96da563"
+},
+"491": {
+"gemini": null,
+"member": "glm",
+"task_id": "1070e6eb-7a8f-4ce9-8818-1931bcfdb2dd"
+},
+"492": {
+"gemini": null,
+"member": "glm",
+"task_id": "a88bef13-7db6-4236-bdfa-da22ad75dc56"
+},
+"493": {
+"gemini": null,
+"member": "glm",
+"task_id": "d1a4c3ea-9507-402c-9ef5-281ea2171c99"
+},
+"494": {
+"gemini": null,
+"member": "glm",
+"task_id": "43c7e377-7a85-4cd3-8865-7cf620e9f6bc"
+},
+"495": {
+"gemini": null,
+"member": "glm",
+"task_id": "61afdc3a-219d-4ff0-aa67-b823429487ae"
+},
+"496": {
+"gemini": null,
+"member": "glm",
+"task_id": "0e7281ec-bf16-4d84-9501-0de69a803c59"
+},
+"497": {
+"gemini": null,
+"member": "glm",
+"task_id": "69e0ce73-b0af-4f7c-a59d-71c96adc6a2b"
+},
+"498": {
+"gemini": null,
+"member": "glm",
+"task_id": "e6fbba71-d917-4d1e-bd09-009ff9cd8e9b"
+},
+"499": {
+"gemini": null,
+"member": "glm",
+"task_id": "91408757-a874-44b5-ad5a-66a22b39141d"
+},
+"5": {
+"gemini": 55.75221238938053,
+"member": "m3",
+"task_id": "e1f2c310-d311-49da-b0e4-ee855603469d"
+},
+"50": {
+"gemini": 76.74418604651163,
+"member": "m3",
+"task_id": "ab074bda-d583-42d0-85ce-6c694a51d3ce"
+},
+"51": {
+"gemini": 84.0531561461794,
+"member": "m3",
+"task_id": "b02ede76-2353-40f3-9da9-d319c617ab0d"
+},
+"52": {
+"gemini": 45.77259475218659,
+"member": "m3",
+"task_id": "78bfa372-ba7a-46e9-9c10-c3e80366afeb"
+},
+"53": {
+"gemini": null,
+"member": "m3",
+"task_id": "71e3456f-e1df-4108-872f-f00f8a44acc6"
+},
+"54": {
+"gemini": 75.52447552447552,
+"member": "m3",
+"task_id": "51c9e7b9-ab11-443e-97a4-9a8e75f2c9b8"
+},
+"55": {
+"gemini": 59.683794466403164,
+"member": "m3",
+"task_id": "236d5ae8-8623-4436-b527-2853aeea2db9"
+},
+"56": {
+"gemini": 74.13793103448276,
+"member": "m3",
+"task_id": "82508e50-497c-445a-b1dd-fd9d7e6dafda"
+},
+"57": {
+"gemini": 83.45588235294117,
+"member": "m3",
+"task_id": "3d801f46-5707-4ff5-8151-1168ff0f09c0"
+},
+"58": {
+"gemini": 69.41176470588235,
+"member": "m3",
+"task_id": "36457179-b5e5-4daa-9956-fde342aade9b"
+},
+"59": {
+"gemini": null,
+"member": "m3",
+"task_id": "b0f9b509-dff8-4414-9404-fe0a35c43107"
+},
+"6": {
+"gemini": 78.57142857142857,
+"member": "m3",
+"task_id": "1516d849-b413-4fab-9153-c4d9b16a1aa9"
+},
+"60": {
+"gemini": 43.08943089430894,
+"member": "m3",
+"task_id": "10e75d21-9e92-4878-b691-02fc87ae5d54"
+},
+"61": {
+"gemini": 76.80412371134021,
+"member": "m3",
+"task_id": "cc4bd873-0661-4bd2-84bb-928e9e6f1a1c"
+},
+"62": {
+"gemini": 78.75,
+"member": "m3",
+"task_id": "928aea10-3918-484b-980e-19d13a747e30"
+},
+"63": {
+"gemini": 56.94822888283379,
+"member": "m3",
+"task_id": "bea85f62-a722-48a9-8ece-fbfb62653997"
+},
+"64": {
+"gemini": 55.311355311355314,
+"member": "m3",
+"task_id": "95755c13-92a4-46fa-812b-4461b18f6a17"
+},
+"65": {
+"gemini": null,
+"member": "m3",
+"task_id": "9afd23d2-058d-469f-a663-91286ac0532f"
+},
+"66": {
+"gemini": null,
+"member": "m3",
+"task_id": "45b0c59c-9d2a-4000-b26e-ee44bf1e7c81"
+},
+"67": {
+"gemini": null,
+"member": "m3",
+"task_id": "101c18a4-ff10-4dca-8d43-95088f1b90dc"
+},
+"68": {
+"gemini": 61.568627450980394,
+"member": "m3",
+"task_id": "ab17484f-fa6e-4e72-a970-e7cd6c5856d3"
+},
+"69": {
+"gemini": null,
+"member": "m3",
+"task_id": "8e8b1864-6075-4d3b-8c4c-d427a5e3fc9f"
+},
+"7": {
+"gemini": null,
+"member": "m3",
+"task_id": "cd19ee22-ded0-4fee-b1a0-51f074d72b8b"
+},
+"70": {
+"gemini": null,
+"member": "m3",
+"task_id": "8ca825d6-174a-489d-89b9-b000649a2477"
+},
+"71": {
+"gemini": null,
+"member": "m3",
+"task_id": "5fbad062-f388-4a46-8b41-b0f9704c0530"
+},
+"72": {
+"gemini": null,
+"member": "m3",
+"task_id": "ce335c0c-f136-4408-a216-6a891cae861f"
+},
+"73": {
+"gemini": null,
+"member": "m3",
+"task_id": "67dfb8ea-cc84-4fb9-abc2-4794aa20eb44"
+},
+"74": {
+"gemini": null,
+"member": "m3",
+"task_id": "c2a1a24b-8a83-453f-9892-d17b533ffe93"
+},
+"75": {
+"gemini": null,
+"member": "m3",
+"task_id": "6b3233e6-9b05-465a-a872-724af25df719"
+},
+"76": {
+"gemini": null,
+"member": "m3",
+"task_id": "939cd89c-32e3-4ba3-a9c2-734a9f3b80d1"
+},
+"77": {
+"gemini": null,
+"member": "m3",
+"task_id": "35bc9c48-0853-469d-8bf7-8f6947ec4fb7"
+},
+"78": {
+"gemini": null,
+"member": "m3",
+"task_id": "c8aaa261-24b6-4142-916a-e0a1d98ee0b8"
+},
+"79": {
+"gemini": null,
+"member": "m3",
+"task_id": "e179559d-08fd-4ca7-9f1b-5637d956b3d4"
+},
+"8": {
+"gemini": 56.0,
+"member": "m3",
+"task_id": "79224558-75f7-4e51-bc24-51f1e3ede921"
+},
+"80": {
+"gemini": null,
+"member": "m3",
+"task_id": "4b089235-06e7-4f1f-a815-96bb146cbbde"
+},
+"81": {
+"gemini": null,
+"member": "m3",
+"task_id": "6128e19e-5d6c-41ab-aaf5-35a1d718050e"
+},
+"82": {
+"gemini": null,
+"member": "m3",
+"task_id": "ebac60ea-ea67-4b8f-986e-1e0aebed2b89"
+},
+"83": {
+"gemini": null,
+"member": "m3",
+"task_id": "c63923e7-6ab4-4742-b739-49f5d1f1cfe4"
+},
+"84": {
+"gemini": null,
+"member": "m3",
+"task_id": "49d841f1-0c95-4a87-9b62-5e2a54e8e1a8"
+},
+"85": {
+"gemini": null,
+"member": "m3",
+"task_id": "10e9d085-a62f-4547-bbf3-62800b27950c"
+},
+"86": {
+"gemini": null,
+"member": "m3",
+"task_id": "7d09292c-c8b7-4ae9-9864-1676135bd041"
+},
+"87": {
+"gemini": null,
+"member": "m3",
+"task_id": "785c8570-6aed-4517-aac2-1d56e16745b7"
+},
+"88": {
+"gemini": null,
+"member": "m3",
+"task_id": "2aac5ef3-f127-4582-a8a6-8f02bda5681e"
+},
+"89": {
+"gemini": null,
+"member": "m3",
+"task_id": "9db832bc-c38d-4a0b-aebe-ea0fc96da563"
+},
+"9": {
+"gemini": 52.38095238095238,
+"member": "m3",
+"task_id": "ca0edd2d-c9b8-4b85-9b40-754f4865579a"
+},
+"90": {
+"gemini": 85.14285714285714,
+"member": "m3",
+"task_id": "8e99d8d2-f6b9-4800-83a9-6f56829898fe"
+},
+"91": {
+"gemini": null,
+"member": "m3",
+"task_id": "1070e6eb-7a8f-4ce9-8818-1931bcfdb2dd"
+},
+"92": {
+"gemini": null,
+"member": "m3",
+"task_id": "d1a4c3ea-9507-402c-9ef5-281ea2171c99"
+},
+"93": {
+"gemini": null,
+"member": "m3",
+"task_id": "a88bef13-7db6-4236-bdfa-da22ad75dc56"
+},
+"94": {
+"gemini": null,
+"member": "m3",
+"task_id": "43c7e377-7a85-4cd3-8865-7cf620e9f6bc"
+},
+"95": {
+"gemini": null,
+"member": "m3",
+"task_id": "61afdc3a-219d-4ff0-aa67-b823429487ae"
+},
+"96": {
+"gemini": null,
+"member": "m3",
+"task_id": "69e0ce73-b0af-4f7c-a59d-71c96adc6a2b"
+},
+"97": {
+"gemini": null,
+"member": "m3",
+"task_id": "0e7281ec-bf16-4d84-9501-0de69a803c59"
+},
+"98": {
+"gemini": null,
+"member": "m3",
+"task_id": "e6fbba71-d917-4d1e-bd09-009ff9cd8e9b"
+},
+"99": {
+"gemini": null,
+"member": "m3",
+"task_id": "91408757-a874-44b5-ad5a-66a22b39141d"
+}
+}

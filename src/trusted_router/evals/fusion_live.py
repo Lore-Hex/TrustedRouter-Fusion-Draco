@@ -1320,6 +1320,13 @@ def criterion_judge_messages_for_criteria(
             ),
         },
         {
+            # Criteria-before-answer order AND the small chunk size are both deliberate; both were
+            # measured to matter. (1) Answer-first ordering inflates scores ~+4-5 pts (grader is
+            # lenient reading the answer before the criteria) — don't reorder for caching. (2) Large
+            # --criterion-chunk-size (judging many/all criteria per call) ALSO inflates, ~+7 avg and
+            # up to +15 on a single task (the model is more lenient grading criteria in bulk). Keep
+            # chunk size small (3) for valid, comparable grades. There is no cheap score-neutral
+            # lever here; grading is just expensive. See draco-grading-infra memory.
             "role": "user",
             "content": f"Task:\n{task.problem}\n\nCriteria:\n{criteria_json}\n\nCandidate answer:\n{answer}",
         },

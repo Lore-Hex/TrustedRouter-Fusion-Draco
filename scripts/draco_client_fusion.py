@@ -16,7 +16,10 @@ scores them unchanged. No rubric is ever shown to judge or fuser (no leakage).
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
+import threading
+import time
 from concurrent.futures import FIRST_COMPLETED, Future, ThreadPoolExecutor, wait
 from pathlib import Path
 from typing import Any
@@ -43,14 +46,11 @@ FINAL_INSTRUCTION = (
     "scratchpad text, <think> blocks, or internal model names unless the user "
     "asked for methodology."
 )
-FUSER_SYSTEM = (
-    "You are an expert research analyst. Write a thorough, well-structured, "
-    "accurate final report that directly and completely answers the user's task."
-)
 
 
 def _panel_evidence(panel: list[tuple[str, str]]) -> str:
-    b = ["Panel answers:"]
+    # Matches enclave fusion.go fusionPanelEvidence: "Panel answers:\n" then "\n[i] model=..\ntext\n".
+    b = ["Panel answers:\n"]
     for i, (model, text) in enumerate(panel, start=1):
         b.append(f"\n[{i}] model={model}\n{text.strip()}\n")
     return "".join(b)
@@ -103,6 +103,26 @@ def main(argv: list[str] | None = None) -> int:
                         "refusal — re-synthesize the same panel with this model instead.")
     p.add_argument("--judge-max-tokens", type=int, default=3000)
     p.add_argument("--fuser-max-tokens", type=int, default=8000)
+    p.add_argument("--judge-provider", default=None,
+                   help="Force a provider for the judge model (OpenRouter-shape provider.only), "
+                        "e.g. tinfoil for GLM-5.2 so the Z.ai host censorship doesn't blank the judge.")
+    p.add_argument("--judge-providers", default=None,
+                   help="Comma-separated provider list; spread the judge's calls across them "
+                        "deterministically by task id (parallelizes the judge while keeping each task's "
+                        "judge provider stable across runs). Overrides --judge-provider.")
+    p.add_argument("--fuser-provider", default=None,
+                   help="Force a provider for the fuser model, e.g. tinfoil for GLM-5.2.")
+    p.add_argument("--fuser-provider-frac", type=float, default=1.0,
+                   help="Route only this fraction of tasks (stable hash split by task id) through "
+                        "--fuser-provider; the rest use default routing. e.g. 0.5 to load-test a provider on half.")
+    p.add_argument("--fuser-providers", default=None,
+                   help="Comma-separated provider list; spread the primary fuser's calls across them "
+                        "deterministically by task id (parallelizes load while keeping each task pinned to "
+                        "the same provider across runs, so comparisons stay clean). Overrides --fuser-provider.")
+    p.add_argument("--judge-cache", default=None,
+                   help="Shared JSONL cache of judge analyses keyed by (judge_model, judge_provider, "
+                        "task). Reused across synthesizer runs on the SAME panel — point every cell of a "
+                        "judge×synthesizer grid at one cache so each judge analysis is computed once.")
     p.add_argument("--base-url", default="https://api-us-central1.quillrouter.com/v1")
     p.add_argument("--api-key-name", default="TR_FUSION_EVAL_API_KEY")
     p.add_argument("--workers", type=int, default=4)
@@ -150,43 +170,100 @@ def main(argv: list[str] | None = None) -> int:
 
     args.output.parent.mkdir(parents=True, exist_ok=True)
 
+    # Judge analysis depends only on (panel, judge_model, judge_provider) — not the synthesizer.
+    # A shared cache lets a judge×synthesizer grid compute each judge pass once and reuse it.
+    judge_cache: dict[str, str] = {}
+    cache_lock = threading.Lock()
+    if args.judge_cache and Path(args.judge_cache).exists():
+        for line in Path(args.judge_cache).read_text(encoding="utf-8").splitlines():
+            if line.strip():
+                rec = json.loads(line)
+                jk = f"{rec['judge_model']}\t{rec.get('judge_provider') or ''}\t{rec['task_id']}"
+                judge_cache[jk] = rec["judge_json"]
+        print(f"judge cache: loaded {len(judge_cache)} analyses from {args.judge_cache}")
+
     def run_one(task) -> dict[str, Any]:
         client = tr_sdk.make_client(base_url=args.base_url, api_key=api_key, timeout=args.timeout_seconds)
         try:
             panel = [(l, panels[l][task.id]) for l in labels]
-            # 1) Fusion judge analysis
-            judge_body = {
-                "model": args.judge_model, "max_tokens": args.judge_max_tokens,
-                "response_format": {"type": "json_object"},
-                "messages": [
-                    {"role": "system", "content": JUDGE_SYSTEM},
-                    {"role": "user", "content": _judge_user(task.problem, panel)},
-                ],
-            }
-            judge_json = _content(_post(client, args.base_url, api_key, judge_body)).strip()
+            # 1) Fusion judge analysis (cached per judge_model/provider/task — reused across synthesizers)
+            jkey = f"{args.judge_model}\t{args.judge_provider or ''}\t{task.id}"
+            judge_json = judge_cache.get(jkey)
+            if judge_json is None:
+                judge_body = {
+                    "model": args.judge_model, "max_tokens": args.judge_max_tokens,
+                    "response_format": {"type": "json_object"},
+                    "messages": [
+                        {"role": "system", "content": JUDGE_SYSTEM},
+                        {"role": "user", "content": _judge_user(task.problem, panel)},
+                    ],
+                }
+                jprov = args.judge_provider
+                if args.judge_providers:
+                    jprovs = [x for x in args.judge_providers.split(",") if x]
+                    jprov = jprovs[int(hashlib.md5(task.id.encode()).hexdigest(), 16) % len(jprovs)]
+                if jprov:
+                    judge_body["provider"] = {"only": [jprov], "allow_fallbacks": False}
+                judge_json = _content(_post(client, args.base_url, api_key, judge_body)).strip()
+                if args.judge_cache:
+                    with cache_lock:
+                        judge_cache[jkey] = judge_json
+                        with open(args.judge_cache, "a", encoding="utf-8") as cf:
+                            cf.write(json.dumps({"judge_model": args.judge_model,
+                                                 "judge_provider": args.judge_provider,
+                                                 "task_id": task.id, "judge_json": judge_json}) + "\n")
             # 2) fuser (primary, with optional fallback when it returns near-empty —
             #    e.g. GLM-5.2 silently refusing politically restricted panel content)
             final_user = FINAL_INSTRUCTION + "\n\n" + _panel_evidence(panel) + "\n\nJudge analysis JSON:\n" + judge_json
 
-            def _fuse(model: str) -> tuple[str, dict[str, Any]]:
+            def _fuse(model: str, pin: bool = True) -> tuple[str, dict[str, Any]]:
+                # Mirror enclave fusion.go fusionFinalRequest: reuse the original request (the bare
+                # task as a user message) and append ONLY the instruction+panel+judge user message.
+                # No persona system prompt — that was ours, not TrustedRouter's / OpenRouter's.
                 body = {
                     "model": model, "max_tokens": args.fuser_max_tokens, "temperature": 0.2,
                     "messages": [
-                        {"role": "system", "content": FUSER_SYSTEM},
-                        {"role": "user", "content": f"Research task:\n{task.problem}"},
+                        {"role": "user", "content": task.problem},
                         {"role": "user", "content": final_user},
                     ],
                 }
+                prov = None
+                if pin and model == args.fuser_model:  # pin only the primary fuser, never the fallback model
+                    if args.fuser_providers:
+                        provs = [x for x in args.fuser_providers.split(",") if x]
+                        prov = provs[int(hashlib.md5(task.id.encode()).hexdigest(), 16) % len(provs)]
+                    else:
+                        prov = args.fuser_provider
+                        if prov and args.fuser_provider_frac < 1.0:
+                            bucket = int(hashlib.md5(task.id.encode()).hexdigest(), 16) % 1000
+                            if bucket >= args.fuser_provider_frac * 1000:
+                                prov = None  # this task uses default routing
+                if prov:
+                    body["provider"] = {"only": [prov], "allow_fallbacks": False}
                 resp = _post(client, args.base_url, api_key, body)
                 return strip_tool_markup(_content(resp)), resp
 
             fuser_used = args.fuser_model
-            content, fr = _fuse(args.fuser_model)
             fell_back = False
+            # STICK WITH GLM. First attempt uses the deterministic pinned provider (spreads load
+            # across the GLM fleet); subsequent attempts drop the pin and let the gateway route to
+            # ANY GLM provider, retried with backoff. A loaded/failing/balance-out provider must
+            # never leave the synthesis empty — we keep retrying GLM, not swap models.
+            content, fr = "", {}
+            for attempt in range(5):
+                try:
+                    content, fr = _fuse(args.fuser_model, pin=(attempt == 0))
+                    if len(content.strip()) >= 50:
+                        break
+                except Exception:  # noqa: BLE001 - provider error; retry GLM via open routing
+                    content, fr = "", {}
+                time.sleep(1.5 * (attempt + 1))
+            # Cross-model fallback ONLY if one is explicitly configured (we do not pass one, to
+            # keep the synthesizer a pure GLM measurement).
             if len(content.strip()) < 50 and args.fallback_fuser_model:
                 fuser_used = args.fallback_fuser_model
                 fell_back = True
-                content, fr = _fuse(args.fallback_fuser_model)
+                content, fr = _fuse(args.fallback_fuser_model, pin=False)
             usage = fr.get("usage") or {}
             return {
                 "schema": REPLAY_SCHEMA, "config_id": args.config_id, "task_id": task.id,

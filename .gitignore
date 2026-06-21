@@ -6,3 +6,6 @@ uv.lock
 # private generation replays (model prompt/output) live in quill-router, not here
 *.replay.private.jsonl
 results/private/
+
+# bulk experiment replays/rejudge outputs (192MB) — reproducible, not committed
+artifacts/
