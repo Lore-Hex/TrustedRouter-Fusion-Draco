@@ -334,3 +334,154 @@ a per-member grader mean-shift, so mixing gemini + Sonnet grades in the correlat
 safe even if a small offset remained. The judge prompt is replicated verbatim from
 `fusion_live.py` (criteria-before-answer order, "met=true only when explicitly satisfied;
 for negative-weight criteria met=true means the error is present").
+
+## 8. Haiku self-fusion via Claude Code subagents — self-fusion needs a competent fuser (2026-06-21)
+
+§6 showed MiniMax-M3 self-fusion climbs 66.2 → 69.4 over ten runs. Does the same recipe
+work with a *small* model in every role? We reran the §6 scaling experiment with **Claude
+Haiku 4.5** as researcher, judge, **and** synthesizer, orchestrated end-to-end through
+**Claude Code subagents** (the Workflow tool) — the all-subagent setup
+`trustedrouter-benchmarks` uses when TR credits are out — and graded with **Claude
+Sonnet 4.6**, the §7.5-validated credit-free grader. Harness:
+`artifacts/haiku-selffusion/wf_haiku_pilot.js`; scores
+`results/rejudge-selffusion-haiku-pilot.jsonl`; chart `docs/draco-selffusion-haiku-scaling.svg`.
+
+**Setup.** 8 stratified tasks (Academic, Technology, General Knowledge, Medicine, Law,
+Shopping, UX Design, Needle-in-Haystack; Finance + Personalized-Assistant held out). Per
+task: 10 independent Haiku agentic research runs (`WebSearch`/`WebFetch`/`Bash` subagents,
+rubric never shown), then for N=1..10 fuse the first N with the **verbatim** TR fusion prompts
+(`JUDGE_SYSTEM` → `FINAL_INSTRUCTION`); N=1 = run #1 raw. One nested run-ordering, like §6.
+
+**Grader caveat (read before comparing to §6).** The §6 M3 numbers use gemini chunk-of-3.
+Chunk-of-3 needs ~13 judge calls per answer → ~1,010 Sonnet subagent calls for 8×10 answers,
+which **saturates the shared Claude Code subagent quota** (429/529) — the exact §7.5 stall
+(our first attempt failed with ~1,000 rate-limited grades). So we grade **chunk-all** (one
+Sonnet call per answer, ~80 total). chunk-all is measured to inflate **~+7** vs chunk-of-3,
+so subtract ~7 from the Haiku scores below to compare to §6. The offset is near-constant and
+does **not** change the curve shape — which is the whole question.
+
+**Result: self-fusion does NOT scale for Haiku — the curve is flat and noisy.**
+
+| N runs fused | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| Haiku DRACO (Sonnet chunk-all) | 62.2 | 54.5 | 59.5 | 64.1 | 59.2 | 58.8 | 60.2 | 56.3 | 57.0 | 58.8 |
+
+The solo (62.2) is already near the top; fusing N≥2 averages **58.7**, *below* solo, and ten
+runs land at **58.8 (−3.4)**. No climb, no plateau. With 8 tasks the per-N SE is ~±7, so the
+curve is statistically **flat** — but the central tendency is a slight net *loss*, the opposite
+of M3 (+3.2) and Opus (+6.9 at N=2).
+
+**Mechanism: Haiku is a high-variance, unreliable synthesizer — §7.1's small-fuser problem,
+applied to self-fusion.** Per-task SD across N is ~18 points; the synthesizer sometimes
+recovers a great answer and just as often destroys a good one:
+
+| task | solo | best N≥2 | mean N≥2 | net (mean−solo) |
+|---|---:|---:|---:|---:|
+| General Knowledge | 56.1 | 81.4 | 70.1 | **+14.0** |
+| Medicine | 67.9 | 80.8 | 71.1 | +3.1 |
+| Technology | 34.5 | 46.9 | 36.6 | +2.1 |
+| Law | 73.8 | 78.9 | 75.4 | +1.6 |
+| Academic | 78.6 | 92.0 | 78.2 | −0.3 |
+| Shopping | 61.3 | 56.7 | 49.5 | −11.8 |
+| UX Design | 38.2 | 34.0 | 26.0 | −12.2 |
+| Needle-in-Haystack | 87.1 | 89.8 | 63.0 | **−24.1** |
+
+The upside is real and large (+14 to +25 at the best N on several tasks), but unreliable: the
+synthesizer, told to "return only the final visible answer," compresses the panel and drops
+detail — losing the heavily-weighted **citation** criteria a strong fuser preserves (Technology:
+a solo with inline NVIDIA/Ultralytics/arxiv citations becomes a tidy summary that no longer
+cites them, −10 on the rubric). **Needle-in-Haystack is the cleanest failure:** the solo finds
+the needle (87.1), but fusion *dilutes* it — most of the 10 runs miss the needle, and the
+consensus-seeking synthesizer averages them down to 63.0. Self-fusion is actively *harmful* for
+single-fact retrieval, because seeking consensus washes out the lone correct run.
+
+**Takeaway.** §6's "quantity substitutes for cross-model diversity" has a hard prerequisite:
+**a synthesizer competent enough to hold the panel and keep the rare-correct run.** M3 can;
+Haiku cannot. The gain is bottlenecked by the *fuser*, not the run count — ten copies fused by
+a weak synthesizer are still weakly synthesized. This is the self-fusion analogue of §7.1's
+fuser leaderboard (M3 71.6 → Gemma-4-31b 54.0) and §7.3's "size matters for the fuser": a cheap
+*panel* can reach a frontier answer, but a cheap *fuser* cannot manufacture one.
+
+**Scope / honesty.** 8-task pilot, one nested ordering, chunk-all grader (~+7 inflated,
+shape-preserving), and a different tool stack than §6 (Claude Code `WebSearch`/`WebFetch`
+subagents vs the Exa + markitdown SDK harness). The flat-and-noisy *shape* is robust; per-task
+numbers carry ~±7 SE — a 20-task run would tighten the mean. Full harness, args, raw result,
+and per-task curve under `artifacts/haiku-selffusion/`.
+
+### 8.1 The fuser is the bottleneck — swap Haiku → Sonnet 4.6 and self-fusion scales again
+
+§8 leaves an obvious test: if Haiku fails *as the synthesizer*, does a competent model in the
+same all-subagent harness recover §6's scaling gain? We reran the experiment with **Claude
+Sonnet 4.6** as researcher + judge + synthesizer (Sonnet-4.6 chunk-all grader), on the **same 4
+task IDs** as a subset of the §8 pilot — Academic, Technology, General Knowledge, and
+**Needle-in-Haystack** (the task where Haiku fusion collapsed hardest). Harness
+`artifacts/haiku-selffusion/wf_sonnet_pilot4.js`; scores
+`results/rejudge-selffusion-sonnet-pilot4.jsonl`; chart `docs/draco-selffusion-sonnet-vs-haiku.svg`.
+
+**Result — Sonnet self-fusion climbs; Haiku is flat (same 4 tasks, same grader):**
+
+| N runs fused | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| **Sonnet 4.6** | 73.4 | 74.1 | 78.1 | 79.7 | 75.9 | 79.4 | 79.3 | 77.9 | 79.2 | 76.8 |
+| Haiku 4.5 (§8) | 64.0 | 53.1 | 65.8 | 72.7 | 61.3 | 58.4 | 67.2 | 62.2 | 56.7 | 60.3 |
+
+Sonnet: solo 73.4 → mean(N≥2) **77.8 (+4.4)**, plateau ~79 by N=4 — the §6 climb-then-plateau
+shape, with a competent fuser. Haiku: solo 64.0 → mean(N≥2) 62.0 (**−2.1**). Per task, Sonnet's
+best fused beats solo on **4/4** (Academic +14.5, Technology +16.8, GenKnow +21.4, Needle +3.4)
+and mean(N≥2) beats solo on 3/4.
+
+**The decisive case — Needle-in-Haystack (does fusion destroy a correct solo?).** Both models'
+solos find the needle (87.1). Then the fusers diverge:
+
+| fuser | solo | mean(N≥2) | per-N (1→10) |
+|---|---:|---:|---|
+| **Sonnet 4.6** | 87.1 | **82.2 (−4.8)** | 87 77 81 81 90 82 78 84 84 84 |
+| Haiku 4.5 | 87.1 | **63.0 (−24.1)** | 87 68 56 90 54 54 67 50 58 68 |
+
+Haiku **dilutes the needle away** — averaging in the 9 runs that missed it (−24); Sonnet **keeps
+it** (a mild −4.8 dip, never a collapse). Consensus-seeking only destroys single-fact retrieval
+when the synthesizer is too weak to recognize and preserve the lone correct run.
+
+**Conclusion.** §6's "quantity substitutes for cross-model diversity" holds **only above a fuser
+competence threshold.** Sonnet clears it (self-fusion +4.4, needle preserved); Haiku does not
+(flat, needle collapses). This is the self-fusion confirmation of §7.1/§7.3 ("the fuser is the
+lever"; "size matters for the fuser"): a cheap *panel* can reach a frontier answer, but the
+*synthesizer* must be strong enough to hold the panel and keep the rare-correct run — ten copies
+fused by a weak model stay weakly fused.
+
+**Caveats.** 4 tasks, one ordering. To fit the Claude Code **session token limit** (the all-Sonnet
+8-task run exhausted the account quota mid-research — Sonnet reports ran 31–33k chars each), Sonnet
+research used a **leaner** config (low effort, ≤6 web ops, ~1.2k-word reports) than §8's Haiku
+(medium, comprehensive), and Sonnet **self-grades** (synth = grader). Both can shift Sonnet's
+*absolute* level, so the N=1 gap (73.4 vs 64.0) conflates researcher quality + grading and is not
+a clean fuser comparison. The clean, confound-free findings are the two that compare N≥2 to N=1
+*within each model*: the **climb vs flat shape**, and the **needle preserved vs collapsed**.
+
+### 8.2 Error bars — the pilots are suggestive but underpowered (bootstrap over tasks)
+
+Point estimates without uncertainty aren't science. We nonparametric-bootstrap over **tasks**
+(resample tasks with replacement, B=20,000, 95% percentile CI) for every N. Charts now carry
+per-point CI whiskers (`bootstrap_ci.json`). Two honest limits: at n=4–8 the CIs are wide
+(~±12), and they capture **task-sampling** variance only — **not** run-ordering variance (we ran
+one nested ordering; that component needs re-fusing multiple orderings).
+
+Per-N 95% CIs are wide and heavily overlapping (e.g. Haiku-8 N=1 62.2 [49.7, 73.7], N=4 64.1
+[47.2, 79.2]; Sonnet-4 N=4 79.7 [68.6, 87.8]), so **no individual point-to-point difference is
+resolvable.** The right test is the paired self-fusion **gain**, mean(N≥2) − solo, bootstrapped
+over tasks:
+
+| config | gain | 95% CI | verdict |
+|---|---:|---|---|
+| Haiku, 8 tasks | −3.5 | [−11.5, +4.0] | includes 0 |
+| Haiku, same 4 | −2.1 | [−17.6, +10.4] | includes 0 |
+| Sonnet, 4 tasks | +4.4 | [−1.9, +10.8] | includes 0 (mostly +) |
+| **Sonnet gain − Haiku gain** (paired, 4 tasks) | **+6.5** | **[−1.1, +14.2]** | includes 0 (barely) |
+
+So at pilot scale **nothing clears 95% significance** — the directions are consistent with the
+mechanism (Haiku flat-to-negative, Sonnet positive, Sonnet > Haiku, the Sonnet−Haiku contrast
+90%+ positive in the bootstrap) but the pilots are **underpowered**. With per-task SD ≈ 13–18 and
+an effect of ≈4–7, detecting the gain at 95%/80% power needs roughly **n ≈ 25–40 tasks** (and the
+Sonnet−Haiku contrast similar). The **Needle-in-Haystack collapse** (Haiku −24.1 vs Sonnet −4.8)
+is a single-task, single-ordering observation — dramatic and mechanistically clean, but one data
+point, not a powered estimate. **Bottom line: treat the curves as hypotheses with the right sign,
+not as established effects — scale to ~30 tasks (and ≥2 run-orderings) to confirm.**
