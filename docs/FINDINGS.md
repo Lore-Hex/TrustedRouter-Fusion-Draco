@@ -485,3 +485,21 @@ Sonnet−Haiku contrast similar). The **Needle-in-Haystack collapse** (Haiku −
 is a single-task, single-ordering observation — dramatic and mechanistically clean, but one data
 point, not a powered estimate. **Bottom line: treat the curves as hypotheses with the right sign,
 not as established effects — scale to ~30 tasks (and ≥2 run-orderings) to confirm.**
+
+**Update — Haiku scaled to n=26 (18 new non-financial tasks + the 8 pilot).** The full-80 run
+is blocked by the Claude Code account session-token limit (each 18-task shard's agentic Haiku
+research alone burns ~24M tokens and exhausts a quota window before grading; resume runs only the
+cached-research fuse+grade pass). We got one shard done, so Haiku now stands at **n=26**:
+
+| Haiku self-fusion | gain mean(N≥2)−solo | 95% CI |
+|---|---:|---|
+| pilot 8 tasks | −3.5 | [−11.5, +4.0] |
+| new 18 tasks (rem1) | **+3.7** | — |
+| **merged, n=26** | **+1.5** | **[−2.3, +5.0]** |
+
+The pilot's −3.5 was small-sample noise: the 18 fresh tasks ran **+3.7**, and the merged estimate
+is **+1.5, still not significant** (CI straddles 0). So the powered-ish read is that Haiku
+self-fusion buys a **small bump indistinguishable from zero** — not the flat-to-negative the first
+8 suggested, and well under Sonnet's central +4.4 (§8.1). The honest contrast is "the smarter
+fuser gains more," with neither gain individually significant at these sizes. Curve + CIs:
+`artifacts/haiku-selffusion/haiku_n26_curve.json`, `results/rejudge-selffusion-haiku-rem18.jsonl`.
