@@ -125,6 +125,28 @@ ordering, so the ~1-pt point-to-point jitter is run-to-run noise.) Data:
 `replays/fusion-selffusion-m3-x10.jsonl`, `results/rejudge-selffusion-*.jsonl`; full
 writeup in [`docs/FINDINGS.md`](docs/FINDINGS.md) §6.
 
+### Self-fusion needs a competent fuser (Haiku vs Sonnet, via Claude Code subagents)
+
+The §6 gain has a prerequisite: a synthesizer strong enough to keep the rare-correct run.
+Rerunning the self-fusion scaling with cheap Claude models — researcher + judge + synthesizer
+all one model, driven by **Claude Code subagents** instead of the SDK (TR credits were out),
+graded by Sonnet-4.6 — the gain tracks fuser strength:
+
+| self-fusion | solo | fused | gain | n tasks |
+|---|---:|---:|---:|---:|
+| Claude Sonnet 4.6 | 73 | ~79 | **+4.4** | 4 |
+| Claude Haiku 4.5 | 60.5 | ~62 | **+1.5** (n.s.) | 26 |
+
+Haiku's gain is indistinguishable from zero (95% CI [−2.3, +5.0]); Sonnet's is ~3× larger.
+Neither clears significance at these sample sizes — directional, underpowered. The mechanism
+is visible on one needle-in-a-haystack task: a lone Haiku run found the needle (87) but fusing
+ten **averaged it away** (63), because nine runs missed it and the weak synthesizer sided with
+the majority. Full writeup [`docs/FINDINGS.md`](docs/FINDINGS.md) §8; harness, raw outputs, and
+repro in [`artifacts/haiku-selffusion/`](artifacts/haiku-selffusion/) (`README.md` there);
+blog `blog-selffusion-draco.md`. Caveat: the subagent throttle forces chunk-all grading
+(~+7 vs the calibrated chunk-of-3) and the session-token limit caps it at a pilot — absolute
+scores are inflated, so read each model against itself.
+
 ### On the comparison to OpenRouter (and why it is *not* leakage)
 
 We don't know OpenRouter's exact harness — their tool budget, fetch sizes,
@@ -157,9 +179,12 @@ scripts/finance_parser_ablation.py          finance doc-parser bake-off (markitd
 scripts/draco_native_fusion_gen.py          generate native trustedrouter/fusion replays
 scripts/draco_rejudge.py                    rejudge replays with the DRACO rubric
 scripts/draco_report.py                     side-by-side score report
+scripts/selffusion_gen_workflow.py          generate a Claude Code Workflow (.js) for a self-fusion run (§8)
+scripts/selffusion_analyze.py               re-derive §8 self-fusion numbers + charts from saved outputs
 data/draco-{full-100,non-financial-80,financial-20}.manifest.json   the benchmark tasks+rubrics
 replays/                                     raw agentic run traces — every prompt, tool call, and final report behind the scores
 results/                                     judged score artifacts (the replays above, scored against the rubric)
+artifacts/haiku-selffusion/                  §8 self-fusion via subagents — harness, raw outputs, repro (see its README)
 docs/FINDINGS.md, docs/LESSONS.md           the analysis and the hard-won lessons
 ```
 
