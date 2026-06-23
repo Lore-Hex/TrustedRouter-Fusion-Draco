@@ -73,17 +73,22 @@ def gain_ci(m: dict, tasks: list[str], rng: random.Random) -> tuple[float, float
     return boot(per, rng)
 
 
-def svg_scaling(curve, lo, hi, out: Path) -> None:
+def svg_scaling(curve, lo, hi, out: Path, n_tasks: int) -> None:
     W, H = 1120, 610
-    x0, x1, ymin, ymax, ytop, ybot = 92.0, 860.0, 48.0, 74.0, 110.0, 520.0
+    lows = [lo[k] for k in lo]
+    his = [hi[k] for k in hi]
+    ymin = max(0.0, min(lows) - 3)
+    ymax = min(100.0, max(his) + 3)
+    x0, x1, ytop, ybot = 92.0, 860.0, 110.0, 520.0
     X = lambda n: x0 + (x1 - x0) * (n - 1) / 9
     Y = lambda v: ybot - (ybot - ytop) * (v - ymin) / (ymax - ymin)
-    nt = len(curve)
     p = [f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="100%" style="height:auto" font-family="Inter,Arial,sans-serif">',
          f'<rect width="{W}" height="{H}" fill="#ffffff"/>',
-         '<text x="48" y="44" font-size="29" font-weight="700" fill="#111827">Haiku self-fusion: a small bump you can\'t call real</text>',
-         '<text x="48" y="74" font-size="16.5" fill="#6b7280">DRACO vs Haiku runs fused — 26 tasks, Sonnet-4.6 chunk-all grader. Whiskers = 95% bootstrap CI over tasks.</text>']
-    for v in range(50, 74, 5):
+         '<text x="48" y="44" font-size="29" font-weight="700" fill="#111827">Haiku self-fusion: small, noisy gain</text>',
+         f'<text x="48" y="74" font-size="16.5" fill="#6b7280">DRACO vs Haiku runs fused — {n_tasks} tasks, Sonnet-4.6 chunk-all grader. Whiskers = 95% bootstrap CI over tasks.</text>']
+    for v in range(int(ymin // 5) * 5, int(ymax // 5 + 1) * 5 + 1, 5):
+        if v < ymin or v > ymax:
+            continue
         p.append(f'<line x1="{x0}" y1="{Y(v):.1f}" x2="{x1}" y2="{Y(v):.1f}" stroke="#eef0f2" stroke-width="1"/>')
         p.append(f'<text x="80" y="{Y(v)+5:.1f}" font-size="15" text-anchor="end" fill="#6b7280">{v}</text>')
     for n in range(1, 11):
@@ -106,16 +111,22 @@ def svg_scaling(curve, lo, hi, out: Path) -> None:
     out.write_text("".join(p), encoding="utf-8")
 
 
-def svg_compare(S, Hh, out: Path) -> None:
+def svg_compare(S, Hh, out: Path, n_shared: int) -> None:
     W, H = 1120, 610
-    x0, x1, ymin, ymax, ytop, ybot = 92.0, 840.0, 33.0, 95.0, 110.0, 520.0
+    allv = [S["ci_lo"][n] for n in range(1, 11)] + [S["ci_hi"][n] for n in range(1, 11)]
+    allv += [Hh["ci_lo"][n] for n in range(1, 11)] + [Hh["ci_hi"][n] for n in range(1, 11)]
+    ymin = max(0.0, min(allv) - 3)
+    ymax = min(100.0, max(allv) + 3)
+    x0, x1, ytop, ybot = 92.0, 840.0, 110.0, 520.0
     X = lambda n: x0 + (x1 - x0) * (n - 1) / 9
     Y = lambda v: ybot - (ybot - ytop) * (v - ymin) / (ymax - ymin)
     p = [f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="100%" style="height:auto" font-family="Inter,Arial,sans-serif">',
          f'<rect width="{W}" height="{H}" fill="#ffffff"/>',
-         '<text x="48" y="44" font-size="28" font-weight="700" fill="#111827">Sonnet vs Haiku fuser — direction is clear, power isn\'t</text>',
-         '<text x="48" y="73" font-size="16" fill="#6b7280">Same 4 tasks, same Sonnet-4.6 grader. Whiskers = 95% bootstrap CI over 4 tasks (B=20k).</text>']
-    for v in range(35, 96, 5):
+         '<text x="48" y="44" font-size="28" font-weight="700" fill="#111827">Sonnet fuser climbs, Haiku barely moves</text>',
+         f'<text x="48" y="73" font-size="16" fill="#6b7280">{n_shared} shared tasks, same Sonnet-4.6 grader. Whiskers = 95% bootstrap CI over tasks (B=20k).</text>']
+    for v in range(int(ymin // 5) * 5, int(ymax // 5 + 1) * 5 + 1, 5):
+        if v < ymin or v > ymax:
+            continue
         p.append(f'<line x1="{x0}" y1="{Y(v):.1f}" x2="{x1}" y2="{Y(v):.1f}" stroke="#eef0f2" stroke-width="1"/>')
         p.append(f'<text x="80" y="{Y(v)+5:.1f}" font-size="14" text-anchor="end" fill="#6b7280">{v}</text>')
     for n in range(1, 11):
@@ -141,37 +152,50 @@ def svg_compare(S, Hh, out: Path) -> None:
     out.write_text("".join(p), encoding="utf-8")
 
 
+def load_merged(kind: str) -> dict:
+    """Merge every committed *_result.json for a base model into one task->{N:score} matrix.
+    kind='sonnet' -> files with 'sonnet' in the name; kind='haiku' -> the rest."""
+    m: dict[str, dict[int, float]] = {}
+    files = sorted(p for p in ART.glob("*_result.json")
+                   if (("sonnet" in p.name) == (kind == "sonnet")))
+    used = []
+    for f in files:
+        r = json.loads(f.read_text())
+        mm = matrix(r)
+        if mm:
+            m.update(mm)  # task ids are disjoint across shards
+            used.append(f.name)
+    return m, used
+
+
 def main() -> None:
     rng = random.Random(SEED)
-    pilot = json.loads((ART / "pilot_result.json").read_text())
-    rem1 = json.loads((ART / "rem1_result.json").read_text())
-    sonnet = json.loads((ART / "pilot_sonnet_result.json").read_text())
+    Mh, hfiles = load_merged("haiku")
+    Ms, sfiles = load_merged("sonnet")
+    haikuTasks = full_curve_tasks(Mh)
+    sonnetTasks = full_curve_tasks(Ms)
+    shared = [t for t in sonnetTasks if t in Mh]  # same tasks both models ran
 
-    Mp, Mr, Ms = matrix(pilot), matrix(rem1), matrix(sonnet)
-    Mh = {**Mp, **Mr}  # disjoint task ids
-    haiku26 = full_curve_tasks(Mh)
-    sonnet4 = full_curve_tasks(Ms)
-    shared = [t for t in sonnet4 if t in Mh]  # same tasks both models ran
+    print(f"Haiku  shards {hfiles}")
+    print(f"Sonnet shards {sfiles}")
+    print(f"Haiku full-curve tasks: {len(haikuTasks)} | Sonnet: {len(sonnetTasks)} | shared: {len(shared)}\n")
 
-    print(f"Haiku tasks: pilot {len(Mp)} + rem1 {len(Mr)} = {len(haiku26)} full-curve")
-    print(f"Sonnet tasks: {len(sonnet4)} | shared with Haiku: {len(shared)}\n")
-
-    # ---- Haiku n=26 scaling curve + bootstrap ----
-    ch = mean_by_n(Mh, haiku26)
+    # ---- Haiku scaling curve + bootstrap ----
+    ch = mean_by_n(Mh, haikuTasks)
     lo, hi = {}, {}
-    print(f"Haiku n={len(haiku26)} : N  mean [95% CI]")
+    print(f"Haiku n={len(haikuTasks)} : N  mean [95% CI]")
     for n in range(1, 11):
-        m, a, b = boot([Mh[t][n] for t in haiku26], rng)
+        m, a, b = boot([Mh[t][n] for t in haikuTasks], rng)
         ch[n], lo[n], hi[n] = m, a, b
         print(f"  {n:>2}: {m:5.1f} [{a:5.1f}, {b:5.1f}]")
-    gm, ga, gb = gain_ci(Mh, haiku26, rng)
+    gm, ga, gb = gain_ci(Mh, haikuTasks, rng)
     print(f"Haiku gain mean(N>=2)-solo: {gm:+.2f} [{ga:+.2f}, {gb:+.2f}]  "
           f"({'excludes' if (ga > 0 or gb < 0) else 'includes'} 0)\n")
-    (ART / "haiku_n26_curve.json").write_text(json.dumps({
+    (ART / "haiku_curve.json").write_text(json.dumps({
         "mean_by_N": {str(n): round(ch[n], 2) for n in range(1, 11)},
         "ci_lo": {str(n): round(lo[n], 2) for n in range(1, 11)},
         "ci_hi": {str(n): round(hi[n], 2) for n in range(1, 11)},
-        "n_tasks": len(haiku26), "gain": round(gm, 2), "gain_ci": [round(ga, 2), round(gb, 2)],
+        "n_tasks": len(haikuTasks), "gain": round(gm, 2), "gain_ci": [round(ga, 2), round(gb, 2)],
     }, indent=1))
 
     # ---- Sonnet n=4 + Haiku-on-shared-4 (apples-to-apples comparison) ----
@@ -182,18 +206,25 @@ def main() -> None:
             out["mean"][n], out["ci_lo"][n], out["ci_hi"][n] = mm, a, b
         return out
 
-    Sc = curve_with_ci(Ms, sonnet4)
+    Sc = curve_with_ci(Ms, sonnetTasks)
     Hc4 = curve_with_ci(Mh, shared)
-    sg = gain_ci(Ms, sonnet4, rng)
+    sg = gain_ci(Ms, sonnetTasks, rng)
     hg4 = gain_ci(Mh, shared, rng)
-    print(f"Sonnet n={len(sonnet4)} gain: {sg[0]:+.2f} [{sg[1]:+.2f}, {sg[2]:+.2f}]")
+    print(f"Sonnet n={len(sonnetTasks)} gain: {sg[0]:+.2f} [{sg[1]:+.2f}, {sg[2]:+.2f}]")
     print(f"Haiku (shared {len(shared)}) gain: {hg4[0]:+.2f} [{hg4[1]:+.2f}, {hg4[2]:+.2f}]")
 
+    (ART / "sonnet_curve.json").write_text(json.dumps({
+        "mean_by_N": {str(n): round(Sc["mean"][n], 2) for n in range(1, 11)},
+        "ci_lo": {str(n): round(Sc["ci_lo"][n], 2) for n in range(1, 11)},
+        "ci_hi": {str(n): round(Sc["ci_hi"][n], 2) for n in range(1, 11)},
+        "n_tasks": len(sonnetTasks), "gain": round(sg[0], 2), "gain_ci": [round(sg[1], 2), round(sg[2], 2)],
+    }, indent=1))
+
     # ---- render charts ----
-    svg_scaling(ch, lo, hi, DOCS / "draco-selffusion-haiku-scaling.svg")
-    svg_compare(Sc, Hc4, DOCS / "draco-selffusion-sonnet-vs-haiku.svg")
+    svg_scaling(ch, lo, hi, DOCS / "draco-selffusion-haiku-scaling.svg", len(haikuTasks))
+    svg_compare(Sc, Hc4, DOCS / "draco-selffusion-sonnet-vs-haiku.svg", len(shared))
     print("\nwrote docs/draco-selffusion-haiku-scaling.svg, docs/draco-selffusion-sonnet-vs-haiku.svg")
-    print("wrote artifacts/haiku-selffusion/haiku_n26_curve.json")
+    print("wrote artifacts/haiku-selffusion/haiku_curve.json + sonnet_curve.json")
     print(f"\nM3 reference (FINDINGS §6, gemini grader): {M3[0]} -> {M3[-1]} (+{M3[-1]-M3[0]:.1f})")
 
 

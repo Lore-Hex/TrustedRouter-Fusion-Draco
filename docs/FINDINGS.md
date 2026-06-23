@@ -503,3 +503,19 @@ self-fusion buys a **small bump indistinguishable from zero** — not the flat-t
 8 suggested, and well under Sonnet's central +4.4 (§8.1). The honest contrast is "the smarter
 fuser gains more," with neither gain individually significant at these sizes. Curve + CIs:
 `artifacts/haiku-selffusion/haiku_n26_curve.json`, `results/rejudge-selffusion-haiku-rem18.jsonl`.
+
+**Update 2 — Haiku n=44, Sonnet n=19: the Sonnet gain is now significant (re-run
+`scripts/selffusion_analyze.py`).** More shards (Haiku rem2 +18 → n=44; Sonnet sonnet-sA +15 → n=19):
+
+| self-fusion | gain mean(N≥2)−solo | 95% CI | n | verdict |
+|---|---:|---|---:|---|
+| **Sonnet 4.6** | **+7.07** | **[+3.27, +10.78]** | 19 | **significant** (excludes 0) |
+| Haiku 4.5 | +2.62 | [−0.31, +5.43] | 44 | borderline (~96% of bootstrap > 0) |
+
+Sonnet's self-fusion gain is now a **real, statistically significant ~+7** — a competent fuser
+genuinely turns its own ten runs into a better answer. Haiku's gain *rose and tightened* as n grew
+(8 → −3.5, 26 → +1.5, 44 → **+2.6**) and now sits just shy of significance. Corrected §8 finding:
+**self-fusion helps both models, ~3× more for the stronger fuser, and the strong-fuser gain is
+established, not just directional.** The earlier "Haiku gets nothing" read was a small-sample
+artifact. Canonical curves: `artifacts/haiku-selffusion/{haiku_curve,sonnet_curve}.json`. (Pushing
+to the full non-financial-80 / Sonnet n≥30 continues, windowed by the session-token quota.)
