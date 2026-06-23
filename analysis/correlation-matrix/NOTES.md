@@ -59,11 +59,13 @@ is kept only as a secondary diagnostic.
   fraction; grade in smaller waves and loop until complete. The **first** attempt also hit a
   runaway-loop bug (looping on `budget.remaining()` with no token budget → `Infinity` →
   1000-agent cap) — always give such loops a hard iteration cap.
-- **Deferred (2026-06-21).** Sonnet grading stalled at **223/2,739 chunks (0/192 cells
-  complete)** — the Anthropic-side subagent throttle *escalates with each retry* (three
-  bursts made it worse, ~21% → ~3% success). Per the project decision we **ship without the
-  matrix**: it stays a forthcoming figure on the blog, not a blocker. To resume, use a
-  non-subagent grader (gemini chunk-of-3 once TR credits are topped up, or `draco_rejudge.py`
-  against a paid Claude judge) — both bypass the session throttle — then run
-  `aggregate_matrix.py`. On the 25 gemini-complete tasks the ordering already matches the
-  thesis (GLM most redundant, M3 least), which is what §7.4 reports.
+- **RESUMED (2026-06-22) — conc-2 beats the throttle.** The fix was capping subagent
+  concurrency: a manual pool of **≤2 agents in flight** (`grade_gentle.js`, batch-8,
+  Sonnet/effort=high) stays under the per-session request throttle that ~14-wide tripped.
+  At conc-2 the only failures are the hard session *usage* cap (resets, then resume). One
+  ~100-min pass took grading from 223 → **1,479/2,739 chunks**; ~1,260 chunks across 188
+  cells remain (the run swept low-`ci` chunks first, so most cells have most-but-not-all
+  chunks → only 4/192 cells complete so far). Finish = one more conc-2 pass on the
+  remainder, then `aggregate_matrix.py` → the figure. (Earlier history: a per-chunk
+  685-agent and a batched 650-agent blast both got ~3–21% as the throttle *escalates with
+  back-to-back bursts*; concurrency cap, not batching, is what fixed it.)

@@ -1,135 +1,511 @@
 {"idx": 7, "ci": 0, "m": ["not-normal-adjustment", "stop-inhaler", "paradox-broncho"], "n": 3}
 {"idx": 7, "ci": 1, "m": ["o2-threshold"], "n": 3}
+{"idx": 7, "ci": 2, "m": ["same-day-care", "who-to-contact", "bring-inhaler"], "n": 3}
+{"idx": 7, "ci": 3, "m": ["pulse-ox-accuracy"], "n": 3}
+{"idx": 7, "ci": 4, "m": [], "n": 3}
+{"idx": 7, "ci": 5, "m": ["conversation-script", "what-to-ask"], "n": 3}
+{"idx": 7, "ci": 6, "m": ["plain-language"], "n": 3}
+{"idx": 7, "ci": 7, "m": [], "n": 2}
 {"idx": 17, "ci": 0, "m": ["promotion-name", "chain-name", "founding-year"], "n": 3}
 {"idx": 17, "ci": 1, "m": ["founders-identity", "founding-location", "cooking-method"], "n": 3}
+{"idx": 17, "ci": 2, "m": ["greek-australian-heritage", "price-2015-timeframe", "time-restriction"], "n": 3}
+{"idx": 17, "ci": 3, "m": ["promotion-contents", "promotion-longevity"], "n": 3}
+{"idx": 17, "ci": 4, "m": ["consumer-impact-analysis"], "n": 3}
 {"idx": 17, "ci": 5, "m": ["sociocultural-positioning"], "n": 3}
+{"idx": 17, "ci": 6, "m": ["temporal-contextualization", "answer-leads-response"], "n": 3}
+{"idx": 17, "ci": 7, "m": ["confirms-user-details", "accessible-language", "repetitive-content"], "n": 3}
 {"idx": 17, "ci": 9, "m": [], "n": 1}
 {"idx": 25, "ci": 0, "m": ["wisc-v-wm-primary-conclusion", "nepsy-ii-inhibition-advantage"], "n": 3}
+{"idx": 25, "ci": 1, "m": ["modality-specific-effect-sizes", "2025-psi-only-valid-finding"], "n": 3}
+{"idx": 25, "ci": 2, "m": ["wisc-v-measurement-invariance"], "n": 3}
+{"idx": 25, "ci": 3, "m": ["nepsy-ii-architecture", "wisc-v-wmi-subtests"], "n": 3}
+{"idx": 25, "ci": 4, "m": ["nepsy-ii-ef-subtests-named"], "n": 3}
+{"idx": 25, "ci": 5, "m": ["both-batteries-limited-ev", "brief-rating-recommendation"], "n": 3}
+{"idx": 25, "ci": 6, "m": [], "n": 3}
+{"idx": 25, "ci": 7, "m": ["reconciles-contradictory-mechanisms", "group-vs-individual-diagnostic-distinction"], "n": 3}
 {"idx": 53, "ci": 0, "m": ["ifr-global-robot-density-2023"], "n": 3}
+{"idx": 53, "ci": 1, "m": ["saudi-robot-density-status", "nidlp-launch-date"], "n": 3}
+{"idx": 53, "ci": 2, "m": ["future-factories-program-launch"], "n": 3}
+{"idx": 53, "ci": 3, "m": ["factory-expansion-targets", "future-factories-transformation-scope"], "n": 3}
+{"idx": 53, "ci": 4, "m": [], "n": 3}
+{"idx": 53, "ci": 5, "m": ["siemens-port-neom-oxagon", "siemens-port-crane-specifications"], "n": 3}
+{"idx": 53, "ci": 6, "m": ["siemens-energy-power-plants", "siemens-port-value-disclosure"], "n": 3}
+{"idx": 53, "ci": 7, "m": ["abb-red-sea-specifications", "abb-ability-platform"], "n": 3}
 {"idx": 59, "ci": 0, "m": ["siemens-offering", "siemens-durability", "siemens-cloud-analytics"], "n": 3}
+{"idx": 59, "ci": 1, "m": ["siemens-edge-option", "siemens-products-named"], "n": 3}
+{"idx": 59, "ci": 2, "m": ["honeywell-offering", "honeywell-sensor-durability"], "n": 3}
+{"idx": 59, "ci": 3, "m": ["honeywell-edge-processing", "local-providers-context"], "n": 3}
+{"idx": 59, "ci": 4, "m": [], "n": 3}
+{"idx": 59, "ci": 5, "m": ["movus-offering"], "n": 3}
+{"idx": 59, "ci": 6, "m": ["movus-cloud-approach"], "n": 3}
+{"idx": 59, "ci": 7, "m": ["lorawan-identified", "lorawan-coverage-range"], "n": 3}
 {"idx": 65, "ci": 0, "m": ["explicit-er-directive", "obstruction-risk-identified", "dehydration-severity"], "n": 3}
+{"idx": 65, "ci": 1, "m": ["severe-pain-escalation"], "n": 3}
+{"idx": 65, "ci": 2, "m": [], "n": 3}
+{"idx": 65, "ci": 3, "m": [], "n": 3}
+{"idx": 65, "ci": 4, "m": ["crohns-flare"], "n": 3}
+{"idx": 65, "ci": 5, "m": ["urgent-directive-prominent"], "n": 3}
+{"idx": 65, "ci": 6, "m": ["action-oriented-structure", "accessible-language"], "n": 3}
+{"idx": 65, "ci": 7, "m": ["bolds-er", "cites-clinical-guidelines"], "n": 3}
 {"idx": 66, "ci": 0, "m": ["austin-school-district-entry-price", "raleigh-school-district-entry-price", "nashville-school-district-entry-price"], "n": 3}
+{"idx": 66, "ci": 1, "m": ["property-tax-dollar-comparison"], "n": 3}
+{"idx": 66, "ci": 2, "m": ["texas-income-tax-status", "tennessee-income-tax-status"], "n": 3}
+{"idx": 66, "ci": 3, "m": ["raleigh-job-market-depth"], "n": 3}
+{"idx": 66, "ci": 4, "m": ["austin-top-school-districts", "raleigh-school-context"], "n": 3}
+{"idx": 66, "ci": 5, "m": ["industrial-zone-commutes"], "n": 3}
+{"idx": 66, "ci": 6, "m": ["cross-dimensional-optimization", "school-tier-price-quantification", "three-way-tradeoff-analysis"], "n": 3}
+{"idx": 66, "ci": 7, "m": ["cumulative-ten-year-synthesis", "job-market-character-differentiation", "intra-metro-school-geography"], "n": 3}
 {"idx": 67, "ci": 0, "m": ["cambrian-timeframe", "cambrian-duration-pattern", "oxygen-hypothesis"], "n": 3}
+{"idx": 67, "ci": 1, "m": ["genetic-toolkit-hypothesis", "ecological-feedback-hypothesis"], "n": 3}
+{"idx": 67, "ci": 2, "m": ["toolkit-timing-ediacaran", "predation-macropredation-evidence", "chengjiang-lagerstatte"], "n": 3}
+{"idx": 67, "ci": 3, "m": ["burgess-shale-lagerstaette", "molecular-clock-deep-divergence", "taphonomic-bias-preservation"], "n": 3}
+{"idx": 67, "ci": 4, "m": ["radiation-genuineness-assessment", "specific-cambrian-taxa", "stem-vs-crown-groups"], "n": 3}
+{"idx": 67, "ci": 5, "m": ["multi-causal-integrated-framework", "spatial-oxygenation-heterogeneity", "necessary-not-sufficient-framing"], "n": 3}
+{"idx": 67, "ci": 6, "m": ["toolkit-timing-paradox-resolution", "pulsed-radiation-with-events", "phylogenetic-rooting-consequences"], "n": 3}
+{"idx": 67, "ci": 7, "m": ["feedback-loop-mechanisms", "outstanding-questions-specificity"], "n": 3}
+{"idx": 69, "ci": 1, "m": [], "n": 3}
+{"idx": 69, "ci": 2, "m": ["srp-rebate-amount-per-ton", "federal-25c-credit-details"], "n": 3}
+{"idx": 69, "ci": 3, "m": ["electrical-requirements-mitsubishi", "mitsubishi-115f-specification"], "n": 3}
+{"idx": 69, "ci": 4, "m": ["noise-levels-with-distance-data"], "n": 3}
+{"idx": 69, "ci": 5, "m": ["installed-cost-ranges-mitsubishi", "maintenance-cost-estimates"], "n": 3}
+{"idx": 69, "ci": 6, "m": [], "n": 3}
+{"idx": 69, "ci": 7, "m": ["corrects-comparison-scope-error", "tco-component-itemization"], "n": 3}
+{"idx": 70, "ci": 1, "m": ["belt-life-expectation"], "n": 3}
+{"idx": 70, "ci": 2, "m": [], "n": 3}
+{"idx": 70, "ci": 3, "m": ["case-telematics-remote-features", "deere-telematics-guidance-options", "deere-remote-support-features"], "n": 3}
+{"idx": 70, "ci": 4, "m": ["deere-dealers-regina-locations", "case-dealers-regina-coverage", "saskatchewan-pst-exemption"], "n": 3}
+{"idx": 70, "ci": 5, "m": ["cca-class-and-rate"], "n": 3}
+{"idx": 70, "ci": 6, "m": ["demonstrates-transparent-calculation", "contextualizes-against-variability", "conditional-decision-framework"], "n": 3}
+{"idx": 70, "ci": 7, "m": ["interprets-cumulative-materiality"], "n": 3}
+{"idx": 71, "ci": 1, "m": [], "n": 3}
+{"idx": 71, "ci": 2, "m": ["argentina-dni-renaper"], "n": 3}
+{"idx": 71, "ci": 3, "m": ["progressive-kyc-levels"], "n": 3}
+{"idx": 71, "ci": 4, "m": ["colombia-pse-wallets", "brazil-pix-ubiquitous"], "n": 3}
+{"idx": 71, "ci": 5, "m": [], "n": 3}
+{"idx": 71, "ci": 6, "m": ["rappi-dar-cautionary-example"], "n": 3}
+{"idx": 71, "ci": 7, "m": ["verified-badges-pattern"], "n": 3}
+{"idx": 72, "ci": 1, "m": ["icty-indictments-scale", "icty-jurisprudential-achievements", "icc-custody-cooperation-challenges"], "n": 3}
+{"idx": 72, "ci": 2, "m": ["germany-luxembourg-agreements-1952"], "n": 3}
+{"idx": 72, "ci": 3, "m": ["us-japanese-internment-payment-amount", "us-japanese-internment-recipients-count"], "n": 3}
+{"idx": 72, "ci": 4, "m": ["balanced-strengths-limitations-each-mechanism"], "n": 3}
+{"idx": 72, "ci": 5, "m": ["causal-mechanism-explanations", "specific-historical-design-failures", "portfolio-systems-thinking"], "n": 3}
+{"idx": 72, "ci": 6, "m": ["implementation-to-goal-linkages", "scholarly-terminology-and-rigor"], "n": 3}
+{"idx": 72, "ci": 7, "m": ["systematic-comparative-organization", "objective-analytical-presentation", "goal-based-synthesis-section"], "n": 3}
 {"idx": 73, "ci": 0, "m": ["q1-2023-total-sales", "q1-2023-gross-profit", "q1-2023-gross-margin"], "n": 3}
+{"idx": 73, "ci": 1, "m": ["q1-2023-direct-supply-revenue", "q1-2023-indirect-supply-revenue"], "n": 3}
+{"idx": 73, "ci": 2, "m": ["q1-2024-total-sales", "q1-2024-gross-loss"], "n": 3}
+{"idx": 73, "ci": 3, "m": ["q1-2024-reported-margin", "q1-2024-cost-of-sales-production", "factory-relocation-loss"], "n": 3}
+{"idx": 73, "ci": 4, "m": ["q1-2024-total-cost-of-sales", "q1-2024-direct-supply-elimination", "q1-2024-indirect-supply-percentage"], "n": 3}
+{"idx": 73, "ci": 5, "m": ["adjusted-q1-2024-gross-profit", "adjusted-q1-2024-margin", "yoy-total-margin-decline"], "n": 3}
+{"idx": 73, "ci": 6, "m": ["relocation-impact-margin-points", "operational-margin-decline-points", "shows-q1-2023-margin-calculation"], "n": 3}
+{"idx": 73, "ci": 7, "m": ["shows-adjusted-cost-calculation", "shows-adjusted-gross-profit-derivation"], "n": 3}
 {"idx": 74, "ci": 0, "m": ["table-social-communication-dsm5", "table-social-communication-icd11"], "n": 3}
+{"idx": 74, "ci": 1, "m": ["table-sensory-dsm5-criterion", "table-sensory-icd11-approach", "table-severity-dsm5-levels"], "n": 3}
+{"idx": 74, "ci": 2, "m": ["table-onset-both-manuals", "table-impairment-both-manuals"], "n": 3}
+{"idx": 74, "ci": 3, "m": ["evidence-includes-systematic-review", "evidence-primary-empirical-study"], "n": 3}
+{"idx": 74, "ci": 4, "m": ["evidence-grade-ratings-provided", "evidence-notes-indirectness"], "n": 3}
+{"idx": 74, "ci": 5, "m": ["who-sensory-in-rrb-domain", "apa-dsm5-three-subdomains", "aap-dsm5-reference"], "n": 3}
+{"idx": 74, "ci": 6, "m": [], "n": 3}
+{"idx": 74, "ci": 7, "m": [], "n": 3}
 {"idx": 75, "ci": 0, "m": ["atsource-not-licensable"], "n": 3}
+{"idx": 75, "ci": 1, "m": ["identifies-farmforce-with-features"], "n": 3}
+{"idx": 75, "ci": 2, "m": ["identifies-mergdata-with-languages"], "n": 3}
+{"idx": 75, "ci": 3, "m": ["identifies-additional-platforms"], "n": 3}
+{"idx": 75, "ci": 4, "m": ["eudr-compliance-context", "budget-components-enumerated"], "n": 3}
+{"idx": 75, "ci": 5, "m": ["spanish-colombia-common-support", "amharic-custom-translation-needed"], "n": 3}
+{"idx": 75, "ci": 6, "m": ["articulates-layered-architecture"], "n": 3}
+{"idx": 75, "ci": 7, "m": ["basic-phone-usability-comparison", "provides-context-specific-shortlists"], "n": 3}
 {"idx": 76, "ci": 0, "m": ["daily-cost-estimates", "provides-9-day-structure", "states-budget-breakdown"], "n": 3}
+{"idx": 76, "ci": 1, "m": ["includes-countryside-days", "lists-multiple-destinations"], "n": 3}
+{"idx": 76, "ci": 2, "m": ["activity-mix-cultural", "activity-mix-adventure", "activity-mix-nightlife"], "n": 3}
+{"idx": 76, "ci": 3, "m": ["transport-between-cities", "local-transport-options"], "n": 3}
+{"idx": 76, "ci": 4, "m": ["group-logistics-considerations", "accommodation-group-suitability", "consecutive-day-feasibility"], "n": 3}
+{"idx": 76, "ci": 5, "m": ["route-optimization-insight", "booking-timeline-guidance"], "n": 3}
+{"idx": 76, "ci": 6, "m": ["structured-itinerary-format", "practical-helpful-tone"], "n": 3}
+{"idx": 76, "ci": 7, "m": ["clear-pricing-notation", "actionable-specificity"], "n": 3}
 {"idx": 77, "ci": 0, "m": ["pt-test-types-enumeration", "pt-bayesian-updating"], "n": 3}
+{"idx": 77, "ci": 1, "m": ["pt-cpos-definition", "bayesian-scm-mechanism-definition", "bayesian-identification-criteria"], "n": 3}
+{"idx": 77, "ci": 2, "m": ["mahoney-pt-methodologist", "bayesian-pt-attribution"], "n": 3}
+{"idx": 77, "ci": 3, "m": ["pt-equifinality-mechanism-rivalry", "qca-equifinality-multiple-sufficient"], "n": 3}
+{"idx": 77, "ci": 4, "m": ["qca-conjunctural-causation"], "n": 3}
+{"idx": 77, "ci": 5, "m": ["dag-adjustment-set-criteria", "post-treatment-conditioning-definition"], "n": 3}
+{"idx": 77, "ci": 6, "m": ["skocpol-mechanism-pathway", "qca-boolean-set-theory"], "n": 3}
+{"idx": 77, "ci": 7, "m": ["democratic-breakdown-integration", "selection-bias-dv-critique"], "n": 3}
 {"idx": 78, "ci": 0, "m": ["mammography-software-compatibility"], "n": 3}
+{"idx": 78, "ci": 1, "m": ["specworkstation-benchmark-data", "ecc-memory-support", "power-consumption-calculation"], "n": 3}
+{"idx": 78, "ci": 2, "m": ["annual-power-cost-per-workstation", "fleet-power-cost-5year", "10gbe-compatibility"], "n": 3}
+{"idx": 78, "ci": 3, "m": ["dell-service-response"], "n": 3}
+{"idx": 78, "ci": 4, "m": [], "n": 3}
+{"idx": 78, "ci": 5, "m": ["service-tier-decision-guidance", "power-efficiency-tradeoffs"], "n": 3}
+{"idx": 78, "ci": 6, "m": ["technical-precision-medical-it"], "n": 3}
+{"idx": 78, "ci": 7, "m": ["structured-comparison-format", "vendor-neutral-objective-tone"], "n": 3}
 {"idx": 79, "ci": 0, "m": ["edelweiss-sector-focus"], "n": 3}
+{"idx": 79, "ci": 1, "m": ["dsp-fund-structure"], "n": 3}
+{"idx": 79, "ci": 2, "m": [], "n": 3}
+{"idx": 79, "ci": 3, "m": ["dsp-sector-themes"], "n": 3}
+{"idx": 79, "ci": 4, "m": ["overlap-direct-level", "overlap-indirect-kweb", "overlap-quantification"], "n": 3}
+{"idx": 79, "ci": 5, "m": ["edelweiss-underlying-expense-component"], "n": 3}
+{"idx": 79, "ci": 6, "m": ["edelweiss-regular-ter"], "n": 3}
+{"idx": 79, "ci": 7, "m": ["edelweiss-2024-calendar-performance", "dsp-2024-calendar-performance", "edelweiss-3yr-return"], "n": 3}
 {"idx": 80, "ci": 0, "m": [], "n": 3}
+{"idx": 80, "ci": 1, "m": ["rodecaster-usb-stability-issues", "podtrak-usb-interface-specs", "tascam-usb-stability-issues"], "n": 3}
+{"idx": 80, "ci": 2, "m": ["rodecaster-recording-24bit", "podtrak-recording-16bit"], "n": 3}
+{"idx": 80, "ci": 3, "m": ["rodecaster-broadcast-processing", "podtrak-basic-processing", "tascam-post-flexibility"], "n": 3}
+{"idx": 80, "ci": 4, "m": ["tascam-india-system-cost", "multiple-cost-models"], "n": 3}
+{"idx": 80, "ci": 5, "m": ["technical-unit-disambiguation", "specification-practical-impact", "construction-environmental-analysis"], "n": 3}
+{"idx": 80, "ci": 6, "m": ["configuration-scenario-modeling", "missing-specification-identification"], "n": 3}
+{"idx": 80, "ci": 7, "m": ["audio-engineering-terminology", "structured-multi-product-comparison"], "n": 3}
 {"idx": 81, "ci": 0, "m": ["hash-ribbon-no-signal-january-15", "hash-ribbon-prior-signal-context", "hash-ribbon-signal-interpretation"], "n": 3}
+{"idx": 81, "ci": 1, "m": ["post-halving-btc-per-block", "daily-miner-issuance"], "n": 3}
+{"idx": 81, "ci": 2, "m": ["quarterly-miner-issuance"], "n": 3}
+{"idx": 81, "ci": 3, "m": [], "n": 3}
+{"idx": 81, "ci": 4, "m": ["bull-scenario-upper-bound"], "n": 3}
+{"idx": 81, "ci": 5, "m": ["bear-scenario-lower-bound", "absorption-multiple-formula"], "n": 3}
+{"idx": 81, "ci": 6, "m": ["fallback-analysis-framework"], "n": 3}
+{"idx": 81, "ci": 7, "m": ["usd-btc-conversion-methodology"], "n": 3}
 {"idx": 82, "ci": 0, "m": ["webauthn-current-version"], "n": 3}
+{"idx": 82, "ci": 1, "m": [], "n": 3}
+{"idx": 82, "ci": 2, "m": [], "n": 3}
+{"idx": 82, "ci": 3, "m": ["eudi-technical-protocols", "did-privacy-mechanisms"], "n": 3}
+{"idx": 82, "ci": 4, "m": [], "n": 3}
+{"idx": 82, "ci": 5, "m": ["aadhaar-retention-limit"], "n": 3}
+{"idx": 82, "ci": 6, "m": [], "n": 3}
+{"idx": 82, "ci": 7, "m": ["estonia-x-tee-architecture"], "n": 3}
 {"idx": 83, "ci": 0, "m": ["native-dlp-not-supported", "purview-connector-audit-only", "edge-dlp-browser-prevention"], "n": 3}
+{"idx": 83, "ci": 1, "m": ["mdca-session-controls", "copilot-native-dlp"], "n": 3}
+{"idx": 83, "ci": 2, "m": ["conditional-access-app-control", "chatgpt-admin-controls"], "n": 3}
+{"idx": 83, "ci": 3, "m": [], "n": 3}
+{"idx": 83, "ci": 4, "m": ["endpoint-dlp-domains"], "n": 3}
+{"idx": 83, "ci": 5, "m": ["known-limitations", "implementation-prerequisites-specified"], "n": 3}
+{"idx": 83, "ci": 6, "m": ["multi-dimensional-comparison-framework", "cost-billing-implications", "data-residency-retention-implications"], "n": 3}
+{"idx": 83, "ci": 7, "m": ["validation-rollout-guidance", "release-timeline-awareness", "coverage-bypass-analysis"], "n": 3}
 {"idx": 84, "ci": 0, "m": ["maroczy-bind-structure"], "n": 3}
+{"idx": 84, "ci": 1, "m": ["database-frequency-specific-counts", "frequency-under-two-percent"], "n": 3}
+{"idx": 84, "ci": 2, "m": ["white-bind-maintenance-strategy"], "n": 3}
+{"idx": 84, "ci": 3, "m": ["black-b5-queenside-break", "white-development-schemes"], "n": 3}
+{"idx": 84, "ci": 4, "m": ["dragon-style-setup"], "n": 3}
+{"idx": 84, "ci": 5, "m": ["wrong-eco-code", "multiple-white-strategic-systems"], "n": 3}
+{"idx": 84, "ci": 6, "m": ["break-preparation-mechanics"], "n": 3}
+{"idx": 84, "ci": 7, "m": ["timing-transformation-concepts"], "n": 3}
 {"idx": 85, "ci": 0, "m": ["hasselblad-no-capture-one", "fuji-flash-sync-speed", "hasselblad-leaf-shutter-sync"], "n": 3}
+{"idx": 85, "ci": 1, "m": ["phase-one-leaf-shutter-sync", "fuji-phase-capture-one-support", "phase-one-ethernet-tether"], "n": 3}
+{"idx": 85, "ci": 2, "m": ["fuji-body-price", "hasselblad-body-price", "phase-one-system-cost"], "n": 3}
+{"idx": 85, "ci": 3, "m": ["lens-ecosystem-cost-comparison", "nyc-rental-house-names", "hasselblad-internal-ssd"], "n": 3}
+{"idx": 85, "ci": 4, "m": ["hasselblad-hncs-color", "conditional-recommendation-framework"], "n": 3}
+{"idx": 85, "ci": 5, "m": ["software-ecosystem-lock-in-analysis", "tethering-architecture-differentiation", "sync-technology-power-trade-offs"], "n": 3}
+{"idx": 85, "ci": 6, "m": ["multi-year-ownership-cost-projection", "location-specific-market-intelligence", "misinformation-contradiction-resolution"], "n": 3}
+{"idx": 85, "ci": 7, "m": [], "n": 3}
 {"idx": 86, "ci": 0, "m": ["saudi-arabia-current-flfp-rate", "saudi-arabia-historical-baseline", "saudi-driving-ban-reform-year"], "n": 3}
+{"idx": 86, "ci": 1, "m": [], "n": 3}
+{"idx": 86, "ci": 2, "m": ["korea-current-flfp-rate"], "n": 3}
+{"idx": 86, "ci": 3, "m": [], "n": 3}
+{"idx": 86, "ci": 4, "m": ["iceland-current-flfp-rate"], "n": 3}
+{"idx": 86, "ci": 5, "m": [], "n": 3}
+{"idx": 86, "ci": 6, "m": [], "n": 3}
+{"idx": 86, "ci": 7, "m": [], "n": 3}
 {"idx": 87, "ci": 0, "m": ["june-2022-cash-balance", "q1-2024-runway-projection"], "n": 3}
+{"idx": 87, "ci": 1, "m": ["takeda-program-review-status", "milestone-removal-from-runway"], "n": 3}
+{"idx": 87, "ci": 2, "m": [], "n": 3}
+{"idx": 87, "ci": 3, "m": ["collaboration-revenue-2022"], "n": 3}
+{"idx": 87, "ci": 4, "m": [], "n": 3}
+{"idx": 87, "ci": 5, "m": ["sublease-income-reconciliation"], "n": 3}
+{"idx": 87, "ci": 6, "m": ["timeline-misalignment-information-asymmetry", "negotiating-leverage-assessment", "third-party-validation-signaling-risk"], "n": 3}
+{"idx": 87, "ci": 7, "m": ["operational-flexibility-constraints"], "n": 3}
 {"idx": 88, "ci": 0, "m": ["ios-fy2024-margin-calculation", "ios-revenue-growth-2023-2024"], "n": 3}
+{"idx": 88, "ci": 1, "m": ["pt-q2-2025-margin-calculation", "pt-fy2024-margin-calculation", "pt-separation-date"], "n": 3}
+{"idx": 88, "ci": 2, "m": ["pt-revenue-growth-2023-2024"], "n": 3}
 {"idx": 88, "ci": 3, "m": ["ahs-q2-2025-margin-calculation", "ahs-fy2024-margin-calculation"], "n": 3}
+{"idx": 88, "ci": 4, "m": ["ahs-revenue-growth-2023-2024"], "n": 3}
+{"idx": 88, "ci": 5, "m": ["q1-2025-company-margin", "q1-2024-company-margin"], "n": 3}
+{"idx": 88, "ci": 6, "m": [], "n": 3}
+{"idx": 88, "ci": 7, "m": ["q1-yoy-margin-interpretation", "portfolio-prioritization-conclusion"], "n": 3}
+{"idx": 89, "ci": 1, "m": ["policy-effective-date", "policy-language-team-support", "mileage-reimbursement-fact"], "n": 3}
+{"idx": 89, "ci": 2, "m": ["four-block-detour-distance", "returning-to-route-fact", "phone-glance-timing"], "n": 3}
+{"idx": 89, "ci": 3, "m": ["deleted-email-metadata", "on-schedule-fact", "intended-resume-deliveries"], "n": 3}
+{"idx": 89, "ci": 4, "m": ["sources-of-employer-benefit"], "n": 3}
+{"idx": 89, "ci": 5, "m": ["frolic-vs-detour-doctrine"], "n": 3}
+{"idx": 89, "ci": 6, "m": ["scope-as-central-issue", "dual-purpose-or-personal-comfort", "slight-deviation-analysis"], "n": 3}
+{"idx": 89, "ci": 7, "m": ["anticipates-employer-counterarguments", "evidence-sufficiency-matter-of-law", "convergence-of-multiple-factors"], "n": 3}
+{"idx": 91, "ci": 1, "m": ["exception-for-degree-requirement", "program-language-requirement", "compulsory-supporting-documents"], "n": 3}
+{"idx": 91, "ci": 2, "m": [], "n": 3}
+{"idx": 91, "ci": 3, "m": ["recommendation-letters", "vap-file", "charpak-nationality-requirement"], "n": 3}
+{"idx": 91, "ci": 4, "m": ["charpak-age-limit", "charpak-for-full-time-masters-programs", "charpak-ineligibility-phd"], "n": 3}
+{"idx": 91, "ci": 5, "m": ["charpak-previous-recipient-exclusion", "charpak-ineligibility"], "n": 3}
+{"idx": 91, "ci": 6, "m": ["study-abroad", "french-ability", "indian-education"], "n": 3}
+{"idx": 91, "ci": 7, "m": ["charpak-photo-requirement", "charpak-passport-requirement"], "n": 3}
+{"idx": 92, "ci": 1, "m": ["identifies-zero-pricing-discretion", "identifies-quota-system", "identifies-company-branding"], "n": 3}
+{"idx": 92, "ci": 2, "m": ["identifies-schedule-flexibility", "identifies-personal-vehicle"], "n": 3}
+{"idx": 92, "ci": 3, "m": ["identifies-ability-to-hire-assistants", "scope-temporal-geographic", "scope-employer-motivation"], "n": 3}
+{"idx": 92, "ci": 4, "m": ["identifies-lapsed-insurance", "identifies-lost-training-records"], "n": 3}
+{"idx": 92, "ci": 5, "m": ["factor-predominance-weighing-analysis"], "n": 3}
+{"idx": 92, "ci": 6, "m": ["analyzes-right-to-control-vs-actual-control", "analyzes-algorithmic-supervision"], "n": 3}
+{"idx": 92, "ci": 7, "m": ["analyzes-scope-of-employment-dual-purposebenefit"], "n": 3}
+{"idx": 93, "ci": 1, "m": ["working-consensus-functional-sufficiency", "strukov-williams-pragmatic-position"], "n": 3}
+{"idx": 93, "ci": 2, "m": ["knowm-ahah-differential-pairs"], "n": 3}
+{"idx": 93, "ci": 3, "m": ["michigan-read-margin-analysis"], "n": 3}
+{"idx": 93, "ci": 4, "m": ["kaist-self-rectifying-or-selector"], "n": 3}
+{"idx": 93, "ci": 5, "m": ["sneak-path-solutions-comprehensive", "variability-mitigation-comprehensive"], "n": 3}
+{"idx": 93, "ci": 6, "m": ["accuracy-competitive-not-superior"], "n": 3}
+{"idx": 93, "ci": 7, "m": [], "n": 3}
 {"idx": 94, "ci": 0, "m": ["identifies-all-four-traditions", "mackinnon-dominance-framework", "fineman-vulnerability-theory"], "n": 3}
+{"idx": 94, "ci": 1, "m": ["mir-hosseini-contribution", "wadud-hermeneutics", "sharia-fiqh-distinction"], "n": 3}
+{"idx": 94, "ci": 2, "m": ["islamic-feminist-organizations", "african-legal-pluralism-structure", "african-decolonial-scholars"], "n": 3}
+{"idx": 94, "ci": 3, "m": ["chinese-marketization-tension"], "n": 3}
+{"idx": 94, "ci": 4, "m": ["property-anglo-american-structure", "property-islamic-separate-ownership", "property-islamic-inheritance"], "n": 3}
+{"idx": 94, "ci": 5, "m": ["property-african-land-tenure", "property-chinese-marital-rules"], "n": 3}
+{"idx": 94, "ci": 6, "m": ["bodily-autonomy-anglo-dobbs", "bodily-autonomy-anglo-sexual-violence"], "n": 3}
+{"idx": 94, "ci": 7, "m": ["bodily-autonomy-african-fgm-maputo", "bodily-autonomy-chinese-reproductive-control"], "n": 3}
 {"idx": 95, "ci": 0, "m": ["zimbabwe-compensation-deed-2020"], "n": 3}
+{"idx": 95, "ci": 1, "m": ["zimbabwe-hectares-transferred-scale", "zimbabwe-beneficiary-numbers", "zimbabwe-beneficiary-expansion-2024"], "n": 3}
+{"idx": 95, "ci": 2, "m": [], "n": 3}
 {"idx": 95, "ci": 3, "m": ["zimbabwe-fast-track-violence", "south-africa-section-25-framework"], "n": 3}
+{"idx": 95, "ci": 4, "m": ["south-africa-constitutional-amendment-2021", "south-africa-expropriation-act-2025", "south-africa-redistribution-progress"], "n": 3}
+{"idx": 95, "ci": 5, "m": [], "n": 3}
+{"idx": 95, "ci": 6, "m": ["namibia-constitutional-legal-framework"], "n": 3}
+{"idx": 95, "ci": 7, "m": ["namibia-resettlement-hectares", "namibia-ownership-persistence"], "n": 3}
 {"idx": 96, "ci": 0, "m": [], "n": 3}
+{"idx": 96, "ci": 1, "m": [], "n": 3}
+{"idx": 96, "ci": 2, "m": ["debit-spread-risk-reward-structure", "credit-spread-risk-reward-structure"], "n": 3}
+{"idx": 96, "ci": 3, "m": [], "n": 3}
+{"idx": 96, "ci": 4, "m": ["prohibited-strategies-list", "stock-price-range"], "n": 3}
+{"idx": 96, "ci": 5, "m": ["relative-volume-requirement"], "n": 3}
+{"idx": 96, "ci": 6, "m": [], "n": 3}
+{"idx": 96, "ci": 7, "m": [], "n": 3}
 {"idx": 96, "ci": 20, "m": ["warning-language-for-risks"], "n": 3}
 {"idx": 97, "ci": 0, "m": [], "n": 3}
+{"idx": 97, "ci": 1, "m": ["mabu-relational-robot-design"], "n": 3}
+{"idx": 97, "ci": 2, "m": [], "n": 3}
+{"idx": 97, "ci": 3, "m": [], "n": 3}
+{"idx": 97, "ci": 4, "m": ["sustained-sixmonth-integration"], "n": 3}
+{"idx": 97, "ci": 5, "m": [], "n": 3}
+{"idx": 97, "ci": 6, "m": ["platform-tradeoff-analysis", "evidence-quality-discrepancies"], "n": 3}
+{"idx": 97, "ci": 7, "m": [], "n": 3}
+{"idx": 98, "ci": 1, "m": ["germany-scenario-b-net-takehome-eur", "us-scenario-a-federal-income-tax", "us-scenario-a-social-security-tax"], "n": 3}
+{"idx": 98, "ci": 2, "m": ["us-scenario-a-medicare-tax", "us-scenario-b-ordinary-income-tax", "us-scenario-b-capital-gains-tax"], "n": 3}
+{"idx": 98, "ci": 3, "m": ["us-scenario-b-social-security-exactly", "germany-scenario-a-income-tax-with-soli", "germany-scenario-a-pension-contribution"], "n": 3}
+{"idx": 98, "ci": 4, "m": ["germany-scenario-a-health-insurance", "germany-scenario-a-unemployment-ltc", "germany-scenario-b-wage-income-tax"], "n": 3}
+{"idx": 98, "ci": 5, "m": ["germany-scenario-b-social-insurance-wages-only", "eur-usd-conversion-rate-stated"], "n": 3}
+{"idx": 98, "ci": 6, "m": ["us-standard-deduction-2024", "social-security-wage-base-cap", "us-ltcg-15-percent-rate"], "n": 3}
+{"idx": 98, "ci": 7, "m": ["germany-capital-gains-flat-rate", "feie-exclusion-amount"], "n": 3}
 {"idx": 99, "ci": 1, "m": ["aws-ready2run-cost", "aws-long-read-cost"], "n": 3}
+{"idx": 99, "ci": 2, "m": ["china-cloud-operators"], "n": 3}
 {"idx": 99, "ci": 3, "m": ["google-no-china-region", "egress-cost-rates"], "n": 3}
+{"idx": 99, "ci": 4, "m": ["aws-services-named", "google-services-named", "azure-current-approaches"], "n": 3}
+{"idx": 99, "ci": 5, "m": ["all-criteria-addressed", "multi-scenario-cost-modeling"], "n": 3}
+{"idx": 99, "ci": 6, "m": ["china-sovereign-architecture", "service-retirement-implications", "federation-maturity-assessment"], "n": 3}
 {"idx": 99, "ci": 7, "m": ["egress-scenario-modeling"], "n": 3}
 {"idx": 101, "ci": 0, "m": ["factual-1", "factual-2", "factual-3"], "n": 3}
+{"idx": 101, "ci": 1, "m": ["factual-6"], "n": 3}
+{"idx": 101, "ci": 2, "m": ["analysis-1"], "n": 3}
+{"idx": 101, "ci": 3, "m": ["analysis-7"], "n": 3}
 {"idx": 101, "ci": 4, "m": ["technical-precision", "structured-framework-comparison"], "n": 3}
+{"idx": 101, "ci": 5, "m": ["objective-engineering-tone"], "n": 3}
+{"idx": 101, "ci": 6, "m": ["nvidia-jetson-performance-docs", "yolov8-jetson-benchmarks", "tensorrt-int8-documentation"], "n": 3}
+{"idx": 101, "ci": 7, "m": ["active-learning-research", "forum-primary-source"], "n": 2}
 {"idx": 107, "ci": 0, "m": ["not-normal-adjustment", "stop-inhaler", "paradox-broncho"], "n": 3}
+{"idx": 107, "ci": 1, "m": ["o2-threshold", "urgent-symptoms"], "n": 3}
+{"idx": 107, "ci": 2, "m": ["same-day-care", "who-to-contact", "bring-inhaler"], "n": 3}
+{"idx": 107, "ci": 3, "m": [], "n": 3}
 {"idx": 107, "ci": 4, "m": ["permissive-threshold"], "n": 3}
+{"idx": 107, "ci": 5, "m": [], "n": 3}
+{"idx": 107, "ci": 6, "m": ["safety-first-structure", "plain-language"], "n": 3}
+{"idx": 107, "ci": 7, "m": [], "n": 2}
 {"idx": 117, "ci": 0, "m": ["essential-tremor-frequency"], "n": 3}
+{"idx": 117, "ci": 1, "m": ["vibrato-tremor-overlap", "no-native-daw-tremor-features"], "n": 3}
+{"idx": 117, "ci": 2, "m": ["ableton-velocity-midi-effect"], "n": 3}
+{"idx": 117, "ci": 3, "m": [], "n": 3}
 {"idx": 117, "ci": 4, "m": ["steadymouse-description", "steadymouse-lag-tradeoff"], "n": 3}
+{"idx": 117, "ci": 5, "m": ["detection-accuracy-metrics", "research-gap-daw-studies"], "n": 3}
+{"idx": 117, "ci": 6, "m": ["daw-feature-citation-required", "tremor-suppression-expression-tradeoff"], "n": 3}
+{"idx": 117, "ci": 7, "m": ["specific-algorithmic-methods", "multiple-research-domains", "adaptive-calibration-rationale"], "n": 3}
 {"idx": 117, "ci": 8, "m": ["creative-flow-impact-analysis", "cross-domain-triangulation"], "n": 3}
 {"idx": 117, "ci": 12, "m": ["specific-systems-tools", "adaptive-musical-interface-research", "acknowledges-daw-research-gaps"], "n": 3}
+{"idx": 118, "ci": 1, "m": ["chubb-response-mechanism", "credit-monitoring-coverage-confirmed"], "n": 3}
 {"idx": 118, "ci": 2, "m": ["legal-defense-coverage-confirmed", "business-profile-context"], "n": 3}
+{"idx": 118, "ci": 3, "m": ["overstates-fine-coverage", "policy-architecture-analysis"], "n": 3}
+{"idx": 118, "ci": 4, "m": ["service-model-structural-differentiation", "interconnected-exclusion-risk-analysis", "conditional-recommendation-logic"], "n": 3}
+{"idx": 118, "ci": 5, "m": ["operational-workflow-implications"], "n": 3}
 {"idx": 118, "ci": 6, "m": ["insurance-terminology-precision", "structured-comparative-format"], "n": 3}
+{"idx": 118, "ci": 7, "m": ["professional-advisory-tone", "recommendation-prominent"], "n": 3}
 {"idx": 124, "ci": 0, "m": ["monthly-lead-targets-all-three-months", "cpl-targets-declining-progression", "three-month-cumulative-lead-total"], "n": 3}
+{"idx": 124, "ci": 1, "m": ["four-content-pillars-identified"], "n": 3}
+{"idx": 124, "ci": 2, "m": ["pillar-percentage-distribution", "weekly-posting-frequency-total", "six-post-templates-enumerated"], "n": 3}
+{"idx": 124, "ci": 3, "m": ["monthly-paid-budget-progression"], "n": 3}
 {"idx": 124, "ci": 4, "m": ["lead-generation-campaign-allocation"], "n": 3}
+{"idx": 124, "ci": 5, "m": ["dm-automation-platform-named", "crm-platform-options-specified", "lead-scoring-tiers-defined"], "n": 3}
+{"idx": 124, "ci": 6, "m": ["hot-lead-followup-timeline", "primary-kpis-listed"], "n": 3}
+{"idx": 124, "ci": 7, "m": ["contractor-support-areas-identified", "contractor-budget-ranges-provided", "marketing-tools-stack-specified"], "n": 3}
 {"idx": 124, "ci": 8, "m": ["audience-progression-framework"], "n": 3}
 {"idx": 124, "ci": 12, "m": ["precise-marketing-terminology"], "n": 3}
+{"idx": 145, "ci": 1, "m": [], "n": 3}
 {"idx": 145, "ci": 2, "m": ["okta-mfa-phishing-resistant-methods"], "n": 3}
+{"idx": 145, "ci": 3, "m": [], "n": 3}
+{"idx": 145, "ci": 4, "m": [], "n": 3}
+{"idx": 145, "ci": 5, "m": [], "n": 3}
 {"idx": 145, "ci": 6, "m": [], "n": 3}
+{"idx": 145, "ci": 7, "m": [], "n": 3}
 {"idx": 145, "ci": 10, "m": ["structured-vendor-comparison", "objective-business-tone"], "n": 3}
 {"idx": 154, "ci": 0, "m": ["oxygen-hypothesis"], "n": 3}
+{"idx": 154, "ci": 1, "m": ["genetic-toolkit-hypothesis", "ecological-feedback-hypothesis"], "n": 3}
+{"idx": 154, "ci": 2, "m": [], "n": 3}
 {"idx": 154, "ci": 3, "m": ["taphonomic-bias-preservation"], "n": 3}
+{"idx": 154, "ci": 4, "m": ["specific-cambrian-taxa"], "n": 3}
+{"idx": 154, "ci": 5, "m": ["multi-causal-integrated-framework"], "n": 3}
+{"idx": 154, "ci": 6, "m": ["toolkit-timing-paradox-resolution"], "n": 3}
 {"idx": 154, "ci": 7, "m": [], "n": 3}
 {"idx": 162, "ci": 1, "m": ["ecc-memory-support", "power-consumption-calculation"], "n": 3}
+{"idx": 162, "ci": 2, "m": ["annual-power-cost-per-workstation", "fleet-power-cost-5year", "10gbe-compatibility"], "n": 3}
+{"idx": 162, "ci": 3, "m": ["dell-service-response"], "n": 3}
+{"idx": 162, "ci": 4, "m": ["ecc-reliability-clinical-context"], "n": 3}
 {"idx": 162, "ci": 5, "m": [], "n": 3}
+{"idx": 162, "ci": 6, "m": ["10gbe-performance-impact", "technical-precision-medical-it"], "n": 3}
+{"idx": 162, "ci": 7, "m": ["structured-comparison-format", "vendor-neutral-objective-tone"], "n": 3}
 {"idx": 162, "ci": 9, "m": [], "n": 3}
+{"idx": 163, "ci": 1, "m": ["bayesian-scm-mechanism-definition", "bayesian-identification-criteria"], "n": 3}
+{"idx": 163, "ci": 2, "m": ["mahoney-pt-methodologist", "bayesian-pt-attribution", "pearl-mahoney-conflation-penalty"], "n": 3}
+{"idx": 163, "ci": 3, "m": ["qca-equifinality-multiple-sufficient"], "n": 3}
+{"idx": 163, "ci": 4, "m": ["qca-conjunctural-causation"], "n": 3}
 {"idx": 163, "ci": 5, "m": ["dag-adjustment-set-criteria", "post-treatment-conditioning-definition"], "n": 3}
+{"idx": 163, "ci": 6, "m": ["skocpol-mechanism-pathway", "qca-boolean-set-theory"], "n": 3}
+{"idx": 163, "ci": 7, "m": ["democratic-breakdown-integration", "selection-bias-dv-critique", "dag-pedagogy-pt-reforms"], "n": 3}
 {"idx": 163, "ci": 9, "m": ["methodological-tensions-explicit"], "n": 3}
 {"idx": 163, "ci": 11, "m": ["equifinality-paradigm-contrast"], "n": 3}
 {"idx": 163, "ci": 15, "m": ["cites-qca-methodology", "cites-empirical-applications"], "n": 3}
+{"idx": 164, "ci": 1, "m": ["includes-countryside-days", "lists-multiple-destinations", "accommodation-options-with-pricing"], "n": 3}
+{"idx": 164, "ci": 2, "m": ["activity-mix-cultural", "activity-mix-adventure", "activity-mix-nightlife"], "n": 3}
 {"idx": 164, "ci": 3, "m": ["transport-between-cities", "local-transport-options", "verifies-budget-feasibility"], "n": 3}
+{"idx": 164, "ci": 4, "m": ["group-logistics-considerations", "accommodation-group-suitability", "consecutive-day-feasibility"], "n": 3}
+{"idx": 164, "ci": 5, "m": ["route-optimization-insight"], "n": 3}
+{"idx": 164, "ci": 6, "m": ["structured-itinerary-format", "practical-helpful-tone"], "n": 3}
 {"idx": 164, "ci": 7, "m": ["clear-pricing-notation", "actionable-specificity"], "n": 3}
 {"idx": 165, "ci": 1, "m": ["mdca-session-controls", "copilot-native-dlp", "saml-sso-requirement"], "n": 3}
 {"idx": 165, "ci": 2, "m": ["edge-in-browser-protection", "conditional-access-app-control"], "n": 3}
+{"idx": 165, "ci": 3, "m": [], "n": 3}
+{"idx": 165, "ci": 4, "m": ["endpoint-dlp-domains"], "n": 3}
+{"idx": 165, "ci": 5, "m": ["known-limitations", "implementation-prerequisites-specified"], "n": 3}
 {"idx": 165, "ci": 6, "m": ["multi-dimensional-comparison-framework"], "n": 3}
 {"idx": 169, "ci": 0, "m": ["maroczy-bind-structure"], "n": 3}
+{"idx": 169, "ci": 1, "m": [], "n": 3}
 {"idx": 169, "ci": 2, "m": [], "n": 3}
+{"idx": 169, "ci": 3, "m": [], "n": 3}
+{"idx": 169, "ci": 4, "m": [], "n": 3}
+{"idx": 169, "ci": 5, "m": [], "n": 3}
 {"idx": 169, "ci": 6, "m": [], "n": 3}
 {"idx": 172, "ci": 0, "m": [], "n": 3}
+{"idx": 172, "ci": 1, "m": [], "n": 3}
+{"idx": 172, "ci": 2, "m": [], "n": 3}
 {"idx": 172, "ci": 3, "m": [], "n": 3}
+{"idx": 172, "ci": 4, "m": [], "n": 3}
+{"idx": 172, "ci": 5, "m": [], "n": 3}
+{"idx": 172, "ci": 6, "m": [], "n": 3}
 {"idx": 172, "ci": 7, "m": [], "n": 3}
 {"idx": 172, "ci": 12, "m": ["cites-hp-williams-2008-nature", "cites-chua-memristor-frameworks"], "n": 3}
 {"idx": 174, "ci": 0, "m": ["identifies-three-elements-respondeat-superior", "identifies-app-mandated-routes", "identifies-algorithmic-suspension"], "n": 3}
 {"idx": 174, "ci": 1, "m": ["identifies-quota-system", "identifies-company-branding"], "n": 3}
+{"idx": 174, "ci": 2, "m": ["identifies-schedule-flexibility", "identifies-personal-vehicle"], "n": 3}
 {"idx": 174, "ci": 3, "m": ["identifies-ability-to-hire-assistants", "scope-temporal-geographic", "scope-employer-motivation"], "n": 3}
+{"idx": 174, "ci": 4, "m": ["identifies-lapsed-insurance", "identifies-lost-training-records"], "n": 3}
+{"idx": 174, "ci": 5, "m": ["partial-summary-adjudication", "factor-predominance-weighing-analysis"], "n": 3}
+{"idx": 174, "ci": 6, "m": ["illusory-rights-doctrine-analysis", "analyzes-right-to-control-vs-actual-control", "analyzes-algorithmic-supervision"], "n": 3}
 {"idx": 174, "ci": 7, "m": ["analyzes-scope-of-employment-dual-purposebenefit"], "n": 3}
 {"idx": 176, "ci": 0, "m": [], "n": 3}
 {"idx": 176, "ci": 1, "m": [], "n": 3}
+{"idx": 176, "ci": 2, "m": [], "n": 3}
 {"idx": 176, "ci": 3, "m": ["zimbabwe-fast-track-violence"], "n": 3}
+{"idx": 176, "ci": 4, "m": ["south-africa-redistribution-progress"], "n": 3}
+{"idx": 176, "ci": 5, "m": [], "n": 3}
+{"idx": 176, "ci": 6, "m": [], "n": 3}
 {"idx": 176, "ci": 7, "m": [], "n": 3}
 {"idx": 176, "ci": 13, "m": ["quantitative-precision", "acknowledges-methodological-limitations"], "n": 3}
 {"idx": 177, "ci": 0, "m": ["identifies-all-four-traditions", "mackinnon-dominance-framework", "fineman-vulnerability-theory"], "n": 3}
 {"idx": 177, "ci": 1, "m": ["mir-hosseini-contribution", "wadud-hermeneutics", "sharia-fiqh-distinction"], "n": 3}
+{"idx": 177, "ci": 2, "m": ["african-legal-pluralism-structure", "african-decolonial-scholars"], "n": 3}
 {"idx": 177, "ci": 3, "m": ["chinese-socialist-legal-reforms", "chinese-marketization-tension"], "n": 3}
+{"idx": 177, "ci": 4, "m": ["property-islamic-separate-ownership", "property-islamic-inheritance"], "n": 3}
+{"idx": 177, "ci": 5, "m": ["property-african-land-tenure", "property-chinese-marital-rules"], "n": 3}
+{"idx": 177, "ci": 6, "m": ["bodily-autonomy-anglo-sexual-violence"], "n": 3}
 {"idx": 177, "ci": 7, "m": ["bodily-autonomy-african-fgm-maputo", "bodily-autonomy-chinese-reproductive-control"], "n": 3}
 {"idx": 177, "ci": 13, "m": ["precise-legal-theoretical-terminology", "structured-comparative-organization", "formal-scholarly-tone"], "n": 3}
 {"idx": 178, "ci": 0, "m": [], "n": 3}
 {"idx": 178, "ci": 1, "m": [], "n": 3}
+{"idx": 178, "ci": 2, "m": [], "n": 3}
 {"idx": 178, "ci": 3, "m": [], "n": 3}
+{"idx": 178, "ci": 4, "m": [], "n": 3}
+{"idx": 178, "ci": 5, "m": [], "n": 3}
+{"idx": 178, "ci": 6, "m": [], "n": 3}
 {"idx": 178, "ci": 7, "m": ["measurable-logging-requirements"], "n": 3}
 {"idx": 179, "ci": 0, "m": [], "n": 3}
 {"idx": 179, "ci": 1, "m": ["aws-ready2run-cost"], "n": 3}
+{"idx": 179, "ci": 2, "m": [], "n": 3}
 {"idx": 179, "ci": 3, "m": [], "n": 3}
+{"idx": 179, "ci": 4, "m": [], "n": 3}
+{"idx": 179, "ci": 5, "m": ["all-criteria-addressed"], "n": 3}
+{"idx": 179, "ci": 6, "m": [], "n": 3}
 {"idx": 179, "ci": 7, "m": ["egress-scenario-modeling"], "n": 3}
 {"idx": 180, "ci": 0, "m": ["core-portfolio-q1-2024-margin-calculation", "funds-segment-q1-2024-margin-calculation", "margin-differential-quantified"], "n": 3}
+{"idx": 180, "ci": 1, "m": ["renaissance-purchase-price", "renaissance-ownership-increase"], "n": 3}
+{"idx": 180, "ci": 2, "m": ["renaissance-total-cash-investment"], "n": 3}
+{"idx": 180, "ci": 3, "m": ["total-impairment-charges", "impairment-fund-distribution"], "n": 3}
 {"idx": 180, "ci": 4, "m": [], "n": 3}
+{"idx": 180, "ci": 5, "m": [], "n": 3}
+{"idx": 180, "ci": 6, "m": ["two-sided-strategic-assessment"], "n": 3}
 {"idx": 180, "ci": 8, "m": ["debt-equity-balance-discipline", "strategic-coherence-conclusion"], "n": 3}
 {"idx": 180, "ci": 11, "m": ["cites-acadia-10q-q1-2024"], "n": 3}
 {"idx": 181, "ci": 0, "m": ["ocf-q1-2025", "ocf-q1-2024", "ocf-growth-amount"], "n": 3}
+{"idx": 181, "ci": 1, "m": ["ocf-growth-rate", "net-income-q1-2025", "net-income-q1-2024"], "n": 3}
+{"idx": 181, "ci": 2, "m": ["ocf-conversion-2025", "ocf-conversion-2024", "debt-500m-2028"], "n": 3}
 {"idx": 181, "ci": 3, "m": ["debt-750m-2030", "debt-750m-2032", "debt-750m-2043"], "n": 3}
+{"idx": 181, "ci": 4, "m": ["debt-700m-2048", "total-debt-outstanding", "cash-balance"], "n": 3}
+{"idx": 181, "ci": 5, "m": ["corporate-revolver-capacity", "weighted-average-maturity"], "n": 3}
+{"idx": 181, "ci": 6, "m": ["debt-refinancing-action", "net-income-growth-rate", "accounts-receivable-2025"], "n": 3}
 {"idx": 181, "ci": 7, "m": ["accounts-receivable-2024", "income-taxes-payable-2025", "income-taxes-payable-2024"], "n": 3}
 {"idx": 181, "ci": 10, "m": ["dividends-paid-q1-2025", "yoy-working-capital-change-quantification"], "n": 3}
 {"idx": 181, "ci": 14, "m": ["yoy-comparison-structure"], "n": 3}
 {"idx": 182, "ci": 0, "m": ["efsl-rating-and-category", "efsl-leverage", "muthoot-rating-and-category"], "n": 3}
 {"idx": 182, "ci": 1, "m": ["muthoot-leverage"], "n": 3}
+{"idx": 182, "ci": 2, "m": [], "n": 3}
 {"idx": 182, "ci": 3, "m": ["tds-applies-to-listed-ncds", "post-tax-yield-calculations", "gsec-benchmark-context"], "n": 3}
+{"idx": 182, "ci": 4, "m": ["spread-analysis", "leverage-risk-flags", "claims-80ttb-applies-to-ncd"], "n": 3}
+{"idx": 182, "ci": 5, "m": ["benchmarks-against-comparable-issues"], "n": 3}
+{"idx": 182, "ci": 6, "m": ["explains-tenor-laddering-rationale", "interprets-spread-differential-meaning", "notes-security-enforcement-reality"], "n": 3}
 {"idx": 182, "ci": 7, "m": ["traces-asset-quality-or-profitability-trends"], "n": 3}
 {"idx": 183, "ci": 0, "m": [], "n": 3}
 {"idx": 183, "ci": 1, "m": [], "n": 3}
+{"idx": 183, "ci": 2, "m": [], "n": 3}
+{"idx": 183, "ci": 3, "m": [], "n": 3}
 {"idx": 183, "ci": 4, "m": [], "n": 3}
+{"idx": 183, "ci": 5, "m": [], "n": 3}
+{"idx": 183, "ci": 6, "m": [], "n": 3}
 {"idx": 183, "ci": 8, "m": [], "n": 3}
 {"idx": 183, "ci": 13, "m": ["feb-2024-shares-issued", "feb-2024-pfws-issued"], "n": 3}
 {"idx": 183, "ci": 17, "m": [], "n": 3}
 {"idx": 183, "ci": 20, "m": ["objective-analytical-tone"], "n": 3}
 {"idx": 183, "ci": 22, "m": [], "n": 2}
 {"idx": 184, "ci": 0, "m": ["operating-cash-flow-9m-2024", "investing-cash-flow-9m-2024", "free-cash-flow-calculation"], "n": 3}
+{"idx": 184, "ci": 1, "m": ["quarterly-burn-rate-calculation", "ending-cash-position-sept-2024", "total-q3-2024-revenue-growth"], "n": 3}
+{"idx": 184, "ci": 2, "m": ["biologics-q3-2024-growth-rate", "neurosurgery-q3-2024-growth-rate", "capital-equipment-q3-2024-growth-rate"], "n": 3}
+{"idx": 184, "ci": 3, "m": ["gross-margin-q3-2024"], "n": 3}
+{"idx": 184, "ci": 4, "m": ["march-2024-equity-raise", "august-2024-debt-repayment", "biologics-disposables-q3-explosion"], "n": 3}
 {"idx": 184, "ci": 5, "m": [], "n": 3}
+{"idx": 184, "ci": 6, "m": ["beginning-cash-position-jan-2024"], "n": 3}
 {"idx": 184, "ci": 9, "m": ["business-model-evolution-narrative"], "n": 3}
 {"idx": 184, "ci": 10, "m": ["installed-base-recurring-revenue-model", "segment-absolute-vs-relative-contribution", "volume-driven-unit-economics"], "n": 3}
 {"idx": 184, "ci": 14, "m": [], "n": 3}
 {"idx": 185, "ci": 0, "m": ["equity-dec-2023", "equity-dec-2024", "equity-change-amount"], "n": 3}
+{"idx": 185, "ci": 1, "m": ["equity-change-percentage", "net-loss-2024", "equity-financing-2024"], "n": 3}
 {"idx": 185, "ci": 2, "m": [], "n": 3}
+{"idx": 185, "ci": 3, "m": [], "n": 3}
+{"idx": 185, "ci": 4, "m": [], "n": 3}
+{"idx": 185, "ci": 5, "m": [], "n": 3}
 {"idx": 185, "ci": 6, "m": ["operating-cash-outflow-2024"], "n": 3}
 {"idx": 185, "ci": 11, "m": [], "n": 3}
 {"idx": 186, "ci": 0, "m": ["swap-fair-value-dec-2023", "swap-fair-value-june-2024"], "n": 3}
+{"idx": 186, "ci": 1, "m": ["q2-2023-total-interest-expense", "q2-2024-total-interest-expense"], "n": 3}
 {"idx": 186, "ci": 2, "m": ["q2-2023-to-q2-2024-change"], "n": 3}
+{"idx": 186, "ci": 3, "m": ["q3-2024-total-interest-expense", "q3-2025-total-interest-expense", "q3-2024-to-q3-2025-change"], "n": 3}
 {"idx": 186, "ci": 4, "m": ["nine-month-2024-total-interest-expense"], "n": 3}
+{"idx": 186, "ci": 5, "m": ["nine-month-2025-total-interest-expense"], "n": 3}
+{"idx": 186, "ci": 6, "m": [], "n": 3}
 {"idx": 186, "ci": 8, "m": [], "n": 3}
 {"idx": 186, "ci": 12, "m": ["loss-on-debt-extinguishment"], "n": 3}
 {"idx": 186, "ci": 16, "m": [], "n": 3}
@@ -139,18 +515,40 @@
 {"idx": 186, "ci": 24, "m": ["cites-diamondrock-10q-q3-2025"], "n": 3}
 {"idx": 186, "ci": 25, "m": [], "n": 2}
 {"idx": 187, "ci": 0, "m": ["anzsic-classification"], "n": 3}
+{"idx": 187, "ci": 1, "m": ["fabrication-capacity-range", "steel-hs-codes"], "n": 3}
+{"idx": 187, "ci": 2, "m": ["crl-completion-timeline"], "n": 3}
+{"idx": 187, "ci": 3, "m": [], "n": 3}
+{"idx": 187, "ci": 4, "m": ["scope-definition-reconciliation", "fabricator-vs-supplier-distinction"], "n": 3}
 {"idx": 187, "ci": 5, "m": [], "n": 3}
+{"idx": 187, "ci": 6, "m": ["quantitative-data-precision"], "n": 3}
 {"idx": 187, "ci": 9, "m": ["stats-nz-revenue-data", "scnz-capacity-data"], "n": 3}
 {"idx": 187, "ci": 10, "m": ["companies-office-reference"], "n": 2}
+{"idx": 188, "ci": 0, "m": [], "n": 3}
+{"idx": 188, "ci": 1, "m": [], "n": 3}
+{"idx": 188, "ci": 2, "m": [], "n": 3}
+{"idx": 188, "ci": 3, "m": [], "n": 3}
 {"idx": 188, "ci": 4, "m": [], "n": 3}
+{"idx": 188, "ci": 5, "m": [], "n": 3}
+{"idx": 188, "ci": 6, "m": [], "n": 3}
 {"idx": 188, "ci": 8, "m": [], "n": 3}
 {"idx": 188, "ci": 11, "m": [], "n": 3}
 {"idx": 188, "ci": 15, "m": ["appendix-with-direct-links"], "n": 3}
+{"idx": 189, "ci": 0, "m": [], "n": 3}
+{"idx": 189, "ci": 1, "m": [], "n": 3}
+{"idx": 189, "ci": 2, "m": [], "n": 3}
 {"idx": 189, "ci": 3, "m": [], "n": 3}
+{"idx": 189, "ci": 4, "m": [], "n": 3}
+{"idx": 189, "ci": 5, "m": [], "n": 3}
+{"idx": 189, "ci": 6, "m": [], "n": 3}
 {"idx": 189, "ci": 7, "m": ["strategic-value-segment-assessment"], "n": 3}
 {"idx": 189, "ci": 10, "m": ["objective-analytical-tone"], "n": 3}
+{"idx": 191, "ci": 0, "m": [], "n": 3}
 {"idx": 191, "ci": 1, "m": [], "n": 3}
+{"idx": 191, "ci": 2, "m": [], "n": 3}
 {"idx": 191, "ci": 3, "m": [], "n": 3}
+{"idx": 191, "ci": 4, "m": [], "n": 3}
+{"idx": 191, "ci": 5, "m": [], "n": 3}
+{"idx": 191, "ci": 6, "m": [], "n": 3}
 {"idx": 191, "ci": 7, "m": [], "n": 3}
 {"idx": 191, "ci": 13, "m": [], "n": 3}
 {"idx": 191, "ci": 17, "m": [], "n": 3}
@@ -158,66 +556,924 @@
 {"idx": 191, "ci": 20, "m": ["structured-multi-part-presentation", "precise-financial-terminology"], "n": 3}
 {"idx": 191, "ci": 22, "m": ["cites-cmco-10k-march-2025", "cites-cmco-10k-march-2024", "references-march-2023-10k"], "n": 3}
 {"idx": 191, "ci": 23, "m": [], "n": 1}
+{"idx": 193, "ci": 0, "m": [], "n": 3}
 {"idx": 193, "ci": 1, "m": [], "n": 3}
+{"idx": 193, "ci": 2, "m": [], "n": 3}
+{"idx": 193, "ci": 3, "m": [], "n": 3}
+{"idx": 193, "ci": 4, "m": [], "n": 3}
 {"idx": 193, "ci": 5, "m": [], "n": 3}
+{"idx": 193, "ci": 6, "m": [], "n": 3}
 {"idx": 193, "ci": 9, "m": [], "n": 3}
 {"idx": 193, "ci": 13, "m": [], "n": 3}
 {"idx": 193, "ci": 17, "m": [], "n": 1}
+{"idx": 194, "ci": 0, "m": ["nvda-q2-fy25-earnings-date"], "n": 3}
+{"idx": 194, "ci": 1, "m": ["nvda-q2-revenue", "nvda-q3-revenue-guidance"], "n": 3}
+{"idx": 194, "ci": 2, "m": [], "n": 3}
+{"idx": 194, "ci": 3, "m": ["msft-fy24-q4-earnings-date"], "n": 3}
+{"idx": 194, "ci": 4, "m": [], "n": 3}
 {"idx": 194, "ci": 5, "m": [], "n": 3}
+{"idx": 194, "ci": 6, "m": ["soxx-sector-performance", "nvda-msft-fund-weights"], "n": 3}
 {"idx": 194, "ci": 9, "m": ["position-sizing-strategic-rationale"], "n": 3}
 {"idx": 194, "ci": 11, "m": ["precise-financial-terminology"], "n": 3}
 {"idx": 194, "ci": 15, "m": [], "n": 1}
+{"idx": 195, "ci": 0, "m": ["hash-ribbon-signal-interpretation"], "n": 3}
+{"idx": 195, "ci": 1, "m": ["post-halving-btc-per-block", "daily-miner-issuance"], "n": 3}
 {"idx": 195, "ci": 2, "m": [], "n": 3}
+{"idx": 195, "ci": 3, "m": [], "n": 3}
+{"idx": 195, "ci": 4, "m": [], "n": 3}
+{"idx": 195, "ci": 5, "m": ["bear-scenario-lower-bound"], "n": 3}
 {"idx": 195, "ci": 6, "m": ["absorption-share-formula", "data-retrieval-methodology", "fallback-analysis-framework"], "n": 3}
 {"idx": 195, "ci": 11, "m": ["quantitative-precision-standards", "reproducibility-documentation", "distinct-spreadsheet"], "n": 3}
 {"idx": 196, "ci": 0, "m": [], "n": 3}
+{"idx": 196, "ci": 1, "m": ["takeda-program-review-status"], "n": 3}
 {"idx": 196, "ci": 2, "m": [], "n": 3}
+{"idx": 196, "ci": 3, "m": [], "n": 3}
+{"idx": 196, "ci": 4, "m": [], "n": 3}
+{"idx": 196, "ci": 5, "m": [], "n": 3}
 {"idx": 196, "ci": 6, "m": ["negotiating-leverage-assessment", "third-party-validation-signaling-risk"], "n": 3}
 {"idx": 197, "ci": 0, "m": [], "n": 3}
+{"idx": 197, "ci": 1, "m": [], "n": 3}
+{"idx": 197, "ci": 2, "m": [], "n": 3}
+{"idx": 197, "ci": 3, "m": [], "n": 3}
 {"idx": 197, "ci": 4, "m": [], "n": 3}
+{"idx": 197, "ci": 5, "m": [], "n": 3}
+{"idx": 197, "ci": 6, "m": [], "n": 3}
 {"idx": 197, "ci": 8, "m": ["portfolio-mix-quality-analysis"], "n": 3}
 {"idx": 197, "ci": 12, "m": ["financial-data-as-prose"], "n": 3}
+{"idx": 198, "ci": 0, "m": ["position-sizing-conservative-range"], "n": 3}
+{"idx": 198, "ci": 1, "m": [], "n": 3}
+{"idx": 198, "ci": 2, "m": ["debit-spread-risk-reward-structure", "debit-spread-premium-target", "credit-spread-risk-reward-structure"], "n": 3}
+{"idx": 198, "ci": 3, "m": [], "n": 3}
+{"idx": 198, "ci": 4, "m": ["prohibited-strategies-list", "stock-average-daily-volume"], "n": 3}
+{"idx": 198, "ci": 5, "m": [], "n": 3}
+{"idx": 198, "ci": 6, "m": [], "n": 3}
 {"idx": 198, "ci": 14, "m": ["hypothetical-example-1-pnl-scenarios", "hypothetical-example-2-structure"], "n": 3}
 {"idx": 198, "ci": 18, "m": ["numbered-sections-structure"], "n": 3}
 {"idx": 198, "ci": 19, "m": ["professional-trading-terminology", "objective-analytical-tone"], "n": 3}
 {"idx": 198, "ci": 20, "m": ["warning-language-for-risks"], "n": 3}
 {"idx": 198, "ci": 21, "m": [], "n": 2}
 {"idx": 199, "ci": 0, "m": ["us-scenario-a-net-takehome", "germany-scenario-a-net-takehome-eur", "us-scenario-b-net-takehome"], "n": 3}
+{"idx": 199, "ci": 1, "m": ["germany-scenario-b-net-takehome-eur", "us-scenario-a-federal-income-tax", "us-scenario-a-social-security-tax"], "n": 3}
+{"idx": 199, "ci": 2, "m": ["us-scenario-a-medicare-tax", "us-scenario-b-ordinary-income-tax", "us-scenario-b-capital-gains-tax"], "n": 3}
+{"idx": 199, "ci": 3, "m": ["us-scenario-b-social-security-exactly", "germany-scenario-a-income-tax-with-soli", "germany-scenario-a-pension-contribution"], "n": 3}
+{"idx": 199, "ci": 4, "m": ["germany-scenario-a-health-insurance"], "n": 3}
+{"idx": 199, "ci": 5, "m": ["germany-scenario-b-social-insurance-wages-only"], "n": 3}
+{"idx": 199, "ci": 6, "m": ["us-standard-deduction-2024", "social-security-wage-base-cap", "us-ltcg-15-percent-rate"], "n": 3}
+{"idx": 202, "ci": 0, "m": [], "n": 3}
+{"idx": 202, "ci": 1, "m": ["astrazeneca-collaboration"], "n": 3}
+{"idx": 202, "ci": 2, "m": ["nist-standards-finalization-date", "nist-three-standards-named"], "n": 3}
+{"idx": 202, "ci": 3, "m": ["federal-migration-timeline", "rsa-qubit-requirements"], "n": 3}
+{"idx": 202, "ci": 4, "m": [], "n": 3}
+{"idx": 202, "ci": 5, "m": ["nisq-vs-ftqc-comparison"], "n": 3}
+{"idx": 202, "ci": 6, "m": ["quantum-advantage-definition", "algorithmic-resource-reduction"], "n": 3}
 {"idx": 202, "ci": 7, "m": ["rigorous-benchmarking-methodology", "long-lived-data-prioritization"], "n": 3}
+{"idx": 203, "ci": 0, "m": ["ontario-marginal-rate-95k", "rrsp-2025-dollar-limit"], "n": 3}
+{"idx": 203, "ci": 1, "m": ["rrsp-18-percent-formula", "rrsp-room-calculation-95k", "cesg-basic-grant-rate"], "n": 3}
+{"idx": 203, "ci": 2, "m": ["cesg-annual-maximum", "cesg-lifetime-maximum", "cesg-catchup-mechanism"], "n": 3}
+{"idx": 203, "ci": 3, "m": ["cesg-age-16-17-eligibility", "resp-lifetime-contribution-limit"], "n": 3}
+{"idx": 203, "ci": 4, "m": ["spousal-rrsp-deduction-timing", "spousal-rrsp-ownership-withdrawal"], "n": 3}
+{"idx": 203, "ci": 5, "m": ["spousal-rrsp-attribution-rule", "spousal-rrsp-income-splitting-benefit"], "n": 3}
+{"idx": 203, "ci": 6, "m": [], "n": 3}
 {"idx": 203, "ci": 7, "m": ["two-children-resp-calculation"], "n": 3}
 {"idx": 203, "ci": 13, "m": [], "n": 1}
+{"idx": 237, "ci": 0, "m": ["eu-ets-2020-price-range", "eu-ets-2023-price-level", "eu-ets-2023-price-peak"], "n": 3}
+{"idx": 237, "ci": 1, "m": ["eu-ets-2024-price-range", "california-2020-price-trajectory"], "n": 3}
+{"idx": 237, "ci": 2, "m": [], "n": 3}
+{"idx": 237, "ci": 3, "m": ["eu-cumulative-emissions-reduction", "eu-2023-annual-emissions-drop", "eu-2024-emissions-continuation"], "n": 3}
+{"idx": 237, "ci": 4, "m": ["california-2020-target-and-covid", "california-coverage-percentage"], "n": 3}
+{"idx": 237, "ci": 5, "m": ["china-coverage-scope"], "n": 3}
+{"idx": 237, "ci": 6, "m": ["eu-revenue-2023-2024", "eu-cumulative-revenue", "eu-innovation-modernisation-funds"], "n": 3}
 {"idx": 237, "ci": 7, "m": ["california-ggrf-cumulative"], "n": 3}
+{"idx": 248, "ci": 0, "m": [], "n": 3}
+{"idx": 248, "ci": 1, "m": ["siemens-edge-option"], "n": 3}
+{"idx": 248, "ci": 2, "m": ["honeywell-offering"], "n": 3}
+{"idx": 248, "ci": 3, "m": [], "n": 3}
+{"idx": 248, "ci": 4, "m": [], "n": 3}
+{"idx": 248, "ci": 5, "m": [], "n": 3}
+{"idx": 248, "ci": 6, "m": [], "n": 3}
 {"idx": 248, "ci": 7, "m": ["lorawan-identified", "lorawan-coverage-range"], "n": 3}
+{"idx": 249, "ci": 0, "m": ["stop-metoprolol", "replacement-antihypertensive", "driving-restriction"], "n": 3}
+{"idx": 249, "ci": 1, "m": ["return-precautions", "mcot-or-extended"], "n": 3}
+{"idx": 249, "ci": 2, "m": ["backup-plan", "real-time-alerts"], "n": 3}
+{"idx": 249, "ci": 3, "m": ["medical-necessity", "safety-justification"], "n": 3}
+{"idx": 249, "ci": 4, "m": [], "n": 3}
+{"idx": 249, "ci": 5, "m": ["block-types", "syncope-urgency"], "n": 3}
+{"idx": 249, "ci": 6, "m": [], "n": 3}
+{"idx": 251, "ci": 0, "m": ["reams-consumed-quantity", "letterhead-printed-quantity", "non-conforming-goods-identified"], "n": 3}
+{"idx": 251, "ci": 1, "m": ["identifies-the-timeline", "identifies-the-specific-defect", "notes-vendors-argument"], "n": 3}
+{"idx": 251, "ci": 2, "m": ["commercial-worthlessness-to-vendor", "immediate-discoverability-of-defect"], "n": 3}
+{"idx": 251, "ci": 3, "m": ["summary-judgment-no-fact-issue", "analyzes-act-inconsistent-with-ownership"], "n": 3}
+{"idx": 251, "ci": 4, "m": ["analyzes-substantial-change", "analyzes-timeliness-of-rejection-2-602", "buyer-owns-the-paper-because-they-printed-on-it"], "n": 3}
+{"idx": 251, "ci": 5, "m": ["formal-legal-tone"], "n": 3}
+{"idx": 251, "ci": 6, "m": ["ucc-organized-structure", "precise-legal-terminology", "casual-metaphors"], "n": 3}
+{"idx": 253, "ci": 0, "m": ["recommends-path-c-highest-roi"], "n": 3}
+{"idx": 253, "ci": 1, "m": ["bangalore-ml-general-range", "path-a-exam-costs-specific"], "n": 3}
+{"idx": 253, "ci": 2, "m": ["path-c-total-budget-range"], "n": 3}
+{"idx": 253, "ci": 3, "m": ["compute-budget-estimate"], "n": 3}
+{"idx": 253, "ci": 4, "m": ["signal-strength-framework"], "n": 3}
+{"idx": 253, "ci": 5, "m": ["dual-perspective-path-b"], "n": 3}
+{"idx": 253, "ci": 6, "m": [], "n": 3}
+{"idx": 255, "ci": 0, "m": ["verbal-remote-work-promise", "hybrid-schedule-term", "timing-of-offer-vs-relocation"], "n": 3}
+{"idx": 255, "ci": 1, "m": ["states-may-15-relocation-actions", "financial-loss-on-home-sale", "june-email-confirmation"], "n": 3}
+{"idx": 255, "ci": 2, "m": ["managers-lack-of-authority", "policy-update-july-1", "comparator-evidence"], "n": 3}
+{"idx": 255, "ci": 3, "m": ["promissory-estoppel-elements", "summary-judgment-standard"], "n": 3}
+{"idx": 255, "ci": 4, "m": [], "n": 3}
+{"idx": 255, "ci": 5, "m": ["authority-vs-formal-exception-process"], "n": 3}
+{"idx": 255, "ci": 6, "m": ["integration-clause-as-parol-evidence-barrier"], "n": 3}
+{"idx": 262, "ci": 0, "m": ["pt-mechanism-definition", "pt-bayesian-updating"], "n": 3}
+{"idx": 262, "ci": 1, "m": ["pt-cpos-definition", "bayesian-scm-mechanism-definition", "bayesian-identification-criteria"], "n": 3}
+{"idx": 262, "ci": 2, "m": ["mahoney-pt-methodologist", "bayesian-pt-attribution"], "n": 3}
+{"idx": 262, "ci": 3, "m": ["waldner-completeness-standard", "qca-equifinality-multiple-sufficient"], "n": 3}
+{"idx": 262, "ci": 4, "m": ["qca-conjunctural-causation"], "n": 3}
+{"idx": 262, "ci": 5, "m": ["dag-adjustment-set-criteria", "post-treatment-conditioning-definition", "collider-bad-controls"], "n": 3}
+{"idx": 262, "ci": 6, "m": ["skocpol-mechanism-pathway", "qca-boolean-set-theory"], "n": 3}
+{"idx": 263, "ci": 0, "m": ["mammography-software-compatibility"], "n": 3}
+{"idx": 263, "ci": 1, "m": ["ecc-memory-support", "power-consumption-calculation"], "n": 3}
+{"idx": 263, "ci": 2, "m": ["annual-power-cost-per-workstation", "fleet-power-cost-5year", "10gbe-compatibility"], "n": 3}
+{"idx": 263, "ci": 3, "m": ["dell-service-response"], "n": 3}
+{"idx": 263, "ci": 4, "m": [], "n": 3}
+{"idx": 263, "ci": 5, "m": ["power-efficiency-tradeoffs"], "n": 3}
+{"idx": 263, "ci": 6, "m": ["10gbe-performance-impact", "technical-precision-medical-it"], "n": 3}
+{"idx": 264, "ci": 0, "m": ["daily-cost-estimates", "provides-9-day-structure", "states-budget-breakdown"], "n": 3}
+{"idx": 264, "ci": 1, "m": ["includes-countryside-days", "lists-multiple-destinations", "accommodation-options-with-pricing"], "n": 3}
+{"idx": 264, "ci": 2, "m": ["activity-mix-cultural", "activity-mix-adventure", "activity-mix-nightlife"], "n": 3}
+{"idx": 264, "ci": 3, "m": ["transport-between-cities", "local-transport-options", "verifies-budget-feasibility"], "n": 3}
+{"idx": 264, "ci": 4, "m": ["group-logistics-considerations", "accommodation-group-suitability", "consecutive-day-feasibility"], "n": 3}
+{"idx": 264, "ci": 5, "m": ["route-optimization-insight", "booking-timeline-guidance"], "n": 3}
+{"idx": 264, "ci": 6, "m": ["structured-itinerary-format", "practical-helpful-tone"], "n": 3}
+{"idx": 268, "ci": 0, "m": ["maroczy-bind-structure"], "n": 3}
+{"idx": 268, "ci": 1, "m": ["frequency-under-two-percent", "stockfish-evaluation-range"], "n": 3}
+{"idx": 268, "ci": 2, "m": ["d5-square-control-importance", "white-bind-maintenance-strategy", "black-d5-freeing-break"], "n": 3}
+{"idx": 268, "ci": 3, "m": ["black-b5-queenside-break", "white-development-schemes", "white-prophylactic-moves"], "n": 3}
+{"idx": 268, "ci": 4, "m": ["dragon-style-setup", "hedgehog-formation-setup"], "n": 3}
+{"idx": 268, "ci": 5, "m": ["wrong-eco-code", "black-setup-diversity"], "n": 3}
+{"idx": 268, "ci": 6, "m": ["break-preparation-mechanics"], "n": 3}
+{"idx": 273, "ci": 0, "m": ["program-academic-background"], "n": 3}
+{"idx": 273, "ci": 1, "m": ["program-language-requirement"], "n": 3}
+{"idx": 273, "ci": 2, "m": [], "n": 3}
+{"idx": 273, "ci": 3, "m": [], "n": 3}
+{"idx": 273, "ci": 4, "m": [], "n": 3}
+{"idx": 273, "ci": 5, "m": [], "n": 3}
+{"idx": 273, "ci": 6, "m": [], "n": 3}
+{"idx": 274, "ci": 0, "m": ["hp-2008-tiox-pinched-iv-claims", "chua-1971-ideal-fourth-element", "vongehr-meng-critique-memristive-systems"], "n": 3}
+{"idx": 274, "ci": 1, "m": ["chua-generalized-taxonomy-1976", "working-consensus-functional-sufficiency", "strukov-williams-pragmatic-position"], "n": 3}
+{"idx": 274, "ci": 2, "m": [], "n": 3}
+{"idx": 274, "ci": 3, "m": [], "n": 3}
+{"idx": 274, "ci": 4, "m": [], "n": 3}
+{"idx": 274, "ci": 5, "m": [], "n": 3}
+{"idx": 274, "ci": 6, "m": ["accuracy-competitive-not-superior"], "n": 3}
+{"idx": 276, "ci": 0, "m": ["identifies-all-four-traditions", "mackinnon-dominance-framework", "fineman-vulnerability-theory"], "n": 3}
+{"idx": 276, "ci": 1, "m": ["mir-hosseini-contribution", "wadud-hermeneutics", "sharia-fiqh-distinction"], "n": 3}
+{"idx": 276, "ci": 2, "m": ["african-legal-pluralism-structure"], "n": 3}
+{"idx": 276, "ci": 3, "m": ["chinese-socialist-legal-reforms", "chinese-marketization-tension"], "n": 3}
+{"idx": 276, "ci": 4, "m": ["property-islamic-separate-ownership", "property-islamic-inheritance"], "n": 3}
+{"idx": 276, "ci": 5, "m": ["property-african-land-tenure", "property-african-production-ownership-gap", "property-chinese-marital-rules"], "n": 3}
+{"idx": 276, "ci": 6, "m": ["bodily-autonomy-anglo-dobbs"], "n": 3}
+{"idx": 277, "ci": 0, "m": [], "n": 3}
+{"idx": 277, "ci": 1, "m": ["zimbabwe-hectares-transferred-scale"], "n": 3}
+{"idx": 277, "ci": 2, "m": [], "n": 3}
+{"idx": 277, "ci": 3, "m": ["zimbabwe-fast-track-violence", "south-africa-section-25-framework"], "n": 3}
+{"idx": 277, "ci": 4, "m": ["south-africa-constitutional-amendment-2021", "south-africa-redistribution-progress"], "n": 3}
+{"idx": 277, "ci": 5, "m": [], "n": 3}
+{"idx": 277, "ci": 6, "m": ["namibia-state-preferential-purchase"], "n": 3}
+{"idx": 278, "ci": 0, "m": [], "n": 3}
+{"idx": 278, "ci": 1, "m": [], "n": 3}
+{"idx": 278, "ci": 2, "m": [], "n": 3}
+{"idx": 278, "ci": 3, "m": [], "n": 3}
+{"idx": 278, "ci": 4, "m": ["longitudinal-timeliness-metrics"], "n": 3}
+{"idx": 278, "ci": 5, "m": [], "n": 3}
+{"idx": 278, "ci": 6, "m": ["evidence-quality-discrepancies"], "n": 3}
+{"idx": 279, "ci": 0, "m": [], "n": 3}
+{"idx": 279, "ci": 1, "m": ["aws-ready2run-cost"], "n": 3}
+{"idx": 279, "ci": 2, "m": ["china-cloud-operators"], "n": 3}
+{"idx": 279, "ci": 3, "m": ["google-no-china-region", "egress-cost-rates"], "n": 3}
+{"idx": 279, "ci": 4, "m": ["aws-services-named", "google-services-named"], "n": 3}
+{"idx": 279, "ci": 5, "m": ["all-criteria-addressed", "multi-scenario-cost-modeling"], "n": 3}
+{"idx": 279, "ci": 6, "m": ["china-sovereign-architecture", "federation-maturity-assessment"], "n": 3}
+{"idx": 280, "ci": 0, "m": ["core-portfolio-q1-2024-margin-calculation", "funds-segment-q1-2024-margin-calculation"], "n": 3}
+{"idx": 280, "ci": 1, "m": ["renaissance-purchase-price", "renaissance-ownership-increase"], "n": 3}
+{"idx": 280, "ci": 2, "m": ["renaissance-total-cash-investment", "renaissance-consolidation-loss"], "n": 3}
+{"idx": 280, "ci": 3, "m": ["impairment-fund-distribution"], "n": 3}
+{"idx": 280, "ci": 4, "m": [], "n": 3}
+{"idx": 280, "ci": 5, "m": [], "n": 3}
+{"idx": 280, "ci": 6, "m": ["two-sided-strategic-assessment", "impairment-causality-mechanism"], "n": 3}
+{"idx": 281, "ci": 0, "m": ["ocf-q1-2025", "ocf-q1-2024"], "n": 3}
+{"idx": 281, "ci": 1, "m": ["ocf-growth-rate", "net-income-q1-2025", "net-income-q1-2024"], "n": 3}
+{"idx": 281, "ci": 2, "m": ["ocf-conversion-2025", "ocf-conversion-2024", "debt-500m-2028"], "n": 3}
+{"idx": 281, "ci": 3, "m": ["debt-750m-2030", "debt-750m-2032", "debt-750m-2043"], "n": 3}
+{"idx": 281, "ci": 4, "m": ["debt-700m-2048", "total-debt-outstanding", "cash-balance"], "n": 3}
+{"idx": 281, "ci": 5, "m": ["corporate-revolver-capacity", "weighted-average-maturity"], "n": 3}
+{"idx": 281, "ci": 6, "m": ["debt-refinancing-action", "net-income-growth-rate", "accounts-receivable-2025"], "n": 3}
+{"idx": 282, "ci": 0, "m": [], "n": 3}
+{"idx": 282, "ci": 1, "m": [], "n": 3}
+{"idx": 282, "ci": 2, "m": ["sbc-q3-2025-total"], "n": 3}
+{"idx": 282, "ci": 3, "m": ["sbc-q3-2024-total", "sbc-q3-absolute-increase", "sbc-q3-percentage-increase"], "n": 3}
+{"idx": 282, "ci": 4, "m": [], "n": 3}
+{"idx": 282, "ci": 5, "m": ["sbc-9m-2025-total", "sbc-9m-2024-total"], "n": 3}
+{"idx": 282, "ci": 6, "m": [], "n": 3}
 {"idx": 282, "ci": 19, "m": ["dilution-management-quality-rating"], "n": 3}
 {"idx": 282, "ci": 20, "m": ["precise-financial-terminology", "structured-presentation", "objective-analytical-tone"], "n": 3}
 {"idx": 282, "ci": 22, "m": ["cites-vtv-q3-2025-10q"], "n": 2}
+{"idx": 283, "ci": 0, "m": ["efsl-rating-and-category", "efsl-leverage", "muthoot-rating-and-category"], "n": 3}
+{"idx": 283, "ci": 1, "m": ["muthoot-yield-range", "muthoot-leverage", "klm-rating-and-category"], "n": 3}
+{"idx": 283, "ci": 2, "m": ["klm-yield-range", "klm-leverage-high", "senior-citizen-ncd-tax-treatment"], "n": 3}
+{"idx": 283, "ci": 3, "m": ["post-tax-yield-calculations", "gsec-benchmark-context"], "n": 3}
+{"idx": 283, "ci": 4, "m": ["spread-analysis", "leverage-risk-flags"], "n": 3}
+{"idx": 283, "ci": 5, "m": ["reconciles-data-inconsistencies", "benchmarks-against-comparable-issues"], "n": 3}
+{"idx": 283, "ci": 6, "m": ["notes-security-enforcement-reality"], "n": 3}
+{"idx": 284, "ci": 0, "m": ["operating-cash-flow-9m-2024", "investing-cash-flow-9m-2024", "free-cash-flow-calculation"], "n": 3}
+{"idx": 284, "ci": 1, "m": ["quarterly-burn-rate-calculation", "ending-cash-position-sept-2024", "total-q3-2024-revenue-growth"], "n": 3}
+{"idx": 284, "ci": 2, "m": ["biologics-q3-2024-growth-rate", "neurosurgery-q3-2024-growth-rate", "capital-equipment-q3-2024-growth-rate"], "n": 3}
+{"idx": 284, "ci": 3, "m": ["gross-margin-q3-2024", "cash-burn-improvement-percentage"], "n": 3}
+{"idx": 284, "ci": 4, "m": ["march-2024-equity-raise", "august-2024-debt-repayment", "biologics-disposables-q3-explosion"], "n": 3}
+{"idx": 284, "ci": 5, "m": ["biologics-9m-2024-growth", "capital-equipment-9m-growth"], "n": 3}
+{"idx": 284, "ci": 6, "m": ["gross-margin-6m-2023-decline", "revenue-vs-opex-leverage", "beginning-cash-position-jan-2024"], "n": 3}
+{"idx": 285, "ci": 0, "m": ["swap-fair-value-dec-2023", "swap-fair-value-june-2024", "swap-fair-value-change-dec-to-june"], "n": 3}
+{"idx": 285, "ci": 1, "m": ["swap-fair-value-sept-2025", "q2-2023-total-interest-expense", "q2-2024-total-interest-expense"], "n": 3}
+{"idx": 285, "ci": 2, "m": ["q2-2023-to-q2-2024-change", "q2-mortgage-interest-breakdown", "q2-term-loan-interest-breakdown"], "n": 3}
+{"idx": 285, "ci": 3, "m": ["q3-2024-total-interest-expense", "q3-2025-total-interest-expense", "q3-2024-to-q3-2025-change"], "n": 3}
+{"idx": 285, "ci": 4, "m": ["q3-mortgage-interest-breakdown", "q3-term-loan-interest-breakdown", "nine-month-2024-total-interest-expense"], "n": 3}
+{"idx": 285, "ci": 5, "m": ["nine-month-2025-total-interest-expense", "nine-month-interest-expense-change", "nine-month-mortgage-interest-breakdown"], "n": 3}
+{"idx": 285, "ci": 6, "m": ["nine-month-term-loan-interest-breakdown"], "n": 3}
 {"idx": 285, "ci": 19, "m": ["swap-component-breakdown", "multi-period-trend-synthesis"], "n": 3}
 {"idx": 285, "ci": 20, "m": ["strategic-transformation-framing"], "n": 3}
 {"idx": 285, "ci": 21, "m": [], "n": 3}
 {"idx": 285, "ci": 23, "m": ["period-comparison-with-deltas", "analytical-objectivity"], "n": 3}
 {"idx": 285, "ci": 24, "m": ["cites-diamondrock-10q-q2-2024", "cites-diamondrock-10q-q3-2025"], "n": 3}
 {"idx": 285, "ci": 25, "m": ["cites-diamondrock-10k-2023", "non-authoritative-sources-penalty"], "n": 2}
+{"idx": 287, "ci": 0, "m": ["ifr-global-robot-density-2023"], "n": 3}
+{"idx": 287, "ci": 1, "m": ["regional-robot-density-benchmarks", "saudi-robot-density-status"], "n": 3}
+{"idx": 287, "ci": 2, "m": ["future-factories-program-launch"], "n": 3}
+{"idx": 287, "ci": 3, "m": ["future-factories-transformation-scope"], "n": 3}
+{"idx": 287, "ci": 4, "m": [], "n": 3}
+{"idx": 287, "ci": 5, "m": ["siemens-port-crane-specifications"], "n": 3}
+{"idx": 287, "ci": 6, "m": ["siemens-energy-power-plants", "siemens-enowa-water-transmission", "siemens-port-value-disclosure"], "n": 3}
+{"idx": 288, "ci": 0, "m": ["market-revenue-magnitude"], "n": 3}
+{"idx": 288, "ci": 1, "m": ["fabrication-capacity-range", "fabricator-locations", "steel-hs-codes"], "n": 3}
+{"idx": 288, "ci": 2, "m": ["tariff-rate-structure", "crl-steel-tonnage", "crl-completion-timeline"], "n": 3}
+{"idx": 288, "ci": 3, "m": ["dunedin-hospital-project"], "n": 3}
+{"idx": 288, "ci": 4, "m": ["scope-definition-reconciliation", "fabricator-vs-supplier-distinction", "tariff-margin-causal-mechanism"], "n": 3}
+{"idx": 288, "ci": 5, "m": ["cyclical-context-for-employment-trends", "capacity-validation-via-project-aggregation"], "n": 3}
+{"idx": 288, "ci": 6, "m": ["proxy-method-for-missing-official-series", "quantitative-data-precision"], "n": 3}
+{"idx": 289, "ci": 0, "m": ["sold-call-delta-range", "bought-put-delta-range", "call-delta-reasoning"], "n": 3}
+{"idx": 289, "ci": 1, "m": ["put-delta-reasoning", "asymmetric-more-common", "put-call-skew-driver"], "n": 3}
+{"idx": 289, "ci": 2, "m": ["symmetric-structure-definition", "example-asymmetric-collar"], "n": 3}
+{"idx": 289, "ci": 3, "m": ["call-percentage-distance"], "n": 3}
+{"idx": 289, "ci": 4, "m": ["thirty-delta-covered-call-convention", "zero-cost-achievement-mechanics"], "n": 3}
+{"idx": 289, "ci": 5, "m": ["investor-profile-customization"], "n": 3}
+{"idx": 289, "ci": 6, "m": ["parameter-causality-mapping"], "n": 3}
+{"idx": 290, "ci": 0, "m": [], "n": 3}
+{"idx": 290, "ci": 1, "m": [], "n": 3}
+{"idx": 290, "ci": 2, "m": [], "n": 3}
+{"idx": 290, "ci": 3, "m": [], "n": 3}
+{"idx": 290, "ci": 4, "m": [], "n": 3}
+{"idx": 290, "ci": 5, "m": [], "n": 3}
+{"idx": 290, "ci": 6, "m": [], "n": 3}
+{"idx": 291, "ci": 0, "m": [], "n": 3}
+{"idx": 291, "ci": 1, "m": [], "n": 3}
+{"idx": 291, "ci": 2, "m": [], "n": 3}
+{"idx": 291, "ci": 3, "m": [], "n": 3}
+{"idx": 291, "ci": 4, "m": [], "n": 3}
+{"idx": 291, "ci": 5, "m": [], "n": 3}
+{"idx": 291, "ci": 6, "m": [], "n": 3}
 {"idx": 291, "ci": 20, "m": ["structured-multi-part-presentation", "precise-financial-terminology"], "n": 3}
 {"idx": 291, "ci": 21, "m": ["metrics-with-context", "objective-analytical-tone"], "n": 3}
 {"idx": 291, "ci": 23, "m": [], "n": 1}
+{"idx": 292, "ci": 0, "m": ["nvda-q2-fy25-earnings-date"], "n": 3}
+{"idx": 292, "ci": 1, "m": ["nvda-q2-revenue", "nvda-q3-revenue-guidance"], "n": 3}
+{"idx": 292, "ci": 2, "m": [], "n": 3}
+{"idx": 292, "ci": 3, "m": ["msft-fy24-q4-earnings-date"], "n": 3}
+{"idx": 292, "ci": 4, "m": [], "n": 3}
+{"idx": 292, "ci": 5, "m": ["fed-rate-cut-date"], "n": 3}
+{"idx": 292, "ci": 6, "m": ["soxx-sector-performance", "nvda-msft-fund-weights"], "n": 3}
+{"idx": 293, "ci": 0, "m": [], "n": 3}
+{"idx": 293, "ci": 1, "m": [], "n": 3}
+{"idx": 293, "ci": 2, "m": [], "n": 3}
+{"idx": 293, "ci": 3, "m": [], "n": 3}
+{"idx": 293, "ci": 4, "m": [], "n": 3}
+{"idx": 293, "ci": 5, "m": [], "n": 3}
+{"idx": 293, "ci": 6, "m": [], "n": 3}
+{"idx": 294, "ci": 0, "m": ["edelweiss-sector-focus"], "n": 3}
+{"idx": 294, "ci": 1, "m": ["edelweiss-underlying-holdings", "dsp-fund-structure"], "n": 3}
+{"idx": 294, "ci": 2, "m": [], "n": 3}
+{"idx": 294, "ci": 3, "m": ["dsp-sector-themes"], "n": 3}
+{"idx": 294, "ci": 4, "m": [], "n": 3}
+{"idx": 294, "ci": 5, "m": ["edelweiss-underlying-expense-component"], "n": 3}
+{"idx": 294, "ci": 6, "m": [], "n": 3}
+{"idx": 295, "ci": 0, "m": ["hash-ribbon-no-signal-january-15", "hash-ribbon-prior-signal-context", "hash-ribbon-signal-interpretation"], "n": 3}
+{"idx": 295, "ci": 1, "m": ["post-halving-btc-per-block", "daily-miner-issuance", "weekly-miner-issuance"], "n": 3}
+{"idx": 295, "ci": 2, "m": [], "n": 3}
+{"idx": 295, "ci": 3, "m": [], "n": 3}
+{"idx": 295, "ci": 4, "m": ["bull-scenario-upper-bound"], "n": 3}
+{"idx": 295, "ci": 5, "m": ["bear-scenario-lower-bound", "absorption-multiple-formula"], "n": 3}
+{"idx": 295, "ci": 6, "m": ["data-retrieval-methodology", "fallback-analysis-framework"], "n": 3}
+{"idx": 296, "ci": 0, "m": [], "n": 3}
+{"idx": 296, "ci": 1, "m": [], "n": 3}
+{"idx": 296, "ci": 2, "m": [], "n": 3}
+{"idx": 296, "ci": 3, "m": [], "n": 3}
+{"idx": 296, "ci": 4, "m": [], "n": 3}
+{"idx": 296, "ci": 5, "m": [], "n": 3}
+{"idx": 296, "ci": 6, "m": [], "n": 3}
+{"idx": 297, "ci": 0, "m": ["q1-2024-runway-projection"], "n": 3}
+{"idx": 297, "ci": 1, "m": ["takeda-program-review-status"], "n": 3}
+{"idx": 297, "ci": 2, "m": [], "n": 3}
+{"idx": 297, "ci": 3, "m": [], "n": 3}
+{"idx": 297, "ci": 4, "m": [], "n": 3}
+{"idx": 297, "ci": 5, "m": [], "n": 3}
+{"idx": 297, "ci": 6, "m": ["timeline-misalignment-information-asymmetry", "negotiating-leverage-assessment", "third-party-validation-signaling-risk"], "n": 3}
+{"idx": 298, "ci": 0, "m": ["position-sizing-conservative-range", "maximum-open-positions"], "n": 3}
+{"idx": 298, "ci": 1, "m": [], "n": 3}
+{"idx": 298, "ci": 2, "m": ["debit-spread-risk-reward-structure", "credit-spread-risk-reward-structure"], "n": 3}
+{"idx": 298, "ci": 3, "m": ["credit-spread-probability-target"], "n": 3}
+{"idx": 298, "ci": 4, "m": [], "n": 3}
+{"idx": 298, "ci": 5, "m": [], "n": 3}
+{"idx": 298, "ci": 6, "m": [], "n": 3}
 {"idx": 298, "ci": 20, "m": ["warning-language-for-risks"], "n": 3}
 {"idx": 298, "ci": 21, "m": ["educational-trading-resources"], "n": 2}
+{"idx": 299, "ci": 0, "m": ["us-scenario-a-net-takehome", "us-scenario-b-net-takehome"], "n": 3}
+{"idx": 299, "ci": 1, "m": ["germany-scenario-b-net-takehome-eur", "us-scenario-a-federal-income-tax", "us-scenario-a-social-security-tax"], "n": 3}
+{"idx": 299, "ci": 2, "m": ["us-scenario-a-medicare-tax", "us-scenario-b-ordinary-income-tax", "us-scenario-b-capital-gains-tax"], "n": 3}
+{"idx": 299, "ci": 3, "m": ["us-scenario-b-social-security-exactly", "germany-scenario-a-income-tax-with-soli", "germany-scenario-a-pension-contribution"], "n": 3}
+{"idx": 299, "ci": 4, "m": ["germany-scenario-a-health-insurance", "germany-scenario-a-unemployment-ltc", "germany-scenario-b-wage-income-tax"], "n": 3}
+{"idx": 299, "ci": 5, "m": ["germany-scenario-b-social-insurance-wages-only"], "n": 3}
+{"idx": 299, "ci": 6, "m": ["us-standard-deduction-2024", "social-security-wage-base-cap", "us-ltcg-15-percent-rate"], "n": 3}
+{"idx": 306, "ci": 0, "m": ["dell-memory-limitation-64gb", "lenovo-memory-limitation-64gb"], "n": 3}
+{"idx": 306, "ci": 1, "m": [], "n": 3}
+{"idx": 306, "ci": 2, "m": ["dell-thermal-characteristics"], "n": 3}
+{"idx": 306, "ci": 3, "m": ["lenovo-power-limiting-behavior"], "n": 3}
+{"idx": 306, "ci": 4, "m": ["vendor-service-programs", "recommends-hp-zbook-fury-primary"], "n": 3}
+{"idx": 306, "ci": 5, "m": ["notes-lenovo-limitations", "tgp-sustained-performance-analysis"], "n": 3}
+{"idx": 306, "ci": 6, "m": [], "n": 3}
+{"idx": 309, "ci": 0, "m": ["comparison", "publisher"], "n": 3}
+{"idx": 309, "ci": 1, "m": [], "n": 3}
+{"idx": 309, "ci": 2, "m": ["customer-journey-lifecycle"], "n": 3}
+{"idx": 309, "ci": 3, "m": ["revenue-stream-architecture", "operational-leverage-explanation"], "n": 3}
+{"idx": 309, "ci": 4, "m": ["strategic-market-positioning"], "n": 3}
+{"idx": 309, "ci": 5, "m": [], "n": 3}
+{"idx": 309, "ci": 6, "m": ["structured-presentation", "precise-terminology", "explains-mechanisms-for-newcomer"], "n": 3}
+{"idx": 319, "ci": 0, "m": [], "n": 3}
+{"idx": 319, "ci": 1, "m": ["transformer-video-detection-named", "multimodal-audio-visual-detection-named"], "n": 3}
+{"idx": 319, "ci": 2, "m": [], "n": 3}
+{"idx": 319, "ci": 3, "m": [], "n": 3}
+{"idx": 319, "ci": 4, "m": ["quantifies-lab-to-deployment-gap-with-causes"], "n": 3}
+{"idx": 319, "ci": 5, "m": [], "n": 3}
+{"idx": 319, "ci": 6, "m": ["identifies-liars-dividend", "identifies-algorithmic-bias"], "n": 3}
+{"idx": 322, "ci": 0, "m": ["parkinsons-tremor-frequency"], "n": 3}
+{"idx": 322, "ci": 1, "m": ["vibrato-tremor-overlap", "no-native-daw-tremor-features"], "n": 3}
+{"idx": 322, "ci": 2, "m": [], "n": 3}
+{"idx": 322, "ci": 3, "m": [], "n": 3}
+{"idx": 322, "ci": 4, "m": [], "n": 3}
+{"idx": 322, "ci": 5, "m": [], "n": 3}
+{"idx": 322, "ci": 6, "m": ["tremor-suppression-expression-tradeoff"], "n": 3}
+{"idx": 325, "ci": 0, "m": ["theory-only-exam-no-practical", "training-hours-requirement"], "n": 3}
+{"idx": 325, "ci": 1, "m": [], "n": 3}
+{"idx": 325, "ci": 2, "m": ["exam-fee-amount"], "n": 3}
+{"idx": 325, "ci": 3, "m": ["early-exam-eligibility-150-hours"], "n": 3}
+{"idx": 325, "ci": 4, "m": ["license-fee-amount"], "n": 3}
+{"idx": 325, "ci": 5, "m": ["cost-breakdown-granularity"], "n": 3}
+{"idx": 325, "ci": 6, "m": [], "n": 3}
+{"idx": 334, "ci": 0, "m": [], "n": 3}
+{"idx": 334, "ci": 1, "m": [], "n": 3}
+{"idx": 334, "ci": 2, "m": [], "n": 3}
+{"idx": 334, "ci": 3, "m": ["concise-response"], "n": 3}
+{"idx": 334, "ci": 4, "m": [], "n": 3}
+{"idx": 334, "ci": 5, "m": [], "n": 1}
+{"idx": 336, "ci": 0, "m": ["deployment-evidence-examples", "babyl-rwanda-ussd-sms-architecture"], "n": 3}
+{"idx": 336, "ci": 1, "m": ["babyl-rwanda-async-workflow"], "n": 3}
+{"idx": 336, "ci": 2, "m": ["mpharma-pharmacy-hub-exam-forward"], "n": 3}
+{"idx": 336, "ci": 3, "m": ["offline-first-architecture-components", "sync-strategy-intervals"], "n": 3}
+{"idx": 336, "ci": 4, "m": ["quality-gate-mechanisms", "task-shifting-chw-nurse-model"], "n": 3}
+{"idx": 336, "ci": 5, "m": [], "n": 3}
+{"idx": 336, "ci": 6, "m": [], "n": 3}
+{"idx": 337, "ci": 0, "m": ["nasdaq-rule-definition", "board-affirmative-determination", "family-member-definition"], "n": 3}
+{"idx": 337, "ci": 1, "m": ["employment-three-year-lookback", "family-executive-officer-disqualification", "compensation-threshold-120k"], "n": 3}
+{"idx": 337, "ci": 2, "m": ["business-relationship-greater-of-test", "business-relationship-three-fiscal-years"], "n": 3}
+{"idx": 337, "ci": 3, "m": ["interlocking-compensation-committee"], "n": 3}
+{"idx": 337, "ci": 4, "m": ["committee-full-independence-requirement"], "n": 3}
+{"idx": 337, "ci": 5, "m": [], "n": 3}
+{"idx": 337, "ci": 6, "m": [], "n": 3}
+{"idx": 343, "ci": 0, "m": [], "n": 3}
+{"idx": 343, "ci": 1, "m": ["eu-ets-2024-price-range"], "n": 3}
+{"idx": 343, "ci": 2, "m": [], "n": 3}
+{"idx": 343, "ci": 3, "m": [], "n": 3}
+{"idx": 343, "ci": 4, "m": [], "n": 3}
+{"idx": 343, "ci": 5, "m": [], "n": 3}
+{"idx": 343, "ci": 6, "m": [], "n": 3}
+{"idx": 344, "ci": 0, "m": ["covers-all-four-platforms"], "n": 3}
+{"idx": 344, "ci": 1, "m": [], "n": 3}
+{"idx": 344, "ci": 2, "m": [], "n": 3}
+{"idx": 344, "ci": 3, "m": ["bentoml-adaptive-batching"], "n": 3}
+{"idx": 344, "ci": 4, "m": ["alibi-detect-drift-monitoring"], "n": 3}
+{"idx": 344, "ci": 5, "m": ["gojek-experience-reference"], "n": 3}
+{"idx": 344, "ci": 6, "m": [], "n": 3}
+{"idx": 353, "ci": 0, "m": ["hofstede-uai-japan", "hofstede-uai-germany", "hofstede-uai-brazil"], "n": 3}
+{"idx": 353, "ci": 1, "m": [], "n": 3}
+{"idx": 353, "ci": 2, "m": [], "n": 3}
+{"idx": 353, "ci": 3, "m": ["otto-return-periods"], "n": 3}
+{"idx": 353, "ci": 4, "m": [], "n": 3}
+{"idx": 353, "ci": 5, "m": [], "n": 3}
+{"idx": 353, "ci": 6, "m": ["complementary-mechanism-integration"], "n": 3}
+{"idx": 359, "ci": 0, "m": [], "n": 3}
+{"idx": 359, "ci": 1, "m": [], "n": 3}
+{"idx": 359, "ci": 2, "m": [], "n": 3}
+{"idx": 359, "ci": 3, "m": ["local-providers-context"], "n": 3}
+{"idx": 359, "ci": 4, "m": [], "n": 3}
+{"idx": 359, "ci": 5, "m": [], "n": 3}
+{"idx": 359, "ci": 6, "m": [], "n": 3}
+{"idx": 361, "ci": 0, "m": ["pension-obligation-march-2025"], "n": 3}
+{"idx": 361, "ci": 1, "m": ["pension-assets-march-2025", "funded-status-march-2025"], "n": 3}
+{"idx": 361, "ci": 2, "m": ["funded-ratio-march-2025"], "n": 3}
+{"idx": 361, "ci": 3, "m": [], "n": 3}
+{"idx": 361, "ci": 4, "m": [], "n": 3}
+{"idx": 361, "ci": 5, "m": [], "n": 3}
+{"idx": 361, "ci": 6, "m": [], "n": 3}
 {"idx": 361, "ci": 20, "m": ["structured-multi-part-presentation", "precise-financial-terminology"], "n": 3}
 {"idx": 361, "ci": 21, "m": ["metrics-with-context", "objective-analytical-tone"], "n": 3}
 {"idx": 361, "ci": 23, "m": [], "n": 1}
+{"idx": 364, "ci": 0, "m": ["austin-school-district-entry-price", "raleigh-school-district-entry-price"], "n": 3}
+{"idx": 364, "ci": 1, "m": ["property-tax-dollar-comparison"], "n": 3}
+{"idx": 364, "ci": 2, "m": ["texas-income-tax-status", "tennessee-income-tax-status"], "n": 3}
+{"idx": 364, "ci": 3, "m": ["raleigh-job-market-depth", "nashville-job-market-depth"], "n": 3}
+{"idx": 364, "ci": 4, "m": ["austin-top-school-districts", "raleigh-school-context"], "n": 3}
+{"idx": 364, "ci": 5, "m": ["scenario-conditional-recommendations"], "n": 3}
+{"idx": 364, "ci": 6, "m": ["cross-dimensional-optimization", "school-tier-price-quantification"], "n": 3}
+{"idx": 366, "ci": 0, "m": ["recommends-path-c-highest-roi"], "n": 3}
+{"idx": 366, "ci": 1, "m": [], "n": 3}
+{"idx": 366, "ci": 2, "m": ["path-b-upgrad-total-cost"], "n": 3}
+{"idx": 366, "ci": 3, "m": ["compute-budget-estimate"], "n": 3}
+{"idx": 366, "ci": 4, "m": ["signal-strength-framework"], "n": 3}
+{"idx": 366, "ci": 5, "m": ["dual-perspective-path-b"], "n": 3}
+{"idx": 366, "ci": 6, "m": [], "n": 3}
+{"idx": 367, "ci": 0, "m": ["verbal-remote-work-promise", "hybrid-schedule-term", "timing-of-offer-vs-relocation"], "n": 3}
+{"idx": 367, "ci": 1, "m": ["states-may-15-relocation-actions", "financial-loss-on-home-sale", "june-email-confirmation"], "n": 3}
+{"idx": 367, "ci": 2, "m": ["managers-lack-of-authority", "comparator-evidence"], "n": 3}
+{"idx": 367, "ci": 3, "m": ["promissory-estoppel-elements"], "n": 3}
+{"idx": 367, "ci": 4, "m": ["specific-performance-remedy", "reliance-damages-as-remedy"], "n": 3}
+{"idx": 367, "ci": 5, "m": [], "n": 3}
+{"idx": 367, "ci": 6, "m": ["timing-undermines-reliance", "integration-clause-as-parol-evidence-barrier"], "n": 3}
+{"idx": 369, "ci": 0, "m": [], "n": 3}
+{"idx": 369, "ci": 1, "m": [], "n": 3}
+{"idx": 369, "ci": 2, "m": ["srp-rebate-amount-per-ton"], "n": 3}
+{"idx": 369, "ci": 3, "m": ["mitsubishi-115f-specification"], "n": 3}
+{"idx": 369, "ci": 4, "m": [], "n": 3}
+{"idx": 369, "ci": 5, "m": ["maintenance-cost-estimates"], "n": 3}
+{"idx": 369, "ci": 6, "m": ["misrepresents-ac-as-heat-pump"], "n": 3}
+{"idx": 370, "ci": 0, "m": ["high-informality-context"], "n": 3}
+{"idx": 370, "ci": 1, "m": [], "n": 3}
+{"idx": 370, "ci": 2, "m": [], "n": 3}
+{"idx": 370, "ci": 3, "m": [], "n": 3}
+{"idx": 370, "ci": 4, "m": [], "n": 3}
+{"idx": 370, "ci": 5, "m": [], "n": 3}
+{"idx": 370, "ci": 6, "m": [], "n": 3}
+{"idx": 374, "ci": 0, "m": [], "n": 3}
+{"idx": 374, "ci": 1, "m": ["icc-custody-cooperation-challenges"], "n": 3}
+{"idx": 374, "ci": 2, "m": ["germany-luxembourg-agreements-1952"], "n": 3}
+{"idx": 374, "ci": 3, "m": ["us-japanese-internment-payment-amount"], "n": 3}
+{"idx": 374, "ci": 4, "m": ["balanced-strengths-limitations-each-mechanism"], "n": 3}
+{"idx": 374, "ci": 5, "m": ["specific-historical-design-failures", "portfolio-systems-thinking"], "n": 3}
+{"idx": 374, "ci": 6, "m": ["implementation-to-goal-linkages"], "n": 3}
+{"idx": 375, "ci": 0, "m": ["q1-2023-total-sales", "q1-2023-gross-profit", "q1-2023-gross-margin"], "n": 3}
+{"idx": 375, "ci": 1, "m": [], "n": 3}
+{"idx": 375, "ci": 2, "m": ["q1-2024-gross-loss"], "n": 3}
+{"idx": 375, "ci": 3, "m": ["factory-relocation-loss"], "n": 3}
+{"idx": 375, "ci": 4, "m": ["q1-2024-total-cost-of-sales"], "n": 3}
+{"idx": 375, "ci": 5, "m": ["adjusted-q1-2024-gross-profit", "adjusted-q1-2024-margin"], "n": 3}
+{"idx": 375, "ci": 6, "m": ["shows-q1-2023-margin-calculation"], "n": 3}
+{"idx": 376, "ci": 0, "m": ["daily-cost-estimates", "provides-9-day-structure"], "n": 3}
+{"idx": 376, "ci": 1, "m": ["includes-countryside-days", "lists-multiple-destinations"], "n": 3}
+{"idx": 376, "ci": 2, "m": ["activity-mix-cultural", "activity-mix-adventure", "activity-mix-nightlife"], "n": 3}
+{"idx": 376, "ci": 3, "m": ["transport-between-cities", "local-transport-options", "verifies-budget-feasibility"], "n": 3}
+{"idx": 376, "ci": 4, "m": ["group-logistics-considerations", "accommodation-group-suitability", "consecutive-day-feasibility"], "n": 3}
+{"idx": 376, "ci": 5, "m": ["inconsistent-budget-totals"], "n": 3}
+{"idx": 376, "ci": 6, "m": ["structured-itinerary-format", "practical-helpful-tone"], "n": 3}
+{"idx": 382, "ci": 0, "m": ["native-dlp-not-supported", "purview-connector-audit-only"], "n": 3}
+{"idx": 382, "ci": 1, "m": ["mdca-session-controls"], "n": 3}
+{"idx": 382, "ci": 2, "m": ["conditional-access-app-control"], "n": 3}
+{"idx": 382, "ci": 3, "m": [], "n": 3}
+{"idx": 382, "ci": 4, "m": [], "n": 3}
+{"idx": 382, "ci": 5, "m": ["known-limitations"], "n": 3}
+{"idx": 382, "ci": 6, "m": ["multi-dimensional-comparison-framework"], "n": 3}
+{"idx": 383, "ci": 0, "m": [], "n": 3}
+{"idx": 383, "ci": 1, "m": [], "n": 3}
+{"idx": 383, "ci": 2, "m": [], "n": 3}
+{"idx": 383, "ci": 3, "m": ["did-privacy-mechanisms"], "n": 3}
+{"idx": 383, "ci": 4, "m": [], "n": 3}
+{"idx": 383, "ci": 5, "m": [], "n": 3}
+{"idx": 383, "ci": 6, "m": [], "n": 3}
+{"idx": 385, "ci": 0, "m": ["june-2022-cash-balance", "q1-2024-runway-projection"], "n": 3}
+{"idx": 385, "ci": 1, "m": ["takeda-program-review-status"], "n": 3}
+{"idx": 385, "ci": 2, "m": [], "n": 3}
+{"idx": 385, "ci": 3, "m": [], "n": 3}
+{"idx": 385, "ci": 4, "m": [], "n": 3}
+{"idx": 385, "ci": 5, "m": ["sublease-income-reconciliation"], "n": 3}
+{"idx": 385, "ci": 6, "m": ["negotiating-leverage-assessment", "third-party-validation-signaling-risk"], "n": 3}
+{"idx": 386, "ci": 0, "m": ["saudi-arabia-current-flfp-rate"], "n": 3}
+{"idx": 386, "ci": 1, "m": [], "n": 3}
+{"idx": 386, "ci": 2, "m": [], "n": 3}
+{"idx": 386, "ci": 3, "m": [], "n": 3}
+{"idx": 386, "ci": 4, "m": ["iceland-current-flfp-rate"], "n": 3}
+{"idx": 386, "ci": 5, "m": [], "n": 3}
+{"idx": 386, "ci": 6, "m": [], "n": 3}
+{"idx": 387, "ci": 0, "m": ["fuji-flash-sync-speed", "hasselblad-leaf-shutter-sync"], "n": 3}
+{"idx": 387, "ci": 1, "m": ["fuji-phase-capture-one-support"], "n": 3}
+{"idx": 387, "ci": 2, "m": ["phase-one-system-cost"], "n": 3}
+{"idx": 387, "ci": 3, "m": ["hasselblad-internal-ssd"], "n": 3}
+{"idx": 387, "ci": 4, "m": ["hasselblad-hncs-color", "claims-hasselblad-capture-one-support", "conditional-recommendation-framework"], "n": 3}
+{"idx": 387, "ci": 5, "m": ["software-ecosystem-lock-in-analysis", "sync-technology-power-trade-offs"], "n": 3}
+{"idx": 387, "ci": 6, "m": ["multi-year-ownership-cost-projection", "location-specific-market-intelligence"], "n": 3}
+{"idx": 388, "ci": 0, "m": ["ios-fy2024-margin-calculation", "ios-revenue-growth-2023-2024"], "n": 3}
+{"idx": 388, "ci": 1, "m": ["pt-q2-2025-margin-calculation", "pt-fy2024-margin-calculation"], "n": 3}
+{"idx": 388, "ci": 2, "m": ["pt-revenue-growth-2023-2024"], "n": 3}
+{"idx": 388, "ci": 3, "m": ["ahs-fy2024-margin-calculation"], "n": 3}
+{"idx": 388, "ci": 4, "m": [], "n": 3}
+{"idx": 388, "ci": 5, "m": ["q1-2025-company-margin", "q1-2024-company-margin"], "n": 3}
+{"idx": 388, "ci": 6, "m": [], "n": 3}
+{"idx": 389, "ci": 0, "m": ["timing-violation-both-standards", "material-alteration-600-units", "functional-specs-fully-met"], "n": 3}
+{"idx": 389, "ci": 1, "m": ["march-emails-praised-performance"], "n": 3}
+{"idx": 389, "ci": 2, "m": ["industry-practice-accepts-variations", "contract-emphasized-performance", "identifies-the-specific-delivery-date-and-rejection-date"], "n": 3}
+{"idx": 389, "ci": 3, "m": ["three-pathway-acceptance-analysis"], "n": 3}
+{"idx": 389, "ci": 4, "m": [], "n": 3}
+{"idx": 389, "ci": 5, "m": ["analyzes-act-inconsistent-with-ownership"], "n": 3}
+{"idx": 389, "ci": 6, "m": ["legal-analytical-framework"], "n": 3}
+{"idx": 390, "ci": 0, "m": ["program-academic-background"], "n": 3}
+{"idx": 390, "ci": 1, "m": ["exception-for-degree-requirement", "program-language-requirement"], "n": 3}
+{"idx": 390, "ci": 2, "m": [], "n": 3}
+{"idx": 390, "ci": 3, "m": ["recommendation-letters", "charpak-nationality-requirement"], "n": 3}
+{"idx": 390, "ci": 4, "m": ["charpak-age-limit", "charpak-for-full-time-masters-programs"], "n": 3}
+{"idx": 390, "ci": 5, "m": ["charpak-current-students-eligible"], "n": 3}
+{"idx": 390, "ci": 6, "m": ["study-abroad", "indian-education"], "n": 3}
+{"idx": 391, "ci": 0, "m": ["chua-1971-ideal-fourth-element", "vongehr-meng-critique-memristive-systems"], "n": 3}
+{"idx": 391, "ci": 1, "m": ["working-consensus-functional-sufficiency"], "n": 3}
+{"idx": 391, "ci": 2, "m": [], "n": 3}
+{"idx": 391, "ci": 3, "m": [], "n": 3}
+{"idx": 391, "ci": 4, "m": ["kaist-self-rectifying-or-selector"], "n": 3}
+{"idx": 391, "ci": 5, "m": [], "n": 3}
+{"idx": 391, "ci": 6, "m": ["energy-efficiency-advantage-quantified", "accuracy-competitive-not-superior"], "n": 3}
+{"idx": 392, "ci": 0, "m": ["identifies-all-four-traditions", "mackinnon-dominance-framework", "fineman-vulnerability-theory"], "n": 3}
+{"idx": 392, "ci": 1, "m": ["mir-hosseini-contribution", "wadud-hermeneutics", "sharia-fiqh-distinction"], "n": 3}
+{"idx": 392, "ci": 2, "m": ["african-legal-pluralism-structure"], "n": 3}
+{"idx": 392, "ci": 3, "m": ["chinese-marketization-tension"], "n": 3}
+{"idx": 392, "ci": 4, "m": ["property-anglo-american-structure"], "n": 3}
+{"idx": 392, "ci": 5, "m": ["property-african-land-tenure"], "n": 3}
+{"idx": 392, "ci": 6, "m": [], "n": 3}
+{"idx": 393, "ci": 0, "m": [], "n": 3}
+{"idx": 393, "ci": 1, "m": [], "n": 3}
+{"idx": 393, "ci": 2, "m": [], "n": 3}
+{"idx": 393, "ci": 3, "m": ["zimbabwe-fast-track-violence"], "n": 3}
+{"idx": 393, "ci": 4, "m": [], "n": 3}
+{"idx": 393, "ci": 5, "m": [], "n": 3}
+{"idx": 393, "ci": 6, "m": [], "n": 3}
+{"idx": 394, "ci": 0, "m": [], "n": 3}
+{"idx": 394, "ci": 1, "m": [], "n": 3}
+{"idx": 394, "ci": 2, "m": ["asr-intent-dominant-errors"], "n": 3}
+{"idx": 394, "ci": 3, "m": [], "n": 3}
+{"idx": 394, "ci": 4, "m": [], "n": 3}
+{"idx": 394, "ci": 5, "m": [], "n": 3}
+{"idx": 394, "ci": 6, "m": [], "n": 3}
+{"idx": 395, "ci": 0, "m": ["identifies-three-elements-respondeat-superior", "identifies-app-mandated-routes", "identifies-algorithmic-suspension"], "n": 3}
+{"idx": 395, "ci": 1, "m": ["identifies-zero-pricing-discretion", "identifies-quota-system", "identifies-company-branding"], "n": 3}
+{"idx": 395, "ci": 2, "m": ["identifies-schedule-flexibility", "identifies-personal-vehicle", "identifies-written-ic-agreement"], "n": 3}
+{"idx": 395, "ci": 3, "m": ["scope-temporal-geographic", "scope-employer-motivation"], "n": 3}
+{"idx": 395, "ci": 4, "m": ["identifies-lapsed-insurance", "identifies-lost-training-records"], "n": 3}
+{"idx": 395, "ci": 5, "m": ["factor-predominance-weighing-analysis"], "n": 3}
+{"idx": 395, "ci": 6, "m": ["illusory-rights-doctrine-analysis", "analyzes-right-to-control-vs-actual-control", "analyzes-algorithmic-supervision"], "n": 3}
+{"idx": 396, "ci": 0, "m": ["three-factor-respondeat-superior-test", "employee-status-satisfied", "supervisor-text-authorization"], "n": 3}
+{"idx": 396, "ci": 1, "m": ["policy-effective-date", "policy-language-team-support", "mileage-reimbursement-fact"], "n": 3}
+{"idx": 396, "ci": 2, "m": ["four-block-detour-distance", "phone-glance-timing"], "n": 3}
+{"idx": 396, "ci": 3, "m": ["deleted-email-metadata", "on-schedule-fact", "intended-resume-deliveries"], "n": 3}
+{"idx": 396, "ci": 4, "m": ["sources-of-employer-benefit"], "n": 3}
+{"idx": 396, "ci": 5, "m": ["frolic-vs-detour-doctrine"], "n": 3}
+{"idx": 396, "ci": 6, "m": ["scope-as-central-issue", "slight-deviation-analysis"], "n": 3}
+{"idx": 397, "ci": 0, "m": [], "n": 3}
+{"idx": 397, "ci": 1, "m": [], "n": 3}
+{"idx": 397, "ci": 2, "m": ["debit-spread-risk-reward-structure", "credit-spread-risk-reward-structure"], "n": 3}
+{"idx": 397, "ci": 3, "m": [], "n": 3}
+{"idx": 397, "ci": 4, "m": [], "n": 3}
+{"idx": 397, "ci": 5, "m": [], "n": 3}
+{"idx": 397, "ci": 6, "m": [], "n": 3}
 {"idx": 397, "ci": 20, "m": ["warning-language-for-risks"], "n": 3}
+{"idx": 398, "ci": 0, "m": [], "n": 3}
+{"idx": 398, "ci": 1, "m": [], "n": 3}
+{"idx": 398, "ci": 2, "m": ["china-cloud-operators"], "n": 3}
+{"idx": 398, "ci": 3, "m": [], "n": 3}
+{"idx": 398, "ci": 4, "m": [], "n": 3}
+{"idx": 398, "ci": 5, "m": ["all-criteria-addressed"], "n": 3}
+{"idx": 398, "ci": 6, "m": ["china-sovereign-architecture", "federation-maturity-assessment"], "n": 3}
+{"idx": 399, "ci": 0, "m": ["us-scenario-a-net-takehome", "us-scenario-b-net-takehome"], "n": 3}
+{"idx": 399, "ci": 1, "m": ["germany-scenario-b-net-takehome-eur", "us-scenario-a-federal-income-tax", "us-scenario-a-social-security-tax"], "n": 3}
+{"idx": 399, "ci": 2, "m": ["us-scenario-a-medicare-tax", "us-scenario-b-ordinary-income-tax", "us-scenario-b-capital-gains-tax"], "n": 3}
+{"idx": 399, "ci": 3, "m": [], "n": 3}
+{"idx": 399, "ci": 4, "m": ["germany-scenario-a-health-insurance"], "n": 3}
+{"idx": 399, "ci": 5, "m": ["germany-scenario-b-capital-gains-flat-tax", "germany-scenario-b-social-insurance-wages-only"], "n": 3}
+{"idx": 399, "ci": 6, "m": ["us-standard-deduction-2024"], "n": 3}
+{"idx": 422, "ci": 0, "m": ["monthly-lead-targets-all-three-months", "cpl-targets-declining-progression", "three-month-cumulative-lead-total"], "n": 3}
+{"idx": 422, "ci": 1, "m": ["four-content-pillars-identified"], "n": 3}
+{"idx": 422, "ci": 2, "m": ["pillar-percentage-distribution", "six-post-templates-enumerated"], "n": 3}
+{"idx": 422, "ci": 3, "m": [], "n": 3}
+{"idx": 422, "ci": 4, "m": ["lead-magnet-examples-provided"], "n": 3}
+{"idx": 422, "ci": 5, "m": ["dm-automation-platform-named", "crm-platform-options-specified", "lead-scoring-tiers-defined"], "n": 3}
+{"idx": 422, "ci": 6, "m": ["hot-lead-followup-timeline", "warm-lead-nurture-duration", "primary-kpis-listed"], "n": 3}
+{"idx": 424, "ci": 0, "m": ["swap-fair-value-dec-2023", "swap-fair-value-june-2024", "swap-fair-value-change-dec-to-june"], "n": 3}
+{"idx": 424, "ci": 1, "m": ["swap-fair-value-sept-2025", "q2-2023-total-interest-expense", "q2-2024-total-interest-expense"], "n": 3}
+{"idx": 424, "ci": 2, "m": ["q2-2023-to-q2-2024-change"], "n": 3}
+{"idx": 424, "ci": 3, "m": ["q3-2024-total-interest-expense", "q3-2025-total-interest-expense", "q3-2024-to-q3-2025-change"], "n": 3}
+{"idx": 424, "ci": 4, "m": ["nine-month-2024-total-interest-expense"], "n": 3}
+{"idx": 424, "ci": 5, "m": ["nine-month-2025-total-interest-expense", "nine-month-interest-expense-change"], "n": 3}
+{"idx": 424, "ci": 6, "m": [], "n": 3}
 {"idx": 424, "ci": 19, "m": ["swap-component-breakdown", "multi-period-trend-synthesis"], "n": 3}
 {"idx": 424, "ci": 23, "m": ["analytical-objectivity", "repetitive-content"], "n": 3}
 {"idx": 424, "ci": 24, "m": ["cites-diamondrock-10q-q2-2024", "cites-diamondrock-10q-q3-2025"], "n": 3}
 {"idx": 424, "ci": 25, "m": [], "n": 2}
+{"idx": 426, "ci": 0, "m": ["operating-cash-flow-9m-2024", "investing-cash-flow-9m-2024", "free-cash-flow-calculation"], "n": 3}
+{"idx": 426, "ci": 1, "m": ["quarterly-burn-rate-calculation", "ending-cash-position-sept-2024", "total-q3-2024-revenue-growth"], "n": 3}
+{"idx": 426, "ci": 2, "m": ["biologics-q3-2024-growth-rate", "neurosurgery-q3-2024-growth-rate", "capital-equipment-q3-2024-growth-rate"], "n": 3}
+{"idx": 426, "ci": 3, "m": ["gross-margin-q3-2024", "gross-margin-9m-2024", "cash-burn-improvement-percentage"], "n": 3}
+{"idx": 426, "ci": 4, "m": ["march-2024-equity-raise", "august-2024-debt-repayment", "biologics-disposables-q3-explosion"], "n": 3}
+{"idx": 426, "ci": 5, "m": [], "n": 3}
+{"idx": 426, "ci": 6, "m": ["gross-margin-6m-2023-decline", "revenue-vs-opex-leverage", "beginning-cash-position-jan-2024"], "n": 3}
+{"idx": 427, "ci": 0, "m": ["deployment-evidence-examples", "babyl-rwanda-ussd-sms-architecture"], "n": 3}
+{"idx": 427, "ci": 1, "m": ["babyl-rwanda-scale-metrics", "babyl-rwanda-async-workflow"], "n": 3}
+{"idx": 427, "ci": 2, "m": ["mpharma-pharmacy-hub-exam-forward", "zipline-multi-channel-ordering"], "n": 3}
+{"idx": 427, "ci": 3, "m": ["zipline-supply-not-diagnostic", "offline-first-architecture-components", "sync-strategy-intervals"], "n": 3}
+{"idx": 427, "ci": 4, "m": ["quality-gate-mechanisms", "task-shifting-chw-nurse-model", "fhir-health-data-standards"], "n": 3}
+{"idx": 427, "ci": 5, "m": ["cognitive-load-design-principles"], "n": 3}
+{"idx": 427, "ci": 6, "m": ["condition-specific-concordance-variation"], "n": 3}
+{"idx": 429, "ci": 0, "m": ["chile-brine-freshwater-consumption"], "n": 3}
+{"idx": 429, "ci": 1, "m": ["brine-water-evaporation-volumes", "dle-land-footprint-comparison"], "n": 3}
+{"idx": 429, "ci": 2, "m": ["chile-regulatory-environmental-actions", "china-salt-lake-industrial-policy"], "n": 3}
+{"idx": 429, "ci": 3, "m": ["australia-mining-regulatory-framework", "dle-lithium-recovery-rates", "battery-grade-purity-standards"], "n": 3}
+{"idx": 429, "ci": 4, "m": ["major-producers-method-positioning", "metric-boundary-reconciliation", "regulatory-economic-mechanism"], "n": 3}
+{"idx": 429, "ci": 5, "m": ["technology-heterogeneity-within-category", "processing-vs-ecosystem-impact-distinction"], "n": 3}
+{"idx": 429, "ci": 6, "m": ["temporal-evolution-inflection-points", "order-of-magnitude-scale-framing"], "n": 3}
+{"idx": 431, "ci": 0, "m": ["tk-diesel-tru-off-grid-capability", "tk-temperature-range"], "n": 3}
+{"idx": 431, "ci": 1, "m": ["carrier-high-ambient-capability", "who-pqs-e004-passive-boxes"], "n": 3}
+{"idx": 431, "ci": 2, "m": [], "n": 3}
+{"idx": 431, "ci": 3, "m": ["tk-monitoring-system", "carrier-monitoring-system"], "n": 3}
+{"idx": 431, "ci": 4, "m": ["carrier-two-way-control", "who-pqs-e006-monitoring-devices"], "n": 3}
+{"idx": 431, "ci": 5, "m": ["carrier-regional-service-network"], "n": 3}
+{"idx": 431, "ci": 6, "m": ["lagos-accra-stronger-coverage", "mandilas-group-nigeria"], "n": 3}
+{"idx": 443, "ci": 0, "m": ["ocf-q1-2025", "ocf-q1-2024", "ocf-growth-amount"], "n": 3}
+{"idx": 443, "ci": 1, "m": ["ocf-growth-rate", "net-income-q1-2025", "net-income-q1-2024"], "n": 3}
+{"idx": 443, "ci": 2, "m": ["ocf-conversion-2025", "ocf-conversion-2024", "debt-500m-2028"], "n": 3}
+{"idx": 443, "ci": 3, "m": ["debt-750m-2030", "debt-750m-2032", "debt-750m-2043"], "n": 3}
+{"idx": 443, "ci": 4, "m": ["debt-700m-2048", "total-debt-outstanding", "cash-balance"], "n": 3}
+{"idx": 443, "ci": 5, "m": ["weighted-average-maturity"], "n": 3}
+{"idx": 443, "ci": 6, "m": ["debt-refinancing-action", "net-income-growth-rate", "accounts-receivable-2025"], "n": 3}
+{"idx": 450, "ci": 0, "m": ["nasdaq-rule-definition", "board-affirmative-determination", "family-member-definition"], "n": 3}
+{"idx": 450, "ci": 1, "m": ["employment-three-year-lookback", "family-executive-officer-disqualification", "compensation-threshold-120k"], "n": 3}
+{"idx": 450, "ci": 2, "m": ["compensation-exclusions-specified", "business-relationship-greater-of-test", "business-relationship-three-fiscal-years"], "n": 3}
+{"idx": 450, "ci": 3, "m": ["auditor-current-partner-disqualification", "auditor-past-three-year-disqualification", "interlocking-compensation-committee"], "n": 3}
+{"idx": 450, "ci": 4, "m": ["committee-full-independence-requirement"], "n": 3}
+{"idx": 450, "ci": 5, "m": ["controlled-company-fifty-percent-definition", "controlled-company-exemption-scope", "controlled-company-audit-still-required"], "n": 3}
+{"idx": 450, "ci": 6, "m": [], "n": 3}
+{"idx": 453, "ci": 0, "m": ["fy2024-revenue", "fy2023-revenue"], "n": 3}
+{"idx": 453, "ci": 1, "m": ["revenue-growth-rate", "business-model-description"], "n": 3}
+{"idx": 453, "ci": 2, "m": ["hgl-exit-return"], "n": 3}
+{"idx": 453, "ci": 3, "m": ["ares-debt-facilities", "missing-metrics-acknowledgment"], "n": 3}
+{"idx": 453, "ci": 4, "m": ["value-creation-levers-detailed", "revenue-mix-breakdown-quantified"], "n": 3}
+{"idx": 453, "ci": 5, "m": ["capital-structure-implications"], "n": 3}
+{"idx": 453, "ci": 6, "m": ["margin-trend-comparative-analysis", "valuation-on-undisclosed-figures", "pe-professional-tone"], "n": 3}
+{"idx": 457, "ci": 0, "m": ["sold-call-delta-range", "bought-put-delta-range", "call-delta-reasoning"], "n": 3}
+{"idx": 457, "ci": 1, "m": ["put-delta-reasoning", "asymmetric-more-common", "put-call-skew-driver"], "n": 3}
+{"idx": 457, "ci": 2, "m": ["symmetric-structure-definition", "example-asymmetric-collar"], "n": 3}
+{"idx": 457, "ci": 3, "m": ["put-percentage-distance", "call-percentage-distance", "cboe-95-110-collar"], "n": 3}
+{"idx": 457, "ci": 4, "m": ["thirty-delta-covered-call-convention", "zero-cost-achievement-mechanics", "institutional-example-with-specifics"], "n": 3}
+{"idx": 457, "ci": 5, "m": ["final-recommendation-format", "investor-profile-customization", "aggregate-net-delta-analysis"], "n": 3}
+{"idx": 457, "ci": 6, "m": ["cost-optimization-techniques", "institutional-implementation-rationale", "parameter-causality-mapping"], "n": 3}
+{"idx": 458, "ci": 0, "m": ["covers-all-four-platforms", "ray-serve-autoscaling-mechanism"], "n": 3}
+{"idx": 458, "ci": 1, "m": ["kserve-knative-overhead", "triton-fil-backend-capability"], "n": 3}
+{"idx": 458, "ci": 2, "m": ["triton-multi-framework-support", "kserve-cold-start-timing", "bentoml-cold-start-advantage"], "n": 3}
+{"idx": 458, "ci": 3, "m": ["bentoml-adaptive-batching", "kserve-canary-mechanism"], "n": 3}
+{"idx": 458, "ci": 4, "m": ["alibi-detect-drift-monitoring", "ray-serve-burst-handling-performance"], "n": 3}
+{"idx": 458, "ci": 5, "m": ["aws-instance-based-cost-model", "razorpay-experience-reference", "gojek-experience-reference"], "n": 3}
+{"idx": 458, "ci": 6, "m": ["paymongo-experience-reference"], "n": 3}
+{"idx": 459, "ci": 0, "m": ["pension-obligation-march-2024", "pension-obligation-march-2025", "pension-assets-march-2024"], "n": 3}
+{"idx": 459, "ci": 1, "m": ["pension-assets-march-2025", "funded-status-march-2024", "funded-status-march-2025"], "n": 3}
+{"idx": 459, "ci": 2, "m": ["funded-status-improvement"], "n": 3}
+{"idx": 459, "ci": 3, "m": ["fy2024-settlement-charge", "fy2025-settlement-charge"], "n": 3}
+{"idx": 459, "ci": 4, "m": ["fy2025-settlement-reduction", "remaining-surplus"], "n": 3}
+{"idx": 459, "ci": 5, "m": [], "n": 3}
+{"idx": 459, "ci": 6, "m": [], "n": 3}
 {"idx": 459, "ci": 19, "m": [], "n": 3}
 {"idx": 459, "ci": 22, "m": ["cites-cmco-10k-march-2025"], "n": 3}
 {"idx": 459, "ci": 23, "m": ["avoids-non-authoritative-sources"], "n": 1}
+{"idx": 460, "ci": 0, "m": ["siemens-offering", "siemens-durability", "siemens-cloud-analytics"], "n": 3}
+{"idx": 460, "ci": 1, "m": ["siemens-edge-option", "siemens-products-named"], "n": 3}
+{"idx": 460, "ci": 2, "m": ["honeywell-offering", "honeywell-sensor-durability"], "n": 3}
+{"idx": 460, "ci": 3, "m": ["honeywell-edge-processing", "honeywell-products-named", "local-providers-context"], "n": 3}
+{"idx": 460, "ci": 4, "m": ["vayeron-offering"], "n": 3}
+{"idx": 460, "ci": 5, "m": [], "n": 3}
+{"idx": 460, "ci": 6, "m": [], "n": 3}
+{"idx": 463, "ci": 0, "m": ["reams-consumed-quantity", "letterhead-printed-quantity", "non-conforming-goods-identified"], "n": 3}
+{"idx": 463, "ci": 1, "m": ["identifies-the-timeline", "identifies-the-specific-defect", "notes-vendors-argument"], "n": 3}
+{"idx": 463, "ci": 2, "m": ["identifies-the-incomplete-packing-slips", "immediate-discoverability-of-defect"], "n": 3}
+{"idx": 463, "ci": 3, "m": ["summary-judgment-no-fact-issue", "analyzes-act-inconsistent-with-ownership"], "n": 3}
+{"idx": 463, "ci": 4, "m": ["analyzes-substantial-change", "analyzes-timeliness-of-rejection-2-602", "buyer-owns-the-paper-because-they-printed-on-it"], "n": 3}
+{"idx": 463, "ci": 5, "m": ["formal-legal-tone"], "n": 3}
+{"idx": 463, "ci": 6, "m": ["ucc-organized-structure", "precise-legal-terminology", "casual-metaphors"], "n": 3}
+{"idx": 469, "ci": 0, "m": ["verbal-remote-work-promise", "hybrid-schedule-term", "timing-of-offer-vs-relocation"], "n": 3}
+{"idx": 469, "ci": 1, "m": ["states-may-15-relocation-actions", "financial-loss-on-home-sale", "june-email-confirmation"], "n": 3}
+{"idx": 469, "ci": 2, "m": ["managers-lack-of-authority", "policy-update-july-1", "comparator-evidence"], "n": 3}
+{"idx": 469, "ci": 3, "m": ["promissory-estoppel-elements", "summary-judgment-standard", "reliance-unreasonable-as-matter-of-law"], "n": 3}
+{"idx": 469, "ci": 4, "m": ["specific-performance-remedy", "reliance-damages-as-remedy"], "n": 3}
+{"idx": 469, "ci": 5, "m": ["authority-vs-formal-exception-process", "direct-contradiction-of-terms"], "n": 3}
+{"idx": 469, "ci": 6, "m": ["timing-undermines-reliance", "promissory-estoppel-cannot-rewrite-contract", "integration-clause-as-parol-evidence-barrier"], "n": 3}
+{"idx": 470, "ci": 0, "m": [], "n": 3}
+{"idx": 470, "ci": 1, "m": ["acknowledges-test-data-conflict", "track-belt-systems", "belt-life-expectation"], "n": 3}
+{"idx": 470, "ci": 2, "m": [], "n": 3}
+{"idx": 470, "ci": 3, "m": ["case-telematics-remote-features"], "n": 3}
+{"idx": 470, "ci": 4, "m": ["deere-dealers-regina-locations", "case-dealers-regina-coverage"], "n": 3}
+{"idx": 470, "ci": 5, "m": ["cca-class-and-rate"], "n": 3}
+{"idx": 470, "ci": 6, "m": ["demonstrates-transparent-calculation"], "n": 3}
+{"idx": 471, "ci": 0, "m": [], "n": 3}
+{"idx": 471, "ci": 1, "m": [], "n": 3}
+{"idx": 471, "ci": 2, "m": ["argentina-dni-renaper", "colombia-cedula-registraduria"], "n": 3}
+{"idx": 471, "ci": 3, "m": [], "n": 3}
+{"idx": 471, "ci": 4, "m": ["brazil-pix-ubiquitous"], "n": 3}
+{"idx": 471, "ci": 5, "m": [], "n": 3}
+{"idx": 471, "ci": 6, "m": [], "n": 3}
 {"idx": 471, "ci": 10, "m": ["competitive-landscape-analysis"], "n": 3}
+{"idx": 472, "ci": 0, "m": ["no-head-to-head-studies-exists", "table-social-communication-dsm5", "table-social-communication-icd11"], "n": 3}
+{"idx": 472, "ci": 1, "m": ["table-sensory-dsm5-criterion", "table-sensory-icd11-approach", "table-severity-dsm5-levels"], "n": 3}
+{"idx": 472, "ci": 2, "m": ["table-severity-icd11-specifiers", "table-onset-both-manuals", "table-impairment-both-manuals"], "n": 3}
+{"idx": 472, "ci": 3, "m": ["evidence-includes-systematic-review", "evidence-primary-empirical-study"], "n": 3}
+{"idx": 472, "ci": 4, "m": ["evidence-grade-ratings-provided", "evidence-notes-indirectness"], "n": 3}
+{"idx": 472, "ci": 5, "m": ["who-sensory-in-rrb-domain", "apa-dsm5-three-subdomains", "aap-dsm5-reference"], "n": 3}
+{"idx": 472, "ci": 6, "m": ["nice-nhs-icd11-primary", "nice-nhs-icd10-mapping"], "n": 3}
+{"idx": 473, "ci": 0, "m": ["south-africa-trc-conditional-amnesty", "canada-trc-94-calls-to-action"], "n": 3}
+{"idx": 473, "ci": 1, "m": ["icty-indictments-scale", "icc-custody-cooperation-challenges"], "n": 3}
+{"idx": 473, "ci": 2, "m": ["germany-holocaust-reparations-scale", "germany-luxembourg-agreements-1952"], "n": 3}
+{"idx": 473, "ci": 3, "m": ["us-japanese-internment-payment-amount", "us-japanese-internment-recipients-count"], "n": 3}
+{"idx": 473, "ci": 4, "m": ["balanced-strengths-limitations-each-mechanism", "operational-implementation-determinants"], "n": 3}
+{"idx": 473, "ci": 5, "m": ["causal-mechanism-explanations", "specific-historical-design-failures", "portfolio-systems-thinking"], "n": 3}
+{"idx": 473, "ci": 6, "m": ["implementation-to-goal-linkages", "scholarly-terminology-and-rigor"], "n": 3}
+{"idx": 474, "ci": 0, "m": ["q1-2023-total-sales", "q1-2023-gross-profit", "q1-2023-gross-margin"], "n": 3}
+{"idx": 474, "ci": 1, "m": ["q1-2023-direct-supply-revenue", "q1-2023-indirect-supply-revenue"], "n": 3}
 {"idx": 474, "ci": 2, "m": ["q1-2024-total-sales", "q1-2024-gross-loss"], "n": 3}
+{"idx": 474, "ci": 3, "m": ["q1-2024-reported-margin", "q1-2024-cost-of-sales-production", "factory-relocation-loss"], "n": 3}
+{"idx": 474, "ci": 4, "m": ["q1-2024-total-cost-of-sales", "q1-2024-direct-supply-elimination", "q1-2024-indirect-supply-percentage"], "n": 3}
+{"idx": 474, "ci": 5, "m": ["adjusted-q1-2024-gross-profit", "adjusted-q1-2024-margin", "yoy-total-margin-decline"], "n": 3}
+{"idx": 474, "ci": 6, "m": ["relocation-impact-margin-points", "operational-margin-decline-points", "shows-q1-2023-margin-calculation"], "n": 3}
+{"idx": 475, "ci": 0, "m": ["atsource-not-licensable", "fairtrace-mandatory-not-field-tool", "certification-portals-mandatory"], "n": 3}
+{"idx": 475, "ci": 1, "m": ["identifies-farmforce-with-features"], "n": 3}
+{"idx": 475, "ci": 2, "m": [], "n": 3}
+{"idx": 475, "ci": 3, "m": ["identifies-additional-platforms", "offline-vs-online-distinction"], "n": 3}
+{"idx": 475, "ci": 4, "m": ["sub-meter-gnss-solution", "eudr-compliance-context", "budget-components-enumerated"], "n": 3}
+{"idx": 475, "ci": 5, "m": ["amharic-custom-translation-needed"], "n": 3}
+{"idx": 475, "ci": 6, "m": ["flocert-support-languages", "articulates-layered-architecture"], "n": 3}
+{"idx": 476, "ci": 0, "m": ["pt-test-types-enumeration", "pt-bayesian-updating"], "n": 3}
+{"idx": 476, "ci": 1, "m": ["pt-cpos-definition", "bayesian-scm-mechanism-definition", "bayesian-identification-criteria"], "n": 3}
+{"idx": 476, "ci": 2, "m": ["mahoney-pt-methodologist", "bayesian-pt-attribution", "pearl-mahoney-conflation-penalty"], "n": 3}
+{"idx": 476, "ci": 3, "m": ["qca-equifinality-multiple-sufficient"], "n": 3}
+{"idx": 476, "ci": 4, "m": ["qca-conjunctural-causation"], "n": 3}
+{"idx": 476, "ci": 5, "m": ["dag-adjustment-set-criteria", "post-treatment-conditioning-definition"], "n": 3}
+{"idx": 476, "ci": 6, "m": ["skocpol-mechanism-pathway", "qca-boolean-set-theory", "qca-causal-asymmetry"], "n": 3}
+{"idx": 477, "ci": 0, "m": ["daily-cost-estimates", "provides-9-day-structure", "states-budget-breakdown"], "n": 3}
+{"idx": 477, "ci": 1, "m": ["includes-countryside-days", "lists-multiple-destinations", "accommodation-options-with-pricing"], "n": 3}
+{"idx": 477, "ci": 2, "m": ["activity-mix-cultural", "activity-mix-adventure", "activity-mix-nightlife"], "n": 3}
+{"idx": 477, "ci": 3, "m": ["transport-between-cities", "local-transport-options", "verifies-budget-feasibility"], "n": 3}
+{"idx": 477, "ci": 4, "m": ["group-logistics-considerations", "accommodation-group-suitability", "consecutive-day-feasibility"], "n": 3}
+{"idx": 477, "ci": 5, "m": ["route-optimization-insight", "booking-timeline-guidance", "inconsistent-budget-totals"], "n": 3}
+{"idx": 477, "ci": 6, "m": ["structured-itinerary-format", "practical-helpful-tone"], "n": 3}
+{"idx": 478, "ci": 0, "m": ["mammography-software-compatibility"], "n": 3}
+{"idx": 478, "ci": 1, "m": ["specworkstation-benchmark-data", "ecc-memory-support", "power-consumption-calculation"], "n": 3}
+{"idx": 478, "ci": 2, "m": ["annual-power-cost-per-workstation", "fleet-power-cost-5year", "10gbe-compatibility"], "n": 3}
+{"idx": 478, "ci": 3, "m": ["dell-service-response"], "n": 3}
+{"idx": 478, "ci": 4, "m": ["ecc-reliability-clinical-context"], "n": 3}
+{"idx": 478, "ci": 5, "m": ["power-efficiency-tradeoffs"], "n": 3}
+{"idx": 478, "ci": 6, "m": ["10gbe-performance-impact", "technical-precision-medical-it"], "n": 3}
 {"idx": 478, "ci": 9, "m": ["cites-software-vendor-requirements", "cites-power-or-technical-data"], "n": 3}
+{"idx": 479, "ci": 0, "m": ["edelweiss-fund-structure", "edelweiss-jpm-share-classes", "edelweiss-sector-focus"], "n": 3}
+{"idx": 479, "ci": 1, "m": ["edelweiss-underlying-holdings", "dsp-fund-structure", "dsp-bluebox-allocation"], "n": 3}
+{"idx": 479, "ci": 2, "m": ["dsp-ishares-nasdaq-allocation"], "n": 3}
+{"idx": 479, "ci": 3, "m": ["dsp-geographic-focus", "dsp-sector-themes"], "n": 3}
+{"idx": 479, "ci": 4, "m": ["overlap-indirect-kweb", "overlap-quantification"], "n": 3}
+{"idx": 479, "ci": 5, "m": ["overlap-common-names", "edelweiss-underlying-expense-component"], "n": 3}
+{"idx": 479, "ci": 6, "m": ["dsp-direct-ter"], "n": 3}
+{"idx": 480, "ci": 0, "m": [], "n": 3}
+{"idx": 480, "ci": 1, "m": ["rodecaster-usb-stability-issues", "podtrak-usb-interface-specs", "tascam-usb-stability-issues"], "n": 3}
+{"idx": 480, "ci": 2, "m": ["rodecaster-recording-24bit", "podtrak-recording-16bit", "tascam-recording-24bit-multitrack"], "n": 3}
+{"idx": 480, "ci": 3, "m": ["rodecaster-broadcast-processing", "podtrak-basic-processing", "tascam-post-flexibility"], "n": 3}
+{"idx": 480, "ci": 4, "m": ["multiple-cost-models"], "n": 3}
+{"idx": 480, "ci": 5, "m": ["technical-unit-disambiguation", "specification-practical-impact", "construction-environmental-analysis"], "n": 3}
+{"idx": 480, "ci": 6, "m": ["user-report-weighting", "configuration-scenario-modeling", "missing-specification-identification"], "n": 3}
+{"idx": 481, "ci": 0, "m": ["hash-ribbon-prior-signal-context", "hash-ribbon-signal-interpretation"], "n": 3}
+{"idx": 481, "ci": 1, "m": ["post-halving-btc-per-block", "daily-miner-issuance", "weekly-miner-issuance"], "n": 3}
+{"idx": 481, "ci": 2, "m": [], "n": 3}
+{"idx": 481, "ci": 3, "m": ["absorption-multiple-metric", "notable-outflow-december-24"], "n": 3}
+{"idx": 481, "ci": 4, "m": ["bull-scenario-upper-bound"], "n": 3}
+{"idx": 481, "ci": 5, "m": ["bear-scenario-lower-bound", "absorption-multiple-formula"], "n": 3}
+{"idx": 481, "ci": 6, "m": ["fallback-analysis-framework"], "n": 3}
+{"idx": 482, "ci": 0, "m": ["native-dlp-not-supported", "purview-connector-audit-only", "edge-dlp-browser-prevention"], "n": 3}
+{"idx": 482, "ci": 1, "m": ["mdca-session-controls", "copilot-native-dlp", "saml-sso-requirement"], "n": 3}
+{"idx": 482, "ci": 2, "m": ["edge-in-browser-protection", "conditional-access-app-control", "chatgpt-admin-controls"], "n": 3}
+{"idx": 482, "ci": 3, "m": [], "n": 3}
+{"idx": 482, "ci": 4, "m": ["endpoint-dlp-domains"], "n": 3}
+{"idx": 482, "ci": 5, "m": ["known-limitations", "implementation-prerequisites-specified"], "n": 3}
+{"idx": 482, "ci": 6, "m": ["multi-dimensional-comparison-framework", "cost-billing-implications", "data-residency-retention-implications"], "n": 3}
+{"idx": 483, "ci": 0, "m": ["webauthn-current-version"], "n": 3}
+{"idx": 483, "ci": 1, "m": [], "n": 3}
+{"idx": 483, "ci": 2, "m": [], "n": 3}
+{"idx": 483, "ci": 3, "m": ["eudi-technical-protocols"], "n": 3}
+{"idx": 483, "ci": 4, "m": ["fido-per-origin-architecture"], "n": 3}
+{"idx": 483, "ci": 5, "m": [], "n": 3}
 {"idx": 483, "ci": 6, "m": [], "n": 3}
 {"idx": 484, "ci": 0, "m": ["opening-name-keres-variation", "eco-code-b50", "maroczy-bind-structure"], "n": 3}
+{"idx": 484, "ci": 1, "m": ["database-frequency-specific-counts", "frequency-under-two-percent", "stockfish-evaluation-range"], "n": 3}
+{"idx": 484, "ci": 2, "m": ["d5-square-control-importance", "white-bind-maintenance-strategy", "black-d5-freeing-break"], "n": 3}
+{"idx": 484, "ci": 3, "m": ["black-b5-queenside-break", "white-development-schemes"], "n": 3}
+{"idx": 484, "ci": 4, "m": ["hedgehog-formation-setup"], "n": 3}
+{"idx": 484, "ci": 5, "m": [], "n": 3}
+{"idx": 484, "ci": 6, "m": ["break-preparation-mechanics", "piece-exchange-principles"], "n": 3}
 {"idx": 485, "ci": 0, "m": ["june-2022-cash-balance", "q1-2024-runway-projection"], "n": 3}
+{"idx": 485, "ci": 1, "m": ["takeda-program-review-status", "milestone-removal-from-runway"], "n": 3}
+{"idx": 485, "ci": 2, "m": ["january-2023-strategic-shift"], "n": 3}
+{"idx": 485, "ci": 3, "m": [], "n": 3}
+{"idx": 485, "ci": 4, "m": [], "n": 3}
+{"idx": 485, "ci": 5, "m": ["sublease-income-reconciliation"], "n": 3}
+{"idx": 485, "ci": 6, "m": ["timeline-misalignment-information-asymmetry", "negotiating-leverage-assessment", "third-party-validation-signaling-risk"], "n": 3}
 {"idx": 488, "ci": 0, "m": ["ios-q2-2025-margin-calculation", "ios-fy2024-margin-calculation", "ios-revenue-growth-2023-2024"], "n": 3}
+{"idx": 488, "ci": 1, "m": ["pt-q2-2025-margin-calculation", "pt-fy2024-margin-calculation", "pt-separation-date"], "n": 3}
+{"idx": 488, "ci": 2, "m": ["pt-revenue-growth-2023-2024"], "n": 3}
+{"idx": 488, "ci": 3, "m": ["ahs-q2-2025-margin-calculation", "ahs-fy2024-margin-calculation"], "n": 3}
+{"idx": 488, "ci": 4, "m": ["ahs-revenue-growth-2023-2024", "combined-ios-ahs-fy2024-margin"], "n": 3}
+{"idx": 488, "ci": 5, "m": ["q1-2025-company-margin", "q1-2024-company-margin"], "n": 3}
+{"idx": 488, "ci": 6, "m": ["strongest-segment-identification", "q2-vs-fy2024-margin-comparison"], "n": 3}
+{"idx": 489, "ci": 0, "m": ["timing-violation-both-standards", "material-alteration-600-units", "functional-specs-fully-met"], "n": 3}
+{"idx": 489, "ci": 1, "m": ["patent-defect-immediately-discoverable", "cure-offer-was-reasonable", "march-emails-praised-performance"], "n": 3}
+{"idx": 489, "ci": 2, "m": ["industry-practice-accepts-variations", "contract-emphasized-performance", "identifies-the-specific-delivery-date-and-rejection-date"], "n": 3}
+{"idx": 489, "ci": 3, "m": ["three-pathway-acceptance-analysis"], "n": 3}
+{"idx": 489, "ci": 4, "m": ["systematic-revocation-requirements"], "n": 3}
+{"idx": 489, "ci": 5, "m": ["analyzes-act-inconsistent-with-ownership", "analyzes-patent-vs-latent-defects", "analyzes-the-shift-from-perfect-tender-to-revocation-of-acceptance"], "n": 3}
+{"idx": 489, "ci": 6, "m": ["legal-analytical-framework", "authoritative-legal-tone", "legal-formatting-tools"], "n": 3}
+{"idx": 490, "ci": 0, "m": ["three-factor-respondeat-superior-test", "employee-status-satisfied", "supervisor-text-authorization"], "n": 3}
+{"idx": 490, "ci": 1, "m": ["policy-effective-date", "policy-language-team-support", "mileage-reimbursement-fact"], "n": 3}
+{"idx": 490, "ci": 2, "m": ["four-block-detour-distance", "returning-to-route-fact", "phone-glance-timing"], "n": 3}
+{"idx": 490, "ci": 3, "m": ["deleted-email-metadata", "on-schedule-fact", "intended-resume-deliveries"], "n": 3}
+{"idx": 490, "ci": 4, "m": ["soft-tissue-injury-finding", "sources-of-employer-benefit"], "n": 3}
+{"idx": 490, "ci": 5, "m": ["frolic-vs-detour-doctrine", "summary-judgment-standard"], "n": 3}
+{"idx": 490, "ci": 6, "m": ["scope-as-central-issue", "dual-purpose-or-personal-comfort", "slight-deviation-analysis"], "n": 3}
+{"idx": 491, "ci": 0, "m": ["m2-application-window", "program-academic-background"], "n": 3}
+{"idx": 491, "ci": 1, "m": ["exception-for-degree-requirement", "program-language-requirement", "compulsory-supporting-documents"], "n": 3}
+{"idx": 491, "ci": 2, "m": ["m1-additional-compulsory-supporting-documents", "m2-recommendation-requirement", "english-proficiency-requirement"], "n": 3}
+{"idx": 491, "ci": 3, "m": ["recommendation-letters", "vap-file", "charpak-nationality-requirement"], "n": 3}
+{"idx": 491, "ci": 4, "m": ["charpak-age-limit", "charpak-for-full-time-masters-programs", "charpak-ineligibility-phd"], "n": 3}
+{"idx": 491, "ci": 5, "m": ["charpak-previous-recipient-exclusion", "charpak-ineligibility", "charpak-current-students-eligible"], "n": 3}
+{"idx": 491, "ci": 6, "m": ["study-abroad", "french-ability", "indian-education"], "n": 3}
+{"idx": 492, "ci": 0, "m": ["chua-1971-ideal-fourth-element", "vongehr-meng-critique-memristive-systems"], "n": 3}
+{"idx": 492, "ci": 1, "m": ["chua-generalized-taxonomy-1976"], "n": 3}
+{"idx": 492, "ci": 2, "m": ["knowm-ahah-differential-pairs"], "n": 3}
+{"idx": 492, "ci": 3, "m": ["michigan-read-margin-analysis"], "n": 3}
+{"idx": 492, "ci": 4, "m": ["kaist-self-rectifying-or-selector"], "n": 3}
+{"idx": 492, "ci": 5, "m": ["sneak-path-solutions-comprehensive"], "n": 3}
+{"idx": 492, "ci": 6, "m": ["energy-efficiency-advantage-quantified", "accuracy-competitive-not-superior"], "n": 3}
+{"idx": 493, "ci": 0, "m": ["identifies-three-elements-respondeat-superior", "identifies-app-mandated-routes", "identifies-algorithmic-suspension"], "n": 3}
+{"idx": 493, "ci": 1, "m": ["identifies-zero-pricing-discretion", "identifies-quota-system", "identifies-company-branding"], "n": 3}
+{"idx": 493, "ci": 2, "m": ["identifies-schedule-flexibility", "identifies-personal-vehicle", "identifies-written-ic-agreement"], "n": 3}
+{"idx": 493, "ci": 3, "m": ["identifies-ability-to-hire-assistants", "scope-temporal-geographic", "scope-employer-motivation"], "n": 3}
+{"idx": 493, "ci": 4, "m": ["identifies-lapsed-insurance", "identifies-lost-training-records", "insurance-monitoring-failure"], "n": 3}
+{"idx": 493, "ci": 5, "m": ["partial-summary-adjudication", "factor-predominance-weighing-analysis"], "n": 3}
+{"idx": 493, "ci": 6, "m": ["illusory-rights-doctrine-analysis", "analyzes-right-to-control-vs-actual-control", "analyzes-algorithmic-supervision"], "n": 3}
+{"idx": 494, "ci": 0, "m": ["identifies-all-four-traditions", "mackinnon-dominance-framework", "fineman-vulnerability-theory"], "n": 3}
+{"idx": 494, "ci": 1, "m": ["mir-hosseini-contribution", "wadud-hermeneutics", "sharia-fiqh-distinction"], "n": 3}
+{"idx": 494, "ci": 2, "m": ["islamic-feminist-organizations", "african-legal-pluralism-structure", "african-decolonial-scholars"], "n": 3}
+{"idx": 494, "ci": 3, "m": ["chinese-socialist-legal-reforms", "chinese-marketization-tension"], "n": 3}
+{"idx": 494, "ci": 4, "m": ["property-islamic-separate-ownership", "property-islamic-inheritance"], "n": 3}
+{"idx": 494, "ci": 5, "m": ["property-african-land-tenure"], "n": 3}
+{"idx": 494, "ci": 6, "m": [], "n": 3}
+{"idx": 495, "ci": 0, "m": ["zimbabwe-tenure-types-a1-a2"], "n": 3}
+{"idx": 495, "ci": 1, "m": ["zimbabwe-hectares-transferred-scale", "zimbabwe-beneficiary-numbers"], "n": 3}
+{"idx": 495, "ci": 2, "m": [], "n": 3}
+{"idx": 495, "ci": 3, "m": ["zimbabwe-farmworker-displacement", "zimbabwe-fast-track-violence", "south-africa-section-25-framework"], "n": 3}
+{"idx": 495, "ci": 4, "m": ["south-africa-constitutional-amendment-2021", "south-africa-expropriation-act-2025"], "n": 3}
+{"idx": 495, "ci": 5, "m": [], "n": 3}
+{"idx": 495, "ci": 6, "m": ["namibia-constitutional-legal-framework", "namibia-state-preferential-purchase"], "n": 3}
+{"idx": 496, "ci": 0, "m": [], "n": 3}
+{"idx": 496, "ci": 1, "m": ["mabu-relational-robot-design"], "n": 3}
+{"idx": 496, "ci": 2, "m": ["asr-intent-dominant-errors"], "n": 3}
+{"idx": 496, "ci": 3, "m": ["selfrepair-escalation-problem"], "n": 3}
+{"idx": 496, "ci": 4, "m": ["sustained-sixmonth-integration"], "n": 3}
+{"idx": 496, "ci": 5, "m": [], "n": 3}
+{"idx": 496, "ci": 6, "m": ["implementable-interaction-sequences", "platform-tradeoff-analysis", "evidence-quality-discrepancies"], "n": 3}
+{"idx": 497, "ci": 0, "m": ["position-sizing-conservative-range"], "n": 3}
+{"idx": 497, "ci": 1, "m": [], "n": 3}
+{"idx": 497, "ci": 2, "m": ["debit-spread-risk-reward-structure", "credit-spread-risk-reward-structure"], "n": 3}
+{"idx": 497, "ci": 3, "m": [], "n": 3}
+{"idx": 497, "ci": 4, "m": ["prohibited-strategies-list"], "n": 3}
+{"idx": 497, "ci": 5, "m": ["relative-volume-requirement", "moving-average-bullish-setup"], "n": 3}
+{"idx": 497, "ci": 6, "m": ["moving-average-bearish-setup"], "n": 3}
 {"idx": 497, "ci": 19, "m": ["professional-trading-terminology", "calculation-methodology-shown", "objective-analytical-tone"], "n": 3}
+{"idx": 498, "ci": 0, "m": ["us-scenario-a-net-takehome", "us-scenario-b-net-takehome"], "n": 3}
+{"idx": 498, "ci": 1, "m": ["us-scenario-a-federal-income-tax", "us-scenario-a-social-security-tax"], "n": 3}
+{"idx": 498, "ci": 2, "m": ["us-scenario-a-medicare-tax", "us-scenario-b-ordinary-income-tax", "us-scenario-b-capital-gains-tax"], "n": 3}
+{"idx": 498, "ci": 3, "m": ["us-scenario-b-social-security-exactly", "germany-scenario-a-income-tax-with-soli", "germany-scenario-a-pension-contribution"], "n": 3}
+{"idx": 498, "ci": 4, "m": ["germany-scenario-a-health-insurance", "germany-scenario-a-unemployment-ltc", "germany-scenario-b-wage-income-tax"], "n": 3}
+{"idx": 498, "ci": 5, "m": ["germany-scenario-b-social-insurance-wages-only", "eur-usd-conversion-rate-stated"], "n": 3}
+{"idx": 498, "ci": 6, "m": ["us-standard-deduction-2024", "social-security-wage-base-cap", "us-ltcg-15-percent-rate"], "n": 3}
+{"idx": 499, "ci": 0, "m": ["microsoft-genomics-retirement"], "n": 3}
+{"idx": 499, "ci": 1, "m": ["aws-ready2run-cost", "aws-long-read-cost"], "n": 3}
+{"idx": 499, "ci": 2, "m": ["china-cloud-operators"], "n": 3}
+{"idx": 499, "ci": 3, "m": ["google-no-china-region", "egress-cost-rates"], "n": 3}
+{"idx": 499, "ci": 4, "m": ["aws-services-named", "google-services-named", "azure-current-approaches"], "n": 3}
+{"idx": 499, "ci": 5, "m": ["all-criteria-addressed", "multi-scenario-cost-modeling"], "n": 3}
+{"idx": 499, "ci": 6, "m": ["china-sovereign-architecture", "service-retirement-implications", "federation-maturity-assessment"], "n": 3}
