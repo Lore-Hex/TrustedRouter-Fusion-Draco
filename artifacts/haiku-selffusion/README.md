@@ -78,9 +78,17 @@ python3 scripts/selffusion_gen_workflow.py \
 - **Grader vs gemini.** Sonnet-4.6 was measured as a 0.92-correlation, ~zero-bias proxy for
   `gemini-3.1-pro-preview` on OpenRouter's DRACO sample — but this is a different sample and may
   overgrade (plausibly +5, as Opus did). Treat absolute scores as inflated.
-- **Raw research reports** were recovered from the subagent transcripts after the fact by
-  `scripts/extract_selffusion_replays.py` → `replays/fusion-selffusion-{haiku,sonnet}.jsonl`
-  (799 reports: Haiku ~10/task × 44 tasks, Sonnet 10/task × 34 tasks). These are the reusable
-  panel material — re-fuse with a different judge/synth/ordering or re-grade offline without
-  re-running the expensive agentic research. The workflows themselves only returned scores, so
-  the fused-answer texts and judge analyses are not saved (regenerable from the reports).
+- **Full replays were recovered** from the subagent transcripts by
+  `scripts/extract_selffusion_replays.py` as drop-in `trustedrouter.fusion_draco.replay.v1` rows
+  (flagged `recovered_from_transcript: true`):
+  - `replays/fusion-selffusion-{haiku,sonnet}-research.jsonl` — solo-style: the full agentic
+    trace (`agentic.tools` = every `web_search` query / `web_fetch` URL / `bash` call + the
+    final report) + the full task. Haiku 459 / Sonnet 340 (~10/task). This is the reusable panel
+    material — re-fuse with a different judge/synth/ordering or re-grade offline (`draco_rejudge.py`)
+    without re-running agentic research.
+  - `replays/fusion-selffusion-{haiku,sonnet}-fused.jsonl` — fusion-style: the N-fused answers,
+    `config_id=selffusion_<model>_x<N>`. Haiku 578 / Sonnet 330.
+  Leak audit over the recovered traces: 12,768 `web_search` + 4,894 `web_fetch`, **zero**
+  benchmark-host (DRACO/Perplexity/HuggingFace/rubric) retrievals. Caveat: these are recovered,
+  so tool names are mapped to the repo's `web_search/web_fetch/bash`, `result_chars` is the
+  transcript-stored length, and tokens/timing are null; the queries and URLs are faithful.
