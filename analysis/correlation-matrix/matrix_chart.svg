@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 748" width="100%" style="height:auto" font-family="Inter,Arial,sans-serif">
+<rect width="1180" height="748" fill="#ffffff"/>
+<text x="60" y="58" font-size="37" font-weight="700" fill="#111827">The panel has no diversity hero</text>
+<text x="60" y="90" font-size="18" fill="#6b7280">Per-task DRACO score correlation between open-committee members · 100 tasks · gemini + Sonnet chunk-of-3 grades</text>
+<text x="355" y="184" font-size="16" font-weight="600" text-anchor="middle" fill="#374151">M3</text>
+<text x="441" y="184" font-size="16" font-weight="600" text-anchor="middle" fill="#374151">Kimi</text>
+<text x="527" y="184" font-size="16" font-weight="600" text-anchor="middle" fill="#374151">DeepSeek</text>
+<text x="613" y="184" font-size="16" font-weight="600" text-anchor="middle" fill="#374151">Gemma</text>
+<text x="699" y="184" font-size="16" font-weight="600" text-anchor="middle" fill="#374151">GLM</text>
+<text x="296" y="245" font-size="17" font-weight="600" text-anchor="end" fill="#111827">MiniMax-M3</text>
+<rect x="312" y="196" width="86" height="86" rx="3" fill="#f1f3f2" stroke="#ffffff" stroke-width="3"/>
+<text x="355" y="245" font-size="17" text-anchor="middle" fill="#c2c8c5">—</text>
+<rect x="398" y="196" width="86" height="86" rx="3" fill="#90bcb0" stroke="#ffffff" stroke-width="3"/>
+<text x="441" y="245" font-size="20" font-weight="600" text-anchor="middle" fill="#0f3d30">0.56</text>
+<rect x="484" y="196" width="86" height="86" rx="3" fill="#d8e9e2" stroke="#ffffff" stroke-width="3"/>
+<text x="527" y="245" font-size="20" font-weight="600" text-anchor="middle" fill="#0f3d30">0.47</text>
+<rect x="570" y="196" width="86" height="86" rx="3" fill="#90bcb0" stroke="#ffffff" stroke-width="3"/>
+<text x="613" y="245" font-size="20" font-weight="600" text-anchor="middle" fill="#0f3d30">0.56</text>
+<rect x="656" y="196" width="86" height="86" rx="3" fill="#47907d" stroke="#ffffff" stroke-width="3"/>
+<text x="699" y="245" font-size="20" font-weight="600" text-anchor="middle" fill="#ffffff">0.65</text>
+<text x="296" y="331" font-size="17" font-weight="600" text-anchor="end" fill="#111827">Kimi K2.6</text>
+<rect x="312" y="282" width="86" height="86" rx="3" fill="#90bcb0" stroke="#ffffff" stroke-width="3"/>
+<text x="355" y="331" font-size="20" font-weight="600" text-anchor="middle" fill="#0f3d30">0.56</text>
+<rect x="398" y="282" width="86" height="86" rx="3" fill="#f1f3f2" stroke="#ffffff" stroke-width="3"/>
+<text x="441" y="331" font-size="17" text-anchor="middle" fill="#c2c8c5">—</text>
+<rect x="484" y="282" width="86" height="86" rx="3" fill="#17725b" stroke="#ffffff" stroke-width="3"/>
+<text x="527" y="331" font-size="20" font-weight="600" text-anchor="middle" fill="#ffffff">0.71</text>
+<rect x="570" y="282" width="86" height="86" rx="3" fill="#c8dfd7" stroke="#ffffff" stroke-width="3"/>
+<text x="613" y="331" font-size="20" font-weight="600" text-anchor="middle" fill="#0f3d30">0.49</text>
+<rect x="656" y="282" width="86" height="86" rx="3" fill="#d0e4dd" stroke="#ffffff" stroke-width="3"/>
+<text x="699" y="331" font-size="20" font-weight="600" text-anchor="middle" fill="#0f3d30">0.48</text>
+<text x="296" y="417" font-size="17" font-weight="600" text-anchor="end" fill="#111827">DeepSeek V4</text>
+<rect x="312" y="368" width="86" height="86" rx="3" fill="#d8e9e2" stroke="#ffffff" stroke-width="3"/>
+<text x="355" y="417" font-size="20" font-weight="600" text-anchor="middle" fill="#0f3d30">0.47</text>
+<rect x="398" y="368" width="86" height="86" rx="3" fill="#17725b" stroke="#ffffff" stroke-width="3"/>
+<text x="441" y="417" font-size="20" font-weight="600" text-anchor="middle" fill="#ffffff">0.71</text>
+<rect x="484" y="368" width="86" height="86" rx="3" fill="#f1f3f2" stroke="#ffffff" stroke-width="3"/>
+<text x="527" y="417" font-size="17" text-anchor="middle" fill="#c2c8c5">—</text>
+<rect x="570" y="368" width="86" height="86" rx="3" fill="#b8d5cc" stroke="#ffffff" stroke-width="3"/>
+<text x="613" y="417" font-size="20" font-weight="600" text-anchor="middle" fill="#0f3d30">0.51</text>
+<rect x="656" y="368" width="86" height="86" rx="3" fill="#b8d5cc" stroke="#ffffff" stroke-width="3"/>
+<text x="699" y="417" font-size="20" font-weight="600" text-anchor="middle" fill="#0f3d30">0.51</text>
+<text x="296" y="503" font-size="17" font-weight="600" text-anchor="end" fill="#111827">Gemma-4</text>
+<rect x="312" y="454" width="86" height="86" rx="3" fill="#90bcb0" stroke="#ffffff" stroke-width="3"/>
+<text x="355" y="503" font-size="20" font-weight="600" text-anchor="middle" fill="#0f3d30">0.56</text>
+<rect x="398" y="454" width="86" height="86" rx="3" fill="#c8dfd7" stroke="#ffffff" stroke-width="3"/>
+<text x="441" y="503" font-size="20" font-weight="600" text-anchor="middle" fill="#0f3d30">0.49</text>
+<rect x="484" y="454" width="86" height="86" rx="3" fill="#b8d5cc" stroke="#ffffff" stroke-width="3"/>
+<text x="527" y="503" font-size="20" font-weight="600" text-anchor="middle" fill="#0f3d30">0.51</text>
+<rect x="570" y="454" width="86" height="86" rx="3" fill="#f1f3f2" stroke="#ffffff" stroke-width="3"/>
+<text x="613" y="503" font-size="17" text-anchor="middle" fill="#c2c8c5">—</text>
+<rect x="656" y="454" width="86" height="86" rx="3" fill="#3f8b77" stroke="#ffffff" stroke-width="3"/>
+<text x="699" y="503" font-size="20" font-weight="600" text-anchor="middle" fill="#ffffff">0.66</text>
+<text x="296" y="589" font-size="17" font-weight="600" text-anchor="end" fill="#111827">GLM-5.2</text>
+<rect x="312" y="540" width="86" height="86" rx="3" fill="#47907d" stroke="#ffffff" stroke-width="3"/>
+<text x="355" y="589" font-size="20" font-weight="600" text-anchor="middle" fill="#ffffff">0.65</text>
+<rect x="398" y="540" width="86" height="86" rx="3" fill="#d0e4dd" stroke="#ffffff" stroke-width="3"/>
+<text x="441" y="589" font-size="20" font-weight="600" text-anchor="middle" fill="#0f3d30">0.48</text>
+<rect x="484" y="540" width="86" height="86" rx="3" fill="#b8d5cc" stroke="#ffffff" stroke-width="3"/>
+<text x="527" y="589" font-size="20" font-weight="600" text-anchor="middle" fill="#0f3d30">0.51</text>
+<rect x="570" y="540" width="86" height="86" rx="3" fill="#3f8b77" stroke="#ffffff" stroke-width="3"/>
+<text x="613" y="589" font-size="20" font-weight="600" text-anchor="middle" fill="#ffffff">0.66</text>
+<rect x="656" y="540" width="86" height="86" rx="3" fill="#f1f3f2" stroke="#ffffff" stroke-width="3"/>
+<text x="699" y="589" font-size="17" text-anchor="middle" fill="#c2c8c5">—</text>
+<text x="810" y="184" font-size="15" font-weight="600" text-anchor="middle" fill="#6b7280">avg</text>
+<text x="810" y="245" font-size="19" font-weight="700" text-anchor="middle" fill="#0f6e56">0.559</text>
+<text x="810" y="331" font-size="19" font-weight="700" text-anchor="middle" fill="#0f6e56">0.561</text>
+<text x="810" y="417" font-size="19" font-weight="700" text-anchor="middle" fill="#0f6e56">0.550</text>
+<text x="810" y="503" font-size="19" font-weight="700" text-anchor="middle" fill="#0f6e56">0.556</text>
+<text x="810" y="589" font-size="19" font-weight="700" text-anchor="middle" fill="#0f6e56">0.576</text>
+<line x1="770" y1="200" x2="770" y2="622" stroke="#d7dbd9" stroke-width="2"/>
+<line x1="60" y1="652" x2="1120" y2="652" stroke="#eceae4"/>
+<text x="60" y="678" font-size="19" fill="#111827"><tspan font-weight="700" fill="#0f6e56">Every pair sits at 0.47–0.71 (mean 0.56).</tspan> Each model's average correlation with the rest spans just <tspan font-weight="700">0.55–0.58</tspan> —</text>
+<text x="60" y="706" font-size="19" fill="#374151">a 0.03 spread, inside the noise. No model is the orthogonal outlier; the diversity that fuels fusion is real but <tspan font-style="italic">diffuse</tspan>.</text>
+<text x="1120" y="740" text-anchor="end" font-size="20" font-weight="700" fill="#0f6e56">TrustedRouter.com</text>
+</svg>

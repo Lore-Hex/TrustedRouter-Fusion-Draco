@@ -282,34 +282,49 @@ correlation is ~0.80, which collapses the paired SE and hides each one's margina
 contribution until you remove both. You can lose one redundant member for free; you
 cannot strip the panel down to its two load-bearing models.
 
-### 7.4 The diversity-not-IQ mechanism, and the per-task correlation matrix (in progress)
+### 7.4 The per-task correlation matrix — diversity is diffuse, not concentrated (resolved)
 
-Why are M3 and DeepSeek load-bearing while skilled GLM freeloads? The emerging answer
-from the per-task **member-solo** scores is **value = competence × low redundancy, not
-raw IQ**:
+The natural mechanism story is **value = competence × low redundancy**: M3 and DeepSeek
+carry the panel because they are both skilled *and* err independently, while skilled-but-
+redundant GLM freeloads. The n=25 gemini-only preview looked exactly like that (GLM the most-
+correlated member, M3 among the least). **The full 100-task matrix falsified it.**
 
-- **M3** — highest solo skill *and* among the least correlated with the rest → carries
-  the panel (−3.9).
-- **GLM** — skilled (comparable solo) but the **most** correlated/redundant member → its
-  marginal contribution is ~0 (−0.7), so it freeloads.
-- **Kimi / Gemma-4** — diverse *but weak* (Kimi ~50, Gemma-4 lowest), so their unique
-  draws rarely add correct content.
+We graded all 500 member-solo cells — 308 gemini chunk-of-3 + 192 credit-free Sonnet
+chunk-of-3 (§7.5) — and correlated each member's per-task DRACO scores across all 100 tasks
+(`analysis/correlation-matrix/`; figure published in the blog post *What actually makes a
+fusion panel work*). The result is **flat**:
 
-The smartest panelist isn't the most valuable; the **competent-and-decorrelated** one is.
-This is the same mechanism as self-fusion (§6): gains come from *uncorrelated error*, not
-from any single model being better.
+| member | mean corr w/ rest | solo skill |
+|---|---:|---:|
+| DeepSeek V4 Pro | 0.550 | 57.9 |
+| Gemma-4 | 0.556 | 35.3 |
+| MiniMax-M3 | 0.559 | 65.2 |
+| Kimi K2.6 | 0.561 | 45.3 |
+| GLM-5.2 | 0.576 | 64.5 |
 
-**Status: the 100×5 correlation matrix that proves this is mid-build.** Method and code in
-`analysis/correlation-matrix/` (see its `NOTES.md`). We have gemini chunk-of-3 scores for
-308 of the 500 member-solo cells; the remaining 192 are being graded with the credit-free
-Sonnet-chunk-3 grader (§7.5). On the 25 tasks with full gemini coverage the raw per-task
-score-correlation already shows GLM as the most-redundant member and M3 among the least —
-consistent with the ablation — but the full-100 matrix and the figure are **deferred**:
-the credit-free Sonnet grading stalled at 223/2,739 chunks because the subagent throttle
-escalates with each retry (see LESSONS), so we ship the diversity-not-IQ claim on the
-25-task + ablation evidence and leave the matrix figure as forthcoming. Resuming needs a
-non-subagent grader (gemini chunk-of-3 with topped-up credits, or `draco_rejudge.py` on a
-paid Claude judge) → `analysis/correlation-matrix/aggregate_matrix.py`.
+Every pair correlates **0.47–0.71 (mean 0.56)**, and each member's *average* correlation with
+the rest spans just **0.55–0.58 — a 0.03 spread, inside the noise.** No orthogonal outlier.
+DeepSeek is nominally least-correlated (0.550) but tied with everyone; the earlier clean
+prediction ("DeepSeek's errors are the least correlated, which is why it's load-bearing") is
+**false**.
+
+**Grader-mixing is not the cause** (checked, since each cell is graded by exactly one of two
+graders that disagree ~8 pts on Kimi/DeepSeek means): restricting each pairwise correlation to
+same-grader tasks moves the overall mean only 0.560 → 0.585. The flatness is real. (Pearson is
+invariant to a per-member grader mean-shift, so mixing graders is safe for this analysis.)
+
+**Honest interpretation — diversity is real but diffuse.** Roughly half of each pair's score
+variance is shared and half independent; fusion lives on the independent half, but no single
+model owns it. That is exactly why **leave-one-out is null** (drop any one, the others cover
+its blind spots) **yet drop-two hurts** (§7.3 redundancy floor): the useful disagreement is
+spread thin across the whole panel, not banked in a hero. What sets the workhorses (M3,
+DeepSeek) apart is not extra independence but **competence applied to that shared diversity** —
+the weak members (Gemma-4, Kimi) supply uncorrelated error but rarely the correct answer to
+keep. The matrix does not single out a diverse hero; it explains why one cannot exist here.
+
+**Grading note.** The 192 Sonnet cells finally graded by capping subagent concurrency at ≤2
+in flight (`grade_gentle.js`) — ~14-wide tripped a per-session request throttle that escalated
+with each retry; conc-2 stays under it (see LESSONS). All 2,739 chunks / 192 cells complete.
 
 ### 7.5 Grading infrastructure — the credit-free replacement grader
 

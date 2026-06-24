@@ -59,13 +59,16 @@ is kept only as a secondary diagnostic.
   fraction; grade in smaller waves and loop until complete. The **first** attempt also hit a
   runaway-loop bug (looping on `budget.remaining()` with no token budget → `Infinity` →
   1000-agent cap) — always give such loops a hard iteration cap.
-- **RESUMED (2026-06-22) — conc-2 beats the throttle.** The fix was capping subagent
-  concurrency: a manual pool of **≤2 agents in flight** (`grade_gentle.js`, batch-8,
-  Sonnet/effort=high) stays under the per-session request throttle that ~14-wide tripped.
-  At conc-2 the only failures are the hard session *usage* cap (resets, then resume). One
-  ~100-min pass took grading from 223 → **1,479/2,739 chunks**; ~1,260 chunks across 188
-  cells remain (the run swept low-`ci` chunks first, so most cells have most-but-not-all
-  chunks → only 4/192 cells complete so far). Finish = one more conc-2 pass on the
-  remainder, then `aggregate_matrix.py` → the figure. (Earlier history: a per-chunk
-  685-agent and a batched 650-agent blast both got ~3–21% as the throttle *escalates with
-  back-to-back bursts*; concurrency cap, not batching, is what fixed it.)
+- **COMPLETE (2026-06-22) — conc-2 beat the throttle; matrix built & published.** The fix
+  was capping subagent concurrency: a manual pool of **≤2 agents in flight**
+  (`grade_gentle.js`, batch-8, Sonnet/effort=high) stays under the per-session request
+  throttle that ~14-wide tripped (which *escalates* with back-to-back bursts — a per-chunk
+  685-agent and a batched 650-agent blast both got ~3–21%; concurrency cap, not batching,
+  is what fixed it). Two conc-2 passes (~100 min each, with a session-usage-cap reset
+  between) graded all **2,739 chunks / 192 cells**. `aggregate_matrix.py` → the 100×5 matrix.
+- **RESULT — flat / diffuse, thesis falsified.** Mean pairwise correlation 0.56; each
+  member's avg corr with the rest spans only **0.55–0.58** (DeepSeek 0.550 … GLM 0.576) — a
+  0.03 spread inside the noise. No diverse hero; the "DeepSeek least correlated" prediction
+  is false. Grader-mixing ruled out (`grader_check.py`: same-grader mean 0.585 vs mixed
+  0.560). Honest read in FINDINGS §7.4; heatmap = `matrix_chart.svg` (`make_matrix_svg.py`),
+  published in Post B. Outputs: `data/score_grid.json`, `data/corr_matrix.json`.
