@@ -191,7 +191,7 @@ docs/FINDINGS.md, docs/LESSONS.md           the analysis and the hard-won lesson
 ## Setup
 
 ```bash
-uv sync                      # installs trusted-router-py (our SDK) + markitdown
+uv sync --all-extras         # SDK + inspect task + markitdown (standalone harness)
 docker pull python:3.12-slim # bash-tool sandbox (network-isolated)
 ```
 

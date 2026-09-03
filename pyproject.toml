@@ -6,11 +6,16 @@ requires-python = ">=3.12"
 dependencies = [
     "trusted-router-py>=0.3.0",  # our SDK — every gateway call goes through it
     "httpx",                     # Exa search + web_fetch only (not the gateway)
-    "markitdown[all]",
 ]
 
 [project.optional-dependencies]
+# The inspect task uses hosted search only: no web_fetch, so no document parser. Keeping
+# markitdown out of the base dependencies keeps AnyEval's worker image from inheriting
+# onnxruntime and the rest of markitdown[all] for a code path it never runs. The module
+# already imports markitdown behind try/except, so the standalone harness degrades to
+# plain-text fetch without it.
 inspect = ["inspect-ai"]
+harness = ["markitdown[all]"]
 
 [project.entry-points.inspect_ai]
 draco = "draco"
