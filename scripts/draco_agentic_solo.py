@@ -26,6 +26,10 @@ from trusted_router.evals.agentic_tools import (
 from trusted_router.evals.draco import DracoTask
 from trusted_router.evals.draco_replay import load_manifest
 from trusted_router.evals.exa import ExaSearchClient
+from trusted_router.evals.tr_search import (
+    DEFAULT_SEARCH_MODEL as TR_DEFAULT_SEARCH_MODEL,
+    TrWebSearchClient,
+)
 from trusted_router.evals.fusion_live import load_eval_key
 
 REPLAY_SCHEMA = "trustedrouter.fusion_draco.replay.v1"
@@ -64,6 +68,11 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--api-key-name", default=None,
                    help="Use this specific key (e.g. CHATGPT_API_KEY) instead of the TR keys, "
                         "for routing a model directly to its provider.")
+    p.add_argument("--search-backend", default="tr", choices=("tr", "exa"),
+                   help="tr: the gateway's hosted web_search (Exa inside the attested enclave, no "
+                        "Exa key needed). exa: call api.exa.ai directly, the original harness.")
+    p.add_argument("--search-model", default=TR_DEFAULT_SEARCH_MODEL,
+                   help="Model the gateway asks for search queries under --search-backend tr.")
     p.add_argument("--workers", type=int, default=2)
     p.add_argument("--timeout-seconds", type=float, default=600.0)
     p.add_argument("--resume", action="store_true")
@@ -100,7 +109,9 @@ def main(argv: list[str] | None = None) -> int:
         print("missing API key")
         return 2
     exa_key = load_eval_key("EXA_API_KEY")
-    if not exa_key:
+    if args.search_backend == "exa" and not exa_key:
+        # Only the direct-Exa backend needs a client-side credential; the hosted
+        # backend calls Exa from inside the gateway on the TrustedRouter key.
         print("missing EXA_API_KEY")
         return 2
 
@@ -150,7 +161,11 @@ def _run(pending: list[DracoTask], *, args: argparse.Namespace, api_key: str, ex
 
 def _run_one(task: DracoTask, *, args: argparse.Namespace, api_key: str, exa_key: str) -> dict[str, Any]:
     client = tr_sdk.make_client(base_url=args.base_url, api_key=api_key, timeout=args.timeout_seconds)
-    exa_client = ExaSearchClient(exa_key)
+    exa_client = (
+        TrWebSearchClient(client, model=args.search_model)
+        if args.search_backend == "tr"
+        else ExaSearchClient(exa_key)
+    )
     try:
         schemas, executors = build_tool_executors(
             task, exa_client=exa_client, bash_image=args.bash_image, enable_bash=not args.no_bash,

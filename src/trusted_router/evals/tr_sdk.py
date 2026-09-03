@@ -9,11 +9,13 @@ rest of the harness already speaks, so call sites stay unchanged.
 """
 from __future__ import annotations
 
+import os
 from typing import Any, Mapping
 
 from trustedrouter import TrustedRouter
 
 DEFAULT_GATEWAY = "https://api.quillrouter.com/v1"
+_STREAMING_TRANSPORT = os.getenv("TR_EVAL_STREAMING", "0") == "1"
 
 
 def make_client(*, base_url: str | None = None, api_key: str,
@@ -36,9 +38,22 @@ def chat(client: TrustedRouter, body: Mapping[str, Any]) -> dict[str, Any]:
     model = body.get("model") or "trustedrouter/auto"
     messages = body["messages"]
     params = {k: v for k, v in body.items() if k not in ("model", "messages")}
-    # Ask the gateway to report token usage on the collected stream.
-    params.setdefault("stream_options", {"include_usage": True})
-    return client.chat_completions(model=model, messages=messages, **params).model_dump()
+
+    if _STREAMING_TRANSPORT:
+        # Ask the gateway to report token usage on the collected stream.
+        params.setdefault("stream_options", {"include_usage": True})
+        return client.chat_completions(model=model, messages=messages, **params).model_dump()
+
+    # NON-STREAMING BY DEFAULT, AND WHY. ``chat_completions`` collects a stream: the
+    # SDK always sets stream=true internally. On 2026-09-03 every streaming request to
+    # the gateway failed with {"code": "heartbeat_unavailable", "message": "usage
+    # heartbeat unavailable"} — the enclave fails closed when its pre-header usage
+    # heartbeat is refused — while the identical non-streaming request returned 200.
+    # Every task in this harness failed in zero seconds because of it. Nothing here
+    # needs incremental tokens, so the request goes through the same SDK client by its
+    # generic ``request`` path instead, which is not streamed. Set
+    # TR_EVAL_STREAMING=1 to restore the streamed transport once the gateway is fixed.
+    return client.request("POST", "/chat/completions", json={"model": model, "messages": messages, **params})
 
 
 class SdkResponse:
