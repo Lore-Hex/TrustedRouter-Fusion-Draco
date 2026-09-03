@@ -59,7 +59,11 @@ ManifestName = Literal[
 
 DEFAULT_MANIFEST: ManifestName = "draco-full-100"
 DEFAULT_MAX_TOOL_CALLS = 12
-DEFAULT_JUDGE_MODEL = "google/gemini-3.1-pro-preview"
+# ADDRESSED THROUGH THE GATEWAY, not bare. inspect_ai has its own "google" provider, so
+# get_model("google/gemini-3.1-pro-preview") would resolve to the Google API directly —
+# silently bypassing TrustedRouter and demanding a Google credential. PrometheusBench
+# carries the same note for z-ai. AnyEval binds and bills judges through the gateway.
+DEFAULT_JUDGE_MODEL = "trustedrouter/google/gemini-3.1-pro-preview"
 # Reasoning tokens count against this cap. Tests against reasoning judges found that
 # even 48k can end with an empty, length-limited completion, so do not inherit the
 # standalone harness's historical 3k floor here.
