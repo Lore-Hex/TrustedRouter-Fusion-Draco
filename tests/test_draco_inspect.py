@@ -278,7 +278,9 @@ def test_scorer_three_of_four_is_point_seven_five_with_metadata(
     # The judge is called through Inspect's model API (get_model), so the settings
     # travel in a GenerateConfig — that is what lets AnyEval price, receipt and
     # attribute the call as the grader instead of seeing an unpriced envelope.
-    assert all(call["config"].reasoning_effort == "high" for call in judge.calls)
+    # No reasoning_effort on the judge: the gateway maps it to a Gemini "thinking" field
+    # Google rejects for this model, and AnyEval disables provider fallbacks.
+    assert all(call["config"].reasoning_effort is None for call in judge.calls)
     assert all(call["config"].max_tokens >= 64_000 for call in judge.calls), (
         "reasoning judge output budget must be at least 64k tokens"
     )

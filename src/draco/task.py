@@ -274,10 +274,16 @@ async def _judge_chunk(
     """
     output = await judge.generate(
         _judge_messages(criterion_judge_messages_for_criteria(task_item, answer, criteria)),
+        # NO reasoning_effort. The gateway translates it into a Gemini "thinking" field
+        # that Google rejects for gemini-3.1-pro-preview ("Unknown name \"thinking\":
+        # Cannot find field"), and AnyEval pins providers with allow_fallbacks=false, so
+        # nothing masks the 400 — measured 2026-09-05 on the first AnyEval run. The
+        # standalone harness's own rejudge default is no reasoning parameter either, and
+        # Gemini 3.1 Pro reasons by default; the output budget below is what keeps that
+        # reasoning from crowding out the verdict.
         config=GenerateConfig(
             temperature=0.0,
             max_tokens=max(judge_max_tokens, DEFAULT_JUDGE_MAX_OUTPUT_TOKENS),
-            reasoning_effort="high",
         ),
     )
     content = str(getattr(output, "completion", "") or "")
