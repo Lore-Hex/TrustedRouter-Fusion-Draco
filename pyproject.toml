@@ -2,7 +2,7 @@
 name = "trustedrouter-fusion-draco"
 version = "0.1.0"
 description = "Reproduction of OpenRouter's Fusion DRACO deep-research benchmark on TrustedRouter, with an agentic web_search / web_fetch / bash harness."
-requires-python = ">=3.12"
+requires-python = ">=3.11"
 dependencies = [
     "trusted-router-py>=0.3.0",  # our SDK — every gateway call goes through it
     "httpx",                     # Exa search + web_fetch only (not the gateway)
