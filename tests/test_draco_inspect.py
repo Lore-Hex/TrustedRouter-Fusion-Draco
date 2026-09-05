@@ -56,30 +56,27 @@ class StubGateway:
 
 
 class StubJudge:
+    """A stand-in for the Inspect model the scorer gets from get_model()."""
+
     def __init__(self, replies: list[str]) -> None:
         self.replies = iter(replies)
         self.calls: list[dict[str, Any]] = []
 
-    def complete(self, **kwargs: Any) -> Any:
-        self.calls.append(kwargs)
-        return SimpleNamespace(
-            model=kwargs["model"],
-            content=next(self.replies),
-            finish_reason="stop",
-            input_tokens=10,
-            output_tokens=10,
-            request_id="judge-test",
-            elapsed_ms=1,
-        )
-
-    def close(self) -> None:
-        return None
+    async def generate(self, input: Any, config: Any = None, **kwargs: Any) -> Any:
+        self.calls.append({"input": input, "config": config, **kwargs})
+        return SimpleNamespace(completion=next(self.replies))
 
 
 def _score_with(
     monkeypatch: pytest.MonkeyPatch, judge: StubJudge, rubric: dict[str, Any]
 ):
-    monkeypatch.setattr(draco_task, "_make_judge_client", lambda: judge)
+    judge.requested = []
+
+    def fake_get_model(model_id: str) -> StubJudge:
+        judge.requested.append(model_id)
+        return judge
+
+    monkeypatch.setattr(draco_task, "get_model", fake_get_model)
     state = SimpleNamespace(
         input="A test problem",
         metadata={"rubric": rubric, "domain": "Academic"},
@@ -278,10 +275,18 @@ def test_scorer_three_of_four_is_point_seven_five_with_metadata(
         False,
         True,
     ]
-    assert all(call["reasoning_effort"] == "high" for call in judge.calls)
-    assert all(call["max_tokens"] >= 64_000 for call in judge.calls), (
+    # The judge is called through Inspect's model API (get_model), so the settings
+    # travel in a GenerateConfig — that is what lets AnyEval price, receipt and
+    # attribute the call as the grader instead of seeing an unpriced envelope.
+    assert all(call["config"].reasoning_effort == "high" for call in judge.calls)
+    assert all(call["config"].max_tokens >= 64_000 for call in judge.calls), (
         "reasoning judge output budget must be at least 64k tokens"
     )
+    assert all(call["config"].temperature == 0.0 for call in judge.calls)
+    # The id handed to get_model is the provider-addressed one the task declares: a bare
+    # google/... id would resolve to Inspect's own Google provider and leave the gateway.
+    assert judge.requested == [draco_task.DEFAULT_JUDGE_MODEL], judge.requested
+    assert judge.requested[0].startswith("trustedrouter/")
 
 
 def test_empty_judge_reply_is_unscored_not_zero(

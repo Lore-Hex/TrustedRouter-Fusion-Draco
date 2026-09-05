@@ -22,6 +22,13 @@ from typing import Any, Literal
 from inspect_ai import Task, task
 from inspect_ai.dataset import MemoryDataset, Sample
 from inspect_ai.scorer import NOANSWER, Score, Target, mean, scorer
+from inspect_ai.model import (
+    ChatMessageAssistant,
+    ChatMessageSystem,
+    ChatMessageUser,
+    GenerateConfig,
+    get_model,
+)
 from inspect_ai.solver import (
     Generate,
     Solver,
@@ -41,7 +48,6 @@ from trusted_router.evals.agentic_tools import (
 from trusted_router.evals.draco import DracoTask
 from trusted_router.evals.fusion_live import (
     DEFAULT_TR_API_BASE_URL,
-    TrustedRouterChatClient,
     _chunks,
     _flat_criteria,
     criterion_judge_messages_for_criteria,
@@ -233,65 +239,74 @@ def web_search(max_tool_calls: int = DEFAULT_MAX_TOOL_CALLS):
     return execute
 
 
-def _make_judge_client() -> TrustedRouterChatClient:
-    return TrustedRouterChatClient(
-        _gateway_api_key(),
-        base_url=_gateway_base_url(),
-        timeout_seconds=600.0,
-    )
+def _judge_messages(raw: list[dict[str, Any]]) -> list[Any]:
+    """The harness's judge prompt as Inspect chat messages."""
+    out: list[Any] = []
+    for message in raw:
+        role = str(message.get("role") or "user")
+        content = str(message.get("content") or "")
+        if role == "system":
+            out.append(ChatMessageSystem(content=content))
+        elif role == "assistant":
+            out.append(ChatMessageAssistant(content=content))
+        else:
+            out.append(ChatMessageUser(content=content))
+    return out
 
 
-def _judge_chunk(
+async def _judge_chunk(
     *,
-    client: Any,
+    judge: Any,
     task_item: DracoTask,
     answer: str,
     criteria: tuple[dict[str, str | int], ...],
-    judge_model: str,
     judge_max_tokens: int,
 ) -> tuple[Any, ...]:
-    raw = client.complete(
-        model=judge_model,
-        messages=criterion_judge_messages_for_criteria(task_item, answer, criteria),
-        temperature=0.0,
-        max_tokens=max(judge_max_tokens, DEFAULT_JUDGE_MAX_OUTPUT_TOKENS),
-        response_format={"type": "json_object"},
-        reasoning_effort="high",
-        timeout_seconds=600.0,
+    """Judge one chunk of criteria THROUGH INSPECT'S MODEL API.
+
+    Not through the harness's own gateway client: inside AnyEval every judge call has
+    to enter the run's provider so it is priced into the run, carried on the receipt
+    ledger, attributed as the grader ("WHO GRADED THIS") and checked by the same-family
+    rule. A call the provider never sees is an unpriced envelope that stops the batch.
+    The first AnyEval run of this task scored NOANSWER for exactly that reason: the SDK
+    client sent the provider-addressed id to the gateway verbatim, which answered
+    "Model does not support chat completions: trustedrouter/google/...".
+    """
+    output = await judge.generate(
+        _judge_messages(criterion_judge_messages_for_criteria(task_item, answer, criteria)),
+        config=GenerateConfig(
+            temperature=0.0,
+            max_tokens=max(judge_max_tokens, DEFAULT_JUDGE_MAX_OUTPUT_TOKENS),
+            reasoning_effort="high",
+        ),
     )
-    if not str(raw.content or "").strip():
+    content = str(getattr(output, "completion", "") or "")
+    if not content.strip():
         raise ValueError("criterion judge returned an empty completion")
     try:
-        return parse_criterion_judge_json_for_criteria(criteria, raw.content)
+        return parse_criterion_judge_json_for_criteria(criteria, content)
     except (json.JSONDecodeError, ValueError):
         if len(criteria) <= 1:
             raise
         midpoint = len(criteria) // 2
-        return _judge_chunk(
-            client=client,
-            task_item=task_item,
-            answer=answer,
-            criteria=criteria[:midpoint],
-            judge_model=judge_model,
-            judge_max_tokens=judge_max_tokens,
-        ) + _judge_chunk(
-            client=client,
-            task_item=task_item,
-            answer=answer,
-            criteria=criteria[midpoint:],
-            judge_model=judge_model,
-            judge_max_tokens=judge_max_tokens,
+        first = await _judge_chunk(
+            judge=judge, task_item=task_item, answer=answer,
+            criteria=criteria[:midpoint], judge_max_tokens=judge_max_tokens,
         )
+        second = await _judge_chunk(
+            judge=judge, task_item=task_item, answer=answer,
+            criteria=criteria[midpoint:], judge_max_tokens=judge_max_tokens,
+        )
+        return first + second
 
 
-def _judge_answer(
+async def _judge_answer(
     *,
-    client: Any,
+    judge: Any,
     problem: str,
     domain: str,
     rubric: dict[str, Any],
     answer: str,
-    judge_model: str,
     judge_max_tokens: int,
 ) -> tuple[float, tuple[Any, ...]]:
     task_item = DracoTask(
@@ -301,18 +316,15 @@ def _judge_answer(
         rubric=rubric,
     )
     criteria = _flat_criteria(rubric)
-    judgments = tuple(
-        judgment
-        for chunk in _chunks(criteria, DEFAULT_CRITERION_CHUNK_SIZE)
-        for judgment in _judge_chunk(
-            client=client,
+    judgments: tuple[Any, ...] = ()
+    for chunk in _chunks(criteria, DEFAULT_CRITERION_CHUNK_SIZE):
+        judgments = judgments + await _judge_chunk(
+            judge=judge,
             task_item=task_item,
             answer=answer,
             criteria=chunk,
-            judge_model=judge_model,
             judge_max_tokens=judge_max_tokens,
         )
-    )
     if len(judgments) != len(criteria):
         raise ValueError("criterion judge did not return every rubric verdict")
     return criterion_score(rubric, judgments) / 100.0, judgments
@@ -336,17 +348,14 @@ def draco_scorer(
                 explanation="DRACO sample metadata did not contain a usable rubric.",
             )
         answer = state.output.completion
-        client: Any | None = None
         try:
-            client = _make_judge_client()
-            value, judgments = await asyncio.to_thread(
-                _judge_answer,
-                client=client,
+            judge = get_model(judge_model)
+            value, judgments = await _judge_answer(
+                judge=judge,
                 problem=str(state.input),
                 domain=domain,
                 rubric=rubric,
                 answer=answer,
-                judge_model=judge_model,
                 judge_max_tokens=judge_max_tokens,
             )
         except Exception as exc:  # noqa: BLE001 - grader failure is an unscored sample
@@ -355,9 +364,6 @@ def draco_scorer(
                 reason="grader_failed",
                 explanation=f"No usable criterion verdict: {str(exc)[:240]}",
             )
-        finally:
-            if client is not None:
-                client.close()
         met = sum(1 for judgment in judgments if judgment.met)
         return Score(
             value=value,
