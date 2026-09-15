@@ -810,7 +810,7 @@ def test_full_loop_forces_final_synthesis_without_tools_at_budget() -> None:
         {
             "tool_calls": "single",
             "max_tokens": draco_task.DEFAULT_AGENT_MAX_TOKENS,
-            "max_tool_output": draco_task.MAX_TOOL_RESULT_CHARS,
+            "max_tool_output": 0,
             "temperature": 0.2,
         },
         {
@@ -1053,28 +1053,32 @@ def test_the_protocol_tasks_are_exported():
         assert name in draco.__all__ and hasattr(draco, name)
 
 
-def test_tool_definitions_build_on_harness_pins_without_tooldef_max_output(monkeypatch):
-    """AnyEval pins inspect-ai 0.3.260, which has no ToolDef.max_output; the task must still
-    load there, with the 40,000-char cap carried by the task's max_tool_output config."""
-    import inspect as _inspect
+def test_tool_results_are_sliced_to_the_standalone_first_40000_characters():
+    """The standalone loop appends result[:MAX_TOOL_RESULT_CHARS]: first 40,000 characters,
+    no envelope. Inspect's byte-based middle truncation is switched off and ToolDef is built
+    without max_output, so the task loads on the shared inspect-ai 0.3.260 pin."""
+    import asyncio
+
+    from inspect_ai.tool import ToolDef
 
     from draco import task as task_module
 
-    class LegacyToolDef:
-        def __init__(self, implementation, *, name, description, parameters):
-            self.kwargs = {"name": name, "description": description, "parameters": parameters}
+    seen = {}
 
-    monkeypatch.setattr(task_module, "ToolDef", LegacyToolDef)
-    built = task_module._exact_tool_definition(lambda **_: None, 0)
-    assert isinstance(built, LegacyToolDef)
-    assert built.kwargs["name"] == task_module.DRACO_FULL_TOOL_SCHEMAS[0]["function"]["name"]
+    async def implementation(query: str, num_results: int = 5) -> str:
+        seen["args"] = (query, num_results)
+        return seen["result"]
 
-    class ModernToolDef(LegacyToolDef):
-        def __init__(self, implementation, *, name, description, parameters, max_output):
-            super().__init__(implementation, name=name, description=description, parameters=parameters)
-            self.kwargs["max_output"] = max_output
+    built = task_module._exact_tool_definition(implementation, 0)
+    assert isinstance(built, ToolDef)
+    assert built.name == task_module.DRACO_FULL_TOOL_SCHEMAS[0]["function"]["name"]
+    assert getattr(built, "max_output", None) is None
 
-    monkeypatch.setattr(task_module, "ToolDef", ModernToolDef)
-    built = task_module._exact_tool_definition(lambda **_: None, 0)
-    assert built.kwargs["max_output"] == task_module.MAX_TOOL_RESULT_CHARS
-    assert "max_output" in _inspect.signature(ModernToolDef.__init__).parameters
+    seen["result"] = "a" * 50_000
+    assert asyncio.run(built.tool(query="q", num_results=3)) == "a" * 40_000
+    assert seen["args"] == ("q", 3)
+    seen["result"] = "\u00e9" * 30_000  # 60,000 bytes: standalone keeps every character
+    assert asyncio.run(built.tool(query="q")) == "\u00e9" * 30_000
+    seen["result"] = "short"
+    assert asyncio.run(built.tool(query="q")) == "short"
+    assert task_module.RESEARCH_GENERATE_CONFIG.max_tool_output == 0

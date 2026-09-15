@@ -28,7 +28,7 @@ parity with the standalone harness and locked by literal fixtures in ``tests/fix
 from __future__ import annotations
 
 import asyncio
-import inspect
+import functools
 import json
 import os
 from copy import deepcopy
@@ -122,7 +122,9 @@ DEFAULT_CRITERION_CHUNK_SIZE = 3
 RESEARCH_GENERATE_CONFIG = GenerateConfig(
     temperature=DEFAULT_GENERATION_TEMPERATURE,
     max_tokens=DEFAULT_AGENT_MAX_TOKENS,
-    max_tool_output=MAX_TOOL_RESULT_CHARS,
+    # 0 disables Inspect's byte-based middle truncation (truncate_string_to_bytes returns
+    # None for max_bytes <= 0); the standalone character slice lives on each tool.
+    max_tool_output=0,
 )
 SYNTHESIS_GENERATE_CONFIG = GenerateConfig(
     temperature=DEFAULT_GENERATION_TEMPERATURE,
@@ -328,21 +330,25 @@ def _exact_tool_definition(implementation: Any, index: int) -> ToolDef:
     # Inspect defaults this to false, but the original harness omitted the field.
     # None keeps the model-facing JSON schema byte-for-byte identical.
     parameters.additionalProperties = None
-    # The standalone loop caps the complete tool result at 40,000 chars. The task's
-    # GenerateConfig(max_tool_output=MAX_TOOL_RESULT_CHARS) already enforces that cap;
-    # the per-tool field is a second copy of the same number for Inspect versions that
-    # have it (0.3.261 added ToolDef.max_output). Older harness pins construct the
-    # ToolDef without it rather than failing at task load, so a platform on the shared
-    # 0.3.260 pin still gets the cap from the task config.
-    kwargs: dict[str, Any] = {}
-    if "max_output" in inspect.signature(ToolDef.__init__).parameters:
-        kwargs["max_output"] = MAX_TOOL_RESULT_CHARS
+    # The standalone loop appends `result[:MAX_TOOL_RESULT_CHARS]` as the tool message:
+    # the first 40,000 Python characters, no envelope. Inspect's own cap is different in
+    # every way that matters (bytes, middle truncation, a "<START_TOOL_OUTPUT>" wrapper),
+    # so it is switched off (max_tool_output=0 in RESEARCH_GENERATE_CONFIG) and the
+    # standalone slice is applied here, on the tool result itself. This also needs no
+    # ToolDef.max_output, which only exists from Inspect 0.3.261 and broke task load on
+    # the shared 0.3.260 harness pin.
+    @functools.wraps(implementation)
+    async def bounded(**arguments: Any) -> Any:
+        result = await implementation(**arguments)
+        if isinstance(result, str):
+            return result[:MAX_TOOL_RESULT_CHARS]
+        return result
+
     return ToolDef(
-        implementation,
+        bounded,
         name=schema["name"],
         description=schema["description"],
         parameters=parameters,
-        **kwargs,
     )
 
 
