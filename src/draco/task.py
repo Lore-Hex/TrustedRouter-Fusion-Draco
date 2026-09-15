@@ -794,15 +794,69 @@ def draco_full(
     )
 
 
+def _named_full_task(
+    *, judge_passes: int, sample_set: str | None,
+    max_tool_calls: int, judge_model: str, judge_max_tokens: int,
+    judge_reasoning_effort: str | None,
+) -> Task:
+    return draco_full(
+        manifest=DEFAULT_MANIFEST,
+        sample_set=sample_set,
+        max_tool_calls=max_tool_calls,
+        judge_model=judge_model,
+        judge_max_tokens=judge_max_tokens,
+        judge_passes=judge_passes,
+        judge_reasoning_effort=judge_reasoning_effort,
+    )
+
+
+@task
+def draco_full_tr(
+    max_tool_calls: int = DEFAULT_FULL_MAX_TOOL_CALLS,
+    judge_model: str = DEFAULT_JUDGE_MODEL,
+    judge_max_tokens: int = DEFAULT_JUDGE_MAX_OUTPUT_TOKENS,
+    judge_reasoning_effort: str | None = DEFAULT_JUDGE_REASONING_EFFORT,
+) -> Task:
+    """Full harness, all 100 tasks, ONE judge pass: TrustedRouter's published protocol.
+
+    A catalog that cannot pass task arguments names this task; the protocol is in the
+    name so a published number says which grading it came from.
+    """
+    return _named_full_task(
+        judge_passes=1, sample_set=None, max_tool_calls=max_tool_calls,
+        judge_model=judge_model, judge_max_tokens=judge_max_tokens,
+        judge_reasoning_effort=judge_reasoning_effort,
+    )
+
+
+@task
+def draco_full_openrouter(
+    max_tool_calls: int = DEFAULT_FULL_MAX_TOOL_CALLS,
+    judge_model: str = DEFAULT_JUDGE_MODEL,
+    judge_max_tokens: int = DEFAULT_JUDGE_MAX_OUTPUT_TOKENS,
+    judge_reasoning_effort: str | None = DEFAULT_JUDGE_REASONING_EFFORT,
+) -> Task:
+    """Full harness, all 100 tasks, THREE independent judge passes averaged: OpenRouter's protocol."""
+    return _named_full_task(
+        judge_passes=3, sample_set=None, max_tool_calls=max_tool_calls,
+        judge_model=judge_model, judge_max_tokens=judge_max_tokens,
+        judge_reasoning_effort=judge_reasoning_effort,
+    )
+
+
 @task
 def draco_full_sample20(
     max_tool_calls: int = DEFAULT_FULL_MAX_TOOL_CALLS,
     judge_model: str = DEFAULT_JUDGE_MODEL,
     judge_max_tokens: int = DEFAULT_JUDGE_MAX_OUTPUT_TOKENS,
-    judge_passes: int = DEFAULT_JUDGE_PASSES,
+    judge_passes: int = 3,
     judge_reasoning_effort: str | None = DEFAULT_JUDGE_REASONING_EFFORT,
 ) -> Task:
-    """Named full-harness task over the fixed seed-20260914 sample of 20."""
+    """Named full-harness task over the fixed seed-20260914 sample of 20.
+
+    Three judge passes by default: the sample exists to be compared with OpenRouter's
+    published table, so it grades the way that table was graded.
+    """
     return draco_full(
         manifest=DEFAULT_MANIFEST,
         sample_set="sample20",

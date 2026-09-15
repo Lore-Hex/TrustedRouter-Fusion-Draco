@@ -999,3 +999,21 @@ def test_pyproject_builds_wheel_with_sample_data(tmp_path: Path) -> None:
     wheel = next((tmp_path / "dist").glob("*.whl"))
     with zipfile.ZipFile(wheel) as archive:
         assert "draco/data/draco_sample20.json" in archive.namelist()
+
+
+def test_the_protocol_named_tasks_fix_the_pass_count_and_the_sample_grades_like_openrouter(monkeypatch):
+    from draco import task as task_module
+
+    seen = []
+
+    from inspect_ai import Task
+    from inspect_ai.dataset import Sample
+
+    def fake_full(**kwargs):
+        seen.append(kwargs)
+        return Task(dataset=[Sample(input="x", target="y")])
+
+    monkeypatch.setattr(task_module, "draco_full", fake_full)
+    task_module.draco_full_tr(); task_module.draco_full_openrouter(); task_module.draco_full_sample20()
+    assert [k["judge_passes"] for k in seen] == [1, 3, 3]
+    assert [k["sample_set"] for k in seen] == [None, None, "sample20"]
