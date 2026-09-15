@@ -1014,6 +1014,8 @@ def test_the_protocol_named_tasks_fix_the_pass_count_and_the_sample_grades_like_
         return Task(dataset=[Sample(input="x", target="y")])
 
     monkeypatch.setattr(task_module, "draco_full", fake_full)
-    task_module.draco_full_tr(); task_module.draco_full_openrouter(); task_module.draco_full_sample20()
+    task_module.draco_full_tr()
+    task_module.draco_full_openrouter()
+    task_module.draco_full_sample20()
     assert [k["judge_passes"] for k in seen] == [1, 3, 3]
     assert [k["sample_set"] for k in seen] == [None, None, "sample20"]
