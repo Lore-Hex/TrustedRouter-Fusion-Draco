@@ -680,14 +680,23 @@ def test_safe_non_2xx_final_url_is_inside_untrusted_delimiter(
 def test_fetch_helper_uses_plain_text_unless_original_wants_markitdown(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
-    class UnexpectedMarkItDown:
+    # A recorder, not a raising guard: the helper's plain-text fallback catches every
+    # exception, so a guard that raised inside the conversion was swallowed and the
+    # test stayed green when MarkItDown was wrongly attempted for ordinary HTML.
+    constructions: list[str] = []
+
+    class RecordingMarkItDown:
         def __init__(self) -> None:
-            raise AssertionError("ordinary HTML must not use MarkItDown")
+            constructions.append("constructed")
+
+        def convert_stream(self, *args, **kwargs):
+            constructions.append("converted")
+            return SimpleNamespace(text_content="", title="")
 
     monkeypatch.setitem(
         sys.modules,
         "markitdown",
-        SimpleNamespace(MarkItDown=UnexpectedMarkItDown),
+        SimpleNamespace(MarkItDown=RecordingMarkItDown),
     )
 
     html = b"<html><title>Plain</title><body>ordinary HTML</body></html>"
@@ -706,7 +715,7 @@ def test_fetch_helper_uses_plain_text_unless_original_wants_markitdown(
         b"ordinary   plain\ntext", "https://example.com/page.txt", "text/plain"
     )
     assert plain == normalize_visible_text("ordinary   plain\ntext")
-
+    assert constructions == [], "ordinary HTML must not touch MarkItDown at all"
 
 def test_fetch_helper_uses_markitdown_for_selected_documents(
     monkeypatch: pytest.MonkeyPatch,

@@ -12,7 +12,8 @@ used ``web_fetch`` and ``bash``. ``draco_full`` supplies those two tools through
 separate named Inspect sandboxes while retaining hosted TrustedRouter search.
 
 ``draco_full`` intentionally retains security/deployment deviations from the
-standalone harness: fetched content is wrapped as untrusted evidence, LlamaParse is
+standalone harness: fetched content is wrapped as untrusted evidence, the bodies of
+non-2xx responses are leak-screened before any text reaches the model, LlamaParse is
 disabled, and tool execution is delegated to named Inspect sandboxes. The judge is
 addressed through Inspect's TrustedRouter provider, rather than the direct replay
 client, so AnyEval can account for it. Deployments must ensure that ``sandbox("bash")``

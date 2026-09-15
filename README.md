@@ -249,7 +249,7 @@ the judge goes through Inspect's TrustedRouter provider for AnyEval accounting r
 than the replay module's direct client. The named-sandbox deployment assumes that
 `sandbox("bash")` has no network and that `/opt/draco/fetch_helper.py` exists in the
 `fetch` image. Bash isolation is equivalent to the standalone harness's Docker
-`--network none` policy, but enforced by the deployment rather than this module.
+`--network none` policy, but enforced by the deployment rather than this module; and the bodies of non-2xx fetch responses are leak-screened before any text reaches the model.
 
 For example:
 
