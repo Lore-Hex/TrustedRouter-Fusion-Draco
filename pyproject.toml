@@ -9,11 +9,10 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-# The inspect task uses hosted search only: no web_fetch, so no document parser. Keeping
-# markitdown out of the base dependencies keeps AnyEval's worker image from inheriting
-# onnxruntime and the rest of markitdown[all] for a code path it never runs. The module
-# already imports markitdown behind try/except, so the standalone harness degrades to
-# plain-text fetch without it.
+# Full Inspect fetch parsing runs inside AnyEval's dedicated fetch image, not its worker.
+# Keeping markitdown out of the base dependencies prevents the worker from inheriting
+# onnxruntime and the rest of markitdown[all]. The standalone harness already imports
+# markitdown behind try/except and degrades to plain-text fetch without it.
 inspect = ["inspect-ai"]
 harness = ["markitdown[all]"]
 
@@ -26,6 +25,10 @@ build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/trusted_router", "src/draco"]
+exclude = ["src/draco/data/draco_sample20.json"]
+
+[tool.hatch.build.targets.wheel.force-include]
+"draco_sample20.json" = "draco/data/draco_sample20.json"
 
 [tool.uv]
 package = true

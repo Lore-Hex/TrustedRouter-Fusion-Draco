@@ -214,6 +214,39 @@ Keys (env var or `~/.quill_cloud_keys.private`):
 
 ## Run it
 
+### AnyEval / Inspect tasks
+
+The package exports two Inspect tasks under the `draco` entry-point namespace:
+
+- `draco/draco` is the historical search-only task. It keeps hosted
+  TrustedRouter `web_search` and is not comparable to full-tool published runs.
+- `draco/draco_full` uses the original three-tool DRACO contract and 16-call
+  budget: hosted TrustedRouter `web_search`, proxy-only `web_fetch` in the named
+  `fetch` sandbox, and network-disabled `bash` in the named `bash` sandbox. It
+  deliberately does not expose the later `sec_facts` tool.
+
+Both default to the full 100-task manifest. Pass `sample_set="sample20"` for the
+fixed 20-task sample selected with seed `20260914`, or use the named
+`draco/draco_full_sample20` task when the task catalog cannot pass arguments. The
+sample IDs are recorded in [`draco_sample20.json`](draco_sample20.json) and are
+included in the installed wheel.
+
+Scoring defaults to `judge_passes=1`, the single-pass TrustedRouter protocol.
+Set `judge_passes=3` for OpenRouter's three-independent-pass protocol; verdicts
+are combined by majority for each criterion before rubric weights are applied.
+Set `judge_reasoning_effort="high"` to reproduce the published reasoning
+configuration. Its default is intentionally `None` because the pinned AnyEval
+Gemini route has rejected the translated reasoning field, so the compatibility
+workaround is visible rather than silently changing the comparison protocol.
+
+For example:
+
+```bash
+uv run inspect eval draco/draco_full \
+  -T sample_set=sample20 -T judge_passes=3 \
+  -T judge_reasoning_effort=high
+```
+
 **Tooled solo** (the core harness — a model drives its own research loop):
 
 ```bash
