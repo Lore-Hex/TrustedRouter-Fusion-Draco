@@ -1144,3 +1144,52 @@ def test_inspect_limit_signals_pass_through_the_error_wrapper():
 
         with pytest.raises(sentinel):
             asyncio.run(task_module._exact_tool_definition(terminating, 0).tool(query="q"))
+
+
+def test_inspect_signals_keep_inspect_semantics_through_execute_tools():
+    """End to end through Inspect's own tool executor: the wrapper hands Inspect's
+    signals back unchanged, so Inspect does exactly what it does without the wrapper.
+    A LimitExceededError raised inside a tool is, by Inspect's design on 0.3.260 and
+    0.3.261, a non-terminal ToolCallError(type="limit") (sample-scoped limits are
+    enforced by the sample runner at the next generation, not by the tool result); a
+    TerminateSampleError propagates out of execute_tools. Neither becomes the
+    standalone "Error running ..." text, and an ordinary failure still does."""
+    import asyncio
+
+    import pytest
+    from inspect_ai._util.exception import TerminateSampleError
+    from inspect_ai.model import ChatMessageAssistant, ChatMessageTool, execute_tools
+    from inspect_ai.tool import ToolCall
+    from inspect_ai.util import LimitExceededError
+
+    from draco import task as task_module
+
+    name = task_module.DRACO_FULL_TOOL_SCHEMAS[0]["function"]["name"]
+    outcome = {}
+
+    async def implementation(query: str, num_results: int = 5) -> str:
+        raise outcome["exc"]
+
+    built = task_module._exact_tool_definition(implementation, 0)
+
+    def run() -> ChatMessageTool:
+        call = ToolCall(id="c1", function=name, arguments={"query": "q"})
+        messages = [ChatMessageAssistant(content="", tool_calls=[call])]
+        result = asyncio.run(execute_tools(messages, [built]))
+        (message,) = result.messages
+        assert isinstance(message, ChatMessageTool)
+        return message
+
+    outcome["exc"] = LimitExceededError("time", value=1, limit=1)
+    limited = run()
+    assert limited.error is not None and limited.error.type == "limit"
+    assert "Error running" not in (limited.text or "")
+
+    outcome["exc"] = RuntimeError("gateway 502")
+    failed = run()
+    assert failed.error is None
+    assert failed.text == f"Error running {name}: gateway 502"
+
+    outcome["exc"] = TerminateSampleError("operator stop")
+    with pytest.raises(TerminateSampleError):
+        run()
