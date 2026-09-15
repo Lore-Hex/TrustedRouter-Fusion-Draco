@@ -214,6 +214,51 @@ Keys (env var or `~/.quill_cloud_keys.private`):
 
 ## Run it
 
+### AnyEval / Inspect tasks
+
+The package exports five Inspect tasks: `draco` (search-only, hosted `web_search` only), `draco_full` (search + sandboxed `web_fetch` + sandboxed `bash`, `judge_passes` selectable), `draco_full_tr` (full harness, one judge pass — TrustedRouter's published protocol), `draco_full_openrouter` (full harness, three independent judge passes averaged — OpenRouter's protocol) and `draco_full_sample20` (the full harness over the fixed seed-20260914 sample of 20 problems, three passes by default so it compares with OpenRouter's table).
+
+- `draco/draco` is the historical search-only task. It keeps hosted
+  TrustedRouter `web_search` and is not comparable to full-tool published runs.
+- `draco/draco_full` uses the original three-tool DRACO contract and 16-call
+  budget: hosted TrustedRouter `web_search`, proxy-only `web_fetch` in the named
+  `fetch` sandbox, and network-disabled `bash` in the named `bash` sandbox. It
+  deliberately does not expose the later `sec_facts` tool.
+
+Both default to the full 100-task manifest. Pass `sample_set="sample20"` for the
+fixed 20-task sample selected with seed `20260914`, or use the named
+`draco/draco_full_sample20` task when the task catalog cannot pass arguments. The
+sample IDs are recorded in [`draco_sample20.json`](draco_sample20.json) and are
+included in the installed wheel.
+
+Scoring defaults to the original `judge_passes=3` protocol: verdicts are scored and
+clamped independently per pass, then the three pass scores are averaged. Pass
+`judge_passes=1` only for the separate single-pass TrustedRouter protocol. Judge
+output defaults to the original 3,000-token floor and reasoning
+effort defaults to `high`; pass `judge_max_tokens=64000` explicitly when that larger
+cap is desired. AnyEval currently passes `judge_reasoning_effort=None` for
+`gemini-3.1-pro-preview` because the gateway rejects the field for that model
+(TrustedRouter issue `quill-router#1162`). That is a recorded deployment deviation,
+not the task default.
+
+The remaining `draco_full` deviations are explicit: hosted-search transport uses
+TrustedRouter; fetch and bash run in named Inspect sandboxes; fetched pages are
+surrounded by an untrusted-evidence delimiter; LlamaParse is disabled (the original
+MarkItDown-when-selected, otherwise plain-text extraction order remains intact); and
+the judge goes through Inspect's TrustedRouter provider for AnyEval accounting rather
+than the replay module's direct client. The named-sandbox deployment assumes that
+`sandbox("bash")` has no network and that `/opt/draco/fetch_helper.py` exists in the
+`fetch` image. Bash isolation is equivalent to the standalone harness's Docker
+`--network none` policy, but enforced by the deployment rather than this module; and the bodies of non-2xx fetch responses are leak-screened before any text reaches the model; and the 16-call budget is a strict cap where the original loop can overrun it by one final multi-call batch.
+
+For example:
+
+```bash
+uv run inspect eval draco/draco_full \
+  -T sample_set=sample20 -T judge_passes=3 \
+  -T judge_reasoning_effort=high
+```
+
 **Tooled solo** (the core harness — a model drives its own research loop):
 
 ```bash
