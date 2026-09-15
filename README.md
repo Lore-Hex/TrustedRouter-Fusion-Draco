@@ -216,7 +216,7 @@ Keys (env var or `~/.quill_cloud_keys.private`):
 
 ### AnyEval / Inspect tasks
 
-The package exports two Inspect tasks under the `draco` entry-point namespace:
+The package exports five Inspect tasks: `draco` (search-only, hosted `web_search` only), `draco_full` (search + sandboxed `web_fetch` + sandboxed `bash`, `judge_passes` selectable), `draco_full_tr` (full harness, one judge pass — TrustedRouter's published protocol), `draco_full_openrouter` (full harness, three independent judge passes averaged — OpenRouter's protocol) and `draco_full_sample20` (the full harness over the fixed seed-20260914 sample of 20 problems, three passes by default so it compares with OpenRouter's table).
 
 - `draco/draco` is the historical search-only task. It keeps hosted
   TrustedRouter `web_search` and is not comparable to full-tool published runs.
