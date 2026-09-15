@@ -325,18 +325,34 @@ def web_search(max_tool_calls: int = DEFAULT_MAX_TOOL_CALLS):
 
 
 def _inspect_control_flow_exceptions() -> tuple[type[BaseException], ...]:
-    """Inspect's limit/termination exceptions, whichever of them this Inspect version has."""
+    """Inspect's limit/termination exceptions, whichever of them this Inspect version has.
+
+    The limit error is looked up under its current name first; the relocated
+    ``inspect_ai.solver`` alias is consulted only when that is missing, because importing
+    the alias on a version that has both prints a deprecation warning at every task load.
+    """
     found: list[type[BaseException]] = []
-    for module_name, class_name in (
+    candidates: list[tuple[str, str]] = [
         ("inspect_ai.util", "LimitExceededError"),
-        ("inspect_ai.solver", "SampleLimitExceededError"),
-    ):
+        ("inspect_ai._util.exception", "TerminateSampleError"),
+        ("inspect_ai._util.exception", "TerminateTaskError"),
+    ]
+    for module_name, class_name in candidates:
         try:
             module = importlib.import_module(module_name)
             found.append(getattr(module, class_name))
         except (ImportError, AttributeError):
             continue
-    return tuple(found)
+    if not any(cls.__name__ == "LimitExceededError" for cls in found):
+        try:
+            found.append(getattr(importlib.import_module("inspect_ai.solver"), "SampleLimitExceededError"))
+        except (ImportError, AttributeError):
+            pass
+    unique: list[type[BaseException]] = []
+    for cls in found:
+        if isinstance(cls, type) and issubclass(cls, BaseException) and cls not in unique:
+            unique.append(cls)
+    return tuple(unique)
 
 
 _INSPECT_CONTROL_FLOW = _inspect_control_flow_exceptions()

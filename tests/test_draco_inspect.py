@@ -1124,3 +1124,23 @@ def test_inspect_limit_signals_pass_through_the_error_wrapper():
     built = task_module._exact_tool_definition(implementation, 0)
     with pytest.raises(LimitExceededError):
         asyncio.run(built.tool(query="q"))
+
+    # Operator/runner termination sentinels are RuntimeError subclasses in Inspect and
+    # must pass through as well; the resolution itself must not warn (the relocated
+    # solver alias is only a fallback).
+    import warnings
+
+    from inspect_ai._util.exception import TerminateSampleError, TerminateTaskError
+
+    with warnings.catch_warnings():
+        warnings.simplefilter("error")
+        resolved = task_module._inspect_control_flow_exceptions()
+    assert resolved == tuple(dict.fromkeys(resolved))  # no duplicates
+    for sentinel in (TerminateSampleError, TerminateTaskError):
+        assert sentinel in resolved
+
+        async def terminating(query: str, num_results: int = 5) -> str:
+            raise sentinel("stop")
+
+        with pytest.raises(sentinel):
+            asyncio.run(task_module._exact_tool_definition(terminating, 0).tool(query="q"))
