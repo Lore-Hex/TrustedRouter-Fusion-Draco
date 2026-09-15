@@ -231,13 +231,25 @@ fixed 20-task sample selected with seed `20260914`, or use the named
 sample IDs are recorded in [`draco_sample20.json`](draco_sample20.json) and are
 included in the installed wheel.
 
-Scoring defaults to `judge_passes=1`, the single-pass TrustedRouter protocol.
-Set `judge_passes=3` for OpenRouter's three-independent-pass protocol; verdicts
-are combined by majority for each criterion before rubric weights are applied.
-Set `judge_reasoning_effort="high"` to reproduce the published reasoning
-configuration. Its default is intentionally `None` because the pinned AnyEval
-Gemini route has rejected the translated reasoning field, so the compatibility
-workaround is visible rather than silently changing the comparison protocol.
+Scoring defaults to the original `judge_passes=3` protocol: verdicts are scored and
+clamped independently per pass, then the three pass scores are averaged. Pass
+`judge_passes=1` only for the separate single-pass TrustedRouter protocol. Judge
+output defaults to the original 3,000-token floor and reasoning
+effort defaults to `high`; pass `judge_max_tokens=64000` explicitly when that larger
+cap is desired. AnyEval currently passes `judge_reasoning_effort=None` for
+`gemini-3.1-pro-preview` because the gateway rejects the field for that model
+(TrustedRouter issue `quill-router#1162`). That is a recorded deployment deviation,
+not the task default.
+
+The remaining `draco_full` deviations are explicit: hosted-search transport uses
+TrustedRouter; fetch and bash run in named Inspect sandboxes; fetched pages are
+surrounded by an untrusted-evidence delimiter; LlamaParse is disabled (the original
+MarkItDown-when-selected, otherwise plain-text extraction order remains intact); and
+the judge goes through Inspect's TrustedRouter provider for AnyEval accounting rather
+than the replay module's direct client. The named-sandbox deployment assumes that
+`sandbox("bash")` has no network and that `/opt/draco/fetch_helper.py` exists in the
+`fetch` image. Bash isolation is equivalent to the standalone harness's Docker
+`--network none` policy, but enforced by the deployment rather than this module.
 
 For example:
 

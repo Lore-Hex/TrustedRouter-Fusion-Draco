@@ -3,23 +3,26 @@
 The immutable AnyEval fetch image installs this module at
 ``/opt/draco/fetch_helper.py``. Network access is possible only through the proxy
 selected below; the worker never performs the request itself.
+
+Extraction mirrors the standalone harness: MarkItDown is attempted only for the
+PDF/spreadsheet/SEC documents selected by ``_wants_markitdown``; all other responses
+take the plain-text path. LlamaParse is intentionally disabled in ``draco_full``.
 """
 
 from __future__ import annotations
 
 import io
 import json
-import mimetypes
 import os
 import re
 import sys
 from html.parser import HTMLParser
-from pathlib import PurePosixPath
 from urllib.parse import urlparse
 
 import httpx
 
 MAX_BODY_BYTES = 8_000_000
+MAX_TEXT_CHARS = 25_000
 FETCH_HEADERS = {
     "User-Agent": "TrustedRouter-Research research@quillrouter.com",
     "Accept": "*/*",
@@ -36,23 +39,27 @@ class _ReadableHTML(HTMLParser):
 
     def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
         del attrs
-        if tag in {"script", "style", "noscript", "svg"}:
+        normalized = tag.lower()
+        if normalized in {"script", "style", "noscript", "svg"}:
             self._hidden += 1
-        elif tag == "title":
+        elif normalized == "title":
             self._title = True
-        elif tag in {"br", "p", "div", "li", "tr", "h1", "h2", "h3", "h4"}:
+        elif not self._hidden and normalized in {"tr", "p", "li", "br", "div"}:
             self.text_parts.append("\n")
+        elif not self._hidden and normalized in {"td", "th"}:
+            self.text_parts.append(" | ")
 
     def handle_endtag(self, tag: str) -> None:
-        if tag in {"script", "style", "noscript", "svg"} and self._hidden:
+        normalized = tag.lower()
+        if normalized in {"script", "style", "noscript", "svg"} and self._hidden:
             self._hidden -= 1
-        elif tag == "title":
+        elif normalized == "title":
             self._title = False
-        elif tag in {"p", "div", "li", "tr", "h1", "h2", "h3", "h4"}:
+        elif not self._hidden and normalized in {"tr", "p", "li"}:
             self.text_parts.append("\n")
 
     def handle_data(self, data: str) -> None:
-        if self._hidden:
+        if self._hidden or not data.strip():
             return
         if self._title:
             self.title_parts.append(data)
@@ -86,12 +93,19 @@ def _proxy_for(scheme: str) -> str:
     raise RuntimeError("HTTP(S) proxy is required")
 
 
-def _extension(url: str, content_type: str) -> str:
-    suffix = PurePosixPath(urlparse(url).path).suffix
-    if suffix:
-        return suffix
-    guessed = mimetypes.guess_extension(content_type.split(";", 1)[0].strip())
-    return guessed or ".html"
+def _wants_markitdown(url: str, content_type: str) -> str | None:
+    """Match the standalone harness's table-heavy document selection."""
+    low = url.lower()
+    ct = (content_type or "").lower()
+    if "pdf" in ct or low.endswith(".pdf"):
+        return ".pdf"
+    if "spreadsheet" in ct or "excel" in ct or low.endswith((".xlsx", ".xls")):
+        return ".xlsx"
+    if low.endswith(".csv") or "text/csv" in ct:
+        return ".csv"
+    if "sec.gov" in low or "/edgar" in low or "edgar" in low:
+        return ".html"
+    return None
 
 
 def _plain_text(body: bytes, content_type: str) -> tuple[str, str]:
@@ -101,32 +115,53 @@ def _plain_text(body: bytes, content_type: str) -> tuple[str, str]:
         charset = match.group(1).strip("\"'")
     decoded = body.decode(charset, errors="replace")
     if "html" not in content_type.lower() and "<html" not in decoded[:500].lower():
-        return "", decoded.strip()
+        return "", _normalize_visible_text(decoded)
     parser = _ReadableHTML()
     parser.feed(decoded)
     title = " ".join(" ".join(parser.title_parts).split())
-    text = "\n".join(
-        line.strip()
-        for line in re.split(r"[\r\n]+", "".join(parser.text_parts))
-        if line.strip()
-    )
+    text = _normalize_visible_html_text("".join(parser.text_parts))
     return title, text
 
 
+def _normalize_visible_text(text: str) -> str:
+    return re.sub(r"\s+", " ", text).strip()
+
+
+def _normalize_visible_html_text(text: str) -> str:
+    lines = [_normalize_visible_text(line) for line in text.splitlines()]
+    return "\n".join(line for line in lines if line)
+
+
+def _truncate_plain_text(text: str) -> str:
+    return (
+        text[: MAX_TEXT_CHARS - 1].rstrip() + "…"
+        if len(text) > MAX_TEXT_CHARS
+        else text
+    )
+
+
+def _plain_fetch(body: bytes, content_type: str) -> tuple[str, str]:
+    title, text = _plain_text(body, content_type)
+    return title, _truncate_plain_text(text)
+
+
 def _extract(body: bytes, url: str, content_type: str) -> tuple[str, str]:
+    extension = _wants_markitdown(url, content_type)
+    if extension is None:
+        return _plain_fetch(body, content_type)
     try:
         from markitdown import MarkItDown
 
         converted = MarkItDown().convert_stream(
-            io.BytesIO(body), file_extension=_extension(url, content_type)
+            io.BytesIO(body), file_extension=extension
         )
         text = str(getattr(converted, "text_content", "") or "").strip()
         title = str(getattr(converted, "title", "") or "").strip()
         if text:
-            return title, text
+            return title, text[:MAX_TEXT_CHARS]
     except Exception:  # noqa: BLE001 - deterministic plain-text fallback
-        return _plain_text(body, content_type)
-    return _plain_text(body, content_type)
+        return _plain_fetch(body, content_type)
+    return _plain_fetch(body, content_type)
 
 
 def fetch(url: str) -> dict[str, str | int]:

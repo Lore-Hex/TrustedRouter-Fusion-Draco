@@ -10,6 +10,16 @@ Consequently ``draco`` is a search-only variant of the repository's standalone
 DRACO harness. Its scores are not comparable to the published table, whose runs also
 used ``web_fetch`` and ``bash``. ``draco_full`` supplies those two tools through
 separate named Inspect sandboxes while retaining hosted TrustedRouter search.
+
+``draco_full`` intentionally retains security/deployment deviations from the
+standalone harness: fetched content is wrapped as untrusted evidence, LlamaParse is
+disabled, and tool execution is delegated to named Inspect sandboxes. The judge is
+addressed through Inspect's TrustedRouter provider, rather than the direct replay
+client, so AnyEval can account for it. Deployments must ensure that ``sandbox("bash")``
+has no network access and that the fetch image contains
+``/opt/draco/fetch_helper.py``. The remaining model-facing prompts, schemas,
+generation settings, tool budget, judge settings, and scoring semantics are kept in
+parity with the standalone harness and locked by literal fixtures in ``tests/fixtures``.
 """
 
 from __future__ import annotations
@@ -18,7 +28,6 @@ import asyncio
 import json
 import os
 from copy import deepcopy
-from dataclasses import replace
 from importlib.resources import files
 from typing import Any, Literal
 
@@ -61,7 +70,10 @@ from trusted_router.evals.agentic_tools import (
     DEFAULT_MAX_TOOL_CALLS as DEFAULT_FULL_MAX_TOOL_CALLS,
 )
 from trusted_router.evals.draco import DracoTask
+from trusted_router.evals.fusion_micro import DRACO_JUDGE_PASSES
 from trusted_router.evals.fusion_live import (
+    DEFAULT_JUDGE_REASONING_EFFORT,
+    DEFAULT_TR_CRITERION_JUDGE_MAX_OUTPUT_TOKENS,
     DEFAULT_TR_API_BASE_URL,
     _chunks,
     _flat_criteria,
@@ -82,6 +94,7 @@ SampleSet = Literal["sample20"]
 DEFAULT_MANIFEST: ManifestName = "draco-full-100"
 DEFAULT_MAX_TOOL_CALLS = 12
 DEFAULT_AGENT_MAX_TOKENS = 8_000
+DEFAULT_GENERATION_TEMPERATURE = 0.2
 FETCH_HELPER_PATH = "/opt/draco/fetch_helper.py"
 BASH_STDOUT_BYTES = 6_000
 BASH_STDERR_BYTES = 2_000
@@ -97,11 +110,19 @@ UNTRUSTED_EVIDENCE_CLOSE = "\n</untrusted_web_evidence>"
 # silently bypassing TrustedRouter and demanding a Google credential. PrometheusBench
 # carries the same note for z-ai. AnyEval binds and bills judges through the gateway.
 DEFAULT_JUDGE_MODEL = "trustedrouter/google/gemini-3.1-pro-preview"
-# Reasoning tokens count against this cap. Tests against reasoning judges found that
-# even 48k can end with an empty, length-limited completion, so do not inherit the
-# standalone harness's historical 3k floor here.
-DEFAULT_JUDGE_MAX_OUTPUT_TOKENS = 64_000
+DEFAULT_JUDGE_MAX_OUTPUT_TOKENS = DEFAULT_TR_CRITERION_JUDGE_MAX_OUTPUT_TOKENS
+DEFAULT_JUDGE_PASSES = DRACO_JUDGE_PASSES
 DEFAULT_CRITERION_CHUNK_SIZE = 3
+
+RESEARCH_GENERATE_CONFIG = GenerateConfig(
+    temperature=DEFAULT_GENERATION_TEMPERATURE,
+    max_tokens=DEFAULT_AGENT_MAX_TOKENS,
+    max_tool_output=MAX_TOOL_RESULT_CHARS,
+)
+SYNTHESIS_GENERATE_CONFIG = GenerateConfig(
+    temperature=DEFAULT_GENERATION_TEMPERATURE,
+    max_tokens=DEFAULT_SYNTHESIS_MAX_TOKENS,
+)
 
 GATEWAY_KEY_ENV_VARS = (
     "TR_FUSION_EVAL_API_KEY",
@@ -168,9 +189,9 @@ def load_dataset(
         samples.append(
             Sample(
                 id=task_id,
-                input=problem,
+                input=f"Research task:\n{problem}",
                 target="",
-                metadata={"domain": domain, "rubric": rubric},
+                metadata={"domain": domain, "problem": problem, "rubric": rubric},
             )
         )
     if sample_set is not None:
@@ -360,19 +381,24 @@ def web_fetch(max_tool_calls: int = DEFAULT_FULL_MAX_TOOL_CALLS):
         status = payload.get("status")
         if _url_is_blocked(final_url):
             return "Error: that domain is blocked for this task."
-        if not isinstance(status, int) or not 200 <= status < 300:
-            return (
-                f"Could not fetch readable content from {final_url} (status {status})."
-            )
         task_item = _task_for_search(requested_url, context["rubric"])
         if _result_leaks(task_item, url=final_url, title=title, text=text):
             return "Error: fetched content was blocked (benchmark-related)."
+        if not isinstance(status, int) or not 200 <= status < 300:
+            evidence = f"Could not fetch readable content (status {status})."
+            return (
+                f"{UNTRUSTED_EVIDENCE_OPEN}web_fetch content from {final_url}:\n"
+                f"{evidence}{UNTRUSTED_EVIDENCE_CLOSE}"
+            )
         if not text.strip():
-            return f"Could not fetch readable content from {final_url}."
+            return (
+                f"{UNTRUSTED_EVIDENCE_OPEN}web_fetch content from {final_url}:\n"
+                f"Could not fetch readable content.{UNTRUSTED_EVIDENCE_CLOSE}"
+            )
         evidence = text[:DEFAULT_FETCH_CHARS]
         return (
-            f"web_fetch content from {final_url}:\n"
-            f"{UNTRUSTED_EVIDENCE_OPEN}{evidence}{UNTRUSTED_EVIDENCE_CLOSE}"
+            f"{UNTRUSTED_EVIDENCE_OPEN}web_fetch content from {final_url}:\n"
+            f"{evidence}{UNTRUSTED_EVIDENCE_CLOSE}"
         )
 
     return execute
@@ -438,8 +464,7 @@ def _agentic_research_loop(
             state = await generate(
                 state,
                 tool_calls="single",
-                max_tokens=DEFAULT_AGENT_MAX_TOKENS,
-                max_tool_output=MAX_TOOL_RESULT_CHARS,
+                **RESEARCH_GENERATE_CONFIG.model_dump(exclude_none=True),
             )
             tool_calls = state.output.message.tool_calls or []
             context = store().get(_SAMPLE_CONTEXT_KEY)
@@ -458,7 +483,7 @@ def _agentic_research_loop(
         state = await generate(
             state,
             tool_calls="none",
-            max_tokens=DEFAULT_SYNTHESIS_MAX_TOKENS,
+            **SYNTHESIS_GENERATE_CONFIG.model_dump(exclude_none=True),
         )
         state.output.completion = strip_tool_markup(state.output.completion)
         return state
@@ -508,6 +533,7 @@ async def _judge_chunk(
             temperature=0.0,
             max_tokens=max(judge_max_tokens, DEFAULT_JUDGE_MAX_OUTPUT_TOKENS),
             reasoning_effort=judge_reasoning_effort,
+            extra_body={"response_format": {"type": "json_object"}},
         ),
     )
     content = str(getattr(output, "completion", "") or "")
@@ -574,18 +600,15 @@ async def _judge_answer(
 def draco_scorer(
     judge_model: str = DEFAULT_JUDGE_MODEL,
     judge_max_tokens: int = DEFAULT_JUDGE_MAX_OUTPUT_TOKENS,
-    judge_passes: int = 1,
-    judge_reasoning_effort: str | None = None,
+    judge_passes: int = DEFAULT_JUDGE_PASSES,
+    judge_reasoning_effort: str | None = DEFAULT_JUDGE_REASONING_EFFORT,
 ):
     """Judge each criterion under a documented DRACO scoring protocol.
 
     ``judge_passes=1`` reproduces TrustedRouter's single-pass protocol.
-    ``judge_passes=3`` reproduces OpenRouter's three-independent-pass protocol by
-    taking the per-criterion majority before applying rubric weights. Pass
-    ``judge_reasoning_effort="high"`` for the published reasoning configuration.
-    The default is deliberately ``None``: AnyEval's pinned Gemini route has rejected
-    the translated ``thinking`` field, so callers must consciously choose between
-    that measured compatibility workaround and OpenRouter-comparable reasoning.
+    ``judge_passes=3`` reproduces the original three-independent-pass protocol by
+    scoring (and clamping) every pass independently, then averaging pass scores.
+    The judge reasoning default is the original harness's ``"high"``.
     """
     if judge_passes not in (1, 3):
         raise ValueError("judge_passes must be 1 or 3")
@@ -608,13 +631,19 @@ def draco_scorer(
                 explanation="DRACO sample metadata did not contain a usable rubric.",
             )
         answer = state.output.completion
+        raw_problem = state.metadata.get("problem")
+        problem = (
+            raw_problem
+            if isinstance(raw_problem, str)
+            else str(state.input).removeprefix("Research task:\n")
+        )
         try:
             judge = get_model(judge_model)
             passes = tuple(
                 [
                     await _judge_answer(
                         judge=judge,
-                        problem=str(state.input),
+                        problem=problem,
                         domain=domain,
                         rubric=rubric,
                         answer=answer,
@@ -624,19 +653,8 @@ def draco_scorer(
                     for _index in range(judge_passes)
                 ]
             )
-            if judge_passes == 1:
-                value, judgments = passes[0]
-            else:
-                pass_judgments = tuple(item[1] for item in passes)
-                judgments = tuple(
-                    replace(
-                        pass_judgments[0][index],
-                        met=sum(int(run[index].met) for run in pass_judgments) >= 2,
-                        rationale="majority of three independent judge passes",
-                    )
-                    for index in range(len(pass_judgments[0]))
-                )
-                value = criterion_score(rubric, judgments) / 100.0
+            value = sum(pass_result[0] for pass_result in passes) / len(passes)
+            judgments = passes[0][1]
         except Exception as exc:  # noqa: BLE001 - grader failure is an unscored sample
             return Score(
                 value=NOANSWER,
@@ -644,15 +662,24 @@ def draco_scorer(
                 explanation=f"No usable criterion verdict: {str(exc)[:240]}",
             )
         met = sum(1 for judgment in judgments if judgment.met)
+        if judge_passes == 1:
+            explanation = (
+                f"{met}/{len(judgments)} criteria met; weighted score {value:.3f}."
+            )
+        else:
+            pass_scores = [pass_result[0] for pass_result in passes]
+            explanation = (
+                f"Mean of {judge_passes} independently clamped pass scores "
+                f"{pass_scores}: {value:.3f}."
+            )
         return Score(
             value=value,
-            explanation=(
-                f"{met}/{len(judgments)} criteria met; weighted score {value:.3f}."
-            ),
+            explanation=explanation,
             metadata={
                 "judge_model": judge_model,
                 "judge_passes": judge_passes,
                 "judge_reasoning_effort": normalized_reasoning,
+                "judge_pass_scores": [pass_result[0] for pass_result in passes],
                 "criteria": [
                     judgment.public_dict(include_content=True) for judgment in judgments
                 ],
@@ -676,16 +703,16 @@ def draco(
     max_tool_calls: int = DEFAULT_MAX_TOOL_CALLS,
     judge_model: str = DEFAULT_JUDGE_MODEL,
     judge_max_tokens: int = DEFAULT_JUDGE_MAX_OUTPUT_TOKENS,
-    judge_passes: int = 1,
-    judge_reasoning_effort: str | None = None,
+    judge_passes: int = DEFAULT_JUDGE_PASSES,
+    judge_reasoning_effort: str | None = DEFAULT_JUDGE_REASONING_EFFORT,
 ) -> Task:
     """Build search-only DRACO (100 tasks by default).
 
-    ``judge_passes=1`` is the TrustedRouter protocol; ``judge_passes=3`` is the
-    OpenRouter per-criterion-majority protocol. Set
-    ``judge_reasoning_effort="high"`` for the published reasoning setting. It
-    defaults to ``None`` because the pinned AnyEval Gemini route has rejected the
-    translated reasoning field; the compatibility choice is therefore explicit.
+    Three-pass scores average independently clamped pass scores. Judge reasoning
+    defaults to ``"high"``. AnyEval currently passes
+    ``judge_reasoning_effort=None`` for ``gemini-3.1-pro-preview`` because the gateway
+    rejects that field for the model (TrustedRouter issue quill-router#1162); that is
+    a deployment deviation, not this task's default.
     """
     if max_tool_calls < 1:
         raise ValueError("max_tool_calls must be positive")
@@ -724,16 +751,19 @@ def draco_full(
     max_tool_calls: int = DEFAULT_FULL_MAX_TOOL_CALLS,
     judge_model: str = DEFAULT_JUDGE_MODEL,
     judge_max_tokens: int = DEFAULT_JUDGE_MAX_OUTPUT_TOKENS,
-    judge_passes: int = 1,
-    judge_reasoning_effort: str | None = None,
+    judge_passes: int = DEFAULT_JUDGE_PASSES,
+    judge_reasoning_effort: str | None = DEFAULT_JUDGE_REASONING_EFFORT,
 ) -> Task:
     """Build full DRACO with hosted search plus sandboxed fetch and bash.
 
-    ``judge_passes=1`` is the TrustedRouter protocol; ``judge_passes=3`` is the
-    OpenRouter per-criterion-majority protocol. Set
-    ``judge_reasoning_effort="high"`` for the published reasoning setting. It
-    defaults to ``None`` because the pinned AnyEval Gemini route has rejected the
-    translated reasoning field; the compatibility choice is therefore explicit.
+    Three-pass scores average independently clamped pass scores. Judge reasoning
+    defaults to ``"high"``. AnyEval currently passes
+    ``judge_reasoning_effort=None`` for ``gemini-3.1-pro-preview`` because the gateway
+    rejects that field for the model (TrustedRouter issue quill-router#1162); that is
+    a deployment deviation, not this task's default. LlamaParse is intentionally
+    disabled, fetched content remains wrapped as untrusted evidence, and deployments
+    must provide a networkless ``sandbox("bash")`` plus
+    ``/opt/draco/fetch_helper.py`` in the named fetch sandbox image.
     """
     if max_tool_calls < 1:
         raise ValueError("max_tool_calls must be positive")
@@ -769,8 +799,8 @@ def draco_full_sample20(
     max_tool_calls: int = DEFAULT_FULL_MAX_TOOL_CALLS,
     judge_model: str = DEFAULT_JUDGE_MODEL,
     judge_max_tokens: int = DEFAULT_JUDGE_MAX_OUTPUT_TOKENS,
-    judge_passes: int = 1,
-    judge_reasoning_effort: str | None = None,
+    judge_passes: int = DEFAULT_JUDGE_PASSES,
+    judge_reasoning_effort: str | None = DEFAULT_JUDGE_REASONING_EFFORT,
 ) -> Task:
     """Named full-harness task over the fixed seed-20260914 sample of 20."""
     return draco_full(
