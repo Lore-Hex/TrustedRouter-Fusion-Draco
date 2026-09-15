@@ -1051,3 +1051,30 @@ def test_the_protocol_tasks_are_exported():
 
     for name in ("draco_full_tr", "draco_full_openrouter", "draco_full_sample20"):
         assert name in draco.__all__ and hasattr(draco, name)
+
+
+def test_tool_definitions_build_on_harness_pins_without_tooldef_max_output(monkeypatch):
+    """AnyEval pins inspect-ai 0.3.260, which has no ToolDef.max_output; the task must still
+    load there, with the 40,000-char cap carried by the task's max_tool_output config."""
+    import inspect as _inspect
+
+    from draco import task as task_module
+
+    class LegacyToolDef:
+        def __init__(self, implementation, *, name, description, parameters):
+            self.kwargs = {"name": name, "description": description, "parameters": parameters}
+
+    monkeypatch.setattr(task_module, "ToolDef", LegacyToolDef)
+    built = task_module._exact_tool_definition(lambda **_: None, 0)
+    assert isinstance(built, LegacyToolDef)
+    assert built.kwargs["name"] == task_module.DRACO_FULL_TOOL_SCHEMAS[0]["function"]["name"]
+
+    class ModernToolDef(LegacyToolDef):
+        def __init__(self, implementation, *, name, description, parameters, max_output):
+            super().__init__(implementation, name=name, description=description, parameters=parameters)
+            self.kwargs["max_output"] = max_output
+
+    monkeypatch.setattr(task_module, "ToolDef", ModernToolDef)
+    built = task_module._exact_tool_definition(lambda **_: None, 0)
+    assert built.kwargs["max_output"] == task_module.MAX_TOOL_RESULT_CHARS
+    assert "max_output" in _inspect.signature(ModernToolDef.__init__).parameters

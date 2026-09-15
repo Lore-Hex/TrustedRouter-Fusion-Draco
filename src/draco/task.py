@@ -28,6 +28,7 @@ parity with the standalone harness and locked by literal fixtures in ``tests/fix
 from __future__ import annotations
 
 import asyncio
+import inspect
 import json
 import os
 from copy import deepcopy
@@ -327,13 +328,21 @@ def _exact_tool_definition(implementation: Any, index: int) -> ToolDef:
     # Inspect defaults this to false, but the original harness omitted the field.
     # None keeps the model-facing JSON schema byte-for-byte identical.
     parameters.additionalProperties = None
+    # The standalone loop caps the complete tool result at 40,000 chars. The task's
+    # GenerateConfig(max_tool_output=MAX_TOOL_RESULT_CHARS) already enforces that cap;
+    # the per-tool field is a second copy of the same number for Inspect versions that
+    # have it (0.3.261 added ToolDef.max_output). Older harness pins construct the
+    # ToolDef without it rather than failing at task load, so a platform on the shared
+    # 0.3.260 pin still gets the cap from the task config.
+    kwargs: dict[str, Any] = {}
+    if "max_output" in inspect.signature(ToolDef.__init__).parameters:
+        kwargs["max_output"] = MAX_TOOL_RESULT_CHARS
     return ToolDef(
         implementation,
         name=schema["name"],
         description=schema["description"],
         parameters=parameters,
-        # The standalone loop caps the complete tool result at 40,000 chars.
-        max_output=MAX_TOOL_RESULT_CHARS,
+        **kwargs,
     )
 
 
