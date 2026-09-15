@@ -810,7 +810,7 @@ def test_full_loop_forces_final_synthesis_without_tools_at_budget() -> None:
         {
             "tool_calls": "single",
             "max_tokens": draco_task.DEFAULT_AGENT_MAX_TOKENS,
-            "max_tool_output": draco_task.MAX_TOOL_RESULT_CHARS,
+            "max_tool_output": 0,
             "temperature": 0.2,
         },
         {
@@ -1051,3 +1051,145 @@ def test_the_protocol_tasks_are_exported():
 
     for name in ("draco_full_tr", "draco_full_openrouter", "draco_full_sample20"):
         assert name in draco.__all__ and hasattr(draco, name)
+
+
+def test_tool_results_are_sliced_to_the_standalone_first_40000_characters():
+    """The standalone loop appends result[:MAX_TOOL_RESULT_CHARS]: first 40,000 characters,
+    no envelope. Inspect's byte-based middle truncation is switched off and ToolDef is built
+    without max_output, so the task loads on the shared inspect-ai 0.3.260 pin."""
+    import asyncio
+
+    from inspect_ai.tool import ToolDef
+
+    from draco import task as task_module
+
+    seen = {}
+
+    async def implementation(query: str, num_results: int = 5) -> str:
+        seen["args"] = (query, num_results)
+        return seen["result"]
+
+    built = task_module._exact_tool_definition(implementation, 0)
+    assert isinstance(built, ToolDef)
+    assert built.name == task_module.DRACO_FULL_TOOL_SCHEMAS[0]["function"]["name"]
+    assert getattr(built, "max_output", None) is None
+
+    seen["result"] = "a" * 50_000
+    assert asyncio.run(built.tool(query="q", num_results=3)) == "a" * 40_000
+    assert seen["args"] == ("q", 3)
+    seen["result"] = "\u00e9" * 30_000  # 60,000 bytes: standalone keeps every character
+    assert asyncio.run(built.tool(query="q")) == "\u00e9" * 30_000
+    seen["result"] = "short"
+    assert asyncio.run(built.tool(query="q")) == "short"
+    assert task_module.RESEARCH_GENERATE_CONFIG.max_tool_output == 0
+
+
+def test_tool_errors_are_surfaced_to_the_model_like_the_standalone_loop():
+    """The standalone loop catches Exception and appends "Error running {name}: {exc}"
+    (sliced) as the tool result; under Inspect an uncaught exception would abort the sample."""
+    import asyncio
+
+    from draco import task as task_module
+
+    failure = {}
+
+    async def implementation(query: str, num_results: int = 5) -> str:
+        raise failure["exc"]
+
+    built = task_module._exact_tool_definition(implementation, 0)
+    name = task_module.DRACO_FULL_TOOL_SCHEMAS[0]["function"]["name"]
+    failure["exc"] = RuntimeError("gateway 502")
+    assert asyncio.run(built.tool(query="q")) == f"Error running {name}: gateway 502"
+    failure["exc"] = ValueError("x" * 50_000)
+    long_result = asyncio.run(built.tool(query="q"))
+    assert long_result == (f"Error running {name}: " + "x" * 50_000)[:task_module.MAX_TOOL_RESULT_CHARS]
+    assert len(long_result) == task_module.MAX_TOOL_RESULT_CHARS
+
+
+def test_inspect_limit_signals_pass_through_the_error_wrapper():
+    """Inspect's limit exceptions end the sample; they are Exception subclasses with no
+    standalone equivalent and must never become tool text the model keeps working on."""
+    import asyncio
+
+    import pytest
+    from inspect_ai.util import LimitExceededError
+
+    from draco import task as task_module
+
+    assert LimitExceededError in task_module._INSPECT_CONTROL_FLOW
+
+    async def implementation(query: str, num_results: int = 5) -> str:
+        raise LimitExceededError("token", value=1, limit=1)
+
+    built = task_module._exact_tool_definition(implementation, 0)
+    with pytest.raises(LimitExceededError):
+        asyncio.run(built.tool(query="q"))
+
+    # Operator/runner termination sentinels are RuntimeError subclasses in Inspect and
+    # must pass through as well; the resolution itself must not warn (the relocated
+    # solver alias is only a fallback).
+    import warnings
+
+    from inspect_ai._util.exception import TerminateSampleError, TerminateTaskError
+
+    with warnings.catch_warnings():
+        warnings.simplefilter("error")
+        resolved = task_module._inspect_control_flow_exceptions()
+    assert resolved == tuple(dict.fromkeys(resolved))  # no duplicates
+    for sentinel in (TerminateSampleError, TerminateTaskError):
+        assert sentinel in resolved
+
+        async def terminating(query: str, num_results: int = 5) -> str:
+            raise sentinel("stop")
+
+        with pytest.raises(sentinel):
+            asyncio.run(task_module._exact_tool_definition(terminating, 0).tool(query="q"))
+
+
+def test_inspect_signals_keep_inspect_semantics_through_execute_tools():
+    """End to end through Inspect's own tool executor: the wrapper hands Inspect's
+    signals back unchanged, so Inspect does exactly what it does without the wrapper.
+    A LimitExceededError raised inside a tool is, by Inspect's design on 0.3.260 and
+    0.3.261, a non-terminal ToolCallError(type="limit") (sample-scoped limits are
+    enforced by the sample runner at the next generation, not by the tool result); a
+    TerminateSampleError propagates out of execute_tools. Neither becomes the
+    standalone "Error running ..." text, and an ordinary failure still does."""
+    import asyncio
+
+    import pytest
+    from inspect_ai._util.exception import TerminateSampleError
+    from inspect_ai.model import ChatMessageAssistant, ChatMessageTool, execute_tools
+    from inspect_ai.tool import ToolCall
+    from inspect_ai.util import LimitExceededError
+
+    from draco import task as task_module
+
+    name = task_module.DRACO_FULL_TOOL_SCHEMAS[0]["function"]["name"]
+    outcome = {}
+
+    async def implementation(query: str, num_results: int = 5) -> str:
+        raise outcome["exc"]
+
+    built = task_module._exact_tool_definition(implementation, 0)
+
+    def run() -> ChatMessageTool:
+        call = ToolCall(id="c1", function=name, arguments={"query": "q"})
+        messages = [ChatMessageAssistant(content="", tool_calls=[call])]
+        result = asyncio.run(execute_tools(messages, [built]))
+        (message,) = result.messages
+        assert isinstance(message, ChatMessageTool)
+        return message
+
+    outcome["exc"] = LimitExceededError("time", value=1, limit=1)
+    limited = run()
+    assert limited.error is not None and limited.error.type == "limit"
+    assert "Error running" not in (limited.text or "")
+
+    outcome["exc"] = RuntimeError("gateway 502")
+    failed = run()
+    assert failed.error is None
+    assert failed.text == f"Error running {name}: gateway 502"
+
+    outcome["exc"] = TerminateSampleError("operator stop")
+    with pytest.raises(TerminateSampleError):
+        run()

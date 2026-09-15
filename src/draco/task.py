@@ -28,6 +28,8 @@ parity with the standalone harness and locked by literal fixtures in ``tests/fix
 from __future__ import annotations
 
 import asyncio
+import functools
+import importlib
 import json
 import os
 from copy import deepcopy
@@ -121,7 +123,9 @@ DEFAULT_CRITERION_CHUNK_SIZE = 3
 RESEARCH_GENERATE_CONFIG = GenerateConfig(
     temperature=DEFAULT_GENERATION_TEMPERATURE,
     max_tokens=DEFAULT_AGENT_MAX_TOKENS,
-    max_tool_output=MAX_TOOL_RESULT_CHARS,
+    # 0 disables Inspect's byte-based middle truncation (truncate_string_to_bytes returns
+    # None for max_bytes <= 0); the standalone character slice lives on each tool.
+    max_tool_output=0,
 )
 SYNTHESIS_GENERATE_CONFIG = GenerateConfig(
     temperature=DEFAULT_GENERATION_TEMPERATURE,
@@ -320,6 +324,40 @@ def web_search(max_tool_calls: int = DEFAULT_MAX_TOOL_CALLS):
     return execute
 
 
+def _inspect_control_flow_exceptions() -> tuple[type[BaseException], ...]:
+    """Inspect's limit/termination exceptions, whichever of them this Inspect version has.
+
+    The limit error is looked up under its current name first; the relocated
+    ``inspect_ai.solver`` alias is consulted only when that is missing, because importing
+    the alias on a version that has both prints a deprecation warning at every task load.
+    """
+    found: list[type[BaseException]] = []
+    candidates: list[tuple[str, str]] = [
+        ("inspect_ai.util", "LimitExceededError"),
+        ("inspect_ai._util.exception", "TerminateSampleError"),
+        ("inspect_ai._util.exception", "TerminateTaskError"),
+    ]
+    for module_name, class_name in candidates:
+        try:
+            module = importlib.import_module(module_name)
+            found.append(getattr(module, class_name))
+        except (ImportError, AttributeError):
+            continue
+    if not any(cls.__name__ == "LimitExceededError" for cls in found):
+        try:
+            found.append(getattr(importlib.import_module("inspect_ai.solver"), "SampleLimitExceededError"))
+        except (ImportError, AttributeError):
+            pass
+    unique: list[type[BaseException]] = []
+    for cls in found:
+        if isinstance(cls, type) and issubclass(cls, BaseException) and cls not in unique:
+            unique.append(cls)
+    return tuple(unique)
+
+
+_INSPECT_CONTROL_FLOW = _inspect_control_flow_exceptions()
+
+
 def _exact_tool_definition(implementation: Any, index: int) -> ToolDef:
     """Bind an Inspect implementation to one frozen standalone-harness schema."""
     schema = DRACO_FULL_TOOL_SCHEMAS[index]["function"]
@@ -327,13 +365,38 @@ def _exact_tool_definition(implementation: Any, index: int) -> ToolDef:
     # Inspect defaults this to false, but the original harness omitted the field.
     # None keeps the model-facing JSON schema byte-for-byte identical.
     parameters.additionalProperties = None
+    # The standalone loop appends `result[:MAX_TOOL_RESULT_CHARS]` as the tool message:
+    # the first 40,000 Python characters, no envelope. Inspect's own cap is different in
+    # every way that matters (bytes, middle truncation, a "<START_TOOL_OUTPUT>" wrapper),
+    # so it is switched off (max_tool_output=0 in RESEARCH_GENERATE_CONFIG) and the
+    # standalone slice is applied here, on the tool result itself. This also needs no
+    # ToolDef.max_output, which only exists from Inspect 0.3.261 and broke task load on
+    # the shared 0.3.260 harness pin.
+    # Errors follow the standalone loop too: it catches Exception, hands the model
+    # "Error running {name}: {exc}" (sliced like any result) and continues, whereas an
+    # uncaught exception under Inspect is a tool_exception that aborts the sample.
+    name = schema["name"]
+
+    @functools.wraps(implementation)
+    async def bounded(**arguments: Any) -> Any:
+        try:
+            result = await implementation(**arguments)
+        except _INSPECT_CONTROL_FLOW:
+            # Inspect's sample/limit signals are Exception subclasses with no standalone
+            # equivalent (the standalone budget is a plain counter); they end the sample
+            # and must not be turned into tool text the model keeps researching on.
+            raise
+        except Exception as exc:  # noqa: BLE001 - the standalone harness surfaces every error to the model
+            return f"Error running {name}: {exc}"[:MAX_TOOL_RESULT_CHARS]
+        if isinstance(result, str):
+            return result[:MAX_TOOL_RESULT_CHARS]
+        return result
+
     return ToolDef(
-        implementation,
+        bounded,
         name=schema["name"],
         description=schema["description"],
         parameters=parameters,
-        # The standalone loop caps the complete tool result at 40,000 chars.
-        max_output=MAX_TOOL_RESULT_CHARS,
     )
 
 
