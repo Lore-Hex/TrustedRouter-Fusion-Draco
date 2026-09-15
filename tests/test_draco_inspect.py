@@ -1028,3 +1028,26 @@ def test_the_protocol_named_tasks_fix_the_pass_count_and_the_sample_grades_like_
     task_module.draco_full_sample20()
     assert [k["judge_passes"] for k in seen] == [1, 3, 3]
     assert [k["sample_set"] for k in seen] == [None, None, "sample20"]
+
+
+@pytest.mark.parametrize("url", [
+    "http://localhost/secret", "http://127.0.0.1:8080/", "http://169.254.169.254/latest/meta-data/",
+    "http://metadata.google.internal/", "http://10.0.0.5/", "http://[::1]/", "ftp://example.com/x",
+])
+def test_web_fetch_refuses_non_public_urls_before_touching_the_sandbox(monkeypatch, url):
+    from draco import task as draco_task
+    from inspect_ai.util import store
+
+    calls = []
+    monkeypatch.setattr(draco_task, "sandbox", lambda _name: calls.append(_name) or None)
+    store().set(draco_task._SAMPLE_CONTEXT_KEY, {"rubric": _criteria_rubric(), "tool_calls": 0})
+    output = asyncio.run(draco_task.web_fetch()(url))
+    assert output.startswith("Error:")
+    assert calls == [], "a non-public URL must never reach the fetch sandbox"
+
+
+def test_the_protocol_tasks_are_exported():
+    import draco
+
+    for name in ("draco_full_tr", "draco_full_openrouter", "draco_full_sample20"):
+        assert name in draco.__all__ and hasattr(draco, name)

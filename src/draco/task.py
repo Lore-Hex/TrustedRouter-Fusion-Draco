@@ -14,7 +14,9 @@ separate named Inspect sandboxes while retaining hosted TrustedRouter search.
 ``draco_full`` intentionally retains security/deployment deviations from the
 standalone harness: fetched content is wrapped as untrusted evidence, the bodies of
 non-2xx responses are leak-screened before any text reaches the model, LlamaParse is
-disabled, and tool execution is delegated to named Inspect sandboxes. The judge is
+disabled, and tool execution is delegated to named Inspect sandboxes. The 16-call
+budget is a strict cap here; the original loop executes every call in a final
+multi-call batch and can exceed it by the size of that batch. The judge is
 addressed through Inspect's TrustedRouter provider, rather than the direct replay
 client, so AnyEval can account for it. Deployments must ensure that ``sandbox("bash")``
 has no network access and that the fetch image contains
@@ -55,6 +57,7 @@ from inspect_ai.tool import ToolDef, ToolParams, tool
 from inspect_ai.util import sandbox, store
 
 from trusted_router.evals import tr_sdk
+from trusted_router.evals.exa import _is_fetchable_public_url
 from trusted_router.evals.agentic_tools import (
     DEFAULT_FETCH_CHARS,
     DEFAULT_SYNTHESIS_MAX_TOKENS,
@@ -351,6 +354,11 @@ def web_fetch(max_tool_calls: int = DEFAULT_FULL_MAX_TOOL_CALLS):
             return "Error: web_fetch requires a 'url'."
         if _url_is_blocked(requested_url):
             return "Error: that domain is blocked for this task."
+        if not _is_fetchable_public_url(requested_url):
+            # The original harness's SSRF guard: localhost, metadata, private, loopback,
+            # link-local and reserved addresses never leave the tool, whatever the proxy
+            # would do. Belt and braces with the deployment's egress policy.
+            return "Error: only public http(s) URLs can be fetched."
         context = store().get(_SAMPLE_CONTEXT_KEY)
         if not isinstance(context, dict) or not isinstance(context.get("rubric"), dict):
             raise TypeError("DRACO web_fetch has no initialized sample context")
@@ -380,7 +388,7 @@ def web_fetch(max_tool_calls: int = DEFAULT_FULL_MAX_TOOL_CALLS):
         title = str(payload.get("title") or final_url)
         text = str(payload.get("text") or "")
         status = payload.get("status")
-        if _url_is_blocked(final_url):
+        if _url_is_blocked(final_url) or not _is_fetchable_public_url(final_url):
             return "Error: that domain is blocked for this task."
         task_item = _task_for_search(requested_url, context["rubric"])
         if _result_leaks(task_item, url=final_url, title=title, text=text):
@@ -876,7 +884,9 @@ __all__ = [
     "bash",
     "draco",
     "draco_full",
+    "draco_full_openrouter",
     "draco_full_sample20",
+    "draco_full_tr",
     "draco_scorer",
     "load_dataset",
     "web_fetch",
