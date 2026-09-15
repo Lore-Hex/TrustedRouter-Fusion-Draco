@@ -1104,3 +1104,23 @@ def test_tool_errors_are_surfaced_to_the_model_like_the_standalone_loop():
     long_result = asyncio.run(built.tool(query="q"))
     assert long_result == (f"Error running {name}: " + "x" * 50_000)[:task_module.MAX_TOOL_RESULT_CHARS]
     assert len(long_result) == task_module.MAX_TOOL_RESULT_CHARS
+
+
+def test_inspect_limit_signals_pass_through_the_error_wrapper():
+    """Inspect's limit exceptions end the sample; they are Exception subclasses with no
+    standalone equivalent and must never become tool text the model keeps working on."""
+    import asyncio
+
+    import pytest
+    from inspect_ai.util import LimitExceededError
+
+    from draco import task as task_module
+
+    assert LimitExceededError in task_module._INSPECT_CONTROL_FLOW
+
+    async def implementation(query: str, num_results: int = 5) -> str:
+        raise LimitExceededError("token", value=1, limit=1)
+
+    built = task_module._exact_tool_definition(implementation, 0)
+    with pytest.raises(LimitExceededError):
+        asyncio.run(built.tool(query="q"))

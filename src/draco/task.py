@@ -29,6 +29,7 @@ from __future__ import annotations
 
 import asyncio
 import functools
+import importlib
 import json
 import os
 from copy import deepcopy
@@ -323,6 +324,24 @@ def web_search(max_tool_calls: int = DEFAULT_MAX_TOOL_CALLS):
     return execute
 
 
+def _inspect_control_flow_exceptions() -> tuple[type[BaseException], ...]:
+    """Inspect's limit/termination exceptions, whichever of them this Inspect version has."""
+    found: list[type[BaseException]] = []
+    for module_name, class_name in (
+        ("inspect_ai.util", "LimitExceededError"),
+        ("inspect_ai.solver", "SampleLimitExceededError"),
+    ):
+        try:
+            module = importlib.import_module(module_name)
+            found.append(getattr(module, class_name))
+        except (ImportError, AttributeError):
+            continue
+    return tuple(found)
+
+
+_INSPECT_CONTROL_FLOW = _inspect_control_flow_exceptions()
+
+
 def _exact_tool_definition(implementation: Any, index: int) -> ToolDef:
     """Bind an Inspect implementation to one frozen standalone-harness schema."""
     schema = DRACO_FULL_TOOL_SCHEMAS[index]["function"]
@@ -346,6 +365,11 @@ def _exact_tool_definition(implementation: Any, index: int) -> ToolDef:
     async def bounded(**arguments: Any) -> Any:
         try:
             result = await implementation(**arguments)
+        except _INSPECT_CONTROL_FLOW:
+            # Inspect's sample/limit signals are Exception subclasses with no standalone
+            # equivalent (the standalone budget is a plain counter); they end the sample
+            # and must not be turned into tool text the model keeps researching on.
+            raise
         except Exception as exc:  # noqa: BLE001 - the standalone harness surfaces every error to the model
             return f"Error running {name}: {exc}"[:MAX_TOOL_RESULT_CHARS]
         if isinstance(result, str):
