@@ -1082,3 +1082,25 @@ def test_tool_results_are_sliced_to_the_standalone_first_40000_characters():
     seen["result"] = "short"
     assert asyncio.run(built.tool(query="q")) == "short"
     assert task_module.RESEARCH_GENERATE_CONFIG.max_tool_output == 0
+
+
+def test_tool_errors_are_surfaced_to_the_model_like_the_standalone_loop():
+    """The standalone loop catches Exception and appends "Error running {name}: {exc}"
+    (sliced) as the tool result; under Inspect an uncaught exception would abort the sample."""
+    import asyncio
+
+    from draco import task as task_module
+
+    failure = {}
+
+    async def implementation(query: str, num_results: int = 5) -> str:
+        raise failure["exc"]
+
+    built = task_module._exact_tool_definition(implementation, 0)
+    name = task_module.DRACO_FULL_TOOL_SCHEMAS[0]["function"]["name"]
+    failure["exc"] = RuntimeError("gateway 502")
+    assert asyncio.run(built.tool(query="q")) == f"Error running {name}: gateway 502"
+    failure["exc"] = ValueError("x" * 50_000)
+    long_result = asyncio.run(built.tool(query="q"))
+    assert long_result == (f"Error running {name}: " + "x" * 50_000)[:task_module.MAX_TOOL_RESULT_CHARS]
+    assert len(long_result) == task_module.MAX_TOOL_RESULT_CHARS

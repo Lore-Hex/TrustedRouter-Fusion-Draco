@@ -337,9 +337,17 @@ def _exact_tool_definition(implementation: Any, index: int) -> ToolDef:
     # standalone slice is applied here, on the tool result itself. This also needs no
     # ToolDef.max_output, which only exists from Inspect 0.3.261 and broke task load on
     # the shared 0.3.260 harness pin.
+    # Errors follow the standalone loop too: it catches Exception, hands the model
+    # "Error running {name}: {exc}" (sliced like any result) and continues, whereas an
+    # uncaught exception under Inspect is a tool_exception that aborts the sample.
+    name = schema["name"]
+
     @functools.wraps(implementation)
     async def bounded(**arguments: Any) -> Any:
-        result = await implementation(**arguments)
+        try:
+            result = await implementation(**arguments)
+        except Exception as exc:  # noqa: BLE001 - the standalone harness surfaces every error to the model
+            return f"Error running {name}: {exc}"[:MAX_TOOL_RESULT_CHARS]
         if isinstance(result, str):
             return result[:MAX_TOOL_RESULT_CHARS]
         return result
