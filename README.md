@@ -191,12 +191,12 @@ docs/FINDINGS.md, docs/LESSONS.md           the analysis and the hard-won lesson
 ## Setup
 
 ```bash
-uv sync                      # installs trusted-router-py (our SDK) + markitdown
+uv sync                      # installs trustedrouter (our SDK) + markitdown
 docker pull python:3.12-slim # bash-tool sandbox (network-isolated)
 ```
 
 Every gateway call in this harness goes through the official
-[`trusted-router-py`](https://github.com/Lore-Hex/trusted-router-py) SDK — the
+[`trustedrouter`](https://github.com/Lore-Hex/trusted-router-py) SDK — the
 benchmark dogfoods the same OpenAI-compatible, attested client our users do. All
 of it funnels through one small adapter, [`tr_sdk.py`](src/trusted_router/evals/tr_sdk.py):
 
