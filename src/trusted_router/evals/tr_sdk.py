@@ -1,7 +1,7 @@
 """TrustedRouter SDK transport for the eval harness.
 
 Every gateway chat-completion in this repo goes through the official
-``trusted-router-py`` SDK (``pip install trusted-router-py``) rather than a raw
+``trustedrouter`` SDK (``pip install trustedrouter``) rather than a raw
 OpenAI-shaped HTTP call — the benchmark dogfoods the same client our users do.
 The SDK handles auth, regional failover, and 429/5xx retries; here we adapt its
 typed ``ChatCompletion`` back to the OpenAI-shaped dict / response surface the
